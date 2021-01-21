@@ -1,0 +1,35 @@
+<section>
+    <!-- INCLUDE HEADER -->
+    <app-header></app-header>
+    <div class="login-content">
+        <div class="title">
+            Sign In
+        </div>
+        <!-- ERROR MESSAGE -->
+        <div class="error-message">Something went wrong.</div>
+        <form action="#" class="login-input" method="POST">
+            <!-- STEAM ACCOUNT NAME INPUT -->
+            <div class="steam-name-input">
+                <label for="steam-name">Steam account name</label>
+                <input type="text" id="steam-name">
+            </div>
+            <!-- PASSWORD INPUT -->
+            <div class="password-input">
+                <label for="password">Password</label>
+                <input type="text" id="password">
+            </div>
+            <!-- REMEMBER ME CHECKBOX INPUT -->
+            <div class="remember-me-checkbox">
+                <input type="checkbox" name="remember_me" id="remember-me">
+                <label for="remember-me">Remember me on this computer</label>
+            </div>
+            <!-- SIGN IN BUTTON -->
+            <input type="submit" value="Sign In" class="signin-button">
+            <a href="#" class="forgot-password">Forgot your password?</a>
+        </form>
+        <!-- REDIRECT TO REGISTER PAGE -->
+        <div class="register-button">
+            <a routerLink="/register">Join Steam</a>
+        </div>
+    </div>
+</section>

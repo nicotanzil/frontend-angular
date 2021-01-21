@@ -1,0 +1,98 @@
+@import '../../styles/colors.scss';
+@import '../../styles/mixins.scss';
+
+.header-container {
+    padding: 5px;
+    background-color: $header-bg;
+    height: 10%;
+    @include flex-center; 
+    color: $header-font-fg;
+    .header {
+        display: flex;
+        flex-direction: row;
+        .header-left {
+            float: left;
+            @include flex-center; 
+            flex-direction: row;
+            img {
+                height: 65px;
+            }
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                li {
+                    margin: 0 15px;
+                    a {
+                        display: block;
+                        color: $header-font-fg;
+                        text-decoration: none;
+                        text-transform: uppercase;
+                        font-size: 14px;
+                        font-weight: bold;
+                    }
+                    a:hover {
+                        color: $header-font-fg-hover; 
+                    }
+                    .dropdown {
+                        display: inline-block;
+                        .dropdown-content-store, .dropdown-content-community {
+                            display: none;
+                            position: absolute;
+                            background-color: $header-bg;
+                            box-shadow: 3px 3px 5px -3px #000;;
+                            z-index: 10;
+                            a {
+                                color: $header-font-fg;
+                                padding: 10px 5px;
+                                text-decoration: none;
+                                display: block;
+                                font-size: 12px;
+                            }
+                            a:hover {
+                                color: $header-font-fg-hover;
+                            }
+                            ul {
+                                display: flex;
+                                flex-direction: column;
+                            }
+                        }
+                    }
+                    .dropdown:hover {
+                        .dropdown-content-store, .dropdown-content-community {
+                            display: flex;
+                            flex-direction: column;
+                        }
+                    }
+                }
+            }
+        }
+        .header-right {
+            padding: 10px 0;
+            margin-left: 40px;
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: row;
+                li {
+                    margin: 0 5px;
+                    font-size: 12px;
+                    a {
+                        display: block;
+                        color: $header-font-fg; 
+                        text-align: center;
+                        text-decoration: none;
+                    }
+                    a:hover {
+                        color: $header-font-fg-hover;
+                    }
+                }
+            }
+        }
+    }
+}

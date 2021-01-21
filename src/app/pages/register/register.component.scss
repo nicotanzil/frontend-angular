@@ -1,0 +1,115 @@
+@import '../../styles/colors.scss';
+@import '../../styles/mixins.scss';
+
+section {
+    background-color: $login-bg;
+    height: 100%;
+}
+
+.register-content {
+    @include flex-center; 
+    flex-direction: column;
+    padding: 40px 0;
+    .title {
+        padding: 10px 0;
+        margin: 20px 0;
+        text-transform: uppercase;
+        font-size: 30px;
+        color: white;
+        font-weight: lighter;
+    }
+    .error-message {
+        display: none;
+        background-color: black;
+        color: white;
+        border: red solid 0.5px;
+        padding: 20px 35px;
+        font-size: 14px;
+    }
+    .register-input {
+        display: flex;
+        flex-direction: column;
+        padding: 20px 0;
+        width: 30%;
+        .email-input, .confirm-input, .country-input {
+            display: flex;
+            flex-direction: column;
+            label {
+                color: $header-font-fg;
+                margin-top: 15px;
+                font-size: 14px;
+            }
+            input {
+                color: white;
+                background-color: $login-input;
+                border-radius: 5px;
+                border: none;
+                padding: 10px 5px;
+                margin-top: 10px;
+            }
+            select {
+                color: white;
+                background-color: $login-input;
+                border-radius: 5px;
+                border: none;
+                padding: 10px 5px;
+                margin-top: 10px;
+            }
+        }
+
+        app-recaptcha {
+            margin: 30px 0 10px;
+        }
+
+        .agreement-checkbox {
+            margin: 20px 0;
+            padding: 10px;
+            label {
+                margin: 0 10px;
+                color: $header-font-fg;
+                font-size: 14px;
+            }
+        }
+
+        .continue-button {
+            padding: 10px 15px;
+            background-color: $login-btn;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .continue-button:hover {
+            background-color: $login-btn-hover;
+        }
+
+        a {
+            margin: 15px 0;
+            color: $header-font-fg;
+            font-size: 14px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: $login-btn-hover;
+        }
+    }
+    .register-button {
+        padding: 10px 50px;
+        background-color: $login-btn;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        a {
+            color: white;
+            text-decoration: none;    
+            font-size: 12px;
+        }
+    }
+
+    .register-button:hover {
+        background-color: $login-btn-hover;
+    }
+}
