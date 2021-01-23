@@ -6,35 +6,38 @@
             Create your account
         </div>
         <!-- ERROR MESSAGE -->
-        <div class="error-message">Something went wrong.</div>
-        <form action="#" class="register-input" method="POST">
+        <span [(ngModel)]="errorBox" *ngIf="isError == true" class="error-message">{{errorMessage}}</span>
+        <span [(ngModel)]="successBox" *ngIf="isSuccess == true" class="success-message">{{successMessage}}</span>
+        <form [formGroup]="registerMainForm" (ngSubmit)="onSubmit()" class="register-input">
             <!-- EMAIL INPUT -->
             <div class="email-input">
                 <label for="email">Email Address</label>
-                <input type="text" id="email" required>
+                <input type="text" id="email" formControlName="email">
             </div>
             <!-- CONFIRM ADDRESS INPUT -->
             <div class="confirm-input">
                 <label for="confirm">Confirm your Address</label>
-                <input type="text" id="confirm" required autocomplete="off">
+                <input type="text" id="confirm" autocomplete="off" formControlName="confirm">
             </div>
             <!-- COUNTRY DROPDOWN -->
             <div class="country-input">
                 <label for="countries">Country of Residence</label>
-                <select name="countries" id="countries" required>
+                <select name="countries" id="countries" [(ngModel)]="selectedCountry" (change)="changeSelect()" formControlName="country">
                     <!-- LOOP COUNTRIES -->
-                    <option *ngFor="let country of countries" value="{{country.name}}">{{country.name}}</option>
+                    <option selected="selected">Select Country</option>
+                    <option *ngFor="let country of countries">{{country.name}}</option>
                 </select>
             </div>
             <!--CAPTCHA  -->
-            <app-recaptcha></app-recaptcha>
+            <app-recaptcha formControlName="captcha"></app-recaptcha>
             <!-- AGREEMENT CHECKBOX -->
             <div class="agreement-checkbox">
-                <input type="checkbox" name="agreement" id="agreement" required>
+                <input type="checkbox" name="agreement" id="agreement" formControlName="agreement">
                 <label for="agreement">I am 13 years of age or older and agree to the terms of the Steam Subscriber Agreement and the Valve Privacy Policy</label>
             </div>
             <!-- REGISTER BUTTON -->
-            <input type="submit" value="Continue" class="continue-button">
+            <button class="continue-button" type="submit">Continue</button>
         </form>
+        <a routerLink="/register-complete" class="complete-redirect">Already have receive OTP?</a>
     </div>
 </section>

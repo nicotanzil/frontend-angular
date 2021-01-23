@@ -1,3 +1,3 @@
 export class Query {
-    data: any; 
+    data: any;
 }

@@ -3,11 +3,11 @@
 
 section {
     background-color: $login-bg;
-    height: 100%;
+    width: 100vw;
 }
 
 .register-content {
-    @include flex-center; 
+    @include flex-center;
     flex-direction: column;
     padding: 40px 0;
     .title {
@@ -19,18 +19,27 @@ section {
         font-weight: lighter;
     }
     .error-message {
-        display: none;
+        // display: none;
         background-color: black;
-        color: white;
-        border: red solid 0.5px;
+        color: red;
+        border: red solid 1px;
         padding: 20px 35px;
         font-size: 14px;
+    }
+
+    .success-message {
+      // display: none;
+      background-color: black;
+      color: green;
+      border: green solid 1px;
+      padding: 20px 35px;
+      font-size: 14px;
     }
     .register-input {
         display: flex;
         flex-direction: column;
         padding: 20px 0;
-        width: 30%;
+        width: 400px;
         .email-input, .confirm-input, .country-input {
             display: flex;
             flex-direction: column;
@@ -101,10 +110,11 @@ section {
         background-color: $login-btn;
         cursor: pointer;
         border: none;
+        color: white;
         border-radius: 5px;
         a {
             color: white;
-            text-decoration: none;    
+            text-decoration: none;
             font-size: 12px;
         }
     }
@@ -112,4 +122,13 @@ section {
     .register-button:hover {
         background-color: $login-btn-hover;
     }
+
+    .complete-redirect {
+        color: white;
+        text-decoration: none;
+    }
+    .complete-redirect:hover {
+        color: $login-btn-hover;
+    }
+
 }

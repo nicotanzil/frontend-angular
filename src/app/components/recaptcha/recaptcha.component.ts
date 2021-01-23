@@ -7,11 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recaptcha.component.scss'],
 })
 export class RecaptchaComponent implements OnInit {
+  static response: any;
 
   constructor() { }
 
   resolved(captchaResponse: string) {
     console.log(`Resolved captcha with response: ${captchaResponse}`);
+    if(captchaResponse == null) RecaptchaComponent.response = null; 
+    else RecaptchaComponent.response = captchaResponse; 
   }
 
   ngOnInit(): void {

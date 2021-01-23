@@ -1,0 +1,36 @@
+<section>
+    <!-- INCLUDE HEADER -->
+    <app-header></app-header>
+    <div class="register-content">
+        <div class="title">
+            Finish your registration process
+        </div>
+        <!-- ERROR MESSAGE -->
+        <span [(ngModel)]="errorBox" *ngIf="isError == true" class="error-message">{{errorMessage}}</span>
+        <span [(ngModel)]="successBox" *ngIf="isSuccess == true" class="success-message">{{successMessage}}</span>
+        <form [formGroup]="registerMainForm" (ngSubmit)="onSubmit()" class="register-input">
+            <!-- ACCOUNT NAME INPUT -->
+            <div class="account-input">
+                <label for="account">Account Address</label>
+                <input type="text" id="account" formControlName="account">
+            </div>
+            <!-- PASSWORD INPUT -->
+            <div class="password-input">
+                <label for="password">Password</label>
+                <input type="password" id="password" autocomplete="off" formControlName="password">
+            </div>
+            <!-- CONFIRM PASSWORD INPUT -->
+            <div class="confirm-input">
+                <label for="confirm">Confirm your password</label>
+                <input type="password" id="confirm" autocomplete="off" formControlName="confirm">
+            </div>
+            <div class="otp-input">
+                <label for="otp">OTP</label>
+                <input type="text" id="otp" autocomplete="off" formControlName="otp">
+            </div>
+            <!-- REGISTER BUTTON -->
+            <button class="register-button" type="submit">Register</button>
+        </form>
+        <a routerLink="/register" class="register-redirect">Back to Register</a>
+    </div>
+</section>

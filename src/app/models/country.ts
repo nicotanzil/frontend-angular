@@ -1,3 +1,3 @@
 export class Country {
-    name: string
+    name: string;
 }

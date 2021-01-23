@@ -3,35 +3,47 @@
 
 section {
     background-color: $login-bg;
-    height: 100vh;
     width: 100vw;
+    box-sizing: border-box;
 }
 
-.login-content {
+.register-content {
     @include flex-center;
     flex-direction: column;
-    padding: 30px 0;
+    padding: 40px 0;
     .title {
-        padding: 10px;
+        padding: 10px 0;
+        margin: 20px 0;
         text-transform: uppercase;
         font-size: 30px;
         color: white;
         font-weight: lighter;
     }
+
     .error-message {
-        display: none;
+        // display: none;
         background-color: black;
-        color: white;
-        border: red solid 0.5px;
+        color: red;
+        border: red solid 1px;
         padding: 20px 35px;
         font-size: 14px;
     }
-    .login-input {
+
+    .success-message {
+      // display: none;
+      background-color: black;
+      color: green;
+      border: green solid 1px;
+      padding: 20px 35px;
+      font-size: 14px;
+    }
+
+    .register-input {
         display: flex;
         flex-direction: column;
         padding: 20px 0;
-
-        .steam-name-input, .password-input {
+        width: 400px;
+        .account-input, .password-input, .confirm-input, .otp-input {
             display: flex;
             flex-direction: column;
             label {
@@ -48,52 +60,27 @@ section {
                 margin-top: 10px;
             }
         }
-
-        .remember-me-checkbox {
-            margin: 20px 0;
-            padding: 10px;
-            label {
-                margin: 0 10px;
-                color: $header-font-fg;
-                font-size: 14px;
-            }
-        }
-
-        .signin-button {
-            padding: 10px 15px;
-            background-color: $login-btn;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .signin-button:hover {
-            background-color: $login-btn-hover;
-        }
-
-        a {
-            margin: 15px 0;
-            color: $header-font-fg;
-            font-size: 14px;
-            text-align: center;
-            text-decoration: none;
-        }
-
-        a:hover {
-            color: $login-btn-hover;
-        }
     }
+
     .register-button {
-        padding: 10px 50px;
+        margin: 30px 0 0;
+        padding: 10px 15px;
         background-color: $login-btn;
-        cursor: pointer;
-        border: none;
         color: white;
+        border: none;
         border-radius: 5px;
+        cursor: pointer;
     }
 
     .register-button:hover {
         background-color: $login-btn-hover;
+    }
+
+    .register-redirect {
+        color: white;
+        text-decoration: none;
+    }
+    .register-redirect:hover {
+        color: $login-btn-hover;
     }
 }

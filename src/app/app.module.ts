@@ -7,10 +7,13 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { HeaderComponent } from './components/header/header.component';
 
-import { RecaptchaModule, RecaptchaFormsModule } from "ng-recaptcha";
+import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
-import { RecaptchaComponent } from './components/recaptcha/recaptcha.component'; 
+import { RecaptchaComponent } from './components/recaptcha/recaptcha.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RegisterCompleteComponent } from './pages/register-complete/register-complete.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -18,15 +21,19 @@ import { RecaptchaComponent } from './components/recaptcha/recaptcha.component';
     LoginComponent,
     RegisterComponent,
     HeaderComponent,
-    RecaptchaComponent
+    RecaptchaComponent,
+    RegisterCompleteComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RecaptchaModule,
     GraphQLModule,
+    FormsModule,
+    ReactiveFormsModule,
 
-    HttpClientModule, 
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
