@@ -2,17 +2,17 @@
 @import '../../styles/mixins.scss';
 
 .header-container {
-    padding: 5px;
+    width: 100%;
     background-color: $header-bg;
     height: 10%;
-    @include flex-center; 
+    @include flex-center;
     color: $header-font-fg;
     .header {
         display: flex;
         flex-direction: row;
         .header-left {
             float: left;
-            @include flex-center; 
+            @include flex-center;
             flex-direction: row;
             img {
                 height: 65px;
@@ -35,7 +35,7 @@
                         font-weight: bold;
                     }
                     a:hover {
-                        color: $header-font-fg-hover; 
+                        color: $header-font-fg-hover;
                     }
                     .dropdown-content-store, .dropdown-content-community {
                         display: none;
@@ -67,7 +67,6 @@
         }
         .header-right {
             padding: 10px 0;
-            margin-left: 40px;
             ul {
                 list-style-type: none;
                 margin: 0;
@@ -79,7 +78,7 @@
                     font-size: 12px;
                     a {
                         display: block;
-                        color: $header-font-fg; 
+                        color: $header-font-fg;
                         text-align: center;
                         text-decoration: none;
                     }
