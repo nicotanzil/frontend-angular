@@ -35,9 +35,9 @@
                         </div>
                     </div>
                 </li>
-                <li *ngIf="isUser">
+                <li *ngIf="this.isUser">
                   <div class="dropdown">
-                    <a href="#">{{user.accountName}}</a>
+                    <a href="#">{{this.user.profileName}}</a>
                     <div class="dropdown-content-community">
                       <ul>
                         <li><a href="#">Activity</a></li>
@@ -51,15 +51,15 @@
                     </div>
                   </div>
                 </li>
-                <li *ngIf="!isUser"><a href="#">About</a></li>
-                <li *ngIf="isUser"><a href="#">Chat</a></li>
+                <li *ngIf="!this.isUser"><a href="#">About</a></li>
+                <li *ngIf="this.isUser"><a href="#">Chat</a></li>
                 <li><a href="#">Support</a></li>
                 <li></li>
             </ul>
         </div>
         <!-- RIGHT SIDE HEADER 2 MENU -->
         <div class="header-right">
-            <ul *ngIf="!isUser">
+            <ul *ngIf="!this.isUser">
                 <!-- REDIRECT TO LOGIN PAGE -->
                 <li><a routerLink="/login">login</a></li>
                 <li>  |  </li>
@@ -67,9 +67,9 @@
                 <li>language</li>
             </ul>
                 <!-- EMAIL BOX SHOW IF THERE IS NOTIFICATION -->
-            <div class="mail-box" *ngIf="isUser">
+            <div class="mail-box" *ngIf="this.isUser">
                 <span class="mail-number">3</span>
-                <span class="mail-logo"><img src="../../../assets/home/mail%20logo.jpg" alt="mail"></span>
+                <i class="fa fa-envelope" aria-hidden="true"></i>
             </div>
         </div>
     </div>

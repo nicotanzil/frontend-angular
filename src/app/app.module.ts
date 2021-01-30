@@ -14,6 +14,9 @@ import { RecaptchaComponent } from './components/recaptcha/recaptcha.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterCompleteComponent } from './pages/register-complete/register-complete.component';
 import { HomeComponent } from './pages/home/home.component';
+import { HeaderMainComponent } from './components/header-main/header-main.component';
+import { FooterComponent } from './components/footer/footer.component';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +26,9 @@ import { HomeComponent } from './pages/home/home.component';
     HeaderComponent,
     RecaptchaComponent,
     RegisterCompleteComponent,
-    HomeComponent
+    HomeComponent,
+    HeaderMainComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +37,6 @@ import { HomeComponent } from './pages/home/home.component';
     GraphQLModule,
     FormsModule,
     ReactiveFormsModule,
-
     HttpClientModule,
   ],
   providers: [],

@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private service: RegisterService,
     private formBuilder: FormBuilder,
-  ) { }
+  ) {this.isError = false; }
   // VARIABLE DECLARATION
   countries: Country[];
   selectedCountry;
@@ -88,8 +88,14 @@ export class RegisterComponent implements OnInit {
     this.isError = false;
     // Get countries for combobox
     this.service.getCountries().subscribe(async query => {
-      if (query.data) { this.countries = query.data.countries; }
+      if (query.data) {
+        this.countries = query.data.countries;
+        // console.log(this.countries);
+        this.countries.forEach(value => {console.log(value); });
+      }
       else { this.errorMessage = 'Fetching countries data fail'; this.isError = true; }
+    }, error => {
+      this.errorMessage = 'Fetching countries data fail'; this.isError = true;
     });
 
   }
@@ -98,4 +104,5 @@ export class RegisterComponent implements OnInit {
     const regexp = new RegExp(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
     return regexp.test(String(email).toLowerCase());
   }
+
 }

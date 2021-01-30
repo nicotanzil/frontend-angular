@@ -22,13 +22,14 @@ export class RegisterService {
   }
 
 
+
   // Create OTP
-  generateOtp = (email, countryName) => {
+  generateOtp = (email, countryId) => {
     return this.apollo.mutate ({
       mutation: CREATE_OTP_MUTATION,
       variables: {
         email,
-        countryName,
+        countryId,
       }
     });
   }
@@ -52,7 +53,7 @@ export class RegisterService {
     return this.apollo.mutate({
       mutation: CREATE_USER_MUTATION,
       variables: {
-        profileName: name,
+        accountName: name,
         password,
         email,
         countryName: country,
@@ -71,19 +72,19 @@ const GET_COUNTRIES_QUERY = gql`
 `;
 
 const CREATE_OTP_MUTATION = gql`
-  mutation CreateOTP($email:String!, $countryName:String!) {
-    createOtp(input:{email:$email, countryName:$countryName}) {
+  mutation CreateOTP($email:String!, $countryId:Int!) {
+    createOtp(input:{email:$email, countryId:$countryId}) {
       id
       code
       email
-      countryName
+      countryId
       validUntil
     }
   }
 `;
 
 const CREATE_USER_MUTATION = gql`
-  mutation CreateUser($profileName:String!, $password:String!, $email:String!, $countryName:String!) {
-    createUser(user:{profileName:$profileName, password:$password}, otp:{email:$email, countryName:$countryName})
+  mutation CreateUser($accountName:String!, $password:String!, $email:String!, $countryName:String!) {
+    createUser(user:{accountName:$accountName, password:$password}, otp:{email:$email, countryName:$countryName})
   }
 `;

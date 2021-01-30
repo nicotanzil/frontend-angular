@@ -10,11 +10,11 @@ export class LoginService {
     private apollo: Apollo,
   ) { }
 
-  loginMutation = (profileName, password) => {
+  loginMutation = (accountName, password) => {
     return this.apollo.mutate({
       mutation: LOGIN_MUTATION,
       variables: {
-        profileName,
+        accountName,
         password,
       }
     });
@@ -22,7 +22,7 @@ export class LoginService {
 }
 
 const LOGIN_MUTATION = gql`
-  mutation Login($profileName:String!, $password:String!) {
-    login(input:{profileName:$profileName, password:$password})
+  mutation Login($accountName:String!, $password:String!) {
+    login(input:{accountName:$accountName, password:$password})
   }
 `;

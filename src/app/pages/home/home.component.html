@@ -1,1 +1,114 @@
-<p>home works!</p>
+<app-header-main></app-header-main>
+<section>
+  <div class="home-container">
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <a href="#">
+          <img src="../../../assets/home/steamcards.png" alt="SteamCards">
+        </a>
+        <br>
+        Gift Cards
+      </div>
+      <div class="sidebar-content">
+        <a href="#">Now Available on Steam</a>
+      </div>
+      <div class="sidebar-header">
+        Recommended
+      </div>
+      <div class="sidebar-content">
+        <a href="#">By Friends</a>
+        <a href="#">By Curators</a>
+        <a href="#">Tags</a>
+      </div>
+      <div class="sidebar-header">
+        Discovery Queues
+      </div>
+      <div class="sidebar-content">
+        <a href="#">Recommendations</a>
+        <a href="#">New Releases</a>
+      </div>
+      <div class="sidebar-header">
+        Browse Categories
+      </div>
+      <div class="sidebar-content">
+        <a href="#">Top Sellers</a>
+        <a href="#">New Releases</a>
+        <a href="#">Upcoming</a>
+        <a href="#">Specials</a>
+        <a href="#">Virtual Reality</a>
+        <a href="#">Controller Friendly</a>
+      </div>
+      <div class="sidebar-header">
+        Browse by Genre
+      </div>
+      <div class="sidebar-content">
+        <a href="#">Free to Play</a>
+        <a href="#">Early Access</a>
+        <a href="#">Action</a>
+        <a href="#">Adventure</a>
+        <a href="#">Casual</a>
+        <a href="#">Indie</a>
+        <a href="#">Massively Multiplayer</a>
+        <a href="#">Racing</a>
+        <a href="#">RPG</a>
+        <a href="#">Simulation</a>
+        <a href="#">Sports</a>
+        <a href="#">Strategy</a>
+      </div>
+      <div class="sidebar-header">
+        Your Tags
+      </div>
+      <div class="sidebar-content">
+
+      </div>
+      <div class="sidebar-header">
+        Recently Viewed
+      </div>
+      <div class="sidebar-content">
+
+      </div>
+    </div>
+    <div class="home-content">
+      <div id="wishlist-container" *ngIf="isUser">
+        <a href="#">
+          <div class="wishlist-content">
+            Wishlist
+          </div>
+        </a>
+
+      </div>
+      <div class="store-nav">
+        <div class="store-nav-tab">
+          <a href="#" id="yourstore-tab" class="tab">
+            <span>Your Store</span><i class="fa fa-sort-desc" aria-hidden="true"></i>
+          </a>
+          <a href="#" id="browse-tab"class="tab">
+            <span>Browse</span> <i class="fa fa-sort-desc" aria-hidden="true"></i>
+          </a>
+          <a href="#" id="pointsshop-tab" class="tab">
+            <span>Points Shop</span>
+          </a>
+          <a href="#" id="news-tab" class="tab">
+            <span>News</span>
+          </a>
+          <a href="#" id="steamlabs-tab" class="tab">
+            <span>Steam Labs</span>
+          </a>
+        </div>
+        <div class="store-search">
+          <form action="#" class="search-form">
+            <div class="search-box">
+              <input type="text" placeholder="search the store" autocomplete="off" onfocus="this.placeholder=''" onblur="this.placeholder='search the store'">
+              <a href="#" id="search-logo"><i class="fa fa-search" aria-hidden="true"></i>
+                <img src="" alt=""></a>
+            </div>
+          </form>
+          <div class="search-result">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--<app-footer></app-footer>-->

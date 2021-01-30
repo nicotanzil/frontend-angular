@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginService} from '../../services/login.service';
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,10 @@ export class LoginComponent implements OnInit {
   constructor(
     private service: LoginService,
     private formBuilder: FormBuilder,
+    private router: Router,
   ) { }
+
+
 
   // VARIABLE DECLARATION
   errorBox;
@@ -25,26 +29,25 @@ export class LoginComponent implements OnInit {
     remember_me: new FormControl(''),
   });
 
-  token: string;
+  tokenDetail: any;
 
   onSubmit(): void {
     // Process submitted data here
-    const profileName = this.loginForm.value.account;
+    const accountName = this.loginForm.value.account;
     const password = this.loginForm.value.password;
     const rememberMe = this.loginForm.value.remember_me;
 
     this.errorMessage = '';
-    this.isError = true;
-
-    console.log('Profile Name: ' + profileName);
-    console.log('Password: ' + password);
-
-    if (this.loginForm.valid) {
-      this.service.loginMutation(profileName, password).subscribe(async query => {
+    this.isError = false;
+    if (this.loginForm.valid && rememberMe) {
+      this.service.loginMutation(accountName, password).subscribe(async query => {
         if (query.data) {
-          // @ts-ignore
-          this.token = query.data.login;
+          // Redirect to home
+          await this.router.navigateByUrl('/');
         }
+      }, async error => {
+        this.errorMessage = error.toString();
+        this.isError = true;
       });
     }
   }

@@ -24,8 +24,7 @@
                 <label for="countries">Country of Residence</label>
                 <select name="countries" id="countries" [(ngModel)]="selectedCountry" (change)="changeSelect()" formControlName="country">
                     <!-- LOOP COUNTRIES -->
-                    <option selected="selected">Select Country</option>
-                    <option *ngFor="let country of countries">{{country.name}}</option>
+                    <option *ngFor="let country of countries; let i = index" value={{i+1}}>{{country.name}}</option>
                 </select>
             </div>
             <!--CAPTCHA  -->
