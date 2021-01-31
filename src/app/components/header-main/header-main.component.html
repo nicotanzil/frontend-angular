@@ -5,35 +5,35 @@
             <a routerLink="/"><img src="../../../assets/steam_logo.png" alt="header logo"></a>
             <ul>
                 <li>
-                    <!-- STORE DROPDOWN -->
-                    <div class="dropdown">
-                        <a href="#">Store</a>
-                        <div class="dropdown-content-store">
-                            <ul>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Discovery queue</a></li>
-                                <li><a href="#">Wishlist</a></li>
-                                <li><a href="#">Point shop</a></li>
-                                <li><a href="#">News</a></li>
-                                <li><a href="#">Stats</a></li>
-                            </ul>
-                        </div>
+                  <!-- STORE DROPDOWN -->
+                  <div class="dropdown">
+                    <a href="#">Store</a>
+                    <div class="dropdown-content-store">
+                      <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Discovery queue</a></li>
+                        <li><a href="#">Wishlist</a></li>
+                        <li><a href="#">Point shop</a></li>
+                        <li><a href="#">News</a></li>
+                        <li><a href="#">Stats</a></li>
+                      </ul>
                     </div>
+                  </div>
                 </li>
                 <li>
-                    <!-- COMMUNITY DROPDOWN -->
-                    <div class="dropdown">
-                        <a href="#">Community</a>
-                        <div class="dropdown-content-community">
-                            <ul>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Discussions</a></li>
-                                <li><a href="#">Workshop</a></li>
-                                <li><a href="#">Market</a></li>
-                                <li><a href="#">Broadcasts</a></li>
-                            </ul>
-                        </div>
+                  <!-- COMMUNITY DROPDOWN -->
+                  <div class="dropdown">
+                    <a href="#">Community</a>
+                    <div class="dropdown-content-community">
+                      <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Discussions</a></li>
+                        <li><a href="#">Workshop</a></li>
+                        <li><a href="#">Market</a></li>
+                        <li><a href="#">Broadcasts</a></li>
+                      </ul>
                     </div>
+                  </div>
                 </li>
                 <li *ngIf="this.isUser">
                   <div class="dropdown">
@@ -59,18 +59,47 @@
         </div>
         <!-- RIGHT SIDE HEADER 2 MENU -->
         <div class="header-right">
-            <ul *ngIf="!this.isUser">
-                <!-- REDIRECT TO LOGIN PAGE -->
-                <li><a routerLink="/login">login</a></li>
-                <li>  |  </li>
-                <!-- CHANGE LANGUAGE -->
-                <li>language</li>
-            </ul>
+          <ul *ngIf="!this.isUser">
+              <!-- REDIRECT TO LOGIN PAGE -->
+              <li><a routerLink="/login">login</a></li>
+              <li>  |  </li>
+              <!-- CHANGE LANGUAGE -->
+              <li>language</li>
+          </ul>
                 <!-- EMAIL BOX SHOW IF THERE IS NOTIFICATION -->
-            <div class="mail-box" *ngIf="this.isUser">
+          <div class="header-user-detail" *ngIf="this.isUser">
+            <div class="mail-box">
                 <span class="mail-number">3</span>
                 <i class="fa fa-envelope" aria-hidden="true"></i>
             </div>
+            <div class="account-detail">
+              <div class="name">
+                {{ this.user.profileName }}
+                <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                <div id="account-dropdown">
+                  <div class="item">
+                    <a href="#">View Profile</a>
+                  </div>
+                  <div class="item">
+                    <a href="#">Account Details</a>
+                  </div>
+                  <div class="item">
+                    <a href="#" (click)="logout()">Logout</a>
+                  </div>
+                  <div class="item">
+                    <a href="#">Preferences</a>
+                  </div>
+                  <div class="item">
+                    <a href="#">Change language</a>
+                  </div>
+                </div>
+              </div>
+              <a href="#" class="balance">Rp {{ this.user.balance }}</a>
+            </div>
+          </div>
+          <a href="#" id="header-user-avatar" *ngIf="this.isUser">
+            <img src="../../../assets/user/avatar.png" alt="{{ this.user.accountName }} Avatar">
+          </a>
         </div>
     </div>
 </div>

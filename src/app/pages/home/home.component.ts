@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../models/user';
+import {AuthService} from '../../services/auth.service';
+import {CurrentUser} from '../../models/current-user';
 
 @Component({
   selector: 'app-home',
@@ -8,13 +10,36 @@ import {User} from '../../models/user';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private service: AuthService,
+  ) { }
 
-  user: User;
   isUser: boolean;
+  user: User;
 
   ngOnInit(): void {
-    this.isUser = true;
+    this.service.getUserAuth().subscribe(async (query) => {
+      if (query.data.getUserAuth.accountName !== '') {
+        // logged in user
+        CurrentUser.id = query.data.getUserAuth.id;
+        CurrentUser.accountName = query.data.getUserAuth.accountName;
+        CurrentUser.profileName = query.data.getUserAuth.profileName;
+        CurrentUser.realName = query.data.getUserAuth.realName;
+        CurrentUser.email = query.data.getUserAuth.email;
+        CurrentUser.balance = query.data.getUserAuth.balance;
+        CurrentUser.customUrl = query.data.getUserAuth.customUrl;
+        CurrentUser.profilePicture = query.data.getUserAuth.profilePicture;
+
+        this.user = CurrentUser;
+        this.isUser = true;
+      }
+      else {
+        // guest login
+        this.isUser = false;
+      }
+    }, (error) => {
+      console.log('There has been an error: ', error);
+    });
   }
 
 }

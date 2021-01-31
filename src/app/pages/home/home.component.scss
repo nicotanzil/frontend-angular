@@ -80,30 +80,50 @@ section {
   .store-nav {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
     background-color: $home-lightblue;
+
+    overflow: hidden;
+    height: 40px;
+
     font-size: 12px;
     border: 1px black solid;
     box-shadow: 0 0 3px rgba( 0, 0, 0, 0.4);
     color: $home-sidebar-header-font;
-    a {
-      color: $home-sidebar-header-font;
-      text-decoration: none;
-    }
-    .tab {
-      padding: 10px 15px;
-      border-right: 1px black solid;
-      span {
-        cursor: pointer;
+
+    .store-nav-tab {
+      height: 40px;
+      a {
+        color: $home-sidebar-header-font;
+        text-decoration: none;
       }
-      i {
-        margin-left: 10px;
+      .tab {
+        height: 40px;
+        padding: 15px 15px;
+        border-right: 1px black solid;
+        span {
+          cursor: pointer;
+        }
+        i {
+          margin-left: 10px;
+        }
+      }
+      .tab:hover {
+        background: linear-gradient( to bottom, #e3eaef 5%, #c7d5e0 95%);
+        color: black;
+      }
+      #yourstore-tab {
+        span {
+          img {
+            width: 16px;
+            height: 16px;
+            padding-right: 10px;
+            vertical-align: text-bottom;
+          }
+        }
       }
     }
-    .tab:hover {
-      background: linear-gradient( to bottom, #e3eaef 5%, #c7d5e0 95%);
-      color: black;
-    }
+
     .store-search {
       padding: 3px 10px;
       form {
@@ -136,6 +156,9 @@ section {
             border: none;
             border-radius: 3px;
             font-style: normal;
+          }
+          i {
+            color: white;
           }
           i:hover {
             color: $login-btn;

@@ -68,16 +68,23 @@ section {
             max-width: 200px;
             align-self: center;
             padding: 10px 15px;
+
             background: linear-gradient( to right, #47bfff 5%, #1a44c2 60%);
+            transition: 0.5s ease;
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
             background-position: 25%;
             background-size: 330% 100%;
-            color: white;
             border: 1px solid $login-bg;
+            border-radius: 3px;
+
             cursor: pointer;
+
+            color: white;
             text-shadow: 1px 1px 0px rgba( 0, 0, 0, 0.3 );
         }
         .signin-button:hover {
+            -webkit-filter: brightness(120%);
+            transition: 0.5s ease;
             border: 1px solid white;
         }
 

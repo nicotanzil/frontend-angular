@@ -17,6 +17,12 @@ export class AuthService {
       query: GET_USER_AUTH,
     });
   }
+
+  logout = () => {
+    return this.apollo.mutate({
+      mutation: LOGOUT,
+    });
+  }
 }
 
 const GET_USER_AUTH = gql`
@@ -31,5 +37,11 @@ const GET_USER_AUTH = gql`
       customURL
       profilePicture
     }
+  }
+`;
+
+const LOGOUT = gql`
+  mutation Logout {
+    logout
   }
 `;

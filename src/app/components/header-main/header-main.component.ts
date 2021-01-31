@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {User} from '../../models/user';
 import {AuthService} from '../../services/auth.service';
 import {CurrentUser} from '../../models/current-user';
+import {query} from '@angular/animations';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -13,6 +15,7 @@ export class HeaderMainComponent implements OnInit {
 
   constructor(
     private service: AuthService,
+    private router: Router,
   ) { }
 
   isUser: boolean;
@@ -41,5 +44,13 @@ export class HeaderMainComponent implements OnInit {
     }, (error) => {
       console.log('There has been an error: ', error);
     });
+  }
+
+  logout(): void {
+    console.log('Logout');
+    this.service.logout().subscribe();
+    this.isUser = false;
+
+    this.router.navigateByUrl('/login');
   }
 }

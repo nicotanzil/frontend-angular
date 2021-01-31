@@ -66,27 +66,115 @@
             }
         }
         .header-right {
-            padding: 10px 0;
-            ul {
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
-                display: flex;
-                flex-direction: row;
-                li {
-                    margin: 0 5px;
-                    font-size: 12px;
-                    a {
-                        display: block;
-                        color: $header-font-fg;
-                        text-align: center;
-                        text-decoration: none;
-                    }
-                    a:hover {
-                        color: $header-font-fg-hover;
-                    }
-                }
+          padding: 10px 0;
+          display: flex;
+          ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            li {
+              margin: 0 5px;
+              font-size: 12px;
+              a {
+                display: block;
+                color: $header-font-fg;
+                text-align: center;
+                text-decoration: none;
+              }
+              a:hover {
+                color: $header-font-fg-hover;
+              }
             }
+          }
+          .header-user-detail {
+            display: flex;
+            justify-content: space-between;
+            .mail-box {
+              padding: 4px 8px;
+              max-height: 15px;
+
+              font-size: 12px;
+              font-weight: bold;
+
+              background-color: $header-green;
+              cursor: pointer;
+              transition: 0.5s ease;
+              i {
+                padding-left: 4px;
+              }
+            }
+            .mail-box:hover {
+              -webkit-filter: brightness(140%);
+              transition: 0.5s ease;
+            }
+            .account-detail {
+              display: flex;
+              flex-direction: column;
+
+              max-width: 100px;
+              overflow: hidden;
+              padding-left: 20px;
+
+              font-size: 12px;
+              text-align: right;
+
+              a {
+                text-decoration: none;
+                color: $header-font-fg;
+              }
+              a:hover {
+                color: white;
+              }
+              .name {
+                display: flex;
+                justify-content: flex-end;
+                color: $header-font-fg;
+                cursor: pointer;
+                i {
+                  padding-left: 10px;
+                }
+                #account-dropdown {
+                  display: none;
+                  z-index: 100;
+                  position: absolute;
+                  top: 24px;
+
+                  min-width: 150px;
+
+                  box-shadow: 0 0 12px black;
+                  background-color: $header-bg;
+                  .item {
+                    text-align: left;
+                    padding: 8px 15px;
+                  }
+                }
+                #account-dropdown:hover {
+                  display: block;
+                }
+              }
+              .name:hover {
+                color: white;
+                #account-dropdown {
+                  display: block;
+                }
+              }
+              .balance {
+                padding-top: 5px;
+              }
+
+            }
+          }
+
+          #header-user-avatar {
+            padding-left: 20px;
+            img {
+              width: 32px;
+              height: 32px;
+              border: 2px solid $header-user-avatar;
+            }
+          }
         }
     }
 }
