@@ -97,7 +97,7 @@
             </div>
           </div>
           <a [routerLink]="['/user', this.user.customUrl]" id="header-user-avatar" *ngIf="this.isUser">
-            <img src="../../../assets/user/avatar.png" alt="{{ this.user.accountName }} Avatar">
+            <img src="{{ this.user.avatar }}" alt="{{ this.user.accountName }} Avatar">
           </a>
         </div>
     </div>

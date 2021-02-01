@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
     this.service.getUserAuth().subscribe(async (query) => {
       if (query.data.getUserAuth.accountName !== '') {
         // logged in user
+        console.log(query.data);
         CurrentUser.id = query.data.getUserAuth.id;
         CurrentUser.accountName = query.data.getUserAuth.accountName;
         CurrentUser.profileName = query.data.getUserAuth.profileName;
@@ -28,7 +29,8 @@ export class HomeComponent implements OnInit {
         CurrentUser.email = query.data.getUserAuth.email;
         CurrentUser.balance = query.data.getUserAuth.balance;
         CurrentUser.customUrl = query.data.getUserAuth.customUrl;
-        CurrentUser.profilePicture = query.data.getUserAuth.profilePicture;
+        CurrentUser.avatar = query.data.getUserAuth.avatar;
+        CurrentUser.profileBackground = query.data.getUserAuth.profileBackground;
 
         this.user = CurrentUser;
         this.isUser = true;

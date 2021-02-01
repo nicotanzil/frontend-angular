@@ -32,15 +32,19 @@ export class HeaderMainComponent implements OnInit {
         CurrentUser.email = query.data.getUserAuth.email;
         CurrentUser.balance = query.data.getUserAuth.balance;
         CurrentUser.customUrl = query.data.getUserAuth.customURL;
-        CurrentUser.profilePicture = query.data.getUserAuth.profilePicture;
+        CurrentUser.avatar = query.data.getUserAuth.avatar;
+        CurrentUser.profileBackground = query.data.getUserAuth.profileBackground;
 
         this.user = CurrentUser;
         this.isUser = true;
-        console.log('URL: ' + CurrentUser.accountName);
+
+        AuthService.isLoggedIn = true;
+        console.log('Header main: ' + AuthService.isLoggedIn);
       }
       else {
         // guest login
         this.isUser = false;
+        AuthService.isLoggedIn = false;
       }
     }, (error) => {
       console.log('There has been an error: ', error);
@@ -50,7 +54,9 @@ export class HeaderMainComponent implements OnInit {
   logout(): void {
     console.log('Logout');
     this.service.logout().subscribe();
+
     this.isUser = false;
+    AuthService.isLoggedIn = false;
 
     this.router.navigateByUrl('/login');
   }

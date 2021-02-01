@@ -1,6 +1,6 @@
 <app-header-main></app-header-main>
 <section>
-  <div class="container">
+  <div class="container" style="background: url({{ this.user.profileBackground }})">
     <div class="content-theme">
       <div class="profile-header">
         <div class="profile-data">
@@ -15,7 +15,7 @@
               {{ this.user.summary }}
             </div>
           </div>
-          <img src="../../../../assets/user/avatar.png" alt="User avatar">
+          <img src="{{ this.user.avatar }}" alt="User avatar">
         </div>
         <div class="profile-badge">
           <a href="#" class="profile-level">Level {{ this.user.level }}</a>

@@ -8,6 +8,8 @@ import { Query } from '../models/query';
 })
 export class AuthService {
 
+  public static isLoggedIn: boolean;
+
   constructor(
     private apollo: Apollo,
   ) { }
@@ -35,7 +37,8 @@ const GET_USER_AUTH = gql`
       email
       balance
       customURL
-      profilePicture
+      avatar
+      profileBackground
     }
   }
 `;

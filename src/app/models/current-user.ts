@@ -7,7 +7,8 @@ export class CurrentUser {
   public static password: string;
   public static balance: number;
   public static customUrl: string;
-  public static profilePicture: string;
+  public static avatar: string;
+  public static profileBackground: string;
   public static summary: string;
   public static country: string;
   public static experience: number;

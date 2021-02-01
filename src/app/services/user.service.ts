@@ -31,6 +31,8 @@ const GET_USER_BY_URL = gql`
       realName
       summary
       experience
+      avatar
+      profileBackground
       country {
         name
       }
