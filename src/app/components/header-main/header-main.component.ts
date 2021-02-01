@@ -31,11 +31,12 @@ export class HeaderMainComponent implements OnInit {
         CurrentUser.realName = query.data.getUserAuth.realName;
         CurrentUser.email = query.data.getUserAuth.email;
         CurrentUser.balance = query.data.getUserAuth.balance;
-        CurrentUser.customUrl = query.data.getUserAuth.customUrl;
+        CurrentUser.customUrl = query.data.getUserAuth.customURL;
         CurrentUser.profilePicture = query.data.getUserAuth.profilePicture;
 
         this.user = CurrentUser;
         this.isUser = true;
+        console.log('URL: ' + CurrentUser.accountName);
       }
       else {
         // guest login

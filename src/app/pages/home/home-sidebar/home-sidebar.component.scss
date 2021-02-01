@@ -1,0 +1,32 @@
+@import '../../../styles/colors';
+@import '../../../styles/mixins';
+
+.sidebar {
+  justify-content: flex-start;
+  .sidebar-header {
+    margin: 7px 0;
+    color: $home-sidebar-header-font;
+    font-size: 11px;
+    text-transform: uppercase;
+    a {
+      img {
+        width: 210px;
+      }
+    }
+  }
+  .sidebar-content {
+    display: flex;
+    margin-right: 10px;
+    flex-direction: column;
+    a {
+      margin-bottom: 10px;
+      color: $home-sidebar-content-font;
+      font-size: 13px;
+      font-weight: normal;
+      text-decoration: none;
+    }
+    a:hover {
+      color: $home-sidebar-font;
+    }
+  }
+}

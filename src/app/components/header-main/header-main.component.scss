@@ -14,6 +14,7 @@
             float: left;
             @include flex-center;
             flex-direction: row;
+            font-weight: lighter;
             img {
                 height: 65px;
             }
@@ -32,7 +33,6 @@
                         text-decoration: none;
                         text-transform: uppercase;
                         font-size: 14px;
-                        font-weight: bold;
                     }
                     a:hover {
                         color: $header-font-fg-hover;

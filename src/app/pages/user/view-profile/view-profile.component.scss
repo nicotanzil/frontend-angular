@@ -1,0 +1,97 @@
+@import '../../../styles/colors.scss';
+@import '../../../styles/mixins.scss';
+
+.container {
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-self: center;
+
+  background: url("../../../../assets/user/profile-bg.jpg") no-repeat center top;
+  background-size: cover;
+
+  .content-theme {
+    width: 924px;
+    padding: 25px 20px;
+    background-color: $profile-theme;
+    //opacity: 0.9;
+
+    .profile-header {
+      //display: flex;
+      //flex-direction: row;
+      padding: 1px 10px;
+
+      .profile-data {
+        float: left;
+        display: flex;
+        flex-direction: row-reverse;
+        .profile-detail {
+          padding: 10px 15px;
+          .profile-name {
+            font-size: 24px;
+            color: white;
+            font-weight: lighter;
+          }
+          .real-name-country {
+            font-size: 13px;
+            color: $font-gray;
+          }
+          .summary {
+            padding-top: 20px;
+            overflow: auto;
+
+            font-size: 13px;
+            color: $font-gray;
+          }
+        }
+        img {
+          border: 2px solid $profile-picture-border;
+        }
+      }
+
+      .profile-badge {
+        float: right;
+        width: 270px;
+        display: flex;
+        flex-direction: column;
+        font-size: 13px;
+        text-align: left;
+        .profile-level {
+          font-size: 24px;
+          text-decoration: none;
+          color: white;
+          font-weight: lighter;
+          margin-bottom: 10px;
+        }
+        .badge-slot {
+          padding: 15px 8px;
+          background-color: $badge-slot-bg;
+          color: $font-gray;
+          a {
+            color: white;
+            text-decoration: none;
+          }
+        }
+        .edit-profile-btn-container {
+          margin-top: 20px;
+          .edit-profile-btn {
+            padding: 10px 15px;
+            max-width: 150px;
+
+            background-color: $btn-gray;
+            text-align: center;
+            span {
+              color: $font-light-gray;
+              font-size: 15px;
+            }
+          }
+          .edit-profile-btn:hover {
+            -webkit-filter: brightness(120%);
+          }
+        }
+      }
+    }
+  }
+}

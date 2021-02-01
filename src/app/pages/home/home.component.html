@@ -1,81 +1,14 @@
 <app-header-main></app-header-main>
 <section>
   <div class="home-container">
-    <div class="sidebar">
-      <div class="sidebar-header">
-        <a href="#">
-          <img src="../../../assets/home/steamcards.png" alt="SteamCards">
-        </a>
-        <br>
-        Gift Cards
-      </div>
-      <div class="sidebar-content">
-        <a href="#">Now Available on Steam</a>
-      </div>
-      <div class="sidebar-header">
-        Recommended
-      </div>
-      <div class="sidebar-content">
-        <a href="#">By Friends</a>
-        <a href="#">By Curators</a>
-        <a href="#">Tags</a>
-      </div>
-      <div class="sidebar-header">
-        Discovery Queues
-      </div>
-      <div class="sidebar-content">
-        <a href="#">Recommendations</a>
-        <a href="#">New Releases</a>
-      </div>
-      <div class="sidebar-header">
-        Browse Categories
-      </div>
-      <div class="sidebar-content">
-        <a href="#">Top Sellers</a>
-        <a href="#">New Releases</a>
-        <a href="#">Upcoming</a>
-        <a href="#">Specials</a>
-        <a href="#">Virtual Reality</a>
-        <a href="#">Controller Friendly</a>
-      </div>
-      <div class="sidebar-header">
-        Browse by Genre
-      </div>
-      <div class="sidebar-content">
-        <a href="#">Free to Play</a>
-        <a href="#">Early Access</a>
-        <a href="#">Action</a>
-        <a href="#">Adventure</a>
-        <a href="#">Casual</a>
-        <a href="#">Indie</a>
-        <a href="#">Massively Multiplayer</a>
-        <a href="#">Racing</a>
-        <a href="#">RPG</a>
-        <a href="#">Simulation</a>
-        <a href="#">Sports</a>
-        <a href="#">Strategy</a>
-      </div>
-      <div class="sidebar-header">
-        Your Tags
-      </div>
-      <div class="sidebar-content">
-
-      </div>
-      <div class="sidebar-header">
-        Recently Viewed
-      </div>
-      <div class="sidebar-content">
-
-      </div>
-    </div>
+    <app-home-sidebar [isUser]="this.isUser"></app-home-sidebar>
     <div class="home-content">
-      <div id="wishlist-container" *ngIf="isUser">
+      <div id="wishlist-container">
         <a href="#">
           <div class="wishlist-content">
             Wishlist
           </div>
         </a>
-
       </div>
       <div class="store-nav">
         <div class="store-nav-tab">

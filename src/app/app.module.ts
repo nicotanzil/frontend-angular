@@ -16,6 +16,8 @@ import { RegisterCompleteComponent } from './pages/register-complete/register-co
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderMainComponent } from './components/header-main/header-main.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ViewProfileComponent } from './pages/user/view-profile/view-profile.component';
+import { HomeSidebarComponent } from './pages/home/home-sidebar/home-sidebar.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { FooterComponent } from './components/footer/footer.component';
     RegisterCompleteComponent,
     HomeComponent,
     HeaderMainComponent,
-    FooterComponent
+    FooterComponent,
+    ViewProfileComponent,
+    HomeSidebarComponent
   ],
   imports: [
     BrowserModule,

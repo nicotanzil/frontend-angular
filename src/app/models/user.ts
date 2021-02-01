@@ -8,5 +8,8 @@ export class User {
   balance: number;
   customUrl: string;
   profilePicture: string;
-  countryId: string;
+  summary: string;
+  country: string;
+  experience: number;
+  level: number;
 }

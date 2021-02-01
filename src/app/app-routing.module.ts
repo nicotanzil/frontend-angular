@@ -6,6 +6,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import {HomeComponent} from './pages/home/home.component';
 import {AuthGuard} from './guards/auth.guard';
 import {GuestGuard} from './guards/guest.guard';
+import {ViewProfileComponent} from './pages/user/view-profile/view-profile.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     // canActivate: [AuthGuard],
+  },
+  {
+    path: 'user/:url',
+    component: ViewProfileComponent,
   },
   {
     path: '**',

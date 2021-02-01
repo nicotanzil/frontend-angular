@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import {Apollo} from 'apollo-angular';
+import {Apollo, gql} from 'apollo-angular';
+import { Query } from '../models/query';
+import { Observable } from 'rxjs';
 import {User} from '../models/user';
 
 @Injectable({
@@ -11,17 +13,27 @@ export class UserService {
     private apollo: Apollo
   ) { }
 
-  private user: User;
-
-  setUser = (user) => {
-    this.user = user;
-  }
-  getUser = () => {
-    return this.user;
-  }
-
-  extractUser = (token) => {
-    // this.setUser(user);
-    return null;
+  getUserByUrl(url): Observable<Query>{
+    return this.apollo.query<Query>({
+      query: GET_USER_BY_URL,
+      variables: {
+        url,
+      },
+    });
   }
 }
+
+
+const GET_USER_BY_URL = gql`
+  query GetUserByURL($url:String) {
+    getUserByUrl(input:$url) {
+      profileName
+      realName
+      summary
+      experience
+      country {
+        name
+      }
+    }
+  }
+`;

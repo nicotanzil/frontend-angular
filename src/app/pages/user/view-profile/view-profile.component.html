@@ -1,0 +1,38 @@
+<app-header-main></app-header-main>
+<section>
+  <div class="container">
+    <div class="content-theme">
+      <div class="profile-header">
+        <div class="profile-data">
+          <div class="profile-detail">
+            <span class="profile-name">
+              {{ this.user.profileName }}
+            </span>
+            <div class="real-name-country">
+              {{ this.user.realName }} | {{ this.user.country }}
+            </div>
+            <div class="summary">
+              {{ this.user.summary }}
+            </div>
+          </div>
+          <img src="../../../../assets/user/avatar.png" alt="User avatar">
+        </div>
+        <div class="profile-badge">
+          <a href="#" class="profile-level">Level {{ this.user.level }}</a>
+          <div class="badge-slot">
+            You can feature one of your Badges here. Select one from your
+            <a href="#">edit profile</a> page
+          </div>
+          <div class="edit-profile-btn-container">
+            <a href="#" class="edit-profile-btn">
+              <span>Edit Profile</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="main-content">
+
+      </div>
+    </div>
+  </div>
+</section>

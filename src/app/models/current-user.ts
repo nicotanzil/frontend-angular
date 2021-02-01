@@ -8,5 +8,8 @@ export class CurrentUser {
   public static balance: number;
   public static customUrl: string;
   public static profilePicture: string;
-  public static countryId: string;
+  public static summary: string;
+  public static country: string;
+  public static experience: number;
+  public static level: number;
 }
