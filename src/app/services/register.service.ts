@@ -64,11 +64,11 @@ export class RegisterService {
 
 const GET_COUNTRIES_QUERY = gql`
   query GetAllCountries{
-          countries {
-            id
-            name
-          }
-        }
+    countries {
+      id
+      name
+    }
+  }
 `;
 
 const CREATE_OTP_MUTATION = gql`

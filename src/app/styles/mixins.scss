@@ -9,3 +9,10 @@
     justify-content: flex-start;
     align-items: center;
 }
+
+@mixin blue-gradient-button {
+  background: $button-blue-gradient;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  background-position: 25%;
+  background-size: 330% 100%;
+}

@@ -18,6 +18,9 @@ import { HeaderMainComponent } from './components/header-main/header-main.compon
 import { FooterComponent } from './components/footer/footer.component';
 import { ViewProfileComponent } from './pages/user/view-profile/view-profile.component';
 import { HomeSidebarComponent } from './pages/home/home-sidebar/home-sidebar.component';
+import { EditProfileComponent } from './pages/user/edit-profile/edit-profile.component';
+import { HomeContentComponent } from './pages/home/home-content/home-content.component';
+import { GeneralFormComponent } from './components/user/general-form/general-form.component';
 
 
 @NgModule({
@@ -32,7 +35,10 @@ import { HomeSidebarComponent } from './pages/home/home-sidebar/home-sidebar.com
     HeaderMainComponent,
     FooterComponent,
     ViewProfileComponent,
-    HomeSidebarComponent
+    HomeSidebarComponent,
+    EditProfileComponent,
+    HomeContentComponent,
+    GeneralFormComponent
   ],
   imports: [
     BrowserModule,

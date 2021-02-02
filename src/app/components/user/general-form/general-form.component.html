@@ -1,0 +1,63 @@
+<div class="general">
+  <form [formGroup]="generalForm" action="#" method="POST">
+    <div class="about-section">
+      <div class="title">About</div>
+      <div class="about-content">
+        Set your profile name and details. Providing additional information
+        like your real name can help friends find you on the Steam Community.
+        <br><br>
+        Your profile name and avatar represent you through Steam, and must be
+        appropriate for all audiences. Please see the FAQ for more details.
+      </div>
+    </div>
+    <div class="general-section">
+      <div class="section-header">
+        General
+      </div>
+      <div class="section-input">
+        <div class="text-input">
+          <label for="profile-name">Profile name</label>
+          <input type="text" id="profile-name" [(ngModel)]="profileName" [value]="profileName" formControlName="profileName">
+        </div>
+        <div class="text-input">
+          <label for="real-name">Real name</label>
+          <input type="text" id="real-name" [(ngModel)]="realName" [value]="realName" formControlName="realName">
+        </div>
+        <div class="text-input">
+          <label for="custom-url">Custom URL</label>
+          <input type="text" id="custom-url" [(ngModel)]="customUrl" formControlName="customUrl">
+          <div>Your profile will be available at: https://steamcommunity.com/user/{{customUrl}}</div>
+        </div>
+      </div>
+      <div class="section-header">
+        Location
+      </div>
+      <div class="section-input">
+        <div class="dropdown-input">
+          <label for="countries">Country</label>
+          <select name="countries" id="countries" [(ngModel)]="selectedCountry" formControlName="country">
+            <option
+              [ngClass]="i === countryId ? 'selected' : ''"
+              *ngFor="let country of countries; let i = index" value={{i+1}}>{{country.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="section-header">
+        Summary
+      </div>
+      <div class="section-input">
+        <div class="text-input">
+          <label for="summary">Summary</label>
+          <textarea id="summary" cols="30" rows="3">{{user.summary}}</textarea>
+        </div>
+      </div>
+    </div>
+    <div class="button-section">
+      <div class="button-container">
+        <button class="btn cancelBtn">Cancel</button>
+        <button class="btn saveBtn">Save</button>
+      </div>
+    </div>
+  </form>
+</div>

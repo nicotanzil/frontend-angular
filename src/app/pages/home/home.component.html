@@ -1,46 +1,8 @@
-<app-header-main></app-header-main>
+<app-header-main [user]="this.user" [isUser]="this.isUser"></app-header-main>
 <section>
   <div class="home-container">
     <app-home-sidebar [isUser]="this.isUser"></app-home-sidebar>
-    <div class="home-content">
-      <div id="wishlist-container">
-        <a href="#">
-          <div class="wishlist-content">
-            Wishlist
-          </div>
-        </a>
-      </div>
-      <div class="store-nav">
-        <div class="store-nav-tab">
-          <a href="#" id="yourstore-tab" class="tab">
-            <span><img src="{{ this.user.avatar }}" alt="{{ this.user.accountName }} Avatar" *ngIf="this.isUser"> Your Store <i class="fa fa-sort-desc" aria-hidden="true"></i></span>
-          </a>
-          <a href="#" id="browse-tab"class="tab">
-            <span>Browse</span> <i class="fa fa-sort-desc" aria-hidden="true"></i>
-          </a>
-          <a href="#" id="pointsshop-tab" class="tab">
-            <span>Points Shop</span>
-          </a>
-          <a href="#" id="news-tab" class="tab">
-            <span>News</span>
-          </a>
-          <a href="#" id="steamlabs-tab" class="tab">
-            <span>Steam Labs</span>
-          </a>
-        </div>
-        <div class="store-search">
-          <form action="#" class="search-form">
-            <div class="search-box">
-              <input type="text" placeholder="search the store" autocomplete="off" onfocus="this.placeholder=''" onblur="this.placeholder='search the store'">
-              <a href="#" id="search-logo"><i class="fa fa-search" aria-hidden="true"></i></a>
-            </div>
-          </form>
-          <div class="search-result">
-
-          </div>
-        </div>
-      </div>
-    </div>
+    <app-home-content [user] = "this.user" [isUser]="this.isUser"></app-home-content>
   </div>
 </section>
 <!--<app-footer></app-footer>-->

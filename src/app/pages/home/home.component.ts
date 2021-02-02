@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
         CurrentUser.realName = query.data.getUserAuth.realName;
         CurrentUser.email = query.data.getUserAuth.email;
         CurrentUser.balance = query.data.getUserAuth.balance;
-        CurrentUser.customUrl = query.data.getUserAuth.customUrl;
+        CurrentUser.customUrl = query.data.getUserAuth.customURL;
         CurrentUser.avatar = query.data.getUserAuth.avatar;
         CurrentUser.profileBackground = query.data.getUserAuth.profileBackground;
 

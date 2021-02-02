@@ -7,6 +7,7 @@ import {HomeComponent} from './pages/home/home.component';
 import {AuthGuard} from './guards/auth.guard';
 import {GuestGuard} from './guards/guest.guard';
 import {ViewProfileComponent} from './pages/user/view-profile/view-profile.component';
+import {EditProfileComponent} from './pages/user/edit-profile/edit-profile.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'user/:url',
     component: ViewProfileComponent,
+  },
+  {
+    path: 'user/:url/edit',
+    component: EditProfileComponent,
   },
   {
     path: '**',

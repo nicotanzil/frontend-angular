@@ -1,6 +1,6 @@
-<app-header-main></app-header-main>
+<app-header-main [user]="this.user" [isUser]="isUser"></app-header-main>
 <section>
-  <div class="container" style="background: url({{ this.user.profileBackground }})">
+  <div class="container" style="background-image: url({{ this.user.profileBackground }})">
     <div class="content-theme">
       <div class="profile-header">
         <div class="profile-data">
@@ -24,7 +24,7 @@
             <a href="#">edit profile</a> page
           </div>
           <div class="edit-profile-btn-container">
-            <a href="#" class="edit-profile-btn">
+            <a [routerLink]="['/user/', this.user.customUrl, 'edit']" class="edit-profile-btn">
               <span>Edit Profile</span>
             </a>
           </div>

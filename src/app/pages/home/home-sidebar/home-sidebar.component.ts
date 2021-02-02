@@ -9,7 +9,7 @@ import {query} from '@angular/animations';
 })
 export class HomeSidebarComponent implements OnInit {
 
-  @Input() isUser;
+  @Input() isUser: boolean;
 
   genres;
   constructor(

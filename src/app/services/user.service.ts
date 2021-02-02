@@ -29,11 +29,15 @@ const GET_USER_BY_URL = gql`
     getUserByUrl(input:$url) {
       profileName
       realName
-      summary
-      experience
+      email
+      balance
+      customURL
       avatar
       profileBackground
+      experience
+      summary
       country {
+        id
         name
       }
     }

@@ -1,0 +1,42 @@
+<app-header-main [user]="this.user" [isUser]="isUser"></app-header-main>
+<section>
+  <div class="container">
+    <div class="header-container">
+      <a [routerLink]="['/user/', this.userUrl]" class="header-profile">
+        <img src="{{ this.user.avatar }}" alt="{{ this.user.profileName }} Avatar">
+        <span class="profile-name">{{ this.user.profileName }}</span>
+      </a>
+    </div>
+    <div class="content-container">
+      <div class="sidebar">
+        <button class="btn"
+                [ngClass]="buttons.generalBtn ? 'select' : 'deselect'"
+                (click)="onClick('generalBtn')"
+        >General</button>
+        <button class="btn"
+                [ngClass]="buttons.avatarBtn ? 'select' : 'deselect'"
+                (click)="onClick('avatarBtn')"
+        >Avatar</button>
+        <button class="btn"
+                [ngClass]="buttons.backgroundBtn ? 'select' : 'deselect'"
+                (click)="onClick('backgroundBtn')"
+        >Profile Background</button>
+        <button class="btn"
+                [ngClass]="buttons.miniBtn ? 'select' : 'deselect'"
+                (click)="onClick('miniBtn')"
+        >Mini Profile</button>
+        <button class="btn"
+                [ngClass]="buttons.themeBtn ? 'select' : 'deselect'"
+                (click)="onClick('themeBtn')"
+        >Theme</button>
+        <button class="btn"
+                [ngClass]="buttons.badgeBtn ? 'select' : 'deselect'"
+                (click)="onClick('badgeBtn')"
+        >Featured Badge</button>
+      </div>
+      <div class="content">
+        <app-general-form *ngIf="buttons['generalBtn']" [user]="this.user"></app-general-form>
+      </div>
+    </div>
+  </div>
+</section>

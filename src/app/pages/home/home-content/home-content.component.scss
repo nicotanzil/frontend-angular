@@ -1,0 +1,122 @@
+@import '../../../styles/colors';
+@import '../../../styles/mixins';
+
+.home-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+  #wishlist-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 5px;
+    a {
+      text-decoration: none;
+      line-height: 20px;
+      text-transform: uppercase;
+      font-size: 11px;
+      .wishlist-content {
+        padding: 0 25px;
+        color: white;
+        text-align: center;
+        background-color: rgba( 255, 255, 255, 0.4 );
+        box-shadow: 0 0 3px #000;
+      }
+      .wishlist-content:hover {
+        background-color: lightgrey;
+        color: black;
+      }
+    }
+
+  }
+  .store-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    background-color: $home-lightblue;
+
+    overflow: hidden;
+    height: 40px;
+
+    font-size: 12px;
+    border: 1px black solid;
+    box-shadow: 0 0 3px rgba( 0, 0, 0, 0.4);
+    color: $home-sidebar-header-font;
+
+    .store-nav-tab {
+      height: 40px;
+      a {
+        color: $home-sidebar-header-font;
+        text-decoration: none;
+      }
+      .tab {
+        height: 40px;
+        padding: 15px 15px;
+        border-right: 1px black solid;
+        span {
+          cursor: pointer;
+        }
+        i {
+          margin-left: 10px;
+        }
+      }
+      .tab:hover {
+        background: linear-gradient( to bottom, #e3eaef 5%, #c7d5e0 95%);
+        color: black;
+      }
+      #yourstore-tab {
+        span {
+          img {
+            width: 16px;
+            height: 16px;
+            padding-right: 10px;
+            vertical-align: text-bottom;
+          }
+        }
+      }
+    }
+
+    .store-search {
+      padding: 3px 10px;
+      form {
+        color: $home-sidebar-header-font;
+        .search-box {
+          background-color: $home-header-search-bar-bg;
+          border: 1px solid rgba( 0, 0, 0, 0.3);
+          border-radius: 3px;
+          color: white;
+          padding: 0 6px;
+          cursor: text;
+          z-index: 20;
+          #search-logo {
+            margin: 0 3px;
+          }
+          input {
+            color: $home-header-search-bar-font;
+            font-size: 12px;
+            text-shadow: 1px 1px 0px rgba( 255, 255, 255, 0.1);
+            border: none;
+            border-radius: 3px;
+            font-style: italic;
+            background: transparent;
+            width: 180px;
+            padding: 6px 0;
+          }
+          input:focus {
+            color: white;
+            outline: none;
+            border: none;
+            border-radius: 3px;
+            font-style: normal;
+          }
+          i {
+            color: white;
+          }
+          i:hover {
+            color: $login-btn;
+          }
+        }
+      }
+    }
+  }
+}
