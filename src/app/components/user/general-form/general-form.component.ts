@@ -1,8 +1,8 @@
 import {Component, Input, OnInit, DoCheck} from '@angular/core';
 import {User} from '../../../models/user';
-import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {Country} from '../../../models/country';
 import {EditProfileService} from '../../../services/user/edit-profile.service';
+import {Query} from '../../../models/query';
 
 @Component({
   selector: 'app-general-form',
@@ -12,25 +12,16 @@ import {EditProfileService} from '../../../services/user/edit-profile.service';
 export class GeneralFormComponent implements OnInit, DoCheck {
 
   constructor(
-    private formBuilder: FormBuilder,
     private service: EditProfileService,
   ) { }
 
   @Input() user: User;
-  profileName: string;
-  realName: string;
-  customUrl: string;
+  currentUser: User;
 
   countries: Country[];
-  selectedCountry;
-  countryId;
 
-  generalForm = this.formBuilder.group({
-    profileName: new FormControl('', [Validators.required]),
-    realName: new FormControl('', [Validators.required]),
-    customUrl: new FormControl('', [Validators.required]),
-    country: new FormControl('', [Validators.required]),
-  });
+  isSuccess: boolean;
+  isError: boolean;
 
   ngOnInit(): void {
     // Get countries list
@@ -43,18 +34,28 @@ export class GeneralFormComponent implements OnInit, DoCheck {
     });
   }
 
-  onSubmit(): void {
-    console.log(this.user.profileName);
-    console.log(this.user);
+  ngDoCheck(): void {
+    if (this.user.profileName === undefined || this.currentUser.profileName === undefined) {
+      this.currentUser = this.user;
+    }
   }
 
-  ngDoCheck(): void {
-    this.profileName = this.user.profileName;
-    this.realName = this.user.realName;
-    this.customUrl = this.user.customUrl;
-    this.generalForm.value.profileName = this.user.profileName;
-    this.generalForm.value.realName = this.user.realName;
-    this.generalForm.value.customUrl = this.user.customUrl;
-    this.generalForm.value.country = this.user.country;
+  onSave(): void {
+    // Validation here
+    // ...
+    this.isError = false;
+    this.isSuccess = false;
+    // Mutation
+    this.service.updateUser(this.currentUser).subscribe(async query => {
+      // @ts-ignore
+      this.isSuccess = query.data.updateUser;
+    }, (error) => {
+      this.isError = true;
+      console.log('There has been an error: ', error);
+    });
+  }
+
+  onCancel(): void {
+    this.currentUser = this.user;
   }
 }

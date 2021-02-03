@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Apollo, gql} from 'apollo-angular';
 import {Observable} from 'rxjs';
 import {Query} from '../../models/query';
+import {User} from '../../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,27 @@ export class EditProfileService {
       query: GET_COUNTRIES_QUERY,
     });
   }
+
+  updateUser = (updatedUser: User) => {
+    console.log(updatedUser);
+    return this.apollo.mutate({
+    mutation: UPDATE_USER_MUTATION,
+    variables: {
+      accountName: updatedUser.accountName,
+      profileName: updatedUser.profileName,
+      realName: updatedUser.realName,
+      customUrl: updatedUser.customUrl,
+      summary: updatedUser.summary,
+      avatar: updatedUser.avatar,
+      avatarFrame: updatedUser.avatarFrame,
+      profileBackground: updatedUser.profileBackground,
+      miniProfileBackground: updatedUser.miniProfileBackground,
+      theme: updatedUser.theme,
+      countryId: Number(updatedUser.country),
+      },
+    });
+  }
+
 }
 
 const GET_COUNTRIES_QUERY = gql`
@@ -33,11 +55,11 @@ const GET_COUNTRIES_QUERY = gql`
 const UPDATE_USER_MUTATION = gql`
   mutation UpdateUser($accountName:String!, $profileName:String!,
   $realName:String!, $customUrl:String!, $summary:String!,
-  $avatar:String!, $avatarFrames:String!, $profileBackground:String!,
+  $avatar:String!, $avatarFrame:String!, $profileBackground:String!,
   $miniProfileBackground:String!, $theme:String!, $countryId:Int!) {
   updateUser(user:{accountName:$accountName, profileName:$profileName,
     realName:$realName, customURL:$customUrl, summary:$summary,
-    avatar:$avatar, avatarFrames:$avatarFrames,
+    avatar:$avatar, avatarFrame:$avatarFrame,
     profileBackground:$profileBackground,
     miniProfileBackground:$miniProfileBackground,
     theme:$theme, CountryId:$countryId})

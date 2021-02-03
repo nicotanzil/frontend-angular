@@ -36,15 +36,19 @@ export class EditProfileComponent implements OnInit {
     this.userUrl = this.actRoute.snapshot.params.url;
     this.service.getUserByUrl(this.userUrl).subscribe(async query => {
       if (query.data) {
+        console.log('GET USER BY URL');
         console.log(query.data);
+        this.user.accountName = query.data.getUserByUrl.accountName;
         this.user.profileName = query.data.getUserByUrl.profileName;
         this.user.realName = query.data.getUserByUrl.realName;
         this.user.balance = query.data.getUserByUrl.balance;
-        this.user.summary = query.data.getUserByUrl.summary;
-        this.user.avatar = query.data.getUserByUrl.avatar;
-        this.user.profileBackground = query.data.getUserByUrl.profileBackground;
         this.user.customUrl = query.data.getUserByUrl.customURL;
         this.user.summary = query.data.getUserByUrl.summary;
+        this.user.avatar = query.data.getUserByUrl.avatar;
+        this.user.avatarFrame = query.data.getUserByUrl.avatarFrame;
+        this.user.profileBackground = query.data.getUserByUrl.profileBackground;
+        this.user.miniProfileBackground = query.data.getUserByUrl.miniProfileBackground;
+        this.user.theme = query.data.getUserByUrl.theme;
         this.user.country = query.data.getUserByUrl.country.id;
         this.isUser = true;
       }

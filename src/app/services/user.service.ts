@@ -27,15 +27,19 @@ export class UserService {
 const GET_USER_BY_URL = gql`
   query GetUserByURL($url:String) {
     getUserByUrl(input:$url) {
+      accountName
       profileName
       realName
       email
       balance
       customURL
-      avatar
-      profileBackground
-      experience
       summary
+      avatar
+      avatarFrame
+      profileBackground
+      miniProfileBackground
+      theme
+      experience
       country {
         id
         name

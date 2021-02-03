@@ -1,5 +1,5 @@
 <div class="general">
-  <form [formGroup]="generalForm" action="#" method="POST">
+  <form action="#" method="POST">
     <div class="about-section">
       <div class="title">About</div>
       <div class="about-content">
@@ -17,16 +17,16 @@
       <div class="section-input">
         <div class="text-input">
           <label for="profile-name">Profile name</label>
-          <input type="text" id="profile-name" [(ngModel)]="profileName" [value]="profileName" formControlName="profileName">
+          <input type="text" id="profile-name" name="profile-name" [(ngModel)]="currentUser.profileName" [value]="currentUser.profileName">
         </div>
         <div class="text-input">
           <label for="real-name">Real name</label>
-          <input type="text" id="real-name" [(ngModel)]="realName" [value]="realName" formControlName="realName">
+          <input type="text" id="real-name" name="real-name" [(ngModel)]="currentUser.realName" [value]="currentUser.realName">
         </div>
         <div class="text-input">
           <label for="custom-url">Custom URL</label>
-          <input type="text" id="custom-url" [(ngModel)]="customUrl" formControlName="customUrl">
-          <div>Your profile will be available at: https://steamcommunity.com/user/{{customUrl}}</div>
+          <input type="text" id="custom-url" name="custom-url" [(ngModel)]="currentUser.customUrl">
+          <div>Your profile will be available at: https://steamcommunity.com/user/{{currentUser.customUrl}}</div>
         </div>
       </div>
       <div class="section-header">
@@ -35,9 +35,8 @@
       <div class="section-input">
         <div class="dropdown-input">
           <label for="countries">Country</label>
-          <select name="countries" id="countries" [(ngModel)]="selectedCountry" formControlName="country">
+          <select name="countries" id="countries" [(ngModel)]="currentUser.country">
             <option
-              [ngClass]="i === countryId ? 'selected' : ''"
               *ngFor="let country of countries; let i = index" value={{i+1}}>{{country.name}}
             </option>
           </select>
@@ -49,14 +48,16 @@
       <div class="section-input">
         <div class="text-input">
           <label for="summary">Summary</label>
-          <textarea id="summary" cols="30" rows="3">{{user.summary}}</textarea>
+          <textarea id="summary" cols="30" rows="3" [(ngModel)]="currentUser.summary" [value]="currentUser.summary" name="summary"></textarea>
         </div>
       </div>
     </div>
     <div class="button-section">
       <div class="button-container">
+        <span class="success-box" *ngIf="isSuccess">Data updated!</span>
+        <span class="error-box" *ngIf="isError">Oops, something went wrong!</span>
         <button class="btn cancelBtn">Cancel</button>
-        <button class="btn saveBtn">Save</button>
+        <button class="btn saveBtn" (click)="onSave()">Save</button>
       </div>
     </div>
   </form>

@@ -37,8 +37,17 @@ const GET_USER_AUTH = gql`
       email
       balance
       customURL
+      summary
       avatar
+      avatarFrame
       profileBackground
+      miniProfileBackground
+      theme
+      experience
+      country {
+        id
+        name
+      }
     }
   }
 `;

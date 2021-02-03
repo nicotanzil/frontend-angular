@@ -56,6 +56,18 @@
       .button-container {
         display: flex;
         justify-content: flex-end;
+        .success-box {
+          border: 2px solid greenyellow;
+          background-color: transparent;
+          padding: 10px;
+          color: $font-light-gray;
+        }
+        .error-box {
+          border: 2px solid red;
+          background-color: transparent;
+          padding: 10px;
+          color: $font-light-gray;
+        }
         .btn {
           width: 150px;
           padding: 6px 40px;

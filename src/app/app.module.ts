@@ -21,6 +21,7 @@ import { HomeSidebarComponent } from './pages/home/home-sidebar/home-sidebar.com
 import { EditProfileComponent } from './pages/user/edit-profile/edit-profile.component';
 import { HomeContentComponent } from './pages/home/home-content/home-content.component';
 import { GeneralFormComponent } from './components/user/general-form/general-form.component';
+import { AvatarFormComponent } from './services/user/avatar-form/avatar-form.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { GeneralFormComponent } from './components/user/general-form/general-for
     HomeSidebarComponent,
     EditProfileComponent,
     HomeContentComponent,
-    GeneralFormComponent
+    GeneralFormComponent,
+    AvatarFormComponent
   ],
   imports: [
     BrowserModule,
