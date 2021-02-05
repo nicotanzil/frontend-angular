@@ -1,0 +1,39 @@
+<app-header-admin></app-header-admin>
+<section>
+  <div class="game-view-container">
+    <div class="header-container">
+      <div class="title">
+        View all available games
+      </div>
+      <a href="#" class="insert-btn">Insert</a>
+    </div>
+    <div class="outer-container">
+      <div class="inner-container">
+        <div class="content-container">
+          <!-- MAIN CONTENT -->
+          <div class="row" *ngFor="let game of games; index as i">
+            <div class="game-detail">
+              <div class="banner-container">
+                <img src="{{ game.banner }}" alt="">
+              </div>
+              <div class="description">
+                <span class="name">{{ game.name }}</span>
+                <span class="price" *ngIf="game.originalPrice == 0">Free</span>
+                <span class="price" *ngIf="game.originalPrice != 0">{{ game.originalPrice }}</span>
+              </div>
+            </div>
+            <div class="button-container">
+              <a href="#" class="btn update-btn">Update</a>
+              <a href="#" class="btn remove-btn">Remove</a>
+            </div>
+          </div>
+        </div>
+        <div class="navigation-container">
+          <span class="arrow left-arrow"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+          <span class="current-page">{{ current }} / {{ totalPage }}</span>
+          <span class="arrow right-arrow"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

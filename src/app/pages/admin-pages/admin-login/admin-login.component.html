@@ -3,14 +3,14 @@
   <!-- INCLUDE HEADER -->
   <div class="login-content">
     <div class="title">
-      Sign In
+      Admin Sign In
     </div>
     <!-- ERROR MESSAGE -->
     <span [(ngModel)]="errorBox" *ngIf="isError == true" class="error-message">{{errorMessage}}</span>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" action="#" class="login-input" method="POST">
       <!-- STEAM ACCOUNT NAME INPUT -->
       <div class="steam-name-input">
-        <label for="steam-name">Steam account name</label>
+        <label for="steam-name">Admin account name</label>
         <input type="text" id="steam-name" formControlName="account">
       </div>
       <!-- PASSWORD INPUT -->
@@ -18,17 +18,10 @@
         <label for="password">Password</label>
         <input type="password" id="password" formControlName="password">
       </div>
-      <!-- REMEMBER ME CHECKBOX INPUT -->
-      <div class="remember-me-checkbox">
-        <input type="checkbox" name="remember_me" id="remember-me" formControlName="remember_me">
-        <label for="remember-me">Remember me on this computer</label>
-      </div>
       <!-- SIGN IN BUTTON -->
       <input type="submit" value="Sign In" class="signin-button">
       <a href="#" class="forgot-password">Forgot your password?</a>
     </form>
-    <!-- REDIRECT TO REGISTER PAGE -->
-    <!--        <button routerLink="/register" class="register-button">Join Steam</button>-->
   </div>
   <div class="join-steam">
     <div class="title">

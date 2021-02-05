@@ -8,8 +8,18 @@ import {AuthGuard} from './guards/auth.guard';
 import {GuestGuard} from './guards/guest.guard';
 import {ViewProfileComponent} from './pages/user/view-profile/view-profile.component';
 import {EditProfileComponent} from './pages/user/edit-profile/edit-profile.component';
+import {AdminLoginComponent} from './pages/admin-pages/admin-login/admin-login.component';
+import {AdminGameViewComponent} from './pages/admin-pages/admin-game-view/admin-game-view.component';
 
 const routes: Routes = [
+  {
+    path: 'admin-login',
+    component: AdminLoginComponent,
+  },
+  {
+    path: 'admin-games-view',
+    component: AdminGameViewComponent,
+  },
   {
     path: 'login',
     component: LoginComponent,

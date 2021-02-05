@@ -2,6 +2,7 @@
 @import '../../../styles/mixins';
 
 .general {
+  box-sizing: border-box;
   form {
     display: flex;
     flex-direction: column;

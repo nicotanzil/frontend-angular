@@ -38,6 +38,7 @@ export class EditProfileComponent implements OnInit {
       if (query.data) {
         console.log('GET USER BY URL');
         console.log(query.data);
+        this.user.id = query.data.getUserByUrl.id;
         this.user.accountName = query.data.getUserByUrl.accountName;
         this.user.profileName = query.data.getUserByUrl.profileName;
         this.user.realName = query.data.getUserByUrl.realName;

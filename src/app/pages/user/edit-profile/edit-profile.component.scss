@@ -24,6 +24,7 @@ section {
       font-size: 26px;
       img {
         width: 75px;
+        height: 75px;
         margin: 1px 10px;
       }
       .profile-name {
@@ -39,12 +40,12 @@ section {
     display: flex;
     flex-direction: row;
     width: 950px;
-    padding-top: 30px;
+    padding-top: 20px;
     .sidebar {
       display: flex;
       flex-direction: column;
 
-      width: 250px;
+      width: 25%;
       margin-right: 30px;
       .btn {
         padding: 10px 15px;
@@ -61,7 +62,7 @@ section {
       }
       .btn:hover {
         background-color: $edit-profile-sidebar-selected;
-        transition: ease-in 0.4s;
+        transition: ease-in 0.2s;
       }
       .deselect {
         background-color: $edit-profile-bg;
@@ -72,6 +73,9 @@ section {
     }
     .content {
       padding: 10px 20px;
+      width: 100%;
+      app-general-form, app-avatar-form {
+      }
     }
   }
 }

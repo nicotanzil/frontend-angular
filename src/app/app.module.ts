@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,7 +23,12 @@ import { HomeSidebarComponent } from './pages/home/home-sidebar/home-sidebar.com
 import { EditProfileComponent } from './pages/user/edit-profile/edit-profile.component';
 import { HomeContentComponent } from './pages/home/home-content/home-content.component';
 import { GeneralFormComponent } from './components/user/general-form/general-form.component';
-import { AvatarFormComponent } from './services/user/avatar-form/avatar-form.component';
+import { AvatarFormComponent } from './components/user/avatar-form/avatar-form.component';
+
+import { environment } from '../environments/environment';
+import { AdminLoginComponent } from './pages/admin-pages/admin-login/admin-login.component';
+import { HeaderAdminComponent } from './pages/admin-pages/header-admin/header-admin.component';
+import { AdminGameViewComponent } from './pages/admin-pages/admin-game-view/admin-game-view.component';
 
 
 @NgModule({
@@ -40,7 +47,10 @@ import { AvatarFormComponent } from './services/user/avatar-form/avatar-form.com
     EditProfileComponent,
     HomeContentComponent,
     GeneralFormComponent,
-    AvatarFormComponent
+    AvatarFormComponent,
+    AdminLoginComponent,
+    HeaderAdminComponent,
+    AdminGameViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +60,8 @@ import { AvatarFormComponent } from './services/user/avatar-form/avatar-form.com
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

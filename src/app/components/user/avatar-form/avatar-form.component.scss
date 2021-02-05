@@ -1,0 +1,83 @@
+@import '../../../styles/colors';
+@import '../../../styles/mixins';
+
+.avatar {
+  form {
+    display: flex;
+    flex-direction: column;
+    .about-section {
+      color: $font-gray;
+      font-size: 16px;
+      .title {
+        text-transform: uppercase;
+        font-weight: normal;
+        font-size: 24px;
+        color: white;
+      }
+    }
+    .avatar-section {
+      display: flex;
+      flex-direction: row;
+      .image-preview {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        margin-top: 10px;
+        margin-right: 20px;
+        .image-preview-container {
+          display: flex;
+          flex-direction: column;
+          padding: 5px 15px;
+          .big {
+            width: 184px;
+            height: 184px;
+          }
+          .medium {
+            width: 64px;
+            height: 64px;
+          }
+          .small {
+            width: 32px;
+            height: 32px;
+          }
+          span {
+            color: $font-light-gray;
+            font-size: 9px;
+            font-weight: lighter;
+          }
+        }
+      }
+      .upload-section {
+        display: flex;
+        flex-direction: column;
+        width: 220px;
+        input {
+          padding: 10px 5px;
+
+          border: none;
+          background-color: $edit-input-button;
+          color: $font-light-gray;
+          font-size: 14px;
+        }
+        div {
+          color: $font-gray;
+          font-size: 14px;
+          text-align: left;
+          margin-top: 10px;
+        }
+        button {
+          margin-top: 10px;
+          padding: 7.5px 0;
+          background-color: $edit-input-button;
+          color: $font-light-gray;
+          border: none;
+          border-radius: 3px;
+          cursor: pointer;
+        }
+        button:hover {
+          -webkit-filter: brightness(120%);
+        }
+      }
+    }
+  }
+}

@@ -36,6 +36,7 @@
       </div>
       <div class="content">
         <app-general-form *ngIf="buttons['generalBtn']" [user]="this.user"></app-general-form>
+        <app-avatar-form *ngIf="buttons['avatarBtn']" [user]="this.user"></app-avatar-form>
       </div>
     </div>
   </div>

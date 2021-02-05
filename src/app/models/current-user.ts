@@ -15,5 +15,6 @@ export class CurrentUser {
   public static summary: string;
   public static country: string;
   public static experience: number;
+  public static isSuspend: boolean;
   public static level: number;
 }

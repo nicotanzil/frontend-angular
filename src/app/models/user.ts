@@ -15,5 +15,6 @@ export class User {
   summary: string;
   country: string;
   experience: number;
+  isSuspend: boolean;
   level: number;
 }

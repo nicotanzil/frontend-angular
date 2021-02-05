@@ -1,0 +1,149 @@
+@import '../../../styles/colors.scss';
+@import '../../../styles/mixins.scss';
+
+section {
+  background-color: $login-bg;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  width: 100%;
+}
+
+.login-content {
+  @include flex-center;
+  flex-direction: column;
+  padding: 40px 100px 20px 20px;
+  background: radial-gradient(60.12% 60.12% at 104.83% -0.03%, rgb(74, 81, 92, 0.3) 0%, rgba(74, 81, 92, 0) 100%);
+  .title {
+    padding: 10px;
+    text-transform: uppercase;
+    font-size: 30px;
+    color: white;
+    font-weight: lighter;
+  }
+  .error-message {
+    //display: none;
+    background-color: black;
+    color: white;
+    border: red solid 0.5px;
+    padding: 20px 35px;
+    font-size: 14px;
+  }
+  .login-input {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    .steam-name-input, .password-input {
+      display: flex;
+      flex-direction: column;
+      label {
+        color: $login-font;
+        margin-top: 15px;
+        font-size: 14px;
+      }
+      input {
+        color: white;
+        background-color: $login-input;
+        border-radius: 5px;
+        border: none;
+        padding: 10px 5px;
+        margin-top: 10px;
+      }
+    }
+
+    .signin-button {
+      min-width: 180px;
+      max-width: 200px;
+      align-self: center;
+      padding: 10px 15px;
+      margin-top: 20px;
+
+      @include blue-gradient-button;
+      transition: 0.5s ease;
+      border: 1px solid $login-bg;
+      border-radius: 3px;
+
+      cursor: pointer;
+
+      color: white;
+      text-shadow: 1px 1px 0px rgba( 0, 0, 0, 0.3 );
+    }
+    .signin-button:hover {
+      -webkit-filter: brightness(120%);
+      transition: 0.5s ease;
+      border: 1px solid white;
+    }
+
+    a {
+      margin: 15px 0;
+      color: $header-font-fg;
+      font-size: 14px;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: $login-btn-hover;
+    }
+  }
+  //.register-button {
+  //    padding: 10px 50px;
+  //    background-color: $login-btn;
+  //    cursor: pointer;
+  //    border: none;
+  //    color: white;
+  //    border-radius: 5px;
+  //}
+
+  .register-button:hover {
+    background-color: $login-btn-hover;
+  }
+}
+
+.join-steam {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
+  font-size: 14px;
+  .title {
+    max-width: 200px;
+    text-align: center;
+    color: $login-font;
+  }
+  .learnmore-link {
+    margin-top: 20px;
+    color: white;
+    text-decoration: none;
+  }
+  .learnmore-link:hover {
+    color: $login-btn-hover;
+  }
+  .join-image {
+    width: 320px;
+  }
+  .join-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    .join-text {
+      max-width: 200px;
+      color: $login-font;
+    }
+    a {
+      margin-top: 20px;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px $login-font solid;
+      border-radius: 3px;
+      color: white;
+      text-decoration: none;
+    }
+    a:hover {
+      border: 1px white solid;
+    }
+  }
+
+}

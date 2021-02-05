@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit {
       }
     }, (error) => {
       console.log('There has been an error: ', error);
+      console.log(error);
     });
   }
 

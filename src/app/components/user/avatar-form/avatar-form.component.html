@@ -1,1 +1,33 @@
-<p>avatar-form works!</p>
+<div class="avatar">
+  <form action="#" method="POST">
+    <div class="about-section">
+      <div class="title">Avatar</div>
+      <div class="about-content">
+        Choose your avatar image and frame.
+      </div>
+    </div>
+    <div class="avatar-section">
+      <div class="image-preview">
+        <div class="image-preview-container">
+          <img class="big" [src]="this.avatarImage" alt="{{ currentUser.accountName }} Avatar">
+          <span>184px</span>
+        </div>
+        <div class="image-preview-container">
+          <img class="medium" [src]="this.avatarImage" alt="{{ currentUser.accountName }} Avatar">
+          <span>64px</span>
+        </div>
+        <div class="image-preview-container">
+          <img class="small" [src]="this.avatarImage" alt="{{ currentUser.accountName }} Avatar">
+          <span>32px</span>
+        </div>
+      </div>
+      <div class="upload-section">
+        <input type="file" accept="image/*" name="avatar" id="avatar" placeholder="Upload your avatar" (change)="showPreview($event)">
+        <div>Upload a file from your device. Image should be square, at least 184px x 184px</div>
+        <button type="submit" (click)="onSave()">Submit</button>
+      </div>
+      <span class="success-box" *ngIf="isSuccess">Data updated!</span>
+      <span class="error-box" *ngIf="isError">Oops, something went wrong!</span>
+    </div>
+  </form>
+</div>

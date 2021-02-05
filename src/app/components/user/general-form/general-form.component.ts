@@ -35,7 +35,7 @@ export class GeneralFormComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck(): void {
-    if (this.user.profileName === undefined || this.currentUser.profileName === undefined) {
+    if (this.user.profileName === undefined || this.currentUser === undefined) {
       this.currentUser = this.user;
     }
   }

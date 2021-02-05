@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "staem-web": {
+      "hosting": {
+        "staem": [
+          "staem-web"
+        ]
+      }
+    }
+  }
+}
