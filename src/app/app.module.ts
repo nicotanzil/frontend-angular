@@ -29,6 +29,7 @@ import { environment } from '../environments/environment';
 import { AdminLoginComponent } from './pages/admin-pages/admin-login/admin-login.component';
 import { HeaderAdminComponent } from './pages/admin-pages/header-admin/header-admin.component';
 import { AdminGameViewComponent } from './pages/admin-pages/admin-game-view/admin-game-view.component';
+import { AdminGameInsertComponent } from './pages/admin-pages/admin-game-insert/admin-game-insert.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { AdminGameViewComponent } from './pages/admin-pages/admin-game-view/admi
     AdminLoginComponent,
     HeaderAdminComponent,
     AdminGameViewComponent,
+    AdminGameInsertComponent,
   ],
   imports: [
     BrowserModule,

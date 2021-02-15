@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {Apollo, gql} from 'apollo-angular';
 import {Query} from '../../models/query';
 import {Observable} from 'rxjs';
+import {Game} from '../../models/game';
+import {InputGame} from '../../models/input/input-game';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +22,75 @@ export class AdminGamesService {
       },
     });
   }
+
+  getAllGenres(): Observable<Query> {
+    return this.apollo.query<Query>({
+      query: GET_ALL_GENRES
+    });
+  }
+
+  getAllTags(): Observable<Query> {
+    return this.apollo.query<Query>({
+      query: GET_ALL_TAGS
+    });
+  }
+
+  getAllDevelopers(): Observable<Query> {
+    return this.apollo.query<Query>({
+      query: GET_ALL_DEVELOPERS
+    });
+  }
+
+  getAllPublishers(): Observable<Query> {
+    return this.apollo.query<Query>({
+      query: GET_ALL_PUBLISHERS
+    });
+  }
+
+  getAllSystems(): Observable<Query> {
+    return this.apollo.query<Query>({
+      query: GET_ALL_SYSTEMS
+    });
+  }
+
+  createGame = (newGame: InputGame) => {
+    return this.apollo.mutate({
+      mutation: CREATE_GAME_MUTATION,
+      variables: {
+        name: newGame.name,
+        description: newGame.description,
+        genres: newGame.genres,
+        tags: newGame.tags,
+        originalPrice: newGame.originalPrice,
+        onSale: newGame.onSale,
+        discountPercentage: newGame.discountPercentage,
+        developers: newGame.developers,
+        publisherId: Number(newGame.publisher),
+        systemId: Number(newGame.system),
+        banner: newGame.banner,
+        video: newGame.video,
+        image1: newGame.image1,
+        image2: newGame.image2,
+        image3: newGame.image3,
+        image4: newGame.image4,
+      }
+    });
+  }
+
+  getLatestId(): Observable<Query> {
+    return this.apollo.query<Query>({
+      query: GET_LATEST_ID
+    });
+  }
+
+  removeGame = (id: number) => {
+    return this.apollo.mutate({
+      mutation: REMOVE_GAME,
+      variables: {
+        id
+      }
+    });
+  }
 }
 
 const GET_GAMES_PAGINATION = gql`
@@ -27,6 +98,86 @@ const GET_GAMES_PAGINATION = gql`
     getGamePaginationAdmin(page:$page) {
       id
       name
+      originalPrice
+      banner
     }
   }
 `;
+
+const GET_ALL_GENRES = gql`
+  query getAllGenres {
+    genres {
+      id
+      name
+    }
+  }
+`;
+
+const GET_ALL_TAGS = gql`
+  query getAllTags {
+    tags {
+      id
+      name
+    }
+  }
+`;
+
+const GET_ALL_DEVELOPERS = gql`
+  query getAllDevelopers {
+    developers {
+      id
+      name
+    }
+  }
+`;
+
+const GET_ALL_PUBLISHERS = gql`
+  query getAllPublishers {
+    publishers {
+      id
+      name
+    }
+  }
+`;
+
+const GET_ALL_SYSTEMS = gql`
+  query getAllSystems {
+    systems {
+      id
+      os
+      memory
+      graphics
+      storage
+    }
+  }
+`;
+
+const CREATE_GAME_MUTATION = gql`
+  mutation createGame($name:String!, $description:String!, $genres:[InputGenre!]!, $tags:[InputTag!]!,
+    $originalPrice:Float!, $onSale:Boolean!, $discountPercentage:Int!, $developers:[InputDeveloper!]!,
+    $publisherId:Int!, $systemId:Int!, $banner:String!, $video:String!, $image1:String!,
+    $image2:String!, $image3:String!, $image4:String!) {
+  createGame(input:{name:$name, description:$description, genres:$genres, tags:$tags,
+  originalPrice:$originalPrice, onSale:$onSale, discountPercentage:$discountPercentage,
+  developers:$developers, publisherId:$publisherId, systemId:$systemId, banner:$banner,
+  video:$video, image1:$image1, image2:$image2, image3:$image3, image4:$image4,}){
+    id
+    name
+  }
+}
+`;
+
+const GET_LATEST_ID = gql`
+  query getLatestGameId {
+    getLatestId
+  }
+`;
+
+const REMOVE_GAME = gql`
+  mutation deleteGame($id:Int!) {
+    deleteGame(id:$id) {
+      id
+      name
+    }
+  }
+`

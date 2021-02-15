@@ -1,0 +1,153 @@
+<app-header-admin></app-header-admin>
+<section>
+  <div class="game-insert-container">
+    <div class="header-container">
+      <div class="title">
+        Insert Game
+      </div>
+    </div>
+    <div class="content-container">
+      <div class="content">
+        <form action="#" method="post">
+          <div class="general-section">
+            <div class="section-header">
+              General
+            </div>
+            <div class="section-input">
+              <div class="text-input">
+                <label for="game-name">Name</label>
+                <input type="text" id="game-name" name="game-name" placeholder="Name" [(ngModel)]="newGame.name">
+              </div>
+              <div class="text-input">
+                <label for="game-desc">Description</label>
+                <textarea name="game-desc" id="game-desc" cols="30" rows="3" style="resize: none" placeholder="Tell us about your game!" [(ngModel)]="newGame.description"></textarea>
+              </div>
+              <div class="checkbox-input">
+                <div class="label">Genres</div>
+                <div class="genre-choice" *ngFor="let genre of genres; let i = index">
+                  <label>
+                    <input type="checkbox" name="genre" class="genre" [value]="i" (change)="onGenreChange($event)">
+                    {{genre.name}}
+                  </label>
+                </div>
+              </div>
+              <div class="checkbox-input">
+                <div class="label">Tags</div>
+                <div class="tag-choice" *ngFor="let tag of tags; let i = index">
+                  <label>
+                    <input type="checkbox" name="tag" class="tag" [value]="i" (change)="onTagChange($event)">
+                    {{tag.name}}
+                  </label>
+                </div>
+              </div>
+              <div class="text-input">
+                <label for="game-price">Original Price (IDR)</label>
+                <input type="number" id="game-price" name="game-price" placeholder="Price" [(ngModel)]="newGame.originalPrice">
+              </div>
+              <div class="checkbox-input">
+                <div class="label">On Sale?</div>
+                <div class="sale-choice">
+                  <label for="sale">
+                    <input type="checkbox" name="sale" id="sale" (change)="onSaleChange($event)">
+                    Sale Item
+                  </label>
+                </div>
+              </div>
+              <div class="text-input">
+                <label for="game-discount">Discount Percentage</label>
+                <input type="number" id="game-discount" name="game-discount" placeholder="Discount (%)" [(ngModel)]="newGame.discountPercentage" [disabled]="!isDiscount">
+              </div>
+              <div class="checkbox-input">
+                <div class="label">Developers</div>
+                <div class="developer-choice" *ngFor="let developer of developers; let i = index">
+                  <label>
+                    <input type="checkbox" name="developer" class="developer" [value]="i" (change)="onDeveloperChange($event)">
+                    {{developer.name}}
+                  </label>
+                </div>
+              </div>
+              <div class="dropdown-input">
+                <label for="publishers">Publisher</label>
+                <select name="publishers" id="publishers" [(ngModel)]="newGame.publisher">
+                  <option *ngFor="let publisher of publishers; let i = index" value="{{i+1}}">
+                    {{publisher.name}}
+                  </option>
+                </select>
+              </div>
+              <div class="dropdown-input">
+                <label for="systems">System Requirement</label>
+                <select name="systems" id="systems" [(ngModel)]="newGame.system">
+                  <option *ngFor="let system of systems; let i = index" value="{{i+1}}">
+                    {{system.os + ", RAM " + system.memory + " GB, GPU " + system.graphics + " , Storage " + system.storage}}
+                  </option>
+                </select>
+              </div>
+              <div class="media-input">
+                <div class="image-preview">
+                  <img [src]="bannerImage" alt="Game Banner">
+                </div>
+                <div class="upload-section">
+                  <div class="label">Game Banner</div>
+                  <input type="file" accept="image/*" name="banner" id="banner" placeholder="Upload your game banner" (change)="showPreview($event)">
+                </div>
+              </div>
+              <div class="media-input">
+                <div class="image-preview">
+                  <img [src]="image1" alt="Game Image 1">
+                </div>
+                <div class="upload-section">
+                  <div class="label">Game Image 1</div>
+                  <input type="file" accept="image/*" name="image1" id="image1" placeholder="Upload your game image 1" (change)="showPreview($event)">
+                </div>
+              </div>
+              <div class="media-input">
+                <div class="image-preview">
+                  <img [src]="image2" alt="Game Image 2">
+                </div>
+                <div class="upload-section">
+                  <div class="label">Game Image 2</div>
+                  <input type="file" accept="image/*" name="image2" id="image2" placeholder="Upload your game image 2" (change)="showPreview($event)">
+                </div>
+              </div>
+              <div class="media-input">
+                <div class="image-preview">
+                  <img [src]="image3" alt="Game Image 3">
+                </div>
+                <div class="upload-section">
+                  <div class="label">Game Image 3</div>
+                  <input type="file" accept="image/*" name="image3" id="image3" placeholder="Upload your game image 3" (change)="showPreview($event)">
+                </div>
+              </div>
+              <div class="media-input">
+                <div class="image-preview">
+                  <img [src]="image4" alt="Game Image 4">
+                </div>
+                <div class="upload-section">
+                  <div class="label">Game Image 4</div>
+                  <input type="file" accept="image/*" name="image4" id="image4" placeholder="Upload your game image 4" (change)="showPreview($event)">
+                </div>
+              </div>
+              <div class="media-input">
+                <div class="video-preview">
+                  <video [src]="video">Video</video>
+                </div>
+                <div class="upload-section">
+                  <div class="label">Video</div>
+                  <input type="file" accept="video/*" name="video" id="video" placeholder="Upload your game video" (change)="showPreview($event)">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="button-section">
+            <div class="button-container">
+              <span class="success-box" *ngIf="isSuccess">Data updated!</span>
+              <span class="error-box" *ngIf="isError">Oops, something went wrong!</span>
+              <button class="btn cancelBtn">Cancel</button>
+              <button class="btn saveBtn" (click)="onSave()">Save</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

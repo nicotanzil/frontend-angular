@@ -2,11 +2,13 @@
 @import '../../../styles/mixins.scss';
 
 section {
-  @include flex-center;
+  //@include flex-center;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
   background: url("../../../../assets/home/bg.png") center top;
   background-size: cover;
-  min-height: 100%;
-  width: 100%;
   .game-view-container {
     width: 100%;
     padding: 20px 40px;
@@ -20,7 +22,7 @@ section {
         color: $font-light-gray;
         text-transform: uppercase;
         font-size: 16px;
-        font-weight: lighter;
+        font-weight: bold;
         text-align: left;
         margin-bottom: 10px;
       }
@@ -97,6 +99,7 @@ section {
                 text-decoration: none;
                 border-radius: 3px;
                 margin: 0 5px;
+                cursor: pointer;
               }
               .btn:hover {
                 -webkit-filter: brightness(120%);
