@@ -48,7 +48,7 @@ export class AvatarFormComponent implements OnInit, DoCheck {
       const fileRef = this.storage.ref(path);
       this.storage.upload(path, this.selectedImage).snapshotChanges().pipe(
         finalize(() => {
-          fileRef.getDownloadURL().subscribe((url) => {
+          fileRef.getDownloadURL().subscribe(url => {
             this.currentUser.avatar = url;
             // Mutate to DB
             this.service.updateUser(this.currentUser).subscribe(async query => {

@@ -12,7 +12,8 @@ import {System} from '../../../models/system';
 import {DefaultAssets} from '../../../models/default-assets';
 import {log} from 'util';
 import {AngularFireStorage} from '@angular/fire/storage';
-import {finalize} from 'rxjs/operators';
+import {finalize, mergeMap, filter} from 'rxjs/operators';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-admin-game-insert',
@@ -64,14 +65,21 @@ export class AdminGameInsertComponent implements OnInit {
 
   newGame: InputGame;
 
+  tasksQuery$ = new Subject();
+
+  // const uploadImage = (path, selected) => {
+  //   console.log(`Processing ${path} ${selected}`);
+  //   return new Promise(resolve => {
+  //     this.storage.upload()
+  //   })
+  // }
+
   ngOnInit(): void {
     this.newGame = new InputGame();
     // Load all genres
     this.service.getLatestId().subscribe(async query => {
-      console.log(query.data);
       if (query.data) {
-        console.log(query.data);
-        this.index = query.data;
+        this.index = query.data.getLatestId;
         this.index++;
       }
     }, error => {
@@ -79,7 +87,6 @@ export class AdminGameInsertComponent implements OnInit {
     });
 
     this.service.getAllGenres().subscribe(async query => {
-      console.log(query.data);
       if (query.data) {
         this.genres = query.data.genres;
       }
@@ -89,7 +96,6 @@ export class AdminGameInsertComponent implements OnInit {
 
     // Load all tags
     this.service.getAllTags().subscribe(async query => {
-      console.log(query.data);
       if (query.data) {
         this.tags = query.data.tags;
       }
@@ -99,7 +105,6 @@ export class AdminGameInsertComponent implements OnInit {
 
     // Load all developers
     this.service.getAllDevelopers().subscribe(async query => {
-      console.log(query.data);
       if (query.data) {
         this.developers = query.data.developers;
       }
@@ -109,7 +114,6 @@ export class AdminGameInsertComponent implements OnInit {
 
     // Load all publishers
     this.service.getAllPublishers().subscribe(async query => {
-      console.log(query.data);
       if (query.data) {
         this.publishers = query.data.publishers;
       }
@@ -118,7 +122,6 @@ export class AdminGameInsertComponent implements OnInit {
     });
 
     this.service.getAllSystems().subscribe(async query => {
-      console.log(query.data);
       if (query.data) {
         this.systems = query.data.systems;
       }
@@ -131,55 +134,46 @@ export class AdminGameInsertComponent implements OnInit {
     // On change add element to array
     let currGenre: InputGenre;
     if (e.target.checked) {
-      console.log(e.target.value + ' checked');
       currGenre = {
         id: e.target.value,
       };
       this.newGame.genres.push(currGenre);
     }
     else {
-      console.log(e.target.value + ' unchecked');
       this.newGame.genres.forEach((value, index) => {
         if (value.id === e.target.value) { this.newGame.genres.splice(index, 1); }
       });
     }
-    console.log(this.newGame.genres);
   }
 
   onTagChange(e): void {
     let currTag: InputTag;
     if (e.target.checked) {
-      console.log(e.target.value + ' checked');
       currTag = {
         id: e.target.value
       };
       this.newGame.tags.push(currTag);
     }
     else {
-      console.log(e.target.value + ' unchecked');
       this.newGame.tags.forEach((value, index) => {
         if (value.id === e.target.value) { this.newGame.tags.splice(index, 1); }
       });
     }
-    console.log(this.newGame.tags);
   }
 
   onDeveloperChange(e): void {
     let currDeveloper: InputDeveloper;
     if (e.target.checked) {
-      console.log(e.target.value + ' checked');
       currDeveloper = {
         id: e.target.value
       };
       this.newGame.developers.push(currDeveloper);
     }
     else {
-      console.log(e.target.value + ' unchecked');
       this.newGame.developers.forEach((value, index) => {
         if (value.id === e.target.value) { this.newGame.developers.splice(index, 1); }
       });
     }
-    console.log(this.newGame.developers);
   }
 
   onSaleChange(e): void {
@@ -188,6 +182,7 @@ export class AdminGameInsertComponent implements OnInit {
   }
 
   onSave(): void {
+    console.log(this.newGame);
     // Need validation
     const bannerPath = `assets/games/${this.index}/banner`;
     const bannerRef = this.storage.ref(bannerPath);
@@ -216,86 +211,66 @@ export class AdminGameInsertComponent implements OnInit {
     //   })
     // ).subscribe();
 
-    this.service.createGame(this.newGame).subscribe(async query => {
-      console.log('success');
-      console.log(query);
-    }, error => {
-      console.log(error);
-    });
+    if (this.bannerSelected !== null) {
+      this.storage.upload(bannerPath, this.bannerSelected).snapshotChanges().pipe(
+        finalize(() => {
+          bannerRef.getDownloadURL().subscribe(url => {
+            this.newGame.banner = url;
+            this.newGame.video = 'video';
+            this.newGame.image1 = 'image1';
+            this.newGame.image2 = 'image2';
+            this.newGame.image3 = 'image3';
+            this.newGame.image4 = 'image4';
+            console.log(this.newGame);
+            this.service.createGame(this.newGame).subscribe(async query => {
+              console.log('Success');
+            }, error => {
+              console.log('There has been an error: ', error);
+            });
+          });
+        })
+      ).subscribe();
+    }
+
+    // this.service.createGame(this.newGame).subscribe(async query => {
+    //   console.log('success');
+    //   console.log(query);
+    // }, error => {
+    //   console.log(error);
+    // });
+  }
+
+  preview = (event, image, selected, original) => {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => this.bannerImage = e.target.result;
+      reader.readAsDataURL(event.target.files[0]);
+      selected = event.target.files[0];
+    }
+    else {
+      image = original;
+      selected = null;
+    }
   }
 
   showPreview(event: any): void {
     if (event.target.id === 'banner') {
-      if (event.target.files && event.target.files[0]) {
-        const reader = new FileReader();
-        reader.onload = (e: any) => this.bannerImage = e.target.result;
-        reader.readAsDataURL(event.target.files[0]);
-        this.bannerSelected = event.target.files[0];
-      }
-      else {
-        this.bannerImage = this.bannerOriginal;
-        this.bannerSelected = null;
-      }
+      this.preview(event, this.bannerImage, this.bannerSelected, this.bannerOriginal);
     }
     else if (event.target.id === 'image1') {
-      if (event.target.files && event.target.files[0]) {
-        const reader = new FileReader();
-        reader.onload = (e: any) => this.image1 = e.target.result;
-        reader.readAsDataURL(event.target.files[0]);
-        this.image1Selected = event.target.files[0];
-      }
-      else {
-        this.image1 = this.image1Original;
-        this.image1Selected = null;
-      }
+      this.preview(event, this.image1, this.image1Selected, this.image1Original);
     }
     else if (event.target.id === 'image2') {
-      if (event.target.files && event.target.files[0]) {
-        const reader = new FileReader();
-        reader.onload = (e: any) => this.image2 = e.target.result;
-        reader.readAsDataURL(event.target.files[0]);
-        this.image2Selected = event.target.files[0];
-      }
-      else {
-        this.image2 = this.image2Original;
-        this.image2Selected = null;
-      }
+      this.preview(event, this.image2, this.image2Selected, this.image2Original);
     }
     else if (event.target.id === 'image3') {
-      if (event.target.files && event.target.files[0]) {
-        const reader = new FileReader();
-        reader.onload = (e: any) => this.image3 = e.target.result;
-        reader.readAsDataURL(event.target.files[0]);
-        this.image3Selected = event.target.files[0];
-      }
-      else {
-        this.image3 = this.image3Original;
-        this.image3Selected = null;
-      }
+      this.preview(event, this.image3, this.image3Selected, this.image3Original);
     }
     else if (event.target.id === 'image4') {
-      if (event.target.files && event.target.files[0]) {
-        const reader = new FileReader();
-        reader.onload = (e: any) => this.image4 = e.target.result;
-        reader.readAsDataURL(event.target.files[0]);
-        this.image4Selected = event.target.files[0];
-      }
-      else {
-        this.image4 = this.image4Original;
-        this.image4Selected = null;
-      }
+      this.preview(event, this.image4, this.image4Selected, this.image4Original);
     }
     else if (event.target.id === 'video') {
-      if (event.target.files && event.target.files[0]) {
-        const reader = new FileReader();
-        reader.onload = (e: any) => this.video = e.target.result;
-        reader.readAsDataURL(event.target.files[0]);
-        this.video = event.target.files[0];
-      }
-      else {
-        this.video = this.videoOriginal;
-        this.videoSelected = null;
-      }
+      this.preview(event, this.video, this.videoSelected, this.videoOriginal);
     }
   }
 
