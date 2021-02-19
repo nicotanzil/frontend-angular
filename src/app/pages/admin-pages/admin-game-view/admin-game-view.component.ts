@@ -16,6 +16,7 @@ export class AdminGameViewComponent implements OnInit {
 
   current: number;
   totalPage: number;
+  totalGame: number;
   games: Game[];
 
   arrowLeft: boolean;
@@ -25,12 +26,16 @@ export class AdminGameViewComponent implements OnInit {
     this.current = 1;
     this.arrowLeft = true;
     this.arrowRight = true;
-    // this.totalPage = this.games.length;
+    this.loadContent();
+  }
+
+  loadContent = () => {
+    console.log(this.current);
     this.gameService.getGamesPagination(this.current).subscribe(async query => {
       console.log(query.data);
       if (query.data) {
         this.games = query.data.getGamePaginationAdmin;
-        this.totalPage = Math.floor(this.games.length / 5 + 1);
+        this.getTotalGame();
         console.log('Loading games');
         console.log(this.games);
         this.updateControl();
@@ -40,15 +45,26 @@ export class AdminGameViewComponent implements OnInit {
     });
   }
 
+  getTotalGame = () => {
+    this.gameService.getTotalGame().subscribe(async query => {
+      this.totalGame = query.data.getTotalGame;
+      this.totalPage = Math.ceil(this.totalGame / 5);
+      this.updateControl();
+    });
+  }
+
   remove(id: number): void {
+    console.log('remove');
     this.gameService.removeGame(id).subscribe(async query => {
       console.log(query.data);
+      this.loadContent();
     }, error => {
       console.log(error);
     });
   }
 
   updateControl(): void {
+    console.log('current: ' + this.current + ' totalpage: ' + this.totalPage + 'total game: ' + this.totalGame);
     if (this.current <= 1) {
       this.arrowLeft = false;
     }
@@ -61,5 +77,17 @@ export class AdminGameViewComponent implements OnInit {
     else {
       this.arrowRight = true;
     }
+  }
+
+  moveRight = () => {
+    if (this.current >= this.totalPage) { return; }
+    this.current++;
+    this.loadContent();
+  }
+
+  moveLeft = () => {
+    if (this.current < this.totalPage) { return; }
+    this.current--;
+    this.loadContent();
   }
 }

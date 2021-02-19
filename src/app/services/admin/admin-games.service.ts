@@ -77,9 +77,9 @@ export class AdminGamesService {
     });
   }
 
-  getLatestId(): Observable<Query> {
+  getTotalGame(): Observable<Query> {
     return this.apollo.query<Query>({
-      query: GET_LATEST_ID
+      query: GET_TOTAL_GAME,
     });
   }
 
@@ -167,9 +167,9 @@ const CREATE_GAME_MUTATION = gql`
 }
 `;
 
-const GET_LATEST_ID = gql`
-  query getLatestGameId {
-    getLatestId
+const GET_TOTAL_GAME = gql`
+  query getTotalGame {
+    getTotalGame
   }
 `;
 
@@ -180,4 +180,4 @@ const REMOVE_GAME = gql`
       name
     }
   }
-`
+`;

@@ -5,7 +5,7 @@
       <div class="title">
         View all available games
       </div>
-      <a routerLink="/admin-games-insert" class="insert-btn">Insert</a>
+      <a routerLink="/admin/games/insert" class="insert-btn">Insert</a>
     </div>
     <div class="outer-container">
       <div class="inner-container">
@@ -32,9 +32,9 @@
           There's nothing to show here!
         </div>
         <div class="navigation-container" *ngIf="games.length != 0">
-          <span class="arrow left-arrow" *ngIf="arrowLeft"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+          <span class="arrow left-arrow" *ngIf="arrowLeft" (click)="moveLeft()"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
           <span class="current-page">{{ current }} / {{ totalPage }}</span>
-          <span class="arrow right-arrow" *ngIf="arrowRight"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+          <span class="arrow right-arrow" *ngIf="arrowRight" (click)="moveRight()"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
         </div>
       </div>
     </div>

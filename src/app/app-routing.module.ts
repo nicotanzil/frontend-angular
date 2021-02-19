@@ -14,15 +14,15 @@ import {AdminGameInsertComponent} from './pages/admin-pages/admin-game-insert/ad
 
 const routes: Routes = [
   {
-    path: 'admin-login',
+    path: 'admin/login',
     component: AdminLoginComponent,
   },
   {
-    path: 'admin-games-view',
+    path: 'admin/games',
     component: AdminGameViewComponent,
   },
   {
-    path: 'admin-games-insert',
+    path: 'admin/games/insert',
     component: AdminGameInsertComponent,
   },
   {
@@ -36,7 +36,7 @@ const routes: Routes = [
     // canActivate: [GuestGuard],
   },
   {
-    path: 'register-complete',
+    path: 'register/complete',
     component: RegisterCompleteComponent,
     // canActivate: [GuestGuard],
   },

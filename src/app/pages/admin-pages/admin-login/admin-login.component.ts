@@ -37,7 +37,7 @@ export class AdminLoginComponent implements OnInit {
       this.service.adminLoginMutation(accountName, password).subscribe(async query => {
         if (query.data) {
           // Redirect to home
-          await this.router.navigateByUrl('/admin-games-view');
+          await this.router.navigateByUrl('/admin/games');
         }
       }, async error => {
         this.errorMessage = error.toString();

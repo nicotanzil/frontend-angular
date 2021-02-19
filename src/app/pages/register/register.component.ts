@@ -91,7 +91,7 @@ export class RegisterComponent implements OnInit {
       if (query.data) {
         this.countries = query.data.countries;
         // console.log(this.countries);
-        this.countries.forEach(value => {console.log(value); });
+        // this.countries.forEach(value => {console.log(value); });
       }
       else { this.errorMessage = 'Fetching countries data fail'; this.isError = true; }
     }, error => {

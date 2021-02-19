@@ -37,30 +37,35 @@ export class RegisterService {
   // Get OTP by Code
   getOtpByCode(code): Observable<Query>{
     return this.apollo.query<Query>({
-      query: gql`
-        query getOTPByCode {
-          getOtpByCode(code:"${code}") {
-            email
-            countryName
-          }
-        }
-      `
+      query: GET_OTP_BY_CODE,
+      variables: {
+        code,
+      }
     });
   }
 
   // Create New User
-  createUser = (name, password, email, country) => {
+  createUser = (name, password, email, countryId) => {
     return this.apollo.mutate({
       mutation: CREATE_USER_MUTATION,
       variables: {
         accountName: name,
         password,
         email,
-        countryName: country,
+        countryId,
       },
     });
   }
 }
+
+const GET_OTP_BY_CODE = gql`
+  query getOTPByCode($code:String!) {
+  getOtpByCode(code:$code) {
+    email
+    countryId
+  }
+}
+`;
 
 const GET_COUNTRIES_QUERY = gql`
   query GetAllCountries{
@@ -84,7 +89,7 @@ const CREATE_OTP_MUTATION = gql`
 `;
 
 const CREATE_USER_MUTATION = gql`
-  mutation CreateUser($accountName:String!, $password:String!, $email:String!, $countryName:String!) {
-    createUser(user:{accountName:$accountName, password:$password}, otp:{email:$email, countryName:$countryName})
+  mutation createUser($accountName:String!, $password:String!, $email:String!, $countryId:Int!) {
+    createUser(user:{accountName:$accountName, password:$password}, otp:{email:$email, countryId:$countryId})
   }
 `;

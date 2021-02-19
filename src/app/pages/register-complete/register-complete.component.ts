@@ -54,19 +54,21 @@ export class RegisterCompleteComponent implements OnInit {
     }
     // send inputted otp.code, account, password to server -> server return User obj
     let email;
-    let countryName;
+    let countryId;
 
+    console.log('OTP: ' + otp);
     this.service.getOtpByCode(otp).subscribe(async query => {
+      console.log(query);
       this.isError = false;
       this.isSuccess = false;
       const data = query.data.getOtpByCode;
       email = data.email;
-      countryName = data.countryName;
+      countryId = data.countryId;
       if (email === '') {
         this.changeError('Invalid OTP');
       }
       else {
-        this.addUser(account, password, email, countryName);
+        this.addUser(account, password, email, countryId);
       }
     }, error => {
       console.log('There has been an error ', error);
@@ -74,11 +76,12 @@ export class RegisterCompleteComponent implements OnInit {
     });
   }
 
-  addUser(account, password, email, countryName): void {
-    this.service.createUser(account, password, email, countryName).subscribe(async query => {
-      if (query.data) { this.successMessage = 'Account ' + account + ' successfully created.\n'; this.isSuccess = true;}
+  addUser(account, password, email, countryId): void {
+    this.service.createUser(account, password, email, countryId).subscribe(async query => {
+      if (query.data) { this.successMessage = 'Account ' + account + ' successfully created.\n'; this.isSuccess = true; }
       else { this.errorMessage = 'Creating user fail. Invalid data'; this.isError = true; }
     }, error => {
+      console.log('Create user');
       console.log('There has been an error ', error);
     });
 

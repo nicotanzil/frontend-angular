@@ -77,9 +77,9 @@ export class AdminGameInsertComponent implements OnInit {
   ngOnInit(): void {
     this.newGame = new InputGame();
     // Load all genres
-    this.service.getLatestId().subscribe(async query => {
+    this.service.getTotalGame().subscribe(async query => {
       if (query.data) {
-        this.index = query.data.getLatestId;
+        this.index = query.data.getTotalGame;
         this.index++;
       }
     }, error => {
