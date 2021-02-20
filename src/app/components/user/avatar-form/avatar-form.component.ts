@@ -42,6 +42,8 @@ export class AvatarFormComponent implements OnInit, DoCheck {
     // ...
     this.isError = false;
     this.isSuccess = false;
+    console.log(this.avatarImage);
+    console.log(this.selectedImage);
 
     if (this.selectedImage !== null) {
       const path = `assets/users/${this.currentUser.id}/avatar`;

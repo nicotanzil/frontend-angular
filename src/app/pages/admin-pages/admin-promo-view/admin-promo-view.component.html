@@ -1,0 +1,33 @@
+<app-header-admin></app-header-admin>
+<section>
+  <div class="promo-view-container">
+    <div class="header-container">
+      <div class="title">
+        View all available promos
+      </div>
+      <a routerLink="/admin/promos/insert" class="insert-btn">Insert</a>
+    </div>
+    <div class="outer-container">
+      <div class="inner-container">
+        <div class="content-container" *ngIf="promos.length != 0">
+          <!-- MAIN CONTENT -->
+          <div class="row" *ngFor="let promo of promos; index as i">
+            Promo[{{ promo.id }}] Discount: {{promo.discountPercentage}}% | Valid until: {{promo.validUntil * 1000 | date}}
+            <div class="button-container">
+              <a class="btn update-btn">Update</a>
+              <a class="btn remove-btn" (click)="remove(promo.id)">Remove</a>
+            </div>
+          </div>
+        </div>
+        <div class="content-container" *ngIf="promos.length == 0">
+          There's nothing to show here!
+        </div>
+        <div class="navigation-container" *ngIf="promos.length != 0">
+          <span class="arrow left-arrow" *ngIf="arrowLeft" (click)="moveLeft()"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+          <span class="current-page">{{ currentPage }} of {{ totalPage }}</span>
+          <span class="arrow right-arrow" *ngIf="arrowRight" (click)="moveRight()"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

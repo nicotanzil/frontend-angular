@@ -30,6 +30,9 @@ import { AdminLoginComponent } from './pages/admin-pages/admin-login/admin-login
 import { HeaderAdminComponent } from './pages/admin-pages/header-admin/header-admin.component';
 import { AdminGameViewComponent } from './pages/admin-pages/admin-game-view/admin-game-view.component';
 import { AdminGameInsertComponent } from './pages/admin-pages/admin-game-insert/admin-game-insert.component';
+import { GameDeleteDialogComponent } from './components/admin/game-delete-dialog/game-delete-dialog.component';
+import { AdminPromoViewComponent } from './pages/admin-pages/admin-promo-view/admin-promo-view.component';
+import { AdminPromoInsertComponent } from './pages/admin-pages/admin-promo-insert/admin-promo-insert.component';
 
 
 @NgModule({
@@ -53,6 +56,9 @@ import { AdminGameInsertComponent } from './pages/admin-pages/admin-game-insert/
     HeaderAdminComponent,
     AdminGameViewComponent,
     AdminGameInsertComponent,
+    GameDeleteDialogComponent,
+    AdminPromoViewComponent,
+    AdminPromoInsertComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,39 @@
+<app-header-admin></app-header-admin>
+<section>
+  <div class="promo-insert-container">
+    <div class="header-container">
+      <div class="title">
+        Insert Promo
+      </div>
+    </div>
+    <div class="content-container">
+      <div class="content">
+        <form action="#" method="post">
+          <div class="general-section">
+            <div class="section-header">
+              General
+            </div>
+            <div class="section-input">
+              <div class="text-input">
+                <label for="discount-percentage">Discount Percentage (%)</label>
+                <input type="number" id="discount-percentage" name="discount-percentage" placeholder="Discount" [(ngModel)]="newPromo.discountPercentage">
+              </div>
+              <div class="date-input">
+                <label for="valid-until">Discount Valid Until</label>
+                <input type="date" name="valid-until" id="valid-until" [(ngModel)]="validUntil">
+              </div>
+            </div>
+          </div>
+          <div class="button-section">
+            <div class="button-container">
+              <span class="success-box" *ngIf="isSuccess">Data updated!</span>
+              <span class="error-box" *ngIf="isError">Oops, something went wrong!</span>
+              <button class="btn cancelBtn">Cancel</button>
+              <button class="btn saveBtn" (click)="onSave()">Save</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

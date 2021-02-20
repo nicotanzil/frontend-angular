@@ -1,23 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import {AdminGamesService} from '../../../services/admin/admin-games.service';
-import {Game} from '../../../models/game';
-import {log} from 'util';
+import {Promo} from '../../../models/promo';
+import {AdminPromosService} from '../../../services/admin/admin-promos.service';
 
 @Component({
-  selector: 'app-admin-game-view',
-  templateUrl: './admin-game-view.component.html',
-  styleUrls: ['./admin-game-view.component.scss']
+  selector: 'app-admin-promo-view',
+  templateUrl: './admin-promo-view.component.html',
+  styleUrls: ['./admin-promo-view.component.scss']
 })
-export class AdminGameViewComponent implements OnInit {
+export class AdminPromoViewComponent implements OnInit {
 
   constructor(
-    private gameService: AdminGamesService,
+    private service: AdminPromosService
   ) { }
 
   currentPage: number;
   totalPage: number;
-  totalGame: number;
-  games: Game[];
+  totalPromo: number;
+  promos: Promo[];
 
   arrowLeft: boolean;
   arrowRight: boolean;
@@ -31,13 +30,12 @@ export class AdminGameViewComponent implements OnInit {
 
   loadContent = () => {
     console.log(this.currentPage);
-    this.gameService.getGamesPagination(this.currentPage).subscribe(async query => {
+    this.service.getPromosPagination(this.currentPage).subscribe(async query => {
       console.log(query.data);
       if (query.data) {
-        this.games = query.data.getGamePaginationAdmin;
-        this.getTotalGame();
-        console.log('Loading games');
-        console.log(this.games);
+        this.promos = query.data.getPromoPaginationAdmin;
+        this.getTotalPromos();
+        console.log(this.promos);
         this.updateControl();
       }
     }, error => {
@@ -45,23 +43,15 @@ export class AdminGameViewComponent implements OnInit {
     });
   }
 
-  getTotalGame = () => {
-    this.gameService.getTotalGame().subscribe(async query => {
-      this.totalGame = query.data.getTotalGame;
-      this.totalPage = Math.ceil(this.totalGame / 5);
+  getTotalPromos = () => {
+    this.service.getTotalPromo().subscribe(async query => {
+      this.totalPromo = query.data.getTotalPromo;
+      this.totalPage = Math.ceil(this.totalPromo / 5);
       this.updateControl();
     });
   }
 
   remove(id: number): void {
-    if (confirm('Are you sure you want to delete?')) {
-      this.gameService.removeGame(id).subscribe(async query => {
-        console.log(query.data);
-        this.loadContent();
-      }, error => {
-        console.log(error);
-      });
-    }
   }
 
   updateControl(): void {
@@ -90,4 +80,5 @@ export class AdminGameViewComponent implements OnInit {
     this.currentPage--;
     this.loadContent();
   }
+
 }

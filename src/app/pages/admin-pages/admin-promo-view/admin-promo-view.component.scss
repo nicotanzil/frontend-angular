@@ -1,25 +1,14 @@
 @import '../../../styles/colors.scss';
 @import '../../../styles/mixins.scss';
 
-app-game-delete-dialog {
-  position: absolute;
-  @include flex-center();
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-height: 100vh;
-  z-index: 99;
-}
-
 section {
-  //@include flex-center;
   width: 100%;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   background: url("../../../../assets/home/bg.png") center top;
   background-size: cover;
-  .game-view-container {
+  .promo-view-container {
     width: 100%;
     padding: 20px 40px;
     .header-container {
@@ -56,7 +45,6 @@ section {
     .outer-container {
       background-color: $admin-games-view-bg;
       color: $font-light-gray;
-
       .inner-container {
         display: flex;
         flex-direction: column;
@@ -67,39 +55,11 @@ section {
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
+            min-height: 75px;
             max-height: 100px;
 
             border-bottom: 2px solid $login-font;
-            .game-detail {
-              display: flex;
-              flex-direction: row;
-              align-items: center;
-
-              padding: 10px 15px;
-              .banner-container {
-                max-height: 100px;
-                img {
-                  height: 75px;
-                  width: 200px;
-                }
-              }
-              .description {
-                display: flex;
-                flex-direction: column;
-                padding-left: 25px;
-                .name {
-                  font-size: 18px;
-                }
-                .price {
-                  font-size: 14px;
-                  font-weight: lighter;
-                  color: $font-gray;
-                  font-style: italic;
-                }
-              }
-            }
             .button-container {
-
               .btn {
                 padding: 8px 25px;
 
@@ -123,7 +83,6 @@ section {
             }
           }
         }
-
         .navigation-container {
           @include flex-center;
           font-size: 18px;

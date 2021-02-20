@@ -211,6 +211,8 @@ export class AdminGameInsertComponent implements OnInit {
     //   })
     // ).subscribe();
 
+    console.log(this.bannerImage);
+    console.log(this.bannerSelected);
     if (this.bannerSelected !== null) {
       this.storage.upload(bannerPath, this.bannerSelected).snapshotChanges().pipe(
         finalize(() => {
@@ -251,11 +253,12 @@ export class AdminGameInsertComponent implements OnInit {
       image = original;
       selected = null;
     }
+    return selected;
   }
 
   showPreview(event: any): void {
     if (event.target.id === 'banner') {
-      this.preview(event, this.bannerImage, this.bannerSelected, this.bannerOriginal);
+      this.bannerSelected = this.preview(event, this.bannerImage, this.bannerSelected, this.bannerOriginal);
     }
     else if (event.target.id === 'image1') {
       this.preview(event, this.image1, this.image1Selected, this.image1Original);
@@ -272,28 +275,5 @@ export class AdminGameInsertComponent implements OnInit {
     else if (event.target.id === 'video') {
       this.preview(event, this.video, this.videoSelected, this.videoOriginal);
     }
-  }
-
-  dummyData(): void {
-    const gen: InputGenre = {id: 1, };
-    const tag: InputTag = {id: 1};
-    const dev: InputDeveloper = {id: 1};
-    this.newGame.name = 'asdasd';
-    this.newGame.description = 'good game';
-    this.newGame.genres = [gen];
-    this.newGame.tags = [tag];
-    this.newGame.originalPrice = 100;
-    this.newGame.onSale = true;
-    this.newGame.discountPercentage = 10;
-    this.newGame.developers = [dev];
-    this.newGame.publisher = 1;
-    this.newGame.system = 1;
-    this.newGame.banner = '';
-    this.newGame.video = '';
-    this.newGame.banner = '';
-    this.newGame.image1 = '';
-    this.newGame.image2 = '';
-    this.newGame.image3 = '';
-    this.newGame.image4 = '';
   }
 }
