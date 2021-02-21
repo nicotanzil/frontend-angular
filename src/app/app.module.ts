@@ -33,6 +33,7 @@ import { AdminGameInsertComponent } from './pages/admin-pages/admin-game-insert/
 import { GameDeleteDialogComponent } from './components/admin/game-delete-dialog/game-delete-dialog.component';
 import { AdminPromoViewComponent } from './pages/admin-pages/admin-promo-view/admin-promo-view.component';
 import { AdminPromoInsertComponent } from './pages/admin-pages/admin-promo-insert/admin-promo-insert.component';
+import { AdminPromoUpdateComponent } from './pages/admin-pages/admin-promo-update/admin-promo-update.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { AdminPromoInsertComponent } from './pages/admin-pages/admin-promo-inser
     GameDeleteDialogComponent,
     AdminPromoViewComponent,
     AdminPromoInsertComponent,
+    AdminPromoUpdateComponent,
   ],
   imports: [
     BrowserModule,

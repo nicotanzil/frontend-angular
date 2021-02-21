@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AdminPromosService} from '../../../services/admin/admin-promos.service';
 import {InputPromo} from '../../../models/input/input-promo';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-admin-promo-insert',
@@ -11,6 +12,7 @@ export class AdminPromoInsertComponent implements OnInit {
 
   constructor(
     private service: AdminPromosService,
+    private location: Location,
   ) { }
 
   isSuccess: boolean;
@@ -26,9 +28,8 @@ export class AdminPromoInsertComponent implements OnInit {
 
   onSave(): void {
     this.newPromo.validUntil = Date.parse(this.validUntil.toString());
-    console.log(this.newPromo);
+    this.newPromo.validUntil = this.newPromo.validUntil / 1000;
     this.service.createPromo(this.newPromo).subscribe(async query => {
-      console.log('Success');
       // @ts-ignore
       const data = query.data.createPromo;
       alert('Promo[' + data.id + '] inserted');
@@ -37,4 +38,7 @@ export class AdminPromoInsertComponent implements OnInit {
     });
   }
 
+  back(): void {
+    this.location.back();
+  }
 }

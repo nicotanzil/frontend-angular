@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AdminGamesService} from '../../../services/admin/admin-games.service';
 import {Game} from '../../../models/game';
-import {log} from 'util';
 
 @Component({
   selector: 'app-admin-game-view',

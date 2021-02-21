@@ -3,7 +3,7 @@
   <div class="promo-insert-container">
     <div class="header-container">
       <div class="title">
-        Insert Promo
+        Update Promo: {{promoId}}
       </div>
     </div>
     <div class="content-container">
@@ -16,7 +16,7 @@
             <div class="section-input">
               <div class="text-input">
                 <label for="discount-percentage">Discount Percentage (%)</label>
-                <input type="number" id="discount-percentage" name="discount-percentage" placeholder="Discount" [(ngModel)]="newPromo.discountPercentage">
+                <input type="number" id="discount-percentage" name="discount-percentage" placeholder="Discount" [(ngModel)]="updatePromo.discountPercentage">
               </div>
               <div class="date-input">
                 <label for="valid-until">Discount Valid Until</label>
@@ -29,7 +29,7 @@
               <span class="success-box" *ngIf="isSuccess">Data updated!</span>
               <span class="error-box" *ngIf="isError">Oops, something went wrong!</span>
               <button class="btn cancelBtn" (click)="back()">Back</button>
-              <button class="btn saveBtn" (click)="onSave()">Save</button>
+              <button class="btn saveBtn" (click)="update(promoId)">Update</button>
             </div>
           </div>
         </form>

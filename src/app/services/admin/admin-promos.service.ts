@@ -42,6 +42,34 @@ export class AdminPromosService {
       }
     });
   }
+
+  updatePromo = (newPromo: InputPromo, id: number) => {
+    return this.apollo.mutate({
+      mutation: UPDATE_PROMO,
+      variables: {
+        input: newPromo,
+        id,
+      }
+    });
+  }
+
+  removePromo = (id: number) => {
+    return this.apollo.mutate({
+      mutation: REMOVE_PROMO,
+      variables: {
+        id,
+      }
+    });
+  }
+
+  getPromoById = (id: number) => {
+    return this.apollo.query<Query>({
+      query: GET_PROMO_BY_ID,
+      variables: {
+        id,
+      }
+    });
+  }
 }
 
 const GET_ALL_PROMOS = gql`
@@ -73,6 +101,34 @@ const GET_TOTAL_PROMO = gql`
 const CREATE_PROMO_MUTATION = gql`
   mutation createPromo($input:NewPromo!) {
     createPromo(input:$input) {
+      id
+      discountPercentage
+      validUntil
+    }
+  }
+`;
+
+const UPDATE_PROMO = gql`
+  mutation updatePromo($input:NewPromo!,$id:Int!) {
+    updatePromo(input:$input, id:$id) {
+      id
+      discountPercentage
+    }
+  }
+`;
+
+const REMOVE_PROMO = gql`
+  mutation removePromo($id:Int!) {
+    deletePromo(id:$id) {
+      id
+      discountPercentage
+    }
+  }
+`;
+
+const GET_PROMO_BY_ID = gql`
+  query getPromoById($id:Int!) {
+    getPromoById(id:$id) {
       id
       discountPercentage
       validUntil

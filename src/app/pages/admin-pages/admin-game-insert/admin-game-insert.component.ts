@@ -226,6 +226,7 @@ export class AdminGameInsertComponent implements OnInit {
             console.log(this.newGame);
             this.service.createGame(this.newGame).subscribe(async query => {
               console.log('Success');
+              alert(this.newGame.name + ' has been inserted!');
             }, error => {
               console.log('There has been an error: ', error);
             });

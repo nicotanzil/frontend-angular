@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Promo} from '../../../models/promo';
 import {AdminPromosService} from '../../../services/admin/admin-promos.service';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-admin-promo-view',
@@ -10,7 +12,8 @@ import {AdminPromosService} from '../../../services/admin/admin-promos.service';
 export class AdminPromoViewComponent implements OnInit {
 
   constructor(
-    private service: AdminPromosService
+    private service: AdminPromosService,
+    private router: Router,
   ) { }
 
   currentPage: number;
@@ -51,7 +54,19 @@ export class AdminPromoViewComponent implements OnInit {
     });
   }
 
+  update(id: number): void {
+    this.router.navigate(['/admin/promos/update/' + id]);
+  }
+
   remove(id: number): void {
+    if (confirm('Are you sure you want to delete?')) {
+      this.service.removePromo(id).subscribe(async query  => {
+        console.log(query.data);
+        this.loadContent();
+      }, error => {
+        console.log(error);
+      });
+    }
   }
 
   updateControl(): void {
