@@ -29,7 +29,6 @@ export class AdminPromoUpdateComponent implements OnInit {
     this.updatePromo = new InputPromo();
     // this.validUntil = new Date();
     this.promoId = this.actRoute.snapshot.params.id;
-    console.log(this.promoId);
     this.service.getPromoById(this.promoId).subscribe(async query => {
       // @ts-ignore
       const promo = query.data.getPromoById;

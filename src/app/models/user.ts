@@ -1,3 +1,5 @@
+import {SuspensionRequest} from './suspension-request';
+
 export class User {
   id: string;
   accountName: string;
@@ -16,5 +18,6 @@ export class User {
   country: string;
   experience: number;
   isSuspend: boolean;
+  suspensionRequest: SuspensionRequest;
   level: number;
 }

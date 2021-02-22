@@ -1,3 +1,5 @@
+import {SuspensionRequest} from './suspension-request';
+
 export class CurrentUser {
   public static id: string;
   public static accountName: string;
@@ -16,5 +18,6 @@ export class CurrentUser {
   public static country: string;
   public static experience: number;
   public static isSuspend: boolean;
+  public static suspensionRequest: SuspensionRequest;
   public static level: number;
 }

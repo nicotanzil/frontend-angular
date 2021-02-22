@@ -1,0 +1,153 @@
+@import '../../../styles/colors';
+@import '../../../styles/mixins';
+
+section {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background: url("../../../../assets/home/bg.png") center top;
+  background-size: cover;
+  .content-container {
+    width: 100%;
+    padding: 30px 20px;
+    .content {
+      color: $font-light-gray;
+      background-color: $edit-profile-bg;
+      opacity: 80%;
+      padding: 10px 40px;
+      .general-section, .report-list-section, .suspend-request-section {
+        display: flex;
+        flex-direction: column;
+        padding: 15px 5px;
+        margin-top: 25px;
+        .section-header {
+          color: white;
+          font-size: 16px;
+          text-transform: uppercase;
+          padding-bottom: 10px;
+        }
+        .section-content {
+          display: flex;
+          flex-direction: row;
+          margin-top: 20px;
+          .avatar-container {
+            margin-top: 5px;
+            margin-right: 20px;
+            img {
+              height: 200px;
+            }
+          }
+          .detail-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding: 10px 30px;
+            .account-name {
+              font-size: 36px;
+              color: $font-light-gray;
+            }
+            .real-name {
+              font-size: 14px;
+              color: $font-gray;
+              font-style: italic;
+            }
+            .summary {
+              padding: 5px 0;
+              font-size: 16px;
+              color: $font-light-gray;
+            }
+          }
+        }
+      }
+      .report-list-section {
+        .report-list {
+          background-color: $admin-table-bg;
+          padding: 10px;
+          border-radius: 5px;
+          .row {
+            display: flex;
+            flex-direction: column;
+            padding: 10px 5px;
+            border-bottom: 3px solid $profile-picture-border;
+            .profile {
+              display: flex;
+              align-items: center;
+              img {
+                height: 30px;
+                width: 30px;
+                margin-right: 10px;
+              }
+              .account-name {
+                font-size: 16px;
+                color: $font-light-gray;
+                font-style: italic;
+              }
+            }
+            .description {
+              padding: 15px 0;
+            }
+            .time {
+              font-size: 12px;
+              color: $font-gray;
+              font-style: italic;
+            }
+          }
+        }
+      }
+      .suspend-request-section {
+        .request-container {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          padding: 10px 0;
+          .request-section {
+            display: flex;
+            flex-direction: column;
+            .profile {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              margin-bottom: 10px;
+              img {
+                width: 75px;
+                height: 75px;
+                margin-right: 15px;
+              }
+              .account-name {
+                font-size: 24px;
+                color: $font-gray;
+                font-weight: bold;
+              }
+            }
+            .description {
+              font-size: 16px;
+              color: $font-light-gray;
+            }
+            .time {
+              font-size: 12px;
+              color: $font-gray;
+              font-style: italic;
+            }
+          }
+          .button-section {
+            .btn {
+              padding: 7px 15px;
+              border-radius: 5px;
+              cursor: pointer;
+            }
+            .btn:hover {
+              -webkit-filter: brightness(120%);
+            }
+            .suspend-btn {
+              background-color: $red-btn;
+            }
+            .unsuspend-btn {
+              background-color: $green-btn;
+            }
+          }
+        }
+      }
+    }
+  }
+}

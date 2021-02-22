@@ -1,0 +1,41 @@
+<app-header-admin></app-header-admin>
+<!--<app-game-delete-dialog></app-game-delete-dialog>-->
+<section>
+  <div class="user-view-container">
+    <div class="header-container">
+      <div class="title">
+        View all users
+      </div>
+    </div>
+    <div class="outer-container">
+      <div class="inner-container">
+        <div class="content-container" *ngIf="users.length != 0">
+          <!-- MAIN CONTENT -->
+          <div class="row" *ngFor="let user of users; index as i">
+            <div class="user-detail">
+              <div class="avatar-container">
+                <img src="{{ user.avatar }}" alt="User Avatar">
+              </div>
+              <div class="description">
+                <a routerLink="/admin/users/{{ user.id }}"><span class="name">{{ user.accountName }}</span></a>
+                <a routerLink="/admin/users/{{ user.id }}"><span class="realName">{{ user.realName }}</span></a>
+              </div>
+            </div>
+            <div class="status-container">
+              <span class="suspend-status suspended" *ngIf="user.isSuspend">Suspended</span>
+              <span class="suspend-status not-suspended" *ngIf="!user.isSuspend">Not Suspended</span>
+            </div>
+          </div>
+        </div>
+        <div class="content-container" *ngIf="users.length == 0">
+          There's nothing to show here!
+        </div>
+        <div class="navigation-container" *ngIf="users.length != 0">
+          <span class="arrow left-arrow" *ngIf="arrowLeft" (click)="moveLeft()"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+          <span class="current-page">{{ currentPage }} of {{ totalPage }}</span>
+          <span class="arrow right-arrow" *ngIf="arrowRight" (click)="moveRight()"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

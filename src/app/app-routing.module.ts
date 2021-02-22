@@ -14,6 +14,8 @@ import {AdminGameInsertComponent} from './pages/admin-pages/admin-game-insert/ad
 import {AdminPromoViewComponent} from './pages/admin-pages/admin-promo-view/admin-promo-view.component';
 import {AdminPromoInsertComponent} from './pages/admin-pages/admin-promo-insert/admin-promo-insert.component';
 import {AdminPromoUpdateComponent} from './pages/admin-pages/admin-promo-update/admin-promo-update.component';
+import {AdminUserViewComponent} from './pages/admin-pages/admin-user-view/admin-user-view.component';
+import {AdminUserDetailComponent} from './pages/admin-pages/admin-user-detail/admin-user-detail.component';
 
 const routes: Routes = [
   {
@@ -39,6 +41,14 @@ const routes: Routes = [
   {
     path: 'admin/promos/update/:id',
     component: AdminPromoUpdateComponent,
+  },
+  {
+    path: 'admin/users',
+    component: AdminUserViewComponent,
+  },
+  {
+    path: 'admin/users/:id',
+    component: AdminUserDetailComponent,
   },
   {
     path: 'login',

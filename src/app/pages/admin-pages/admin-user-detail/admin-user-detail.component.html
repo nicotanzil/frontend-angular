@@ -1,0 +1,61 @@
+<app-header-admin></app-header-admin>
+<section>
+  <div class="content-container">
+    <div class="content">
+      <div class="general-section">
+        <div class="section-header">
+          General Information
+        </div>
+        <div class="section-content">
+          <div class="avatar-container">
+            <img src="{{user.avatar}}" alt="{{user.accountName}}'s Avatar">
+          </div>
+          <div class="detail-container">
+            <div class="account-name">{{user.accountName}}</div>
+            <div class="real-name">{{user.realName}}</div>
+            <div class="summary">{{user.summary}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="report-list-section">
+        <div class="section-header">
+          User Report List
+        </div>
+        <div class="report-list" *ngIf="userReports.length>0">
+          <div class="row" *ngFor="let report of userReports">
+            <div class="profile">
+              <img src="{{report.reporter.avatar}}" alt="{{report.reporter.accountName}}'s Avatar">
+              <span class="account-name">{{report.reporter.accountName}}</span>
+            </div>
+            <span class="description">{{report.description}}</span>
+            <span class="time">{{report.createdAt | date}}</span>
+          </div>
+        </div>
+        <div class="report-list" *ngIf="userReports.length==0">
+          There's nothing to show here
+        </div>
+      </div>
+      <div class="suspend-request-section">
+        <div class="section-header">
+          User Un-Suspension Request
+        </div>
+        <div class="request-container">
+          <div class="request-section">
+            <span class="profile">
+              <img src="{{user.avatar}}" alt="{{user.accountName}}'s Avatar">
+              <span class="account-name">{{user.accountName}}</span>
+            </span>
+            <span class="description">
+              {{user.suspensionRequest.description}}
+            </span>
+            <span class="time">{{user.suspensionRequest.createdAt | date}}</span>
+          </div>
+          <div class="button-section">
+            <span class="btn suspend-btn" *ngIf="user.suspensionRequest.id==1" (click)="updateSuspend()">Suspend</span>
+            <span class="btn unsuspend-btn" *ngIf="user.suspensionRequest.id!=1" (click)="updateSuspend()">Unsuspend</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

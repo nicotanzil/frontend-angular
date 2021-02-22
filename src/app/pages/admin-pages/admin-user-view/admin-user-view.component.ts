@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import {AdminGamesService} from '../../../services/admin/admin-games.service';
-import {Game} from '../../../models/game';
+import {AdminUsersService} from '../../../services/admin/admin-users.service';
+import {User} from '../../../models/user';
 
 @Component({
-  selector: 'app-admin-game-view',
-  templateUrl: './admin-game-view.component.html',
-  styleUrls: ['./admin-game-view.component.scss']
+  selector: 'app-admin-user-view',
+  templateUrl: './admin-user-view.component.html',
+  styleUrls: ['./admin-user-view.component.scss']
 })
-export class AdminGameViewComponent implements OnInit {
+export class AdminUserViewComponent implements OnInit {
 
   constructor(
-    private service: AdminGamesService,
+    private service: AdminUsersService
   ) { }
 
   currentPage: number;
   totalPage: number;
-  totalGame: number;
-  games: Game[];
+  totalUser: number;
+  users: User[];
 
   arrowLeft: boolean;
   arrowRight: boolean;
@@ -30,13 +30,12 @@ export class AdminGameViewComponent implements OnInit {
 
   loadContent = () => {
     console.log(this.currentPage);
-    this.service.getGamesPagination(this.currentPage).subscribe(async query => {
+    this.service.getUsersPagination(this.currentPage).subscribe(async query => {
       console.log(query.data);
       if (query.data) {
-        this.games = query.data.getGamePaginationAdmin;
-        this.getTotalGame();
-        console.log('Loading games');
-        console.log(this.games);
+        this.users = query.data.getUserPaginationAdmin;
+        this.getTotalUser();
+        console.log(this.users);
         this.updateControl();
       }
     }, error => {
@@ -44,23 +43,12 @@ export class AdminGameViewComponent implements OnInit {
     });
   }
 
-  getTotalGame = () => {
-    this.service.getTotalGame().subscribe(async query => {
-      this.totalGame = query.data.getTotalGame;
-      this.totalPage = Math.ceil(this.totalGame / 5);
+  getTotalUser = () => {
+    this.service.getTotalUser().subscribe(async query => {
+      this.totalUser = query.data.getTotalUser;
+      this.totalPage = Math.ceil(this.totalUser / 5);
       this.updateControl();
     });
-  }
-
-  remove(id: number): void {
-    if (confirm('Are you sure you want to delete?')) {
-      this.service.removeGame(id).subscribe(async query => {
-        console.log(query.data);
-        this.loadContent();
-      }, error => {
-        console.log(error);
-      });
-    }
   }
 
   updateControl(): void {
@@ -89,4 +77,5 @@ export class AdminGameViewComponent implements OnInit {
     this.currentPage--;
     this.loadContent();
   }
+
 }
