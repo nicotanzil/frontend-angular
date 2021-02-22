@@ -27,7 +27,7 @@ export class LoginService {
         accountName,
         password,
       }
-    })
+    });
   }
 }
 
