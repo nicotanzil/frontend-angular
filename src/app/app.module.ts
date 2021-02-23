@@ -36,6 +36,7 @@ import { AdminPromoInsertComponent } from './pages/admin-pages/admin-promo-inser
 import { AdminPromoUpdateComponent } from './pages/admin-pages/admin-promo-update/admin-promo-update.component';
 import { AdminUserViewComponent } from './pages/admin-pages/admin-user-view/admin-user-view.component';
 import { AdminUserDetailComponent } from './pages/admin-pages/admin-user-detail/admin-user-detail.component';
+import { HomeNavComponent } from './pages/home/home-nav/home-nav.component';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { AdminUserDetailComponent } from './pages/admin-pages/admin-user-detail/
     AdminPromoUpdateComponent,
     AdminUserViewComponent,
     AdminUserDetailComponent,
+    HomeNavComponent,
   ],
   imports: [
     BrowserModule,

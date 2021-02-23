@@ -117,6 +117,54 @@
           }
         }
       }
+      .search-result {
+        position: absolute;
+        box-shadow: 0 0 12px black;
+        z-index: 99;
+        text-align: left;
+        right: 4px;
+        .result-container {
+          padding: 10px 5px;
+          width: 350px;
+          background: $home-nav-search-bg;
+          .row {
+            height: 40px;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+            padding: 5px 5px;
+            a {
+              display: flex;
+              flex-direction: row;
+              text-decoration: none;
+              color: black;
+              .banner-container {
+                img {
+                  width: 100px;
+                  height: 35px;
+                }
+              }
+              .detail-container {
+                display: flex;
+                flex-direction: column;
+                padding: 0 10px;
+                .name {
+                  font-size: 14px;
+                }
+                .price {
+                  font-size: 12px;
+                  font-style: italic;
+                }
+              }
+            }
+          }
+          .row:hover {
+            background-color: $home-nav-search-hover-bg;
+            a {
+              color: $font-light-gray;
+            }
+          }
+        }
+      }
     }
   }
 }

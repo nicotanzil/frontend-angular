@@ -5,5 +5,36 @@
   position: relative;
   top: auto;
   bottom: auto;
-
+  max-height: 20px;
+  padding: 20px 30px;
+  .footer {
+    @include flex-center();
+    flex-direction: column;
+    padding: 10px 0;
+    .description {
+      display: flex;
+      flex-direction: row;
+      .footer-logo {
+        width: 75px;
+        margin-right: 10px;
+      }
+      .desc-text {
+        font-size: 12px;
+        color: $font-light-gray;
+      }
+    }
+    .links-container {
+      display: flex;
+      flex-direction: row;
+      a {
+        color: $font-light-gray;
+        font-size: 10px;
+        text-decoration: none;
+        padding: 10px 20px;
+      }
+      a:hover {
+        color: $home-lightblue;
+      }
+    }
+  }
 }
