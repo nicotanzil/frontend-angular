@@ -40,8 +40,7 @@ export class HomeComponent implements OnInit {
         this.isUser = false;
       }
     }, (error) => {
-      console.log('There has been an error: ', error);
-      console.log(error);
+      this.isUser = false;
     });
   }
 

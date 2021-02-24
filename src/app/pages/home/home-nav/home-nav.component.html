@@ -30,7 +30,7 @@
           <input type="text" placeholder="search the store" autocomplete="off" onfocus="this.placeholder=''"
                  (focusout)="onInputFocusOut($event)" (focusin)="onInputFocusIn($event)"
                  onblur="this.placeholder='search the store'" #searchInput>
-          <a href="#" id="search-logo"><i class="fa fa-search" aria-hidden="true"></i></a>
+          <i class="fa fa-search" aria-hidden="true" (click)="searchGame()"></i>
         </div>
       </form>
       <div class="search-result" *ngIf="games.length > 0 && inFocus">

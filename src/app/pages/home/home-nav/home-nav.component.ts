@@ -4,6 +4,7 @@ import {GameService} from '../../../services/home/game.service';
 import {Game} from '../../../models/game';
 import {fromEvent} from 'rxjs';
 import {debounce, debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home-nav',
@@ -18,8 +19,10 @@ export class HomeNavComponent implements OnInit {
 
   inFocus: boolean;
   games: Game[];
+  key: string;
 
   constructor(
+    private router: Router,
     private service: GameService,
   ) {
     this.inFocus = false;
@@ -45,11 +48,15 @@ export class HomeNavComponent implements OnInit {
     ).subscribe((keyword: string) => {
       console.log(keyword);
       if (keyword.length > 0) {
+        this.key = keyword;
         this.service.gameSearch(keyword).subscribe(async query => {
-          console.log(query.data.gameSearch);
           this.games = query.data.gameSearch;
         });
       }
     });
+  }
+
+  searchGame(): void {
+    this.router.navigate(['search/' + this.key]);
   }
 }

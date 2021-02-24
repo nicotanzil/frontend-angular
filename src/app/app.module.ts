@@ -37,6 +37,7 @@ import { AdminPromoUpdateComponent } from './pages/admin-pages/admin-promo-updat
 import { AdminUserViewComponent } from './pages/admin-pages/admin-user-view/admin-user-view.component';
 import { AdminUserDetailComponent } from './pages/admin-pages/admin-user-detail/admin-user-detail.component';
 import { HomeNavComponent } from './pages/home/home-nav/home-nav.component';
+import { SearchGameComponent } from './pages/game/search-game/search-game.component';
 
 
 @NgModule({
@@ -67,6 +68,7 @@ import { HomeNavComponent } from './pages/home/home-nav/home-nav.component';
     AdminUserViewComponent,
     AdminUserDetailComponent,
     HomeNavComponent,
+    SearchGameComponent,
   ],
   imports: [
     BrowserModule,

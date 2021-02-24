@@ -16,6 +16,7 @@ import {AdminPromoInsertComponent} from './pages/admin-pages/admin-promo-insert/
 import {AdminPromoUpdateComponent} from './pages/admin-pages/admin-promo-update/admin-promo-update.component';
 import {AdminUserViewComponent} from './pages/admin-pages/admin-user-view/admin-user-view.component';
 import {AdminUserDetailComponent} from './pages/admin-pages/admin-user-detail/admin-user-detail.component';
+import {SearchGameComponent} from './pages/game/search-game/search-game.component';
 
 const routes: Routes = [
   {
@@ -77,6 +78,10 @@ const routes: Routes = [
   {
     path: 'user/:url/edit',
     component: EditProfileComponent,
+  },
+  {
+    path: 'search/:keyword',
+    component: SearchGameComponent,
   },
   {
     path: '**',

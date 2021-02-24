@@ -1,0 +1,37 @@
+<app-header-main [user]="this.user" [isUser]="this.isUser"></app-header-main>
+<section>
+  <div class="outer-container">
+    <app-home-nav [user] = "this.user" [isUser]="this.isUser"></app-home-nav>
+    <div class="content-container">
+      <div class="result-container" (scroll)="onScroll($event)">
+        <div class="result-count">
+          {{totalGame}} results match you search.
+        </div>
+        <a href="#" class="row" *ngFor="let game of games">
+          <span class="banner-container">
+            <img src="{{game.banner}}" alt="Game banner">
+          </span>
+          <span class="name">
+            {{game.name}}
+          </span>
+          <span class="release-date">
+            {{game.createdAt | date}}
+          </span>
+          <span class="price" *ngIf="game.originalPrice <= 0">
+            Free To Play
+          </span>
+          <span class="price" *ngIf="game.originalPrice > 0">
+            {{game.originalPrice}}
+          </span>
+        </a>
+        <div class="end-desc" *ngIf="endOfData">
+          End of Data!
+        </div>
+      </div>
+      <div class="filter-container">
+        Filter
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

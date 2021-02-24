@@ -27,4 +27,6 @@ export class Game {
   image2: string;
   image3: string;
   image4: string;
+
+  createdAt: Date;
 }
