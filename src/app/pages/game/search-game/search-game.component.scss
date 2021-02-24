@@ -23,6 +23,7 @@ section {
     .result-container {
       width: 75%;
       margin-right: 10px;
+      color: $font-light-gray;
       .result-count {
         padding: 10px 5px;
         background-color: $search-row-bg;
@@ -63,6 +64,13 @@ section {
           text-align: right;
         }
       }
+      .loading-container {
+        width: 100%;
+        @include flex-center();
+        img {
+          height: 50px;
+        }
+      }
       .end-desc {
         padding: 5px 10px;
         background-color: $home-lightblue;
@@ -72,7 +80,40 @@ section {
     }
     .filter-container {
       width: 25%;
-      border: 1px solid blue;
+      .filter-box {
+        border: 1px solid $search-filter-fg;
+        .filter-header {
+          padding: 5px 10px;
+          font-size: 14px;
+          color: $font-light-gray;
+          background-color: $search-filter-fg;
+        }
+        .filter-content {
+          @include flex-center();
+          padding: 10px 0;
+          #price-range:focus {
+            border: none;
+          }
+          #price-range-display {
+            color: $font-light-gray;
+            font-size: 12px;
+            text-align: center;
+          }
+          .checkbox-container {
+            width: 100%;
+            padding: 5px 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            .tag-row {
+              color: $font-light-gray;
+              font-size: 14px;
+              display: flex;
+              align-items: center;
+            }
+          }
+        }
+      }
     }
   }
 

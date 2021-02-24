@@ -5,6 +5,8 @@ import {CurrentUser} from '../../../models/current-user';
 import {Game} from '../../../models/game';
 import {SearchGameService} from '../../../services/home/search-game/search-game.service';
 import {ActivatedRoute} from '@angular/router';
+import {InputTag} from '../../../models/input/input-tag';
+import {Tag} from '../../../models/tag';
 
 @Component({
   selector: 'app-search-game',
@@ -12,6 +14,8 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./search-game.component.scss']
 })
 export class SearchGameComponent implements OnInit {
+
+  maxValue: number;
 
   isUser: boolean;
   user: User;
@@ -28,16 +32,28 @@ export class SearchGameComponent implements OnInit {
   keyword: string;
   endOfData: boolean;
 
+  // Filter
+  gliderValue: number;
+  priceDisplay: string;
+  price: number;
+  tagsDisplay: Tag[];
+  inputTags: InputTag[];
+
   constructor(
     private actRoute: ActivatedRoute,
     private authService: AuthService,
     private gameService: SearchGameService,
   ) {
+    this.maxValue = 999999999;
     this.totalGame = 0;
     this.games = [];
-    this.isLoading = false;
+    this.isLoading = true;
     this.endOfData = false;
     this.currentPage = 1;
+    this.priceDisplay = 'Any Price';
+    this.price = this.maxValue;
+    this.tagsDisplay = [];
+    this.inputTags = [];
   }
 
 
@@ -83,8 +99,11 @@ export class SearchGameComponent implements OnInit {
   }
 
   fetchGameData = () => {
-    this.gameService.getSearchGamePage(this.keyword, this.currentPage).subscribe(async query => {
+    this.isLoading = true;
+    this.gameService.getSearchGamePage(this.keyword, this.currentPage, this.price, this.inputTags).subscribe(async query => {
       this.fetchGames = query.data.gameSearchPage;
+      console.log('Fetch games');
+      console.log(this.fetchGames);
       if (this.fetchGames.length <= 0) {
         // No more data
         this.endOfData = true;
@@ -93,6 +112,9 @@ export class SearchGameComponent implements OnInit {
         this.totalGame += this.fetchGames.length;
         this.fetchGames.forEach(value => {
           this.games.push(value);
+          value.tags.forEach(tag => {
+            this.pushTag(tag);
+          });
         });
         if (this.fetchGames.length <= 10) {
           this.endOfData = true;
@@ -102,5 +124,60 @@ export class SearchGameComponent implements OnInit {
     }, error => {
       this.isLoading = false;
     });
+  }
+
+  gliderChange = (event: any) => {
+    this.gliderValue = event.target.value;
+    // tslint:disable-next-line:triple-equals
+    if (this.gliderValue == 0) {
+      this.priceDisplay = 'Free';
+      this.price = 0;
+    }
+    // tslint:disable-next-line:triple-equals
+    else if (this.gliderValue == 11) {
+      this.priceDisplay = 'Any Price';
+      this.price = this.maxValue;
+    }
+    else {
+      this.priceDisplay = 'Under ' + (this.gliderValue * 50000);
+      this.price = this.gliderValue * 50000;
+    }
+    this.resetAttributes();
+    this.fetchGameData();
+  }
+
+  onTagChange(event: any): void {
+    let currTag: InputTag;
+    if (event.target.checked) {
+      currTag = {
+        id: event.target.value
+      };
+      this.inputTags.push(currTag);
+    }
+    else {
+      this.inputTags.forEach((value, index) => {
+        if (value.id === event.target.value) { this.inputTags.splice(index, 1); }
+      });
+    }
+    this.resetAttributes();
+    this.fetchGameData();
+  }
+
+  resetAttributes(): void {
+    this.currentPage = 1;
+    this.games = [];
+    this.totalGame = 0;
+  }
+
+  pushTag(tag: Tag): void {
+    let x = true;
+    this.tagsDisplay.forEach(value => {
+      if (value.id === tag.id) {
+        x = false;
+      }
+    });
+    if (x) {
+      this.tagsDisplay.push(tag);
+    }
   }
 }

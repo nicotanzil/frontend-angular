@@ -3,7 +3,7 @@
   <div class="outer-container">
     <app-home-nav [user] = "this.user" [isUser]="this.isUser"></app-home-nav>
     <div class="content-container">
-      <div class="result-container" (scroll)="onScroll($event)">
+      <div class="result-container" (scroll)="onScroll($event)" *ngIf="totalGame > 0">
         <div class="result-count">
           {{totalGame}} results match you search.
         </div>
@@ -24,12 +24,43 @@
             {{game.originalPrice}}
           </span>
         </a>
+        <div class="loading-container" *ngIf="isLoading">
+          <img src="../../../../assets/loading.gif" alt="Loading...">
+        </div>
         <div class="end-desc" *ngIf="endOfData">
           End of Data!
         </div>
       </div>
+      <div class="result-container" *ngIf="totalGame == 0">
+        No results were returned for that query.
+      </div>
       <div class="filter-container">
-        Filter
+        <div class="filter-box">
+          <div class="filter-header">
+            Narrow by Price
+          </div>
+          <div class="filter-content">
+            <div class="glider-container">
+              <input type="range" name="price-range" id="price-range" (change)="gliderChange($event)" min="0" max="11" step="1" value="11">
+              <div id="price-range-display">{{priceDisplay}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="filter-box">
+          <div class="filter-header">
+            Narrow by tag
+          </div>
+          <div class="filter-content">
+            <div class="checkbox-container">
+              <div class="tag-row" *ngFor="let tag of tagsDisplay">
+                <label>
+                  <input type="checkbox" name="tag" class="tag" [value]="tag.id" (change)="onTagChange($event)">
+                  {{tag.name}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
