@@ -4,6 +4,7 @@ import {Query} from '../../models/query';
 import {Observable} from 'rxjs';
 import {Game} from '../../models/game';
 import {InputGame} from '../../models/input/input-game';
+import {InputGameImage} from '../../models/input/input-game-image';
 
 @Injectable({
   providedIn: 'root'
@@ -67,12 +68,6 @@ export class AdminGamesService {
         developers: newGame.developers,
         publisherId: Number(newGame.publisher),
         systemId: Number(newGame.system),
-        banner: newGame.banner,
-        video: newGame.video,
-        image1: newGame.image1,
-        image2: newGame.image2,
-        image3: newGame.image3,
-        image4: newGame.image4,
       }
     });
   }
@@ -88,6 +83,25 @@ export class AdminGamesService {
       mutation: REMOVE_GAME,
       variables: {
         id
+      }
+    });
+  }
+
+  insertGameImage = (images: InputGameImage[]) => {
+    return this.apollo.mutate({
+      mutation: INSERT_GAME_IMAGE,
+      variables: {
+        images,
+      }
+    });
+  }
+
+  insertGameBanner = (id: number, link: string) => {
+    return this.apollo.mutate({
+      mutation: INSERT_GAME_BANNER,
+      variables: {
+        id,
+        link,
       }
     });
   }
@@ -154,17 +168,15 @@ const GET_ALL_SYSTEMS = gql`
 
 const CREATE_GAME_MUTATION = gql`
   mutation createGame($name:String!, $description:String!, $genres:[InputGenre!]!, $tags:[InputTag!]!,
-    $originalPrice:Float!, $onSale:Boolean!, $discountPercentage:Int!, $developers:[InputDeveloper!]!,
-    $publisherId:Int!, $systemId:Int!, $banner:String!, $video:String!, $image1:String!,
-    $image2:String!, $image3:String!, $image4:String!) {
-  createGame(input:{name:$name, description:$description, genres:$genres, tags:$tags,
-  originalPrice:$originalPrice, onSale:$onSale, discountPercentage:$discountPercentage,
-  developers:$developers, publisherId:$publisherId, systemId:$systemId, banner:$banner,
-  video:$video, image1:$image1, image2:$image2, image3:$image3, image4:$image4,}){
-    id
-    name
+  $originalPrice:Float!, $onSale:Boolean!, $discountPercentage:Int!, $developers:[InputDeveloper!]!,
+  $publisherId:Int!, $systemId:Int!) {
+    createGame(input:{name:$name, description:$description, genres:$genres, tags:$tags,
+    originalPrice:$originalPrice, onSale:$onSale, discountPercentage:$discountPercentage,
+    developers:$developers, publisherId:$publisherId, systemId:$systemId}){
+      id
+      name
+    }
   }
-}
 `;
 
 const GET_TOTAL_GAME = gql`
@@ -179,5 +191,17 @@ const REMOVE_GAME = gql`
       id
       name
     }
+  }
+`;
+
+const INSERT_GAME_IMAGE = gql`
+  mutation insertGameImage($images:[InputGameImage!]!) {
+    insertGameImage(gameImages:$images)
+  }
+`;
+
+const INSERT_GAME_BANNER = gql`
+  mutation insertGameBanner($id:Int!, $link:String!) {
+    insertGameBanner(id:$id, link:$link)
   }
 `;

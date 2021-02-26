@@ -84,58 +84,29 @@
               </div>
               <div class="media-input">
                 <div class="image-preview">
-                  <img [src]="bannerImage" alt="Game Banner">
+                  <img [src]="bannerPreview" alt="Banner preview">
                 </div>
                 <div class="upload-section">
                   <div class="label">Game Banner</div>
-                  <input type="file" accept="image/*" name="banner" id="banner" placeholder="Upload your game banner" (change)="showPreview($event)">
+                  <input type="file" accept="image/*" name="banner" id="banner" placeholder="Upload your game banner" (change)="uploadBanner($event)">
                 </div>
+<!--                <progress max="100" [value]="uploadProgress | async">{{uploadProgress}}</progress>-->
               </div>
-              <div class="media-input">
+              <div class="media-input" *ngFor="let num of numSequence(imageIndex); index as i">
                 <div class="image-preview">
-                  <img [src]="image1" alt="Game Image 1">
+                  <img [src]="imagePreview[i]" [alt]="num">
                 </div>
                 <div class="upload-section">
-                  <div class="label">Game Image 1</div>
-                  <input type="file" accept="image/*" name="image1" id="image1" placeholder="Upload your game image 1" (change)="showPreview($event)">
+                  <div class="label">Game Images {{i+1}}</div>
+                  <input type="file" accept="image/*, video" name="banner" id="images" placeholder="Upload your game banner" (change)="upload($event, i)">
                 </div>
               </div>
-              <div class="media-input">
-                <div class="image-preview">
-                  <img [src]="image2" alt="Game Image 2">
-                </div>
-                <div class="upload-section">
-                  <div class="label">Game Image 2</div>
-                  <input type="file" accept="image/*" name="image2" id="image2" placeholder="Upload your game image 2" (change)="showPreview($event)">
-                </div>
-              </div>
-              <div class="media-input">
-                <div class="image-preview">
-                  <img [src]="image3" alt="Game Image 3">
-                </div>
-                <div class="upload-section">
-                  <div class="label">Game Image 3</div>
-                  <input type="file" accept="image/*" name="image3" id="image3" placeholder="Upload your game image 3" (change)="showPreview($event)">
-                </div>
-              </div>
-              <div class="media-input">
-                <div class="image-preview">
-                  <img [src]="image4" alt="Game Image 4">
-                </div>
-                <div class="upload-section">
-                  <div class="label">Game Image 4</div>
-                  <input type="file" accept="image/*" name="image4" id="image4" placeholder="Upload your game image 4" (change)="showPreview($event)">
-                </div>
-              </div>
-              <div class="media-input">
-                <div class="video-preview">
-                  <video [src]="video">Video</video>
-                </div>
-                <div class="upload-section">
-                  <div class="label">Video</div>
-                  <input type="file" accept="video/*" name="video" id="video" placeholder="Upload your game video" (change)="showPreview($event)">
-                </div>
-              </div>
+<!--              <div class="media-input">-->
+<!--                <div class="upload-section">-->
+<!--                  <div class="label">Video</div>-->
+<!--                  <input type="file" accept="video/*" name="video" id="video" placeholder="Upload your game video" (change)="uploadImage($event)">-->
+<!--                </div>-->
+<!--              </div>-->
             </div>
           </div>
           <div class="button-section">

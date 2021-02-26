@@ -1,6 +1,6 @@
 @import '../../../styles/colors';
 @import '../../../styles/mixins';
-
+@import '../../../styles/box-shadow';
 section {
   width: 100%;
   min-height: 100vh;
@@ -60,6 +60,7 @@ section {
                   box-shadow: inset 1px 1px 0px #000a;
                   border: none;
                   padding: 10px;
+
                 }
                 .genre-choice, .tag-choice, .button-container {
                   padding: 5px;
@@ -68,13 +69,22 @@ section {
               .media-input {
                 display: flex;
                 flex-direction: row;
+                align-items: center;
                 font-size: 13px;
                 color: $font-gray;
                 margin-top: 30px;
+                progress {
+                  width: 200px;
+                  height: 20px;
+                  background-color: $progress-bar-bg;
+                  border: none;
+                  border-radius: 3px;
+                  box-shadow: $shadow6
+                }
                 .image-preview, .video-preview {
                   padding: 10px 5px;
                   width: 350px;
-                  height: 200px;
+                  //height: 200px;
                   border: 2px solid $header-green;
                   img {
                     max-width:100%;

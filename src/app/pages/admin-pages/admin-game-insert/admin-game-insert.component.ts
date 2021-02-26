@@ -11,9 +11,10 @@ import {InputGame} from '../../../models/input/input-game';
 import {System} from '../../../models/system';
 import {DefaultAssets} from '../../../models/default-assets';
 import {log} from 'util';
-import {AngularFireStorage} from '@angular/fire/storage';
+import {AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask} from '@angular/fire/storage';
 import {finalize, mergeMap, filter} from 'rxjs/operators';
-import {Subject} from 'rxjs';
+import {async, Subject} from 'rxjs';
+import {InputGameImage} from '../../../models/input/input-game-image';
 
 @Component({
   selector: 'app-admin-game-insert',
@@ -21,11 +22,6 @@ import {Subject} from 'rxjs';
   styleUrls: ['./admin-game-insert.component.scss']
 })
 export class AdminGameInsertComponent implements OnInit {
-
-  constructor(
-    private service: AdminGamesService,
-    private storage: AngularFireStorage,
-  ) { }
 
   isSuccess: boolean;
   isError: boolean;
@@ -38,41 +34,41 @@ export class AdminGameInsertComponent implements OnInit {
   systems: System[];
   isDiscount = false;
 
-  bannerImage: string = DefaultAssets.imageLink;
   video: string = DefaultAssets.videoLink;
-  image1: string = DefaultAssets.imageLink;
-  image2: string = DefaultAssets.imageLink;
-  image3: string = DefaultAssets.imageLink;
-  image4: string = DefaultAssets.imageLink;
 
-  bannerSelected: any;
-  bannerOriginal: string = DefaultAssets.imageLink;
+  bannerUpload: any;
+  bannerTemp: any;
+  bannerPreview: string = DefaultAssets.imageLink;
 
-  image1Selected: any;
-  image1Original: string = DefaultAssets.imageLink;
-
-  image2Selected: any;
-  image2Original: string = DefaultAssets.imageLink;
-
-  image3Selected: any;
-  image3Original: string = DefaultAssets.imageLink;
-
-  image4Selected: any;
-  image4Original: string = DefaultAssets.imageLink;
+  imageUploads: InputGameImage[];
+  imageTemp: any[];
+  imagePreview: any[];
+  imageIndex: number;
 
   videoSelected: any;
   videoOriginal: string = DefaultAssets.imageLink;
 
   newGame: InputGame;
+  gameId: number;
 
-  tasksQuery$ = new Subject();
+  // ref: AngularFireStorageReference;
+  // task: AngularFireUploadTask;
+  uploadProgress: any;
+  // downloadURL: any;
 
-  // const uploadImage = (path, selected) => {
-  //   console.log(`Processing ${path} ${selected}`);
-  //   return new Promise(resolve => {
-  //     this.storage.upload()
-  //   })
-  // }
+  constructor(
+    private service: AdminGamesService,
+    private storage: AngularFireStorage,
+  ) {
+    this.imageIndex = 1;
+    this.imagePreview = [DefaultAssets.imageLink];
+    this.imageTemp = [];
+    this.imageUploads = [];
+  }
+
+  numSequence(n: number): Array<number> {
+    return Array(n);
+  }
 
   ngOnInit(): void {
     this.newGame = new InputGame();
@@ -183,98 +179,81 @@ export class AdminGameInsertComponent implements OnInit {
 
   onSave(): void {
     console.log(this.newGame);
-    // Need validation
-    const bannerPath = `assets/games/${this.index}/banner`;
-    const bannerRef = this.storage.ref(bannerPath);
+    this.service.createGame(this.newGame).subscribe(async query => {
+      // @ts-ignore
+      this.gameId = query.data.createGame.id;
+      this.uploadBannerFirebase();
+      this.uploadImagesFirebase();
+    }, error => {
+      console.log(error);
+    });
+  }
 
-    const image1Path = `assets/games/${this.index}/image1`;
-    const image1Ref = this.storage.ref(image1Path);
-
-    const image2Path = `assets/games/${this.index}/image2`;
-    const image2Ref = this.storage.ref(image2Path);
-
-    const image3Path = `assets/games/${this.index}/image3`;
-    const image3Ref = this.storage.ref(image3Path);
-
-    const image4Path = `assets/games/${this.index}/image4`;
-    const image4Ref = this.storage.ref(image4Path);
-
-    // this.storage.upload(bannerPath, this.bannerSelected).snapshotChanges().pipe(
-    //   finalize(() => {
-    //     bannerRef.getDownloadURL().subscribe((url) => { this.newGame.banner = url; });
-    //   }),
-    // ).subscribe();
-    //
-    // this.storage.upload(image1Path, this.bannerSelected).snapshotChanges().pipe(
-    //   finalize(() => {
-    //     image1Ref.getDownloadURL().subscribe((url) => { this.newGame.image1 = url; });
-    //   })
-    // ).subscribe();
-
-    console.log(this.bannerImage);
-    console.log(this.bannerSelected);
-    if (this.bannerSelected !== null) {
-      this.storage.upload(bannerPath, this.bannerSelected).snapshotChanges().pipe(
+  uploadImagesFirebase = () => {
+    const dateTime = new Date();
+    let idx = 1;
+    this.imageTemp.forEach(image => {
+      const path = `assets/games/${this.gameId}/${idx}`; idx++;
+      const ref = this.storage.ref(path);
+      this.storage.upload(path, image).snapshotChanges().pipe(
         finalize(() => {
-          bannerRef.getDownloadURL().subscribe(url => {
-            this.newGame.banner = url;
-            this.newGame.video = 'video';
-            this.newGame.image1 = 'image1';
-            this.newGame.image2 = 'image2';
-            this.newGame.image3 = 'image3';
-            this.newGame.image4 = 'image4';
-            console.log(this.newGame);
-            this.service.createGame(this.newGame).subscribe(async query => {
-              console.log('Success');
-              alert(this.newGame.name + ' has been inserted!');
-            }, error => {
-              console.log('There has been an error: ', error);
-            });
+          ref.getDownloadURL().subscribe(url => {
+            const inputGameImage = new InputGameImage();
+            inputGameImage.gameId = this.gameId;
+            inputGameImage.link = url;
+            this.imageUploads.push(inputGameImage);
+            if (this.imageUploads.length === this.imageTemp.length) {
+              this.insertGameImages();
+            }
           });
         })
       ).subscribe();
-    }
-
-    // this.service.createGame(this.newGame).subscribe(async query => {
-    //   console.log('success');
-    //   console.log(query);
-    // }, error => {
-    //   console.log(error);
-    // });
+    });
   }
 
-  preview = (event, image, selected, original) => {
+  uploadBannerFirebase = () => {
+    const path = `assets/games/${this.gameId}/banner`;
+    const ref = this.storage.ref(path);
+    this.storage.upload(path, this.bannerUpload).snapshotChanges().pipe(
+      finalize(() => {
+        ref.getDownloadURL().subscribe(url => {
+          this.service.insertGameBanner(this.gameId, url).subscribe(async query => {
+            console.log(query);
+          }, error => {
+            console.log(error);
+          });
+        });
+      })
+    ).subscribe();
+  }
+
+  uploadBanner = (event: any) => {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
-      reader.onload = (e: any) => this.bannerImage = e.target.result;
+      reader.onload = (e: any) => this.bannerPreview = e.target.result;
       reader.readAsDataURL(event.target.files[0]);
-      selected = event.target.files[0];
+      this.bannerTemp = event.target.files[0];
     }
-    else {
-      image = original;
-      selected = null;
-    }
-    return selected;
   }
 
-  showPreview(event: any): void {
-    if (event.target.id === 'banner') {
-      this.bannerSelected = this.preview(event, this.bannerImage, this.bannerSelected, this.bannerOriginal);
+  upload = (event: any, index: number) => {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => this.imagePreview[index] = e.target.result;
+      reader.readAsDataURL(event.target.files[0]);
+      this.imageTemp[index] = event.target.files[0];
+      this.imageIndex++;
+      this.imagePreview[index + 1] = DefaultAssets.imageLink;
     }
-    else if (event.target.id === 'image1') {
-      this.preview(event, this.image1, this.image1Selected, this.image1Original);
-    }
-    else if (event.target.id === 'image2') {
-      this.preview(event, this.image2, this.image2Selected, this.image2Original);
-    }
-    else if (event.target.id === 'image3') {
-      this.preview(event, this.image3, this.image3Selected, this.image3Original);
-    }
-    else if (event.target.id === 'image4') {
-      this.preview(event, this.image4, this.image4Selected, this.image4Original);
-    }
-    else if (event.target.id === 'video') {
-      this.preview(event, this.video, this.videoSelected, this.videoOriginal);
-    }
+  }
+
+  insertGameImages = () => {
+    console.log(this.imageUploads);
+    this.service.insertGameImage(this.imageUploads).subscribe(async res => {
+      console.log(res);
+      alert('Game has been inserted!');
+    }, error => {
+      console.log('There has been an error ' + error);
+    });
   }
 }

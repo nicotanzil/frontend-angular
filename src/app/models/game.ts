@@ -5,6 +5,8 @@ import {Review} from './review';
 import {Developer} from './developer';
 import {Publisher} from './publisher';
 import {System} from './system';
+import {GameImage} from './game-image';
+import {GameVideo} from './game-video';
 
 export class Game {
   id: number;
@@ -22,11 +24,8 @@ export class Game {
   system: System;
 
   banner: string;
-  video: string;
-  image1: string;
-  image2: string;
-  image3: string;
-  image4: string;
+  video: GameVideo[] = [];
+  images: GameImage[] = [];
 
   createdAt: Date;
 }

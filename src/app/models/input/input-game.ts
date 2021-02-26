@@ -3,6 +3,7 @@ import {InputTag} from './input-tag';
 import {InputDeveloper} from './input-developer';
 import {Publisher} from '../publisher';
 import {System} from '../system';
+import {InputGameImage} from './input-game-image';
 
 export class InputGame {
   name: string;
@@ -10,16 +11,9 @@ export class InputGame {
   genres: InputGenre[] = [];
   tags: InputTag[] = [];
   originalPrice: number;
-  onSale: boolean;
+  onSale = false;
   discountPercentage = 0;
   developers: InputDeveloper[] = [];
   publisher: number;
   system: number;
-
-  banner: string;
-  video: string;
-  image1: string;
-  image2: string;
-  image3: string;
-  image4: string;
 }
