@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {Game} from '../../models/game';
 import {InputGame} from '../../models/input/input-game';
 import {InputGameImage} from '../../models/input/input-game-image';
+import {InputGameVideo} from '../../models/input/input-game-video';
 
 @Injectable({
   providedIn: 'root'
@@ -102,6 +103,15 @@ export class AdminGamesService {
       variables: {
         id,
         link,
+      }
+    });
+  }
+
+  insertGameVideo = (videos: InputGameVideo[]) => {
+    return this.apollo.mutate({
+      mutation: INSERT_GAME_VIDEO,
+      variables: {
+        videos,
       }
     });
   }
@@ -203,5 +213,11 @@ const INSERT_GAME_IMAGE = gql`
 const INSERT_GAME_BANNER = gql`
   mutation insertGameBanner($id:Int!, $link:String!) {
     insertGameBanner(id:$id, link:$link)
+  }
+`;
+
+const INSERT_GAME_VIDEO = gql`
+  mutation insertGameVideo($videos:[InputGameVideo!]!) {
+    insertGameVideo(gameVideos:$videos)
   }
 `;

@@ -15,6 +15,7 @@ import {AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask} 
 import {finalize, mergeMap, filter} from 'rxjs/operators';
 import {async, Subject} from 'rxjs';
 import {InputGameImage} from '../../../models/input/input-game-image';
+import {InputGameVideo} from '../../../models/input/input-game-video';
 
 @Component({
   selector: 'app-admin-game-insert',
@@ -34,7 +35,6 @@ export class AdminGameInsertComponent implements OnInit {
   systems: System[];
   isDiscount = false;
 
-  video: string = DefaultAssets.videoLink;
 
   bannerUpload: any;
   bannerTemp: any;
@@ -45,25 +45,37 @@ export class AdminGameInsertComponent implements OnInit {
   imagePreview: any[];
   imageIndex: number;
 
-  videoSelected: any;
-  videoOriginal: string = DefaultAssets.imageLink;
+  videoUploads: InputGameVideo[];
+  videoTemp: any[];
+  videoPreview: any[];
+  videoIndex: number;
 
   newGame: InputGame;
   gameId: number;
 
-  // ref: AngularFireStorageReference;
-  // task: AngularFireUploadTask;
-  uploadProgress: any;
-  // downloadURL: any;
+  isImagesUploaded: boolean;
+  isVideosUploaded: boolean;
+  isBannerUploaded: boolean;
+  isUploading: boolean;
 
   constructor(
     private service: AdminGamesService,
     private storage: AngularFireStorage,
   ) {
+    this.isImagesUploaded = false;
+    this.isVideosUploaded = false;
+    this.isBannerUploaded = false;
+    this.isUploading = false;
+
     this.imageIndex = 1;
     this.imagePreview = [DefaultAssets.imageLink];
     this.imageTemp = [];
     this.imageUploads = [];
+
+    this.videoIndex = 1;
+    this.videoPreview = [DefaultAssets.videoLink];
+    this.videoTemp = [];
+    this.videoUploads = [];
   }
 
   numSequence(n: number): Array<number> {
@@ -182,6 +194,8 @@ export class AdminGameInsertComponent implements OnInit {
     this.service.createGame(this.newGame).subscribe(async query => {
       // @ts-ignore
       this.gameId = query.data.createGame.id;
+      this.isUploading = true;
+      this.uploadVideosFirebase();
       this.uploadBannerFirebase();
       this.uploadImagesFirebase();
     }, error => {
@@ -190,7 +204,6 @@ export class AdminGameInsertComponent implements OnInit {
   }
 
   uploadImagesFirebase = () => {
-    const dateTime = new Date();
     let idx = 1;
     this.imageTemp.forEach(image => {
       const path = `assets/games/${this.gameId}/${idx}`; idx++;
@@ -219,12 +232,36 @@ export class AdminGameInsertComponent implements OnInit {
         ref.getDownloadURL().subscribe(url => {
           this.service.insertGameBanner(this.gameId, url).subscribe(async query => {
             console.log(query);
+            this.isBannerUploaded = true;
+            this.alertUser();
           }, error => {
             console.log(error);
           });
         });
       })
     ).subscribe();
+  }
+
+  uploadVideosFirebase = () => {
+    if (this.videoTemp.length === 0) { return; }
+    let idx = 1;
+    this.videoTemp.forEach(video => {
+      const path = `assets/games/${this.gameId}/videos/${idx}`; idx++;
+      const ref = this.storage.ref(path);
+      this.storage.upload(path, video).snapshotChanges().pipe(
+        finalize(() => {
+          ref.getDownloadURL().subscribe(url => {
+            const inputGameVideo = new InputGameVideo();
+            inputGameVideo.gameId = this.gameId;
+            inputGameVideo.link = url;
+            this.videoUploads.push(inputGameVideo);
+            if (this.videoUploads.length === this.videoTemp.length) {
+              this.insertGameVideos();
+            }
+          });
+        })
+      ).subscribe();
+    });
   }
 
   uploadBanner = (event: any) => {
@@ -236,7 +273,7 @@ export class AdminGameInsertComponent implements OnInit {
     }
   }
 
-  upload = (event: any, index: number) => {
+  uploadImages = (event: any, index: number) => {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (e: any) => this.imagePreview[index] = e.target.result;
@@ -247,13 +284,43 @@ export class AdminGameInsertComponent implements OnInit {
     }
   }
 
+  uploadVideos = (event: any, index: number) => {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => this.videoPreview[index] = e.target.result;
+      reader.readAsDataURL(event.target.files[0]);
+      this.videoTemp[index] = event.target.files[0];
+      this.videoIndex++;
+      this.videoPreview[index + 1] = DefaultAssets.videoLink;
+    }
+  }
+
   insertGameImages = () => {
     console.log(this.imageUploads);
     this.service.insertGameImage(this.imageUploads).subscribe(async res => {
-      console.log(res);
-      alert('Game has been inserted!');
+      this.isImagesUploaded = true;
+      this.alertUser();
     }, error => {
       console.log('There has been an error ' + error);
     });
+  }
+
+  insertGameVideos = () => {
+    console.log(this.videoUploads);
+    this.service.insertGameVideo(this.videoUploads).subscribe(async res => {
+      this.isVideosUploaded = true;
+      console.log('Video success');
+      console.log(res);
+      this.alertUser();
+    }, error => {
+      console.log('There has been an error ' + error);
+    });
+  }
+
+  alertUser = () => {
+    if (this.isImagesUploaded && this.isVideosUploaded && this.isBannerUploaded) {
+      this.isUploading = false;
+      alert('Game has been inserted!');
+    }
   }
 }

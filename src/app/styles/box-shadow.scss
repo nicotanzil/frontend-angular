@@ -1,5 +1,11 @@
+$shadow4: 0px 10px 1px #ddd, 0 10px 20px #ccc;
+
 $shadow6: 5px 5px rgba(0, 98, 90, 0.4),
 10px 10px rgba(0, 98, 90, 0.3),
 15px 15px rgba(0, 98, 90, 0.2),
 20px 20px rgba(0, 98, 90, 0.1),
 25px 25px rgba(0, 98, 90, 0.05);
+
+$shadow9: 0 -20px 15px -10px rgba(255, 255, 0, 0.3) inset,
+0 20px 15px -10px rgba(255, 255, 0, 0.3) inset,
+0 0 10px rgba(0, 0, 0, 0.1);

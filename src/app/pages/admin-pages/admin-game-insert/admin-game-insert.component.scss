@@ -73,23 +73,18 @@ section {
                 font-size: 13px;
                 color: $font-gray;
                 margin-top: 30px;
-                progress {
-                  width: 200px;
-                  height: 20px;
-                  background-color: $progress-bar-bg;
-                  border: none;
-                  border-radius: 3px;
-                  box-shadow: $shadow6
-                }
                 .image-preview, .video-preview {
-                  padding: 10px 5px;
-                  width: 350px;
-                  //height: 200px;
-                  border: 2px solid $header-green;
+                  max-width: 350px;
+                  height: 200px;
+                  box-shadow: $shadow6;
                   img {
                     max-width:100%;
                     max-height:100%;
                     background-position: center;
+                  }
+                  video {
+                    max-width:100%;
+                    max-height:100%;
                   }
                 }
                 .upload-section {
@@ -106,6 +101,7 @@ section {
             .button-container {
               display: flex;
               justify-content: flex-end;
+              height: 50px;
               .success-box {
                 border: 2px solid greenyellow;
                 background-color: transparent;

@@ -98,19 +98,23 @@
                 </div>
                 <div class="upload-section">
                   <div class="label">Game Images {{i+1}}</div>
-                  <input type="file" accept="image/*, video" name="banner" id="images" placeholder="Upload your game banner" (change)="upload($event, i)">
+                  <input type="file" accept="image/*, video" name="banner" id="images" placeholder="Upload your game banner" (change)="uploadImages($event, i)">
                 </div>
               </div>
-<!--              <div class="media-input">-->
-<!--                <div class="upload-section">-->
-<!--                  <div class="label">Video</div>-->
-<!--                  <input type="file" accept="video/*" name="video" id="video" placeholder="Upload your game video" (change)="uploadImage($event)">-->
-<!--                </div>-->
-<!--              </div>-->
+              <div class="media-input" *ngFor="let num of numSequence(videoIndex); index as i">
+                <div class="video-preview">
+                  <video [src]="videoPreview[i]" controls></video>
+                </div>
+                <div class="upload-section">
+                  <div class="label">Game Videos {{i+1}}</div>
+                  <input type="file" accept="video/*" name="video" id="video" placeholder="Upload your game video" (change)="uploadVideos($event, i)">
+                </div>
+              </div>
             </div>
           </div>
           <div class="button-section">
             <div class="button-container">
+              <img class="loading-gif" src="../../../../assets/loading.gif" alt="Loading gif" *ngIf="isUploading">
               <span class="success-box" *ngIf="isSuccess">Data updated!</span>
               <span class="error-box" *ngIf="isError">Oops, something went wrong!</span>
               <button class="btn cancelBtn">Cancel</button>
