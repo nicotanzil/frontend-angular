@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {GenreService} from '../../../services/home/genre.service';
-import {query} from '@angular/animations';
+import {TagService} from '../../../services/home/tag.service';
 
 @Component({
   selector: 'app-home-sidebar',
@@ -11,16 +10,16 @@ export class HomeSidebarComponent implements OnInit {
 
   @Input() isUser: boolean;
 
-  genres;
+  tags;
   constructor(
-    private service: GenreService,
+    private service: TagService,
   ) { }
 
   ngOnInit(): void {
     // tslint:disable-next-line:no-shadowed-variable
-    this.service.getAllGenres().subscribe(async (query) => {
+    this.service.getAllTags().subscribe(async (query) => {
       if (query.data) {
-        this.genres = query.data.genres;
+        this.tags = query.data.tags;
       }
     });
   }

@@ -17,6 +17,12 @@ export class AdminGamesService {
   ) {
   }
 
+  getAllGamesForPromo(): Observable<Query> {
+    return this.apollo.query<Query>({
+      query: GET_ALL_GAMES_FOR_PROMO,
+    });
+  }
+
   getGamesPagination(page): Observable<Query> {
     return this.apollo.query<Query>({
       query: GET_GAMES_PAGINATION,
@@ -71,7 +77,6 @@ export class AdminGamesService {
         genres: newGame.genres,
         tags: newGame.tags,
         originalPrice: newGame.originalPrice,
-        promo: newGame.promo,
         developers: newGame.developers,
         publisherId: Number(newGame.publisherId),
         systemId: Number(newGame.systemId),
@@ -82,6 +87,15 @@ export class AdminGamesService {
   getGameById(id: number): Observable<Query> {
     return this.apollo.query<Query>({
       query: GET_GAME_BY_ID,
+      variables: {
+        id,
+      }
+    });
+  }
+
+  getGameByPromoId(id: number): Observable<Query> {
+    return this.apollo.query<Query>({
+      query: GET_GAME_BY_PROMO_ID,
       variables: {
         id,
       }
@@ -161,8 +175,26 @@ export class AdminGamesService {
     });
   }
 
+  setGamePromo = (gameId: number, promoId: number) => {
+    return this.apollo.mutate({
+      mutation: SET_GAME_PROMO,
+      variables: {
+        gameId,
+        promoId,
+      }
+    });
+  }
 
 }
+
+const GET_ALL_GAMES_FOR_PROMO = gql`
+  query getAllGames{
+    games{
+      id
+      name
+    }
+  }
+`;
 
 const GET_GAMES_PAGINATION = gql`
   query getGamesPagination($page:Int) {
@@ -271,6 +303,15 @@ const GET_GAME_BY_ID = gql`
   }
 `;
 
+const GET_GAME_BY_PROMO_ID = gql`
+  query getGameByPromoId($id:Int!) {
+    getGameByPromoId(id:$id){
+      id
+      name
+    }
+  }
+`;
+
 const CREATE_GAME_MUTATION = gql`
   mutation createGame($name:String!, $description:String!, $genres:[InputGenre!]!, $tags:[InputTag!]!,
   $originalPrice:Float!, $promo:InputPromo!, $developers:[InputDeveloper!]!,
@@ -332,6 +373,15 @@ const UPDATE_GAME_VIDEO = gql`
 const UPDATE_GAME_MUTATION = gql`
   mutation updateGame($id:Int!, $input:NewGame!) {
     updateGame(id:$id, input:$input) {
+      id
+      name
+    }
+  }
+`;
+
+const SET_GAME_PROMO = gql`
+  mutation setGamePromo($gameId:Int!, $promoId:Int!) {
+    setGamePromo(gameId:$gameId,promoId:$promoId) {
       id
       name
     }

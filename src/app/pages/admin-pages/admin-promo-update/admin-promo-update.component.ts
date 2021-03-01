@@ -5,6 +5,8 @@ import {ActivatedRoute} from '@angular/router';
 import {Promo} from '../../../models/promo';
 import {Location} from '@angular/common';
 import {NewPromo} from '../../../models/new/new-promo';
+import {Game} from '../../../models/game';
+import {AdminGamesService} from '../../../services/admin/admin-games.service';
 
 @Component({
   selector: 'app-admin-promo-update',
@@ -16,6 +18,7 @@ export class AdminPromoUpdateComponent implements OnInit {
   constructor(
     private actRoute: ActivatedRoute,
     private service: AdminPromosService,
+    private gameService: AdminGamesService,
     private location: Location,
   ) { }
 
@@ -25,6 +28,8 @@ export class AdminPromoUpdateComponent implements OnInit {
 
   validUntil: Date;
   updatePromo: NewPromo;
+  games: Game[];
+  gameId: number;
 
   ngOnInit(): void {
     this.updatePromo = new NewPromo();
@@ -36,8 +41,13 @@ export class AdminPromoUpdateComponent implements OnInit {
       this.promoId = promo.id;
       this.updatePromo.validUntil = promo.validUntil;
       this.validUntil = new Date(this.updatePromo.validUntil * 1000);
-      console.log(this.validUntil);
       this.updatePromo.discountPercentage = promo.discountPercentage;
+      this.gameService.getAllGamesForPromo().subscribe(async res => {
+        this.games = res.data.games;
+        this.gameService.getGameByPromoId(this.promoId).subscribe(async res2 => {
+          this.gameId = res2.data.getGameByPromoId.id;
+        });
+      });
     }, error => {
       console.log(error);
     });
@@ -49,7 +59,10 @@ export class AdminPromoUpdateComponent implements OnInit {
 
     this.service.updatePromo(this.updatePromo, this.promoId).subscribe(async query => {
       console.log(query);
-      alert('Promo[' + this.promoId + '] updated');
+      this.gameService.setGamePromo(this.gameId, this.promoId).subscribe(async res => {
+        console.log(res);
+        alert('Promo[' + this.promoId + '] updated');
+      });
     }, error => {
       console.log(error);
     });

@@ -16,7 +16,6 @@ import {finalize, mergeMap, filter} from 'rxjs/operators';
 import {async, Subject} from 'rxjs';
 import {InputGameImage} from '../../../models/input/input-game-image';
 import {InputGameVideo} from '../../../models/input/input-game-video';
-import {Promo} from '../../../models/promo';
 
 @Component({
   selector: 'app-admin-game-insert',
@@ -30,7 +29,6 @@ export class AdminGameInsertComponent implements OnInit {
 
   genres: Genre[];
   tags: Tag[];
-  promos: Promo[];
   developers: Developer[];
   publishers: Publisher[];
   systems: System[];
@@ -98,11 +96,6 @@ export class AdminGameInsertComponent implements OnInit {
       }
     }, error => {
       console.log('Error: ' + error);
-    });
-
-    // Load all promos
-    this.service.getAllPromos().subscribe(async query => {
-      this.promos = query.data.promos;
     });
 
     // Load all developers

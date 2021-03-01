@@ -44,7 +44,7 @@ section {
             .section-input {
               border-top: 2px solid $font-gray;
               padding: 10px 10px;
-              .text-input, .date-input {
+              .text-input, .date-input, .dropdown-input {
                 display: flex;
                 flex-direction: column;
                 font-size: 13px;
@@ -54,7 +54,7 @@ section {
                   text-transform: uppercase;
                   padding: 5px 0;
                 }
-                input {
+                input, select {
                   background-color: $edit-input-box;
                   color: $edit-input-font;
                   box-shadow: inset 1px 1px 0px #000a;

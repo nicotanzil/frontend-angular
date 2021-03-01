@@ -44,14 +44,6 @@
                 <label for="game-price">Original Price (IDR)</label>
                 <input type="number" id="game-price" name="game-price" placeholder="Price" [(ngModel)]="updateGame.originalPrice" autocomplete="off">
               </div>
-              <div class="dropdown-input">
-                <label for="promos">Promo</label>
-                <select name="promos" id="promos" [(ngModel)]="updateGame.promo.id">
-                  <option *ngFor="let promo of promos; let i = index" value="{{i+1}}">
-                    {{promo.discountPercentage}}% : Valid until {{promo.validUntil * 1000 | date}}
-                  </option>
-                </select>
-              </div>
               <div class="checkbox-input">
                 <div class="label">Developers</div>
                 <div class="developer-choice" *ngFor="let developer of developers; let i = index">

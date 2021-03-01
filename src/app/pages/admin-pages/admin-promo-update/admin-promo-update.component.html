@@ -22,6 +22,14 @@
                 <label for="valid-until">Discount Valid Until</label>
                 <input type="date" name="valid-until" id="valid-until" [(ngModel)]="validUntil">
               </div>
+              <div class="dropdown-input">
+                <label for="games">Games</label>
+                <select name="games" id="games" [(ngModel)]="gameId">
+                  <option *ngFor="let game of games; let i = index" value="{{i+1}}">
+                    {{game.id}}. {{game.name}}
+                  </option>
+                </select>
+              </div>
             </div>
           </div>
           <div class="button-section">

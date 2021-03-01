@@ -202,7 +202,6 @@ export class AdminGameUpdateComponent implements OnInit {
         idx++;
       });
       this.updateGame.originalPrice = this.game.originalPrice;
-      this.updateGame.promo.id = this.game.promo.id;
       idx = 0;
       this.game.developers.forEach(developer => {
         this.updateGame.developers[idx] = new InputTag();

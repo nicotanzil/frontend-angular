@@ -36,10 +36,10 @@
     <a href="#">Controller Friendly</a>
   </div>
   <div class="sidebar-header">
-    Browse by Genre
+    Browse by Tag
   </div>
   <div class="sidebar-content">
-    <a href="#" *ngFor="let genre of genres">{{genre.name}}</a>
+    <a href="/search/genre/{{tag.id}}" *ngFor="let tag of tags">{{tag.name}}</a>
   </div>
   <div class="sidebar-header" *ngIf="this.isUser">
     Your Tags

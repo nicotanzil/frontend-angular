@@ -31,6 +31,8 @@ export class SearchGameComponent implements OnInit {
   keyword: string;
   endOfData: boolean;
 
+  genreKey: number;
+
   // Filter
   gliderValue: number;
   priceDisplay: string;
@@ -69,10 +71,16 @@ export class SearchGameComponent implements OnInit {
 
   ngOnInit(): void {
     this.keyword = this.actRoute.snapshot.params.keyword;
+    this.genreKey = this.actRoute.snapshot.params.genreKey;
+    if (this.genreKey) {
+      const inputTag = new InputTag();
+      inputTag.id = this.genreKey;
+      this.inputTags.push(inputTag);
+      this.keyword = '';
+    }
     this.authService.getUserAuth().subscribe(async (query) => {
       if (query.data.getUserAuth.accountName !== '') {
         // logged in user
-        console.log(query.data);
         CurrentUser.id = query.data.getUserAuth.id;
         CurrentUser.accountName = query.data.getUserAuth.accountName;
         CurrentUser.profileName = query.data.getUserAuth.profileName;
@@ -99,6 +107,7 @@ export class SearchGameComponent implements OnInit {
 
   fetchGameData = () => {
     this.isLoading = true;
+    console.log(this.inputTags);
     this.gameService.getSearchGamePage(this.keyword, this.currentPage, this.price, this.inputTags).subscribe(async query => {
       this.fetchGames = query.data.gameSearchPage;
       console.log('Fetch games');

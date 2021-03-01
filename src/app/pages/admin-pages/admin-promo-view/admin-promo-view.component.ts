@@ -11,11 +11,6 @@ import {Router} from '@angular/router';
 })
 export class AdminPromoViewComponent implements OnInit {
 
-  constructor(
-    private service: AdminPromosService,
-    private router: Router,
-  ) { }
-
   currentPage: number;
   totalPage: number;
   totalPromo: number;
@@ -23,6 +18,13 @@ export class AdminPromoViewComponent implements OnInit {
 
   arrowLeft: boolean;
   arrowRight: boolean;
+
+  constructor(
+    private service: AdminPromosService,
+    private router: Router,
+  ) {
+    this.promos = [];
+  }
 
   ngOnInit(): void {
     this.currentPage = 1;

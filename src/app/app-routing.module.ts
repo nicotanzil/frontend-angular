@@ -89,6 +89,14 @@ const routes: Routes = [
     component: SearchGameComponent,
   },
   {
+    path: 'search/genre/:genreKey',
+    component: SearchGameComponent,
+  },
+  {
+    path: 'search/category/:categoryKey',
+    component: SearchGameComponent,
+  },
+  {
     path: '**',
     component: HomeComponent,
     redirectTo: ''
