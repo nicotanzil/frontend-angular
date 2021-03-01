@@ -3,6 +3,7 @@ import {Apollo, gql} from 'apollo-angular';
 import {Query} from '../../models/query';
 import {Observable} from 'rxjs';
 import {InputPromo} from '../../models/input/input-promo';
+import {NewPromo} from '../../models/new/new-promo';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +35,7 @@ export class AdminPromosService {
       });
   }
 
-  createPromo = (newPromo: InputPromo) => {
+  createPromo = (newPromo: NewPromo) => {
     return this.apollo.mutate({
       mutation: CREATE_PROMO_MUTATION,
       variables: {
@@ -43,7 +44,7 @@ export class AdminPromosService {
     });
   }
 
-  updatePromo = (newPromo: InputPromo, id: number) => {
+  updatePromo = (newPromo: NewPromo, id: number) => {
     return this.apollo.mutate({
       mutation: UPDATE_PROMO,
       variables: {

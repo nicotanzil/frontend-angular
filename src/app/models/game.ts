@@ -7,6 +7,7 @@ import {Publisher} from './publisher';
 import {System} from './system';
 import {GameImage} from './game-image';
 import {GameVideo} from './game-video';
+import {Promo} from './promo';
 
 export class Game {
   id: number;
@@ -15,8 +16,7 @@ export class Game {
   genres: Genre[] = [];
   tags: Tag[] = [];
   originalPrice: number;
-  onSale: boolean;
-  discountPercentage: number;
+  promo: Promo;
   gamePlayHour: number;
   gameReviews: Review[] = [];
   developers: Developer[] = [];

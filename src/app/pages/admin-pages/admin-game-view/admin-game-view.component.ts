@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AdminGamesService} from '../../../services/admin/admin-games.service';
 import {Game} from '../../../models/game';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-admin-game-view',
@@ -9,10 +10,6 @@ import {Game} from '../../../models/game';
 })
 export class AdminGameViewComponent implements OnInit {
 
-  constructor(
-    private service: AdminGamesService,
-  ) { }
-
   currentPage: number;
   totalPage: number;
   totalGame: number;
@@ -20,6 +17,13 @@ export class AdminGameViewComponent implements OnInit {
 
   arrowLeft: boolean;
   arrowRight: boolean;
+
+  constructor(
+    private service: AdminGamesService,
+    private router: Router,
+  ) {
+    this.games = [];
+  }
 
   ngOnInit(): void {
     this.currentPage = 1;
@@ -76,6 +80,10 @@ export class AdminGameViewComponent implements OnInit {
     else {
       this.arrowRight = true;
     }
+  }
+
+  update(id: number): void {
+    this.router.navigate(['/admin/games/update/' + id]);
   }
 
   moveRight = () => {

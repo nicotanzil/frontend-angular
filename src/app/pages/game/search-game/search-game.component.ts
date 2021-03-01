@@ -19,7 +19,6 @@ export class SearchGameComponent implements OnInit {
 
   isUser: boolean;
   user: User;
-  test = [1, 2, 3, 4, 1, 1, 1, 1, 1, 1, 1];
 
   clientHeight: number;
   scrollPos: number;

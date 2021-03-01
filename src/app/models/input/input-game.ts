@@ -4,6 +4,7 @@ import {InputDeveloper} from './input-developer';
 import {Publisher} from '../publisher';
 import {System} from '../system';
 import {InputGameImage} from './input-game-image';
+import {InputPromo} from './input-promo';
 
 export class InputGame {
   name: string;
@@ -11,9 +12,8 @@ export class InputGame {
   genres: InputGenre[] = [];
   tags: InputTag[] = [];
   originalPrice: number;
-  onSale = false;
-  discountPercentage = 0;
+  promo: InputPromo = new InputPromo();
   developers: InputDeveloper[] = [];
-  publisher: number;
-  system: number;
+  publisherId: number;
+  systemId: number;
 }

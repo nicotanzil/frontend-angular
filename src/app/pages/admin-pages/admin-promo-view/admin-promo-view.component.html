@@ -14,8 +14,8 @@
           <div class="row" *ngFor="let promo of promos; index as i">
             Promo[{{ promo.id }}] Discount: {{promo.discountPercentage}}% | Valid until: {{promo.validUntil * 1000 | date}}
             <div class="button-container">
-              <a class="btn update-btn" (click)="update(promo.id)">Update</a>
-              <a class="btn remove-btn" (click)="remove(promo.id)">Remove</a>
+              <a class="btn update-btn" (click)="update(promo.id)" *ngIf="promo.id != 1">Update</a>
+              <a class="btn remove-btn" (click)="remove(promo.id)" *ngIf="promo.id != 1">Remove</a>
             </div>
           </div>
         </div>

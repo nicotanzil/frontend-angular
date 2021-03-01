@@ -4,6 +4,7 @@ import {InputPromo} from '../../../models/input/input-promo';
 import {ActivatedRoute} from '@angular/router';
 import {Promo} from '../../../models/promo';
 import {Location} from '@angular/common';
+import {NewPromo} from '../../../models/new/new-promo';
 
 @Component({
   selector: 'app-admin-promo-update',
@@ -23,10 +24,10 @@ export class AdminPromoUpdateComponent implements OnInit {
   isError: boolean;
 
   validUntil: Date;
-  updatePromo: InputPromo;
+  updatePromo: NewPromo;
 
   ngOnInit(): void {
-    this.updatePromo = new InputPromo();
+    this.updatePromo = new NewPromo();
     // this.validUntil = new Date();
     this.promoId = this.actRoute.snapshot.params.id;
     this.service.getPromoById(this.promoId).subscribe(async query => {

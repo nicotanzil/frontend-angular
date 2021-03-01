@@ -38,6 +38,7 @@ import { AdminUserViewComponent } from './pages/admin-pages/admin-user-view/admi
 import { AdminUserDetailComponent } from './pages/admin-pages/admin-user-detail/admin-user-detail.component';
 import { HomeNavComponent } from './pages/home/home-nav/home-nav.component';
 import { SearchGameComponent } from './pages/game/search-game/search-game.component';
+import { AdminGameUpdateComponent } from './pages/admin-pages/admin-game-update/admin-game-update.component';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { SearchGameComponent } from './pages/game/search-game/search-game.compon
     AdminUserDetailComponent,
     HomeNavComponent,
     SearchGameComponent,
+    AdminGameUpdateComponent,
   ],
   imports: [
     BrowserModule,

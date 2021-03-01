@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Apollo, gql} from 'apollo-angular';
 import {Query} from '../../models/query';
 import {Observable} from 'rxjs';
@@ -14,7 +14,8 @@ export class AdminGamesService {
 
   constructor(
     private apollo: Apollo
-  ) { }
+  ) {
+  }
 
   getGamesPagination(page): Observable<Query> {
     return this.apollo.query<Query>({
@@ -34,6 +35,12 @@ export class AdminGamesService {
   getAllTags(): Observable<Query> {
     return this.apollo.query<Query>({
       query: GET_ALL_TAGS
+    });
+  }
+
+  getAllPromos(): Observable<Query> {
+    return this.apollo.query<Query>({
+      query: GET_ALL_PROMOS
     });
   }
 
@@ -64,11 +71,19 @@ export class AdminGamesService {
         genres: newGame.genres,
         tags: newGame.tags,
         originalPrice: newGame.originalPrice,
-        onSale: newGame.onSale,
-        discountPercentage: newGame.discountPercentage,
+        promo: newGame.promo,
         developers: newGame.developers,
-        publisherId: Number(newGame.publisher),
-        systemId: Number(newGame.system),
+        publisherId: Number(newGame.publisherId),
+        systemId: Number(newGame.systemId),
+      }
+    });
+  }
+
+  getGameById(id: number): Observable<Query> {
+    return this.apollo.query<Query>({
+      query: GET_GAME_BY_ID,
+      variables: {
+        id,
       }
     });
   }
@@ -97,6 +112,16 @@ export class AdminGamesService {
     });
   }
 
+  updateGameImage = (id: number[], images: InputGameImage[]) => {
+    return this.apollo.mutate({
+      mutation: UPDATE_GAME_IMAGE,
+      variables: {
+        id,
+        images,
+      }
+    });
+  }
+
   insertGameBanner = (id: number, link: string) => {
     return this.apollo.mutate({
       mutation: INSERT_GAME_BANNER,
@@ -115,6 +140,28 @@ export class AdminGamesService {
       }
     });
   }
+
+  updateGameVideo = (id: number[], videos: InputGameVideo[]) => {
+    return this.apollo.mutate({
+      mutation: UPDATE_GAME_VIDEO,
+      variables: {
+        id,
+        videos,
+      }
+    });
+  }
+
+  updateGame = (id: number, game: InputGame) => {
+    return this.apollo.mutate({
+      mutation: UPDATE_GAME_MUTATION,
+      variables: {
+        id,
+        input: game,
+      }
+    });
+  }
+
+
 }
 
 const GET_GAMES_PAGINATION = gql`
@@ -142,6 +189,16 @@ const GET_ALL_TAGS = gql`
     tags {
       id
       name
+    }
+  }
+`;
+
+const GET_ALL_PROMOS = gql`
+  query getAllPromos {
+    promos {
+      id
+      discountPercentage
+      validUntil
     }
   }
 `;
@@ -176,12 +233,50 @@ const GET_ALL_SYSTEMS = gql`
   }
 `;
 
+const GET_GAME_BY_ID = gql`
+  query getGameById($id:Int!) {
+    gameById(id:$id) {
+      id
+      name
+      description
+      genres {
+        id
+      }
+      tags {
+        id
+      }
+      originalPrice
+      promo {
+        id
+      }
+      developers {
+        id
+      }
+      publisher {
+        id
+      }
+      system {
+        id
+      }
+      banner
+      video {
+        id
+        link
+      }
+      images {
+        id
+        link
+      }
+    }
+  }
+`;
+
 const CREATE_GAME_MUTATION = gql`
   mutation createGame($name:String!, $description:String!, $genres:[InputGenre!]!, $tags:[InputTag!]!,
-  $originalPrice:Float!, $onSale:Boolean!, $discountPercentage:Int!, $developers:[InputDeveloper!]!,
+  $originalPrice:Float!, $promo:InputPromo!, $developers:[InputDeveloper!]!,
   $publisherId:Int!, $systemId:Int!) {
     createGame(input:{name:$name, description:$description, genres:$genres, tags:$tags,
-    originalPrice:$originalPrice, onSale:$onSale, discountPercentage:$discountPercentage,
+    originalPrice:$originalPrice, promo:$promo,
     developers:$developers, publisherId:$publisherId, systemId:$systemId}){
       id
       name
@@ -210,6 +305,12 @@ const INSERT_GAME_IMAGE = gql`
   }
 `;
 
+const UPDATE_GAME_IMAGE = gql`
+  mutation updateGameImage($id:[Int!]!, $images:[InputGameImage!]!) {
+    updateGameImage(id:$id,images:$images)
+  }
+`;
+
 const INSERT_GAME_BANNER = gql`
   mutation insertGameBanner($id:Int!, $link:String!) {
     insertGameBanner(id:$id, link:$link)
@@ -219,5 +320,20 @@ const INSERT_GAME_BANNER = gql`
 const INSERT_GAME_VIDEO = gql`
   mutation insertGameVideo($videos:[InputGameVideo!]!) {
     insertGameVideo(gameVideos:$videos)
+  }
+`;
+
+const UPDATE_GAME_VIDEO = gql`
+  mutation updateGameVideo($id:[Int!]!, $videos:[InputGameVideo!]!) {
+    updateGameVideo(id:$id,videos:$videos)
+  }
+`;
+
+const UPDATE_GAME_MUTATION = gql`
+  mutation updateGame($id:Int!, $input:NewGame!) {
+    updateGame(id:$id, input:$input) {
+      id
+      name
+    }
   }
 `;

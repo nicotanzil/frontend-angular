@@ -16,6 +16,7 @@ import {finalize, mergeMap, filter} from 'rxjs/operators';
 import {async, Subject} from 'rxjs';
 import {InputGameImage} from '../../../models/input/input-game-image';
 import {InputGameVideo} from '../../../models/input/input-game-video';
+import {Promo} from '../../../models/promo';
 
 @Component({
   selector: 'app-admin-game-insert',
@@ -27,16 +28,13 @@ export class AdminGameInsertComponent implements OnInit {
   isSuccess: boolean;
   isError: boolean;
 
-  index: number;
   genres: Genre[];
   tags: Tag[];
+  promos: Promo[];
   developers: Developer[];
   publishers: Publisher[];
   systems: System[];
-  isDiscount = false;
 
-
-  bannerUpload: any;
   bannerTemp: any;
   bannerPreview: string = DefaultAssets.imageLink;
 
@@ -85,15 +83,6 @@ export class AdminGameInsertComponent implements OnInit {
   ngOnInit(): void {
     this.newGame = new InputGame();
     // Load all genres
-    this.service.getTotalGame().subscribe(async query => {
-      if (query.data) {
-        this.index = query.data.getTotalGame;
-        this.index++;
-      }
-    }, error => {
-      console.log(error);
-    });
-
     this.service.getAllGenres().subscribe(async query => {
       if (query.data) {
         this.genres = query.data.genres;
@@ -109,6 +98,11 @@ export class AdminGameInsertComponent implements OnInit {
       }
     }, error => {
       console.log('Error: ' + error);
+    });
+
+    // Load all promos
+    this.service.getAllPromos().subscribe(async query => {
+      this.promos = query.data.promos;
     });
 
     // Load all developers
@@ -184,10 +178,6 @@ export class AdminGameInsertComponent implements OnInit {
     }
   }
 
-  onSaleChange(e): void {
-    if (e.target.checked) { this.isDiscount = true; this.newGame.onSale = true; }
-    else { this.isDiscount = false; this.newGame.onSale = false; }
-  }
 
   onSave(): void {
     console.log(this.newGame);
@@ -204,6 +194,7 @@ export class AdminGameInsertComponent implements OnInit {
   }
 
   uploadImagesFirebase = () => {
+    if (this.imageTemp.length === 0) { return; }
     let idx = 1;
     this.imageTemp.forEach(image => {
       const path = `assets/games/${this.gameId}/${idx}`; idx++;
@@ -227,7 +218,7 @@ export class AdminGameInsertComponent implements OnInit {
   uploadBannerFirebase = () => {
     const path = `assets/games/${this.gameId}/banner`;
     const ref = this.storage.ref(path);
-    this.storage.upload(path, this.bannerUpload).snapshotChanges().pipe(
+    this.storage.upload(path, this.bannerTemp).snapshotChanges().pipe(
       finalize(() => {
         ref.getDownloadURL().subscribe(url => {
           this.service.insertGameBanner(this.gameId, url).subscribe(async query => {

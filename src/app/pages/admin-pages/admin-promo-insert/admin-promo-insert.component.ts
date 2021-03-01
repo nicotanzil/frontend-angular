@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AdminPromosService} from '../../../services/admin/admin-promos.service';
 import {InputPromo} from '../../../models/input/input-promo';
 import {Location} from '@angular/common';
+import {NewPromo} from '../../../models/new/new-promo';
 
 @Component({
   selector: 'app-admin-promo-insert',
@@ -19,10 +20,10 @@ export class AdminPromoInsertComponent implements OnInit {
   isError: boolean;
 
   validUntil: Date;
-  newPromo: InputPromo;
+  newPromo: NewPromo;
 
   ngOnInit(): void {
-    this.newPromo = new InputPromo();
+    this.newPromo = new NewPromo();
     this.validUntil = new Date();
   }
 
