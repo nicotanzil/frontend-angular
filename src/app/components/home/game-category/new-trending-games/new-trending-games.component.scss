@@ -1,0 +1,117 @@
+@import '../../../../styles/colors';
+@import '../../../../styles/mixins';
+
+.new-trending-outer-container {
+  display: flex;
+  flex-direction: row;
+  color: $font-light-gray;
+  .row-container {
+    width: 65%;
+    .row {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      color: $font-light-gray;
+      text-decoration: none;
+      margin-bottom: 10px;
+      .left-container {
+        display: flex;
+        flex-direction: row;
+        font-size: 14px;
+        width: 100%;
+        img {
+          width: 150px;
+          height: 60px;
+        }
+        .game-detail {
+          padding: 5px 10px;
+          display: flex;
+          flex-direction: column;
+          .tags-container {
+            font-size: 10px;
+            color: $font-gray;
+          }
+        }
+      }
+      .right-container {
+        width: 30%;
+        display: flex;
+        flex-direction: row;
+        .discount {
+          background-color: $header-green;
+          font-size: 12px;
+          height: 50%;
+          padding: 5px;
+        }
+        .price-container {
+          display: flex;
+          flex-direction: column;
+          padding-left: 10px;
+          .original-price {
+            color: $font-gray;
+            font-size: 10px;
+            text-decoration: line-through;
+          }
+          .total-price {
+            font-size: 12px;
+
+          }
+        }
+      }
+    }
+    .select {
+      background: $blue-hover-gradient;
+      color: $font-dark-blue;
+      .discount {
+        color: $font-light-gray;
+      }
+    }
+    .deselect {
+      background: $dark-blue-home;
+      color: $font-light-gray;
+    }
+  }
+  .overview-container {
+    width: 35%;
+    padding: 10px 15px;
+    background-color: $blue-hover;
+    border: none;
+    color: $font-dark-blue;
+    .name {
+      font-size: 16px;
+    }
+    .review-container {
+      display: flex;
+      flex-direction: column;
+      padding: 5px;
+      background-color: $gray-bg;
+      border-radius: 3px;
+      font-size: 12px;
+      color: white;
+    }
+    .tag-container {
+      display: flex;
+      flex-direction: row;
+      margin-top: 10px;
+      .tag {
+        padding: 3px;
+        margin: 0 3px;
+        background-color: $gray-bg;
+        border-radius: 3px;
+        font-size: 12px;
+        color: white;
+      }
+    }
+    .image-container {
+      height: 100%;
+      margin-top: 10px;
+      .image {
+        img {
+          width: 300px;
+        }
+      }
+    }
+  }
+}

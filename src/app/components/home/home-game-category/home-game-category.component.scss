@@ -1,0 +1,35 @@
+@import '../../../styles/colors.scss';
+@import '../../../styles/mixins.scss';
+
+section {
+  margin-top: 30px;
+  width: 100%;
+  .outer-container {
+    display: flex;
+    flex-direction: column;
+    background-color: $dark-blue-home;
+    border-radius: 5px;
+    .header-container {
+      .btn {
+        padding: 5px 10px;
+        background-color: $dark-blue-home;
+        border: none;
+        border-radius: 5px;
+        color: $font-light-gray;
+        cursor: pointer;
+      }
+      .deselect {
+        background-color: $dark-blue-home;
+        color: $font-light-gray;
+      }
+      .select {
+        background-color: $light-blue-home;
+        color: white;
+        border: none;
+      }
+    }
+    .result-container {
+      padding: 0 10px;
+    }
+  }
+}

@@ -26,6 +26,12 @@ export class GameService {
       query: GET_SPECIAL_OFFER_GAMES,
     });
   }
+
+  getNewTrendingGames(): Observable<Query> {
+    return this.apollo.query<Query>({
+      query: GET_NEW_TRENDING_GAMES,
+    });
+  }
 }
 
 const GAME_SEARCH = gql`
@@ -46,6 +52,32 @@ const GET_SPECIAL_OFFER_GAMES = gql`
       name
       originalPrice
       banner
+      images {
+        id
+        link
+      }
+      promo {
+        discountPercentage
+      }
+      tags {
+        id
+        name
+      }
+    }
+  }
+`;
+
+const GET_NEW_TRENDING_GAMES = gql`
+  query getNewTrendingGame{
+    getNewTrendingGame {
+      id
+      name
+      originalPrice
+      banner
+      images {
+        id
+        link
+      }
       promo {
         discountPercentage
       }

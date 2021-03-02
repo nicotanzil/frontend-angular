@@ -1,0 +1,26 @@
+<section>
+  <div class="outer-container">
+    <div class="header-container">
+      <button class="btn"
+              [ngClass]="buttons.newTrendingBtn ? 'select' : 'deselect'"
+              (click)="onClick('newTrendingBtn')"
+      >New and Trending</button>
+      <button class="btn"
+              [ngClass]="buttons.topSellersBtn ? 'select' : 'deselect'"
+              (click)="onClick('topSellersBtn')"
+      >Top Sellers</button>
+      <button class="btn"
+              [ngClass]="buttons.popularBtn ? 'select' : 'deselect'"
+              (click)="onClick('popularBtn')"
+      >Popular Upcoming</button>
+      <button class="btn"
+              [ngClass]="buttons.specialsBtn ? 'select' : 'deselect'"
+              (click)="onClick('specialsBtn')"
+      >Specials</button>
+    </div>
+    <div class="result-container">
+      <app-new-trending-games *ngIf="buttons['newTrendingBtn']"></app-new-trending-games>
+      <app-special-games *ngIf="buttons['specialsBtn']"></app-special-games>
+    </div>
+  </div>
+</section>

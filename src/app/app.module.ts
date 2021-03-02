@@ -41,6 +41,9 @@ import { SearchGameComponent } from './pages/game/search-game/search-game.compon
 import { AdminGameUpdateComponent } from './pages/admin-pages/admin-game-update/admin-game-update.component';
 import { SuspensionRequestComponent } from './pages/user/suspension-request/suspension-request.component';
 import { SpecialOfferGamesComponent } from './components/home/special-offer-games/special-offer-games.component';
+import { HomeGameCategoryComponent } from './components/home/home-game-category/home-game-category.component';
+import { NewTrendingGamesComponent } from './components/home/game-category/new-trending-games/new-trending-games.component';
+import { SpecialGamesComponent } from './components/home/game-category/special-games/special-games.component';
 
 
 @NgModule({
@@ -75,6 +78,9 @@ import { SpecialOfferGamesComponent } from './components/home/special-offer-game
     AdminGameUpdateComponent,
     SuspensionRequestComponent,
     SpecialOfferGamesComponent,
+    HomeGameCategoryComponent,
+    NewTrendingGamesComponent,
+    SpecialGamesComponent,
   ],
   imports: [
     BrowserModule,
