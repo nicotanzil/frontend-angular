@@ -40,6 +40,10 @@ export class SearchGameComponent implements OnInit {
   tagsDisplay: Tag[];
   inputTags: InputTag[];
 
+  hoveredGame: Game;
+  rows;
+  isHovering: boolean;
+
   constructor(
     private actRoute: ActivatedRoute,
     private authService: AuthService,
@@ -55,6 +59,10 @@ export class SearchGameComponent implements OnInit {
     this.price = this.maxValue;
     this.tagsDisplay = [];
     this.inputTags = [];
+
+    this.rows = [];
+    this.hoveredGame = new Game();
+    this.isHovering = false;
   }
 
 
@@ -111,8 +119,7 @@ export class SearchGameComponent implements OnInit {
     console.log(this.inputTags);
     this.gameService.getSearchGamePage(this.keyword, this.currentPage, this.price, this.inputTags).subscribe(async query => {
       this.fetchGames = query.data.gameSearchPage;
-      console.log('Fetch games');
-      console.log(this.fetchGames);
+      this.hoveredGame = this.fetchGames[0];
       if (this.fetchGames.length <= 0) {
         // No more data
         this.endOfData = true;
@@ -188,5 +195,24 @@ export class SearchGameComponent implements OnInit {
     if (x) {
       this.tagsDisplay.push(tag);
     }
+  }
+
+  rowsInit(): void {
+    this.games.forEach(game => {
+      this.rows[game.id] = false;
+    });
+  }
+
+  onHover(rowId): void {
+    this.games.forEach(game => {
+      if (game.id === rowId) {
+        this.hoveredGame = game;
+        this.isHovering = true;
+      }
+    });
+  }
+
+  clearHover(): void {
+    this.isHovering = false;
   }
 }

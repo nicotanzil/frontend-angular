@@ -38,6 +38,11 @@ const SEARCH_GAME_PAGE = gql`
         id
         name
       }
+      images {
+        id
+        link
+      }
+      createdAt
     }
   }
 `;

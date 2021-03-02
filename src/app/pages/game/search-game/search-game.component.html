@@ -7,7 +7,8 @@
         <div class="result-count">
           {{totalGame}} results match you search.
         </div>
-        <a href="#" class="row" *ngFor="let game of games">
+        <a href="#" class="row" *ngFor="let game of games"
+        (mouseenter)="onHover(game.id)" (mouseleave)="clearHover()">
           <span class="banner-container">
             <img src="{{game.banner}}" alt="Game banner">
           </span>
@@ -24,6 +25,7 @@
             {{game.originalPrice}}
           </span>
         </a>
+
         <div class="loading-container" *ngIf="isLoading">
           <img src="../../../../assets/loading.gif" alt="Loading...">
         </div>
@@ -33,6 +35,21 @@
       </div>
       <div class="result-container" *ngIf="totalGame == 0">
         No results were returned for that query.
+      </div>
+      <div class="overview-container" *ngIf="isHovering">
+        <div class="name">{{hoveredGame.name}}</div>
+        <div class="release-date">Released: {{hoveredGame.createdAt | date}}</div>
+        <div class="image-container">
+          <img src="{{hoveredGame.images[0].link}}" alt="Game image">
+        </div>
+        <div class="review-container">
+          <span>Overall user reviews: </span>
+          <span>Very Positive</span>
+        </div>
+        <div class="tags-title">User tags</div>
+        <div class="tags-container">
+          <span class="tag" *ngFor="let tag of hoveredGame.tags">{{tag.name}}</span>
+        </div>
       </div>
       <div class="filter-container">
         <div class="filter-box">

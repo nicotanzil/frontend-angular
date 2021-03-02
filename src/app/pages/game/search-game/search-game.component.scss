@@ -64,6 +64,9 @@ section {
           text-align: right;
         }
       }
+      .row:hover {
+        background-color: $search-hover;
+      }
       .loading-container {
         width: 100%;
         @include flex-center();
@@ -76,6 +79,46 @@ section {
         background-color: $home-lightblue;
         color: $font-light-gray;
         border-radius: 3px;
+      }
+    }
+    .overview-container {
+      position: absolute;
+      padding: 15px;
+      width: 300px;
+      right: 3%;
+      display: flex;
+      flex-direction: column;
+      background: $blue-hover-gradient;
+      .release-date {
+        font-size: 11px;
+        color: $font-gray;
+      }
+      .image-container {
+        img {
+          width: 300px;
+        }
+      }
+      .review-container {
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+        border-radius: 3px;
+        background-color: $gray-bg;
+        color: white;
+        font-size: 12px;
+      }
+      .tags-title {
+        font-size: 14px;
+      }
+      .tags-container {
+        .tag {
+          padding: 3px;
+          margin: 0 2px;
+          border-radius: 3px;
+          background-color: $gray-bg;
+          color: white;
+          font-size: 11px;
+        }
       }
     }
     .filter-container {
