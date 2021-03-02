@@ -21,6 +21,11 @@ export class GameService {
     });
   }
 
+  getSpecialOfferGames(): Observable<Query> {
+    return this.apollo.query<Query>({
+      query: GET_SPECIAL_OFFER_GAMES,
+    });
+  }
 }
 
 const GAME_SEARCH = gql`
@@ -30,6 +35,24 @@ const GAME_SEARCH = gql`
       name
       originalPrice
       banner
+    }
+  }
+`;
+
+const GET_SPECIAL_OFFER_GAMES = gql`
+  query getSpecialOffers{
+    getSpecialOfferGame {
+      id
+      name
+      originalPrice
+      banner
+      promo {
+        discountPercentage
+      }
+      tags {
+        id
+        name
+      }
     }
   }
 `;

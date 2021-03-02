@@ -1,0 +1,35 @@
+<section>
+  <div class="outer-container">
+    <div class="title">
+      Special Offers
+    </div>
+    <div class="content-container">
+      <a href="#" class="row" *ngFor="let game of games">
+        <div class="left-container">
+          <div class="image-container">
+            <img src="{{game.banner}}" alt="Game Image">
+          </div>
+          <div class="detail-container">
+            <span>{{game.name}}</span>
+            <div class="tag-container">
+              <span *ngFor="let tag of game.tags">{{tag.name}} </span>
+            </div>
+          </div>
+        </div>
+        <div class="right-container">
+          <span class="discount-percentage">
+            {{game.promo.discountPercentage}}%
+          </span>
+          <div class="price-container">
+            <span class="price">
+              {{game.originalPrice}}
+            </span>
+            <span class="discount-price">
+              {{game.originalPrice - (game.originalPrice * game.promo.discountPercentage / 100)}}
+            </span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>

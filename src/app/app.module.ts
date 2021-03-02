@@ -40,6 +40,7 @@ import { HomeNavComponent } from './pages/home/home-nav/home-nav.component';
 import { SearchGameComponent } from './pages/game/search-game/search-game.component';
 import { AdminGameUpdateComponent } from './pages/admin-pages/admin-game-update/admin-game-update.component';
 import { SuspensionRequestComponent } from './pages/user/suspension-request/suspension-request.component';
+import { SpecialOfferGamesComponent } from './components/home/special-offer-games/special-offer-games.component';
 
 
 @NgModule({
@@ -73,6 +74,7 @@ import { SuspensionRequestComponent } from './pages/user/suspension-request/susp
     SearchGameComponent,
     AdminGameUpdateComponent,
     SuspensionRequestComponent,
+    SpecialOfferGamesComponent,
   ],
   imports: [
     BrowserModule,

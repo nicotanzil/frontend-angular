@@ -2,7 +2,10 @@
 <section>
   <div class="home-container">
     <app-home-sidebar [isUser]="this.isUser"></app-home-sidebar>
-    <app-home-nav [user] = "this.user" [isUser]="this.isUser"></app-home-nav>
+    <div class="home-main-container">
+      <app-home-nav [user] = "this.user" [isUser]="this.isUser"></app-home-nav>
+      <app-special-offer-games></app-special-offer-games>
+    </div>
   </div>
 </section>
 <app-footer></app-footer>
