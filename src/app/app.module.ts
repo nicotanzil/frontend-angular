@@ -39,6 +39,7 @@ import { AdminUserDetailComponent } from './pages/admin-pages/admin-user-detail/
 import { HomeNavComponent } from './pages/home/home-nav/home-nav.component';
 import { SearchGameComponent } from './pages/game/search-game/search-game.component';
 import { AdminGameUpdateComponent } from './pages/admin-pages/admin-game-update/admin-game-update.component';
+import { SuspensionRequestComponent } from './pages/user/suspension-request/suspension-request.component';
 
 
 @NgModule({
@@ -71,6 +72,7 @@ import { AdminGameUpdateComponent } from './pages/admin-pages/admin-game-update/
     HomeNavComponent,
     SearchGameComponent,
     AdminGameUpdateComponent,
+    SuspensionRequestComponent,
   ],
   imports: [
     BrowserModule,

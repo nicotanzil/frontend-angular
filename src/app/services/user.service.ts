@@ -21,8 +21,24 @@ export class UserService {
       },
     });
   }
+
+  getUserByAccountName(accountName: string): Observable<Query> {
+    return this.apollo.query<Query>({
+      query: GET_USER_BY_ACCOUNT_NAME,
+      variables: {
+        accountName,
+      }
+    });
+  }
 }
 
+const GET_USER_BY_ACCOUNT_NAME = gql`
+  query getUserByAccountName($accountName:String!) {
+    getUseByAccountName(accountName:$accountName) {
+      id
+    }
+  }
+`;
 
 const GET_USER_BY_URL = gql`
   query GetUserByURL($url:String) {

@@ -39,20 +39,20 @@
         <div class="section-header">
           User Un-Suspension Request
         </div>
-        <div class="request-container">
+        <div class="request-container" *ngFor="let request of suspensionRequests">
           <div class="request-section">
             <span class="profile">
               <img src="{{user.avatar}}" alt="{{user.accountName}}'s Avatar">
               <span class="account-name">{{user.accountName}}</span>
             </span>
             <span class="description">
-              {{user.suspensionRequest.description}}
+              {{request.description}}
             </span>
-            <span class="time">{{user.suspensionRequest.createdAt | date}}</span>
+            <span class="time">{{request.createdAt | date}}</span>
           </div>
           <div class="button-section">
-            <span class="btn suspend-btn" *ngIf="user.suspensionRequest.id==1" (click)="updateSuspend()">Suspend</span>
-            <span class="btn unsuspend-btn" *ngIf="user.suspensionRequest.id!=1" (click)="updateSuspend()">Unsuspend</span>
+            <span class="btn suspend-btn" *ngIf="!user.isSuspend" (click)="updateSuspend()">Suspend</span>
+            <span class="btn unsuspend-btn" *ngIf="user.isSuspend" (click)="updateSuspend()">Unsuspend</span>
           </div>
         </div>
       </div>

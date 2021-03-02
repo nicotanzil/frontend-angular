@@ -6,6 +6,8 @@ import {User} from '../../../models/user';
 import {async} from 'rxjs';
 import {UserReport} from '../../../models/user-report';
 import {AdminUserReportsService} from '../../../services/admin/admin-user-reports.service';
+import {SuspensionRequest} from '../../../models/suspension-request';
+import {SuspensionRequestService} from '../../../services/suspension-request.service';
 
 @Component({
   selector: 'app-admin-user-detail',
@@ -14,16 +16,22 @@ import {AdminUserReportsService} from '../../../services/admin/admin-user-report
 })
 export class AdminUserDetailComponent implements OnInit {
 
+  userId: number;
+  user: User;
+  userReports: UserReport[];
+  suspensionRequests: SuspensionRequest[];
+
   constructor(
     private actRoute: ActivatedRoute,
     private serviceUser: AdminUsersService,
     private serviceUserReport: AdminUserReportsService,
+    private serviceSuspensionRequest: SuspensionRequestService,
     private location: Location,
-  ) { }
-
-  userId: number;
-  user: User;
-  userReports: UserReport[];
+  ) {
+    this.user = new User();
+    this.userReports = [];
+    this.suspensionRequests = [];
+  }
 
   ngOnInit(): void {
     this.userId = this.actRoute.snapshot.params.id;
@@ -37,6 +45,13 @@ export class AdminUserDetailComponent implements OnInit {
       // @ts-ignore
       this.userReports = query.data.getReportByReported;
       console.log(this.userReports);
+    }, error => {
+      console.log(error);
+    });
+
+    this.serviceSuspensionRequest.getSuspensionRequestsById(this.userId).subscribe(async query => {
+      this.suspensionRequests = query.data.suspensionRequestsByUserId;
+      console.log(query);
     }, error => {
       console.log(error);
     });

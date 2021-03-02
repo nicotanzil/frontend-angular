@@ -29,6 +29,10 @@ section {
         border: red solid 0.5px;
         padding: 20px 35px;
         font-size: 14px;
+      a {
+        text-decoration: none;
+        color: $font-light-gray;
+      }
     }
     .login-input {
         display: flex;

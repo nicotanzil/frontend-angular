@@ -10,18 +10,19 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(
-    private service: LoginService,
-    private formBuilder: FormBuilder,
-    private router: Router,
-  ) { }
-
-
-
   // VARIABLE DECLARATION
   errorBox;
   isError: boolean;
   errorMessage: string;
+  isSuspend: boolean;
+
+  constructor(
+    private service: LoginService,
+    private formBuilder: FormBuilder,
+    private router: Router,
+  ) {
+    this.isSuspend = true;
+  }
 
   loginForm = this.formBuilder.group({
     account: new FormControl('', [Validators.required]),
@@ -48,6 +49,10 @@ export class LoginComponent implements OnInit {
       }, async error => {
         this.errorMessage = error.toString();
         this.isError = true;
+        if (this.errorMessage === 'Error: Account Suspended.') {
+          // Suspended account
+          this.isSuspend = true;
+        }
       });
     }
   }

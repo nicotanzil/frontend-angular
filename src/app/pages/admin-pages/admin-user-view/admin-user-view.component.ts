@@ -9,9 +9,7 @@ import {User} from '../../../models/user';
 })
 export class AdminUserViewComponent implements OnInit {
 
-  constructor(
-    private service: AdminUsersService
-  ) { }
+
 
   currentPage: number;
   totalPage: number;
@@ -20,6 +18,12 @@ export class AdminUserViewComponent implements OnInit {
 
   arrowLeft: boolean;
   arrowRight: boolean;
+
+  constructor(
+    private service: AdminUsersService
+  ) {
+    this.users = [];
+  }
 
   ngOnInit(): void {
     this.currentPage = 1;

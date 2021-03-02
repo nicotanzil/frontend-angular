@@ -6,7 +6,7 @@
       Sign In
     </div>
     <!-- ERROR MESSAGE -->
-    <span [(ngModel)]="errorBox" *ngIf="isError == true" class="error-message">{{errorMessage}}</span>
+    <span [(ngModel)]="errorBox" *ngIf="isError == true" class="error-message">{{errorMessage}} <a href="/suspension-request" *ngIf="isSuspend">Send unsuspend request</a></span>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" action="#" class="login-input" method="POST">
       <!-- STEAM ACCOUNT NAME INPUT -->
       <div class="steam-name-input">

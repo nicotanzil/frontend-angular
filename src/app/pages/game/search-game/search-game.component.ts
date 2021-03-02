@@ -61,7 +61,8 @@ export class SearchGameComponent implements OnInit {
   @HostListener('window:scroll', ['$event']) onScroll(event: any): void {
     this.clientHeight = event.target.scrollingElement.clientHeight;
     this.scrollPos = window.pageYOffset;
-
+    console.log('client height: ' + this.clientHeight);
+    console.log('scroll pos: ' + this.scrollPos);
     if (this.scrollPos >= 0.5 * this.clientHeight && !this.isLoading && !this.endOfData) {
       // Load more data
       this.isLoading = true;

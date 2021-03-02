@@ -18,6 +18,5 @@ export class User {
   country: string;
   experience: number;
   isSuspend: boolean;
-  suspensionRequest: SuspensionRequest;
   level: number;
 }

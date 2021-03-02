@@ -1,0 +1,21 @@
+<app-header></app-header>
+<section>
+  <div class="suspension-content">
+    <div class="title">
+      Send Unsuspend Request
+    </div>
+    <div class="content-container">
+      <div class="content">
+        <span>Account Name</span>
+        <input type="text" [(ngModel)]="accountName">
+      </div>
+      <div class="content">
+        <span>Description</span>
+        <textarea name="description" id="description" cols="30" rows="10" [(ngModel)]="description"></textarea>
+      </div>
+      <div class="button-container">
+        <button class="submitBtn" (click)="onSubmit()">Submit</button>
+      </div>
+    </div>
+  </div>
+</section>

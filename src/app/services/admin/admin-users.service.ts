@@ -112,11 +112,6 @@ const GET_USER_BY_ID = gql`
       summary
       avatar
       isSuspend
-      suspensionRequest {
-        id
-        description
-        createdAt
-      }
     }
   }
 `;
