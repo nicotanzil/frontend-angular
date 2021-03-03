@@ -35,18 +35,16 @@
       </form>
       <div class="search-result" *ngIf="games.length > 0 && inFocus">
         <div class="result-container">
-          <div class="row" *ngFor="let game of games"> <!-- loop here -->
-            <a href="#">
-              <div class="banner-container">
-                <img src="{{game.banner}}" alt="Game Banner">
-              </div>
-              <div class="detail-container">
-                <span class="name">{{game.name}}</span>
-                <span class="price" *ngIf="game.originalPrice != 0">{{game.originalPrice}}</span>
-                <span class="price" *ngIf="game.originalPrice == 0">Free to Play</span>
-              </div>
-            </a>
-          </div>
+          <a href="/game/{{game.id}}" class="row" *ngFor="let game of games"> <!-- loop here -->
+            <div class="banner-container">
+              <img src="{{game.banner}}" alt="Game Banner">
+            </div>
+            <div class="detail-container">
+              <span class="name">{{game.name}}</span>
+              <span class="price" *ngIf="game.originalPrice != 0">{{game.originalPrice}}</span>
+              <span class="price" *ngIf="game.originalPrice == 0">Free to Play</span>
+            </div>
+          </a>
         </div>
       </div>
     </div>

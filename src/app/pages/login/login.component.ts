@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
   ) {
-    this.isSuspend = true;
+    this.isSuspend = false;
   }
 
   loginForm = this.formBuilder.group({

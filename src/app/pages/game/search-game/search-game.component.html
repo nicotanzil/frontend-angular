@@ -7,7 +7,7 @@
         <div class="result-count">
           {{totalGame}} results match you search.
         </div>
-        <a href="#" class="row" *ngFor="let game of games"
+        <a href="/game/{{game.id}}" class="row" *ngFor="let game of games"
         (mouseenter)="onHover(game.id)" (mouseleave)="clearHover()">
           <span class="banner-container">
             <img src="{{game.banner}}" alt="Game banner">

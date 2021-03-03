@@ -1,0 +1,124 @@
+@import '../../../styles/colors';
+@import '../../../styles/mixins';
+
+section {
+  display: flex;
+  justify-content: center;
+}
+
+.game-detail-outer-container {
+  width: 1000px;
+  .content-container {
+    width: 100%;
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      .name {
+        font-size: 20px;
+        color: white;
+      }
+      .btn {
+        background-color: $blue-btn;
+        color: $font-light-blue;
+        border: none;
+        padding: 5px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+      .btn:hover {
+        -webkit-filter: brightness(120%);
+      }
+    }
+    .highlights-container {
+      width: 100%;
+      margin-top: 15px;
+      display: flex;
+      flex-direction: row;
+      background-color: $dark-blue-home;
+      .slideshow-container {
+        width: 70%;
+        margin-right: 10px;
+        .big-media-container {
+          img, video {
+            width: 100%;
+            height: 400px;
+          }
+        }
+        .media-scroll {
+          .small-media-container {
+            max-width: 100%;
+            max-height: 100px;
+            display: flex;
+            flex-direction: row;
+            overflow: auto;
+            video, img {
+              width: 150px;
+              cursor: pointer;
+              margin: 0 2.5px;
+              border: 2px solid $dark-blue-home;
+            }
+            .select {
+              border: 2px solid $font-light-gray;
+            }
+            .deselect {
+              border: 2px solid $dark-blue-home;
+            }
+          }
+        }
+      }
+      .detail-container {
+        width: 30%;
+        img {
+          width: 100%;
+        }
+        .summary {
+          margin-bottom: 10px;
+          color: $font-light-gray;
+          font-size: 12px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          position: relative;
+          height: 5.6em;
+        }
+        .more-detail-container {
+          margin-bottom: 5px;
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          font-size: 11px;
+          color: $font-gray;
+          .detail-name {
+            text-transform: uppercase;
+            width: 40%;
+          }
+          .detail-value {
+            color: $font-light-gray;
+            width: 100%;
+          }
+        }
+        .user-tag-container {
+          font-size: 12px;
+          .user-tag-title {
+            color: $font-gray;
+          }
+          .tags-container {
+            display: flex;
+            flex-direction: row;
+            margin-top: 10px;
+            .tag {
+              background-color: $blue-btn;
+              color: $font-light-blue;
+              padding: 3px;
+              margin-right: 5px;
+              cursor: pointer;
+            }
+            .tag:hover {
+              -webkit-filter: brightness(120%);
+            }
+          }
+        }
+      }
+    }
+  }
+}

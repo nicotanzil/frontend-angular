@@ -13,15 +13,15 @@ import {Router} from '@angular/router';
 })
 export class HeaderMainComponent implements OnInit {
 
-
   @Input() isUser: boolean;
   @Input() user: User;
 
   constructor(
     private service: AuthService,
     private router: Router,
-  ) { }
-
+  ) {
+    this.user = new User();
+  }
 
   ngOnInit(): void {
 

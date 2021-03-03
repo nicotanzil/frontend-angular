@@ -31,7 +31,7 @@ export class ViewProfileComponent implements OnInit {
         this.user.summary = query.data.getUserByUrl.summary;
         this.user.avatar = query.data.getUserByUrl.avatar;
         this.user.profileBackground = query.data.getUserByUrl.profileBackground;
-        this.user.customUrl = query.data.getUserByUrl.customURL;
+        this.user.customURL = query.data.getUserByUrl.customURL;
         this.user.country = query.data.getUserByUrl.country.name;
         this.user.experience = query.data.getUserByUrl.experience;
         this.user.level = Math.floor(this.user.experience / 100);

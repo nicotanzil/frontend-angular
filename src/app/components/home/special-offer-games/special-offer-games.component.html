@@ -4,7 +4,7 @@
       Special Offers
     </div>
     <div class="content-container">
-      <a href="#" class="row" *ngFor="let game of games">
+      <a href="/game/{{game.id}}" class="row" *ngFor="let game of games">
         <div class="left-container">
           <div class="image-container">
             <img src="{{game.banner}}" alt="Game Image">

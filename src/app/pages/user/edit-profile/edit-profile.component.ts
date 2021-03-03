@@ -43,7 +43,7 @@ export class EditProfileComponent implements OnInit {
         this.user.profileName = query.data.getUserByUrl.profileName;
         this.user.realName = query.data.getUserByUrl.realName;
         this.user.balance = query.data.getUserByUrl.balance;
-        this.user.customUrl = query.data.getUserByUrl.customURL;
+        this.user.customURL = query.data.getUserByUrl.customURL;
         this.user.summary = query.data.getUserByUrl.summary;
         this.user.avatar = query.data.getUserByUrl.avatar;
         this.user.avatarFrame = query.data.getUserByUrl.avatarFrame;

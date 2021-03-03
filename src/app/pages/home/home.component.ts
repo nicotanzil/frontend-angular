@@ -10,29 +10,21 @@ import {CurrentUser} from '../../models/current-user';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(
-    private service: AuthService,
-  ) { }
-
   isUser: boolean;
   user: User;
+
+  constructor(
+    private service: AuthService,
+  ) {
+    this.user = new User();
+  }
+
 
   ngOnInit(): void {
     this.service.getUserAuth().subscribe(async (query) => {
       if (query.data.getUserAuth.accountName !== '') {
-        // logged in user
-        console.log(query.data);
-        CurrentUser.id = query.data.getUserAuth.id;
-        CurrentUser.accountName = query.data.getUserAuth.accountName;
-        CurrentUser.profileName = query.data.getUserAuth.profileName;
-        CurrentUser.realName = query.data.getUserAuth.realName;
-        CurrentUser.email = query.data.getUserAuth.email;
-        CurrentUser.balance = query.data.getUserAuth.balance;
-        CurrentUser.customUrl = query.data.getUserAuth.customURL;
-        CurrentUser.avatar = query.data.getUserAuth.avatar;
-        CurrentUser.profileBackground = query.data.getUserAuth.profileBackground;
-
-        this.user = CurrentUser;
+        this.user = query.data.getUserAuth;
+        console.log(this.user);
         this.isUser = true;
       }
       else {

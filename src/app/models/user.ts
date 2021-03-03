@@ -8,7 +8,7 @@ export class User {
   email: string;
   password: string;
   balance: number;
-  customUrl: string;
+  customURL: string;
   avatar: string;
   avatarFrame: string;
   profileBackground: string;

@@ -12,6 +12,15 @@ export class GameService {
     private apollo: Apollo
   ) { }
 
+  getGameById(id: number): Observable<Query>{
+    return this.apollo.query<Query>({
+      query: GET_GAME_BY_ID,
+      variables: {
+        id,
+      }
+    });
+  }
+
   gameSearch(keyword: string): Observable<Query> {
     return this.apollo.query<Query>({
       query: GAME_SEARCH,
@@ -33,6 +42,52 @@ export class GameService {
     });
   }
 }
+
+const GET_GAME_BY_ID = gql`
+  query getGameById($id:Int!){
+    gameById(id:$id){
+      id
+      name
+      description
+      releaseDate
+      genres {
+        id
+        name
+      }
+      tags {
+        id
+        name
+      }
+      originalPrice
+      promo {
+        id
+        discountPercentage
+      }
+      developers{
+        id
+        name
+      }
+      publisher {
+        id
+        name
+      }
+       system {
+        id
+        os
+      }
+      banner
+      video {
+        id
+        link
+      }
+      images {
+        id
+        link
+      }
+      createdAt
+    }
+  }
+`;
 
 const GAME_SEARCH = gql`
   query getSearchGame($keyword:String!) {

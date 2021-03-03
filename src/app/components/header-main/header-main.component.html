@@ -77,7 +77,7 @@
                 <i class="fa fa-sort-desc" aria-hidden="true"></i>
                 <div id="account-dropdown">
                   <div class="item">
-                    <a [routerLink]="['/user/', this.user.customUrl]">View Profile</a>
+                    <a [routerLink]="['/user/', this.user.customURL]">View Profile</a>
                   </div>
                   <div class="item">
                     <a href="#">Account Details</a>
@@ -96,7 +96,7 @@
               <a href="#" class="balance">Rp {{ this.user.balance }}</a>
             </div>
           </div>
-          <a [routerLink]="['/user', this.user.customUrl]" id="header-user-avatar" *ngIf="this.isUser">
+          <a [routerLink]="['/user', this.user.customURL]" id="header-user-avatar" *ngIf="this.isUser">
             <img src="{{ this.user.avatar }}" alt="{{ this.user.accountName }} Avatar">
           </a>
         </div>

@@ -1,9 +1,9 @@
-<app-header-main [user]="this.user" [isUser]="this.isUser"></app-header-main>
+<app-header-main [user]="user" [isUser]="isUser"></app-header-main>
 <section>
   <div class="home-container">
-    <app-home-sidebar [isUser]="this.isUser"></app-home-sidebar>
+    <app-home-sidebar [isUser]="isUser"></app-home-sidebar>
     <div class="home-main-container">
-      <app-home-nav [user] = "this.user" [isUser]="this.isUser"></app-home-nav>
+      <app-home-nav [user] = "user" [isUser]="isUser"></app-home-nav>
       <app-special-offer-games></app-special-offer-games>
       <app-home-game-category></app-home-game-category>
     </div>

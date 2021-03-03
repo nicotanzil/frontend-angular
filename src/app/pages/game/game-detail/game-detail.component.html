@@ -1,0 +1,51 @@
+<app-header-main [user]="this.user" [isUser]="this.isUser"></app-header-main>
+<section>
+  <div class="game-detail-outer-container">
+    <app-home-nav [user] = "user" [isUser]="isUser"></app-home-nav>
+    <div class="content-container">
+      <div class="header-container">
+        <span class="name">{{game.name}}</span>
+        <button class="btn">Community Hub</button>
+      </div>
+      <div class="highlights-container">
+        <div class="slideshow-container">
+          <div class="big-media-container">
+            <img src="{{selectedImage.link}}" alt="Selected Image" *ngIf="isImageSelected">
+            <video src="{{selectedVideo.link}}" *ngIf="!isImageSelected" controls></video>
+          </div>
+          <div class="media-scroll">
+            <div class="small-media-container">
+              <video src="{{video.link}}" *ngFor="let video of game.video"
+              [ngClass]="videosList[video.id] ? 'select' : 'deselect'"
+              (click)="onClick(video.id, false)"></video>
+              <img src="{{image.link}}" alt="Game Image" *ngFor="let image of game.images"
+              [ngClass]="imagesList[image.id] ? 'select' : 'deselect'"
+              (click)="onClick(image.id, true)">
+            </div>
+          </div>
+        </div>
+        <div class="detail-container">
+          <img src="{{game.banner}}" alt="Game banner">
+          <div class="summary">{{game.description}}</div>
+          <div class="more-detail-container">
+            <span class="detail-name">Release Date</span>
+            <span class="detail-value">{{game.createdAt | date}}</span>
+          </div>
+          <div class="more-detail-container">
+            <span class="detail-name">Developer</span>
+            <span class="detail-value"><span *ngFor="let developer of game.developers">{{developer.name}} </span></span>
+          </div>
+          <div class="more-detail-container">
+            <span class="detail-name">Publisher</span>
+            <span class="detail-value">{{game.publisher.name}}</span>
+          </div>
+          <div class="user-tag-container">
+            <div class="user-tag-title">Popular user-defined tags for this product:</div>
+            <div class="tags-container"><span class="tag" *ngFor="let tag of game.tags">{{tag.name}}</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

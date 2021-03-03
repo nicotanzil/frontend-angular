@@ -19,6 +19,7 @@ import {AdminUserDetailComponent} from './pages/admin-pages/admin-user-detail/ad
 import {SearchGameComponent} from './pages/game/search-game/search-game.component';
 import {AdminGameUpdateComponent} from './pages/admin-pages/admin-game-update/admin-game-update.component';
 import {SuspensionRequestComponent} from './pages/user/suspension-request/suspension-request.component';
+import {GameDetailComponent} from './pages/game/game-detail/game-detail.component';
 
 const routes: Routes = [
   {
@@ -100,6 +101,10 @@ const routes: Routes = [
   {
     path: 'search/category/:categoryKey',
     component: SearchGameComponent,
+  },
+  {
+    path: 'game/:id',
+    component: GameDetailComponent,
   },
   {
     path: '**',

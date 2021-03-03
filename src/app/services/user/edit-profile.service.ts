@@ -29,7 +29,7 @@ export class EditProfileService {
       accountName: updatedUser.accountName,
       profileName: updatedUser.profileName,
       realName: updatedUser.realName,
-      customUrl: updatedUser.customUrl,
+      customUrl: updatedUser.customURL,
       summary: updatedUser.summary,
       avatar: updatedUser.avatar,
       avatarFrame: updatedUser.avatarFrame,

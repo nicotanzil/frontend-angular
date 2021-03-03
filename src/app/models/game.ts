@@ -20,7 +20,7 @@ export class Game {
   gamePlayHour: number;
   gameReviews: Review[] = [];
   developers: Developer[] = [];
-  publisher: Publisher;
+  publisher: Publisher = new Publisher();
   system: System;
 
   banner: string;

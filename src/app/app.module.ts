@@ -44,6 +44,7 @@ import { SpecialOfferGamesComponent } from './components/home/special-offer-game
 import { HomeGameCategoryComponent } from './components/home/home-game-category/home-game-category.component';
 import { NewTrendingGamesComponent } from './components/home/game-category/new-trending-games/new-trending-games.component';
 import { SpecialGamesComponent } from './components/home/game-category/special-games/special-games.component';
+import { GameDetailComponent } from './pages/game/game-detail/game-detail.component';
 
 
 @NgModule({
@@ -81,6 +82,7 @@ import { SpecialGamesComponent } from './components/home/game-category/special-g
     HomeGameCategoryComponent,
     NewTrendingGamesComponent,
     SpecialGamesComponent,
+    GameDetailComponent,
   ],
   imports: [
     BrowserModule,

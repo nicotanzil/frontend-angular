@@ -16,3 +16,7 @@
   background-position: 25%;
   background-size: 330% 100%;
 }
+
+@mixin br {
+  border: 1px solid red;
+}

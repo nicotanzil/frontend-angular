@@ -1,6 +1,6 @@
 <div class="new-trending-outer-container">
   <div class="row-container">
-    <a href="#" class="row" *ngFor="let game of games"
+    <a href="/game/{{game.id}}" class="row" *ngFor="let game of games"
     [ngClass]="rows[game.id] ? 'select' : 'deselect'"
     (mouseenter)="onHover(game.id)">
       <div class="left-container">

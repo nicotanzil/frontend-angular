@@ -49,6 +49,8 @@ export class SearchGameComponent implements OnInit {
     private authService: AuthService,
     private gameService: SearchGameService,
   ) {
+    this.user = new User();
+
     this.maxValue = 999999999;
     this.totalGame = 0;
     this.games = [];
@@ -69,8 +71,6 @@ export class SearchGameComponent implements OnInit {
   @HostListener('window:scroll', ['$event']) onScroll(event: any): void {
     this.clientHeight = event.target.scrollingElement.clientHeight;
     this.scrollPos = window.pageYOffset;
-    console.log('client height: ' + this.clientHeight);
-    console.log('scroll pos: ' + this.scrollPos);
     if (this.scrollPos >= 0.5 * this.clientHeight && !this.isLoading && !this.endOfData) {
       // Load more data
       this.isLoading = true;
@@ -89,25 +89,16 @@ export class SearchGameComponent implements OnInit {
     }
     this.authService.getUserAuth().subscribe(async (query) => {
       if (query.data.getUserAuth.accountName !== '') {
-        // logged in user
-        CurrentUser.id = query.data.getUserAuth.id;
-        CurrentUser.accountName = query.data.getUserAuth.accountName;
-        CurrentUser.profileName = query.data.getUserAuth.profileName;
-        CurrentUser.realName = query.data.getUserAuth.realName;
-        CurrentUser.email = query.data.getUserAuth.email;
-        CurrentUser.balance = query.data.getUserAuth.balance;
-        CurrentUser.customUrl = query.data.getUserAuth.customURL;
-        CurrentUser.avatar = query.data.getUserAuth.avatar;
-        CurrentUser.profileBackground = query.data.getUserAuth.profileBackground;
-
-        this.user = CurrentUser;
+        this.user = query.data.getUserAuth;
         this.isUser = true;
+        console.log(this.user);
       }
       else {
         // guest login
         this.isUser = false;
       }
     }, (error) => {
+      console.log(error);
       this.isUser = false;
     });
     this.fetchGameData();
@@ -116,7 +107,6 @@ export class SearchGameComponent implements OnInit {
 
   fetchGameData = () => {
     this.isLoading = true;
-    console.log(this.inputTags);
     this.gameService.getSearchGamePage(this.keyword, this.currentPage, this.price, this.inputTags).subscribe(async query => {
       this.fetchGames = query.data.gameSearchPage;
       this.hoveredGame = this.fetchGames[0];
