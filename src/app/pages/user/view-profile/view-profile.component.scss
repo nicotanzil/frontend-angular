@@ -69,25 +69,40 @@
           padding: 15px 8px;
           background-color: $badge-slot-bg;
           color: $font-gray;
+          display: flex;
+          align-items: center;
           a {
             color: white;
             text-decoration: none;
           }
+          img {
+            height: 50px;
+          }
+          .badge-desc {
+            display: flex;
+            flex-direction: column;
+            .badge-name {
+              color: $font-light-gray;
+              font-size: 14px;
+            }
+          }
         }
-        .edit-profile-btn-container {
+        .button-container {
           margin-top: 20px;
-          .edit-profile-btn {
+          .btn {
             padding: 10px 15px;
             max-width: 150px;
 
             background-color: $btn-gray;
             text-align: center;
+
+            cursor: pointer;
             span {
               color: $font-light-gray;
               font-size: 15px;
             }
           }
-          .edit-profile-btn:hover {
+          .btn:hover {
             -webkit-filter: brightness(120%);
           }
         }

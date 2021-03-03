@@ -48,6 +48,34 @@ const GET_USER_AUTH = gql`
         id
         name
       }
+      badges {
+        id
+        name
+        link
+        xp
+        createdAt
+      }
+      featuredBadge {
+        id
+        name
+        link
+        xp
+        createdAt
+      }
+      friends {
+        id
+        accountName
+        profileName
+        realName
+        customURL
+        summary
+        avatar
+        avatarFrame
+        profileBackground
+        miniProfileBackground
+        theme
+        experience
+      }
     }
   }
 `;

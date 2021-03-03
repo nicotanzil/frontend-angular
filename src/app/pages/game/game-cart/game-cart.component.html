@@ -1,0 +1,46 @@
+<app-header-main [user]="user" [isUser]="isUser"></app-header-main>
+<section>
+  <div class="cart-outer-container">
+    <app-home-nav [user]="user" [isUser]="isUser"></app-home-nav>
+    <div class="content-container">
+      <div class="header-container">
+        Your Shopping Cart
+      </div>
+      <div class="outer-container">
+        <div class="inner-container">
+          <div class="content-container" *ngIf="games.length != 0">
+            <!-- MAIN CONTENT -->
+            <div class="row" *ngFor="let game of games; index as i">
+              <div class="game-detail">
+                <div class="banner-container">
+                  <img src="{{ game.banner }}" alt="">
+                </div>
+                <div class="description">
+                  <div class="name-container">
+                    <span class="name">{{ game.name }}</span>
+                    <span class="discount">-{{game.promo.discountPercentage}}%</span>
+                  </div>
+                  <div class="price-container">
+                    <span class="original-price">Rp {{game.originalPrice}}</span>
+                    <span class="final-price">Rp {{game.originalPrice - (game.originalPrice * game.promo.discountPercentage/100)}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="button-container">
+                <a class="btn remove-btn" (click)="remove(game.id)">Remove</a>
+              </div>
+            </div>
+          </div>
+          <div class="content-container" *ngIf="games.length == 0">
+            There's nothing to show here!
+          </div>
+        </div>
+        <div class="total-price">Estimated Total: Rp {{estimatedTotal}}</div>
+        <div class="button-container">
+          <div class="btn">Purchase for myself</div>
+          <div class="btn">Purchase as a gift</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,7 +1,10 @@
 import {SuspensionRequest} from './suspension-request';
+import {Game} from './game';
+import {Country} from './country';
+import {Badge} from './badge';
 
 export class User {
-  id: string;
+  id: number;
   accountName: string;
   profileName: string;
   realName: string;
@@ -15,8 +18,14 @@ export class User {
   miniProfileBackground: string;
   theme: string;
   summary: string;
-  country: string;
+  country: Country = new Country();
   experience: number;
   isSuspend: boolean;
-  level: number;
+
+  games: Game[] = [];
+  friends: User[] = [];
+
+  featuredBadge: Badge = new Badge();
+  badges: Badge[] = [];
+
 }

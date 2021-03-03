@@ -21,6 +21,16 @@
         background-color: rgba( 255, 255, 255, 0.4 );
         box-shadow: 0 0 3px #000;
       }
+      .cart-content {
+        padding: 0 25px;
+        color: white;
+        text-align: center;
+        background-color: $green-btn;
+        box-shadow: 0 0 3px #000;
+      }
+      .cart-content:hover {
+        -webkit-filter: brightness(120%);
+      }
       .wishlist-content:hover {
         background-color: lightgrey;
         color: black;

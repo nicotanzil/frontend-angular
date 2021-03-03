@@ -45,6 +45,19 @@
           </div>
         </div>
       </div>
+      <div class="add-to-cart-container">
+        <div class="title">Buy {{game.name}}</div>
+        <div class="outer-price-container">
+          <span class="discount-container" *ngIf="game.promo.discountPercentage > 0">-{{game.promo.discountPercentage}}%</span>
+          <span class="price-container">
+            <span class="original-price" *ngIf="game.promo.discountPercentage > 0">{{game.originalPrice}}</span>
+            <span class="final-price" *ngIf="game.promo.discountPercentage > 0">{{game.originalPrice - (game.originalPrice * game.promo.discountPercentage/100)}}</span>
+            <span class="final-price" *ngIf="game.originalPrice == 0">Free to Play</span>
+          </span>
+        </div>
+        <div class="add-to-cart-btn" *ngIf="game.originalPrice > 0" (click)="addToCart()">Add to Cart</div>
+        <div class="add-to-cart-btn" *ngIf="game.originalPrice == 0">Install Game</div>
+      </div>
     </div>
   </div>
 </section>

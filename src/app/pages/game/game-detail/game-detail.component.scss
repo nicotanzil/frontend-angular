@@ -120,5 +120,47 @@ section {
         }
       }
     }
+    .add-to-cart-container {
+      width: 60%;
+      background-color: $gray-bg;
+      margin-top: 20px;
+      padding: 10px;
+      color: $font-light-gray;
+      .title {
+        color: white;
+        font-size: 24px;
+      }
+      .outer-price-container {
+        display: flex;
+        flex-direction: column;
+        .discount-container {
+          background-color: $green-btn;
+          width: 50px;
+        }
+        .price-container {
+          margin-top: 10px;
+          .original-price {
+            font-size: 16px;
+            text-decoration: line-through;
+          }
+          .final-price {
+            margin-left: 10px;
+            color: white;
+            font-size: 20px;
+          }
+        }
+
+      }
+      .add-to-cart-btn {
+        background-color: $green-btn;
+        padding: 10px;
+        cursor: pointer;
+        width: 100px;
+        text-align: center;
+      }
+      .add-to-cart-btn:hover {
+        -webkit-filter: brightness(120%);
+      }
+    }
   }
 }

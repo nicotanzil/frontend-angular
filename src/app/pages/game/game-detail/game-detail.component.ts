@@ -1,11 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../../../models/user';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../../services/auth.service';
 import {GameService} from '../../../services/home/game.service';
 import {Game} from '../../../models/game';
 import {GameImage} from '../../../models/game-image';
 import {GameVideo} from '../../../models/game-video';
+import {CartService} from '../../../services/transaction/cart.service';
+import {async} from 'rxjs';
 
 @Component({
   selector: 'app-game-detail',
@@ -30,12 +32,16 @@ export class GameDetailComponent implements OnInit {
     private actRoute: ActivatedRoute,
     private authService: AuthService,
     private gameService: GameService,
+    private cartService: CartService,
+    private router: Router,
   ) {
     this.user = new User();
     this.imagesList = [];
     this.videosList = [];
     this.game = new Game();
     this.isImageSelected = false;
+    this.selectedImage = new GameImage();
+    this.selectedVideo = new GameVideo();
   }
 
   ngOnInit(): void {
@@ -157,4 +163,17 @@ export class GameDetailComponent implements OnInit {
     });
   }
 
+  addToCart(): void {
+    if (!this.isUser) {
+      // Redirect to login page
+      console.log('login');
+      this.router.navigateByUrl('/login');
+    } else {
+      // Add to cart
+      this.cartService.insertGameToCart(this.gameId, this.user.id).subscribe(async query => {
+        console.log(query);
+        alert('Game added to cart!');
+      });
+    }
+  }
 }

@@ -20,6 +20,7 @@ import {SearchGameComponent} from './pages/game/search-game/search-game.componen
 import {AdminGameUpdateComponent} from './pages/admin-pages/admin-game-update/admin-game-update.component';
 import {SuspensionRequestComponent} from './pages/user/suspension-request/suspension-request.component';
 import {GameDetailComponent} from './pages/game/game-detail/game-detail.component';
+import {GameCartComponent} from './pages/game/game-cart/game-cart.component';
 
 const routes: Routes = [
   {
@@ -105,6 +106,10 @@ const routes: Routes = [
   {
     path: 'game/:id',
     component: GameDetailComponent,
+  },
+  {
+    path: 'cart',
+    component: GameCartComponent,
   },
   {
     path: '**',

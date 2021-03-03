@@ -16,7 +16,7 @@ export class Game {
   genres: Genre[] = [];
   tags: Tag[] = [];
   originalPrice: number;
-  promo: Promo;
+  promo: Promo = new Promo();
   gamePlayHour: number;
   gameReviews: Review[] = [];
   developers: Developer[] = [];

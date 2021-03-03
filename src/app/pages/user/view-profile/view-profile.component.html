@@ -1,32 +1,48 @@
-<app-header-main [user]="this.user" [isUser]="isUser"></app-header-main>
+<app-header-main [user]="user" [isUser]="isUser"></app-header-main>
 <section>
-  <div class="container" style="background-image: url({{ this.user.profileBackground }})">
+  <div class="container" style="background-image: url({{ this.profileUser.profileBackground }})">
     <div class="content-theme">
       <div class="profile-header">
         <div class="profile-data">
           <div class="profile-detail">
             <span class="profile-name">
-              {{ this.user.profileName }}
+              {{ this.profileUser.profileName }}
             </span>
             <div class="real-name-country">
-              {{ this.user.realName }} | {{ this.user.country }}
+              {{ this.profileUser.realName }} | {{ this.profileUser.country.name }}
             </div>
             <div class="summary">
-              {{ this.user.summary }}
+              {{ this.profileUser.summary }}
             </div>
           </div>
-          <img src="{{ this.user.avatar }}" alt="User avatar">
+          <img src="{{ this.profileUser.avatar }}" alt="User avatar">
         </div>
         <div class="profile-badge">
-          <a href="#" class="profile-level">Level {{ this.user.level }}</a>
-          <div class="badge-slot">
+          <a href="#" class="profile-level">Level {{ level }}</a>
+          <div class="badge-slot" *ngIf="profileUser.featuredBadge.id == undefined">
             You can feature one of your Badges here. Select one from your
             <a href="#">edit profile</a> page
           </div>
-          <div class="edit-profile-btn-container">
-            <a [routerLink]="['/user/', this.user.customURL, 'edit']" class="edit-profile-btn">
+          <div class="badge-slot" *ngIf="profileUser.featuredBadge.id != undefined">
+            <img src="{{profileUser.featuredBadge.link}}" alt="Badge">
+            <div class="badge-desc">
+              <span class="badge-name">{{profileUser.featuredBadge.name}}</span>
+              <span class="badge-xp">{{profileUser.featuredBadge.xp}} XP</span>
+            </div>
+          </div>
+          <div class="button-container" *ngIf="isUser">
+            <a *ngIf="user.accountName == profileUser.accountName" [routerLink]="['/user/', this.profileUser.customURL, 'edit']" class="btn">
               <span>Edit Profile</span>
             </a>
+            <div *ngIf="user.accountName != profileUser.accountName && isFriend" class="btn">
+              <span>Message</span>
+            </div>
+            <div *ngIf="user.accountName != profileUser.accountName && !isFriend && !isFriendRequestExists" class="btn" (click)="sendFriendRequest()">
+              <span>Add Friend</span>
+            </div>
+            <div *ngIf="user.accountName != profileUser.accountName && !isFriend && isFriendRequestExists" class="btn">
+              <span>Cancel Request</span>
+            </div>
           </div>
         </div>
       </div>

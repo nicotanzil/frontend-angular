@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {UserService} from '../../../services/user.service';
 import {User} from '../../../models/user';
+import {AuthService} from '../../../services/auth.service';
+import {FriendRequestService} from '../../../services/user/friend-request.service';
 
 @Component({
   selector: 'app-view-profile',
@@ -9,37 +11,82 @@ import {User} from '../../../models/user';
   styleUrls: ['./view-profile.component.scss']
 })
 export class ViewProfileComponent implements OnInit {
-  constructor(
-    private actRoute: ActivatedRoute,
-    private service: UserService
-  ) { }
-
-  userUrl: string;
+  url: string;
+  profileUser: User;
   user: User;
   isUser: boolean;
+  isFriend: boolean;
+  isFriendRequestExists: boolean;
+  level: number;
+
+  constructor(
+    private actRoute: ActivatedRoute,
+    private userService: UserService,
+    private authService: AuthService,
+    private friendRequestService: FriendRequestService,
+  ) {
+    this.profileUser = new User();
+    this.user = new User();
+    this.isUser = false;
+    this.isFriend = false;
+    this.isFriendRequestExists = false;
+    this.user.friends = [];
+  }
 
   ngOnInit(): void {
     this.isUser = false;
-    this.user = new User();
-    this.userUrl = this.actRoute.snapshot.params.url;
-    this.service.getUserByUrl(this.userUrl).subscribe(async query => {
+    this.profileUser = new User();
+    this.url = this.actRoute.snapshot.params.url;
+    this.authService.getUserAuth().subscribe(async query => {
+      this.user = query.data.getUserAuth;
+      console.log(this.user);
+      this.isUser = true;
+      this.init();
+    }, error => {
+      this.isUser = false;
+      console.log(error);
+      this.init();
+    });
+  }
+
+  init(): void {
+    this.userService.getUserByUrl(this.url).subscribe(async query => {
       console.log(query.data);
       if (query.data) {
-        this.user.profileName = query.data.getUserByUrl.profileName;
-        this.user.realName = query.data.getUserByUrl.realName;
-        this.user.balance = query.data.getUserByUrl.balance;
-        this.user.summary = query.data.getUserByUrl.summary;
-        this.user.avatar = query.data.getUserByUrl.avatar;
-        this.user.profileBackground = query.data.getUserByUrl.profileBackground;
-        this.user.customURL = query.data.getUserByUrl.customURL;
-        this.user.country = query.data.getUserByUrl.country.name;
-        this.user.experience = query.data.getUserByUrl.experience;
-        this.user.level = Math.floor(this.user.experience / 100);
-        this.isUser = true;
+        this.profileUser = query.data.getUserByUrl;
+        console.log(this.profileUser);
+        this.level = Math.floor(this.profileUser.experience / 100);
+        this.validateRelationship();
+        if (!this.isFriend) {
+          this.friendRequestService.validateFriendRequest(this.user.id, this.profileUser.id).subscribe(async res => {
+            this.isFriendRequestExists = res.data.validateFriendRequestExists;
+          }, error => {
+            console.log(error);
+          });
+        }
       }
     }, error => {
       console.log(error);
-      this.isUser = false;
+    });
+  }
+
+  validateRelationship(): void {
+    if (this.user.accountName !== this.profileUser.accountName) {
+      this.user.friends.forEach(friend => {
+        console.log(friend);
+        if (this.profileUser.accountName === friend.accountName) {
+          this.isFriend = true;
+        }
+      });
+    }
+  }
+
+  sendFriendRequest(): void {
+    this.friendRequestService.createFriendRequest(this.user.id, this.profileUser.id).subscribe(async query => {
+      alert('Friend request sent!');
+      this.isFriendRequestExists = true;
+    }, error => {
+      console.log(error);
     });
   }
 }
