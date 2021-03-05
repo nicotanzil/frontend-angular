@@ -1,6 +1,6 @@
 <app-header-main [user]="user" [isUser]="isUser"></app-header-main>
 <section>
-  <div class="container" style="background-image: url({{ this.profileUser.profileBackground }})">
+  <div class="container" [ngStyle]="{'background-image': 'url(' + profileUser.profileBackground.link + ')'}">
     <div class="content-theme">
       <div class="profile-header">
         <div class="profile-data">

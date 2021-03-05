@@ -3,6 +3,7 @@ import {Apollo, gql} from 'apollo-angular';
 import {Observable} from 'rxjs';
 import {Query} from '../../models/query';
 import {User} from '../../models/user';
+import {UpdateUser} from '../../models/user/update-user';
 
 @Injectable({
   providedIn: 'root'
@@ -21,23 +22,18 @@ export class EditProfileService {
     });
   }
 
-  updateUser = (updatedUser: User) => {
-    console.log(updatedUser);
+  updateUser = (updateUser: UpdateUser) => {
     return this.apollo.mutate({
     mutation: UPDATE_USER_MUTATION,
     variables: {
-      accountName: updatedUser.accountName,
-      profileName: updatedUser.profileName,
-      realName: updatedUser.realName,
-      customUrl: updatedUser.customURL,
-      summary: updatedUser.summary,
-      avatar: updatedUser.avatar,
-      avatarFrame: updatedUser.avatarFrame,
-      profileBackground: updatedUser.profileBackground,
-      miniProfileBackground: updatedUser.miniProfileBackground,
-      theme: updatedUser.theme,
-      countryId: Number(updatedUser.country),
+        updateUser,
       },
+    });
+  }
+
+  themes(): Observable<Query> {
+    return this.apollo.query<Query>({
+      query: GET_ALL_THEMES,
     });
   }
 
@@ -53,15 +49,17 @@ const GET_COUNTRIES_QUERY = gql`
 `;
 
 const UPDATE_USER_MUTATION = gql`
-  mutation UpdateUser($accountName:String!, $profileName:String!,
-  $realName:String!, $customUrl:String!, $summary:String!,
-  $avatar:String!, $avatarFrame:String!, $profileBackground:String!,
-  $miniProfileBackground:String!, $theme:String!, $countryId:Int!) {
-  updateUser(user:{accountName:$accountName, profileName:$profileName,
-    realName:$realName, customURL:$customUrl, summary:$summary,
-    avatar:$avatar, avatarFrame:$avatarFrame,
-    profileBackground:$profileBackground,
-    miniProfileBackground:$miniProfileBackground,
-    theme:$theme, CountryId:$countryId})
-}
+  mutation update($updateUser:UpdateUser!) {
+    updateUser(user:$updateUser)
+  }
 `;
+
+const GET_ALL_THEMES = gql`
+  query themes {
+    themes{
+      id
+      name
+      color
+    }
+  }
+`

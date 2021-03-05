@@ -46,6 +46,11 @@ import { NewTrendingGamesComponent } from './components/home/game-category/new-t
 import { SpecialGamesComponent } from './components/home/game-category/special-games/special-games.component';
 import { GameDetailComponent } from './pages/game/game-detail/game-detail.component';
 import { GameCartComponent } from './pages/game/game-cart/game-cart.component';
+import { ProfileBackgroundFormComponent } from './components/user/profile-background-form/profile-background-form.component';
+import { MiniProfileCardComponent } from './components/user/mini-profile-card/mini-profile-card.component';
+import { MiniProfileFormComponent } from './components/user/mini-profile-form/mini-profile-form.component';
+import { ThemeFormComponent } from './components/user/theme-form/theme-form.component';
+import { FeaturedBadgeFormComponent } from './components/user/featured-badge-form/featured-badge-form.component';
 
 
 @NgModule({
@@ -85,6 +90,11 @@ import { GameCartComponent } from './pages/game/game-cart/game-cart.component';
     SpecialGamesComponent,
     GameDetailComponent,
     GameCartComponent,
+    ProfileBackgroundFormComponent,
+    MiniProfileCardComponent,
+    MiniProfileFormComponent,
+    ThemeFormComponent,
+    FeaturedBadgeFormComponent,
   ],
   imports: [
     BrowserModule,

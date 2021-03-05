@@ -35,7 +35,7 @@
       <div class="section-input">
         <div class="dropdown-input">
           <label for="countries">Country</label>
-          <select name="countries" id="countries" [(ngModel)]="currentUser.country">
+          <select name="countries" id="countries" [(ngModel)]="currentUser.CountryId">
             <option
               *ngFor="let country of countries; let i = index" value={{i+1}}>{{country.name}}
             </option>

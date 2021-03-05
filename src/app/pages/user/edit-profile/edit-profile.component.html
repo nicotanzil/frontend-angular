@@ -37,6 +37,10 @@
       <div class="content">
         <app-general-form *ngIf="buttons['generalBtn']" [user]="this.user"></app-general-form>
         <app-avatar-form *ngIf="buttons['avatarBtn']" [user]="this.user"></app-avatar-form>
+        <app-profile-background-form *ngIf="buttons['backgroundBtn']" [user]="this.user"></app-profile-background-form>
+        <app-mini-profile-form *ngIf="buttons['miniBtn']" [user]="user"></app-mini-profile-form>
+        <app-theme-form *ngIf="buttons['themeBtn']" [user]="user"></app-theme-form>
+        <app-featured-badge-form *ngIf="buttons['badgeBtn']" [user]="user"></app-featured-badge-form>
       </div>
     </div>
   </div>

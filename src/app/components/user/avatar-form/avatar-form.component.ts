@@ -1,23 +1,19 @@
-import {Component, DoCheck, Input, OnInit} from '@angular/core';
+import {Component, DoCheck, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {User} from '../../../models/user';
 import {EditProfileService} from '../../../services/user/edit-profile.service';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
+import {UpdateUser} from '../../../models/user/update-user';
 
 @Component({
   selector: 'app-avatar-form',
   templateUrl: './avatar-form.component.html',
   styleUrls: ['./avatar-form.component.scss']
 })
-export class AvatarFormComponent implements OnInit, DoCheck {
-
-  constructor(
-    private service: EditProfileService,
-    private storage: AngularFireStorage,
-  ) { }
+export class AvatarFormComponent implements OnInit, OnChanges {
 
   @Input() user: User;
-  currentUser: User;
+  currentUser: UpdateUser;
 
   isSuccess: boolean;
   isError: boolean;
@@ -26,12 +22,20 @@ export class AvatarFormComponent implements OnInit, DoCheck {
   avatarImage: any;
   selectedImage: any;
 
+  constructor(
+    private service: EditProfileService,
+    private storage: AngularFireStorage,
+  ) {
+    this.user = new User();
+    this.currentUser = new UpdateUser(this.user);
+  }
+
   ngOnInit(): void {
   }
 
-  ngDoCheck(): void {
-    if (this.user.profileName === undefined || this.currentUser === undefined) {
-      this.currentUser = this.user;
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.user.profileName !== undefined || this.currentUser !== undefined) {
+      this.currentUser = new UpdateUser(this.user);
       this.avatarImage = this.currentUser.avatar;
       this.originalImage = this.currentUser.avatar;
     }
@@ -46,7 +50,7 @@ export class AvatarFormComponent implements OnInit, DoCheck {
     console.log(this.selectedImage);
 
     if (this.selectedImage !== null) {
-      const path = `assets/users/${this.currentUser.id}/avatar`;
+      const path = `assets/users/${this.user.id}/avatar`;
       const fileRef = this.storage.ref(path);
       this.storage.upload(path, this.selectedImage).snapshotChanges().pipe(
         finalize(() => {
@@ -72,10 +76,6 @@ export class AvatarFormComponent implements OnInit, DoCheck {
       this.isError = true;
       console.log('There has been an error: ', error);
     });
-  }
-
-  onCancel(): void {
-    this.currentUser = this.user;
   }
 
   showPreview(event: any): void{

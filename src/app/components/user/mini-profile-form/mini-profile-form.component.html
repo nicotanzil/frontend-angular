@@ -1,0 +1,29 @@
+<div class="mini-profile">
+  <form action="#" method="post">
+    <div class="about-section">
+      <div class="title">Mini Profile</div>
+      <div class="about-content">
+        Choose a background to appear in your miniprofile hover.
+      </div>
+    </div>
+    <div class="mini-profile-container">
+      <div class="preview-container">
+        <app-mini-profile-card [user]="user" [selectedBackground]="selectedBackground.link" [avatarFrame]="user.avatarFrame.link"></app-mini-profile-card>
+      </div>
+      <div class="choices-container">
+        <div class="background-container" *ngFor="let background of backgrounds" (click)="changePreview(background.id)">
+          <img src="{{background.link}}" alt="Background choice">
+          <span class="background-name">{{background.name}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="button-section">
+      <div class="button-container">
+        <span class="success-box" *ngIf="isSuccess">Data updated!</span>
+        <span class="error-box" *ngIf="isError">Oops, something went wrong!</span>
+        <button class="btn cancelBtn">Cancel</button>
+        <button class="btn saveBtn" (click)="onSave()">Save</button>
+      </div>
+    </div>
+  </form>
+</div>

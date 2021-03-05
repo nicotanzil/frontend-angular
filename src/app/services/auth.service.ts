@@ -28,56 +28,63 @@ export class AuthService {
 }
 
 const GET_USER_AUTH = gql`
-  query GetUserAuth {
-    getUserAuth {
+query GetUserAuth {
+  getUserAuth {
+    id
+    accountName
+    profileName
+    realName
+    email
+    balance
+    customURL
+    summary
+    avatar
+    avatarFrame {
+      id
+      link
+    }
+    profileBackground {
+      id
+      link
+    }
+    miniProfileBackground {
+      id
+      link
+    }
+    theme {
+      id
+      color
+    }
+    experience
+    country {
+      id
+      name
+    }
+    badges {
+      id
+      name
+      link
+      xp
+      createdAt
+    }
+    featuredBadge {
+      id
+      name
+      link
+      xp
+      createdAt
+    }
+    friends {
       id
       accountName
       profileName
       realName
-      email
-      balance
       customURL
       summary
       avatar
-      avatarFrame
-      profileBackground
-      miniProfileBackground
-      theme
-      experience
-      country {
-        id
-        name
-      }
-      badges {
-        id
-        name
-        link
-        xp
-        createdAt
-      }
-      featuredBadge {
-        id
-        name
-        link
-        xp
-        createdAt
-      }
-      friends {
-        id
-        accountName
-        profileName
-        realName
-        customURL
-        summary
-        avatar
-        avatarFrame
-        profileBackground
-        miniProfileBackground
-        theme
-        experience
-      }
     }
   }
+}
 `;
 
 const LOGOUT = gql`

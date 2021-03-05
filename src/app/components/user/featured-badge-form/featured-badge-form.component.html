@@ -1,0 +1,30 @@
+<div class="badge-container">
+  <form action="" method="post">
+    <div class="about-section">
+      <div class="title">Featured Badge</div>
+      <div class="about-content">
+        Choose a badge to feature at the top of your profile and miniprofile hover.
+      </div>
+    </div>
+    <div class="featured-badge-container">
+      <div class="badge-preview">
+        <img src="{{featuredBadge.link}}" alt="Featured badge">
+        <span class="badge-name">{{featuredBadge.name}}</span>
+      </div>
+      <div class="choices-container">
+        <div class="badge-choices-container" *ngFor="let badge of badges" (click)="changePreview(badge.id)">
+          <img src="{{badge.link}}" alt="Badge's Image">
+          <span class="badge-name">{{badge.name}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="button-section">
+      <div class="button-container">
+        <span class="success-box" *ngIf="isSuccess">Data updated!</span>
+        <span class="error-box" *ngIf="isError">Oops, something went wrong!</span>
+        <button class="btn cancelBtn">Cancel</button>
+        <button class="btn saveBtn" (click)="onSave()">Save</button>
+      </div>
+    </div>
+  </form>
+</div>

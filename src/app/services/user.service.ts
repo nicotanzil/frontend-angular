@@ -40,7 +40,7 @@ export class UserService {
         friendId,
       }
     });
-  };
+  }
 }
 
 const GET_USER_BY_ACCOUNT_NAME = gql`
@@ -69,10 +69,41 @@ const GET_USER_BY_URL = gql`
       customURL
       summary
       avatar
-      avatarFrame
-      profileBackground
-      miniProfileBackground
-      theme
+      avatarFrame {
+        id
+        link
+        name
+      }
+      avatarFrames {
+        id
+        link
+        name
+      }
+      profileBackground {
+        id
+        link
+        name
+      }
+      profileBackgrounds {
+        id
+        link
+        name
+      }
+      miniProfileBackground {
+        id
+        link
+        name
+      }
+      miniProfileBackgrounds {
+        id
+        link
+        name
+      }
+      theme {
+        id
+        color
+        name
+      }
       experience
       country {
         id
@@ -100,11 +131,6 @@ const GET_USER_BY_URL = gql`
         customURL
         summary
         avatar
-        avatarFrame
-        profileBackground
-        miniProfileBackground
-        theme
-        experience
       }
     }
   }

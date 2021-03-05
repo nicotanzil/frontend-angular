@@ -1,0 +1,24 @@
+<div class="mini-profile-container" [ngStyle]="{'background-image': 'url(' + selectedBackground +')'}">
+  <div class="upper-container">
+    <div class="avatar-frame" [ngStyle]="{'background-image': 'url(' + avatarFrame +')'}">
+      <img src="{{user.avatar}}" alt="Avatar">
+    </div>
+    <div class="profile">
+      <span class="profile-name">{{user.profileName}}</span>
+      <span class="online-status">Online</span>
+    </div>
+  </div>
+  <div class="lower-container">
+    <div class="badge-container">
+      <img src="{{user.featuredBadge.link}}" alt="Badge">
+      <div class="badge-detail-container">
+        <span class="badge-name">{{user.featuredBadge.name}}</span>
+        <span class="badge-xp">{{user.featuredBadge.xp}} XP</span>
+      </div>
+    </div>
+    <div class="level-container">
+      <span class="level">{{user.experience/100}}</span>
+      <span class="level-desc">Steam Level</span>
+    </div>
+  </div>
+</div>

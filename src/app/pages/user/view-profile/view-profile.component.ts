@@ -45,7 +45,6 @@ export class ViewProfileComponent implements OnInit {
     }, error => {
       this.isUser = false;
       console.log(error);
-      this.init();
     });
   }
 

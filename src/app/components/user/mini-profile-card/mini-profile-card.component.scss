@@ -1,0 +1,81 @@
+@import '../../../styles/colors';
+@import '../../../styles/mixins';
+
+.mini-profile-container {
+  width: 275px;
+  height: 175px;
+  color: $font-light-gray;
+
+  .upper-container {
+    padding: 0 10px;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .avatar-frame {
+      @include flex-center();
+      width: 80px;
+      height: 80px;
+      background-size: contain;
+      img {
+        width: 60px;
+        height: 60px;
+      }
+    }
+    .profile {
+      display: flex;
+      flex-direction: column;
+      color: $font-light-blue;
+      font-weight: bold;
+      margin-left: 15px;
+      .profile-name {
+        font-size: 14px;
+      }
+
+      .online-status {
+        font-size: 12px;
+      }
+    }
+  }
+
+  .lower-container {
+    height: 50%;
+    padding: 0 10px;
+    background: rgba(0, 0, 0, 0.8);
+    .badge-container {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      align-items: center;
+      img {
+        height: 50px;
+      }
+
+      .badge-detail-container {
+        display: flex;
+        flex-direction: column;
+        margin-left: 20px;
+
+        .badge-name {
+          font-size: 12px;
+        }
+
+        .badge-xp {
+          color: $font-gray;
+          font-size: 11px;
+        }
+      }
+    }
+
+    .level-container {
+      .level {
+        font-size: 18px;
+        padding: 5px;
+        margin-right: 20px;
+      }
+      .level-desc {
+        font-size: 14px;
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+<div class="profile-background">
+  <form action="#" method="post">
+    <div class="about-section">
+      <div class="title">Profile Background</div>
+      <div class="about-content">
+        Choose a background to show on your profile page.
+      </div>
+    </div>
+    <div class="profile-background-container">
+      <div class="preview-container">
+        <img src="{{selectedBackground.link}}" alt="Selected profile background">
+      </div>
+      <div class="choices-container">
+        <div class="background-container" *ngFor="let background of backgrounds" (click)="changePreview(background.id)">
+          <img src="{{background.link}}" alt="Background choice">
+          <span class="background-name">{{background.name}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="button-section">
+      <div class="button-container">
+        <span class="success-box" *ngIf="isSuccess">Data updated!</span>
+        <span class="error-box" *ngIf="isError">Oops, something went wrong!</span>
+        <button class="btn cancelBtn">Cancel</button>
+        <button class="btn saveBtn" (click)="onSave()">Save</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.getUserAuth().subscribe(async (query) => {
+      console.log(query);
       if (query.data.getUserAuth.accountName !== '') {
         this.user = query.data.getUserAuth;
         console.log(this.user);
@@ -32,6 +33,7 @@ export class HomeComponent implements OnInit {
         this.isUser = false;
       }
     }, (error) => {
+      console.log(error);
       this.isUser = false;
     });
   }

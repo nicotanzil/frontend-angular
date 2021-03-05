@@ -17,12 +17,12 @@ export class EditProfileComponent implements OnInit {
 
   updateId: string;
   buttons = {
-    generalBtn: true,
+    generalBtn: false,
     avatarBtn: false,
     backgroundBtn: false,
     miniBtn: false,
     themeBtn: false,
-    badgeBtn: false};
+    badgeBtn: true};
 
   constructor(
     private actRoute: ActivatedRoute,
@@ -36,21 +36,9 @@ export class EditProfileComponent implements OnInit {
     this.userUrl = this.actRoute.snapshot.params.url;
     this.service.getUserByUrl(this.userUrl).subscribe(async query => {
       if (query.data) {
-        console.log('GET USER BY URL');
         console.log(query.data);
-        this.user.id = query.data.getUserByUrl.id;
-        this.user.accountName = query.data.getUserByUrl.accountName;
-        this.user.profileName = query.data.getUserByUrl.profileName;
-        this.user.realName = query.data.getUserByUrl.realName;
-        this.user.balance = query.data.getUserByUrl.balance;
-        this.user.customURL = query.data.getUserByUrl.customURL;
-        this.user.summary = query.data.getUserByUrl.summary;
-        this.user.avatar = query.data.getUserByUrl.avatar;
-        this.user.avatarFrame = query.data.getUserByUrl.avatarFrame;
-        this.user.profileBackground = query.data.getUserByUrl.profileBackground;
-        this.user.miniProfileBackground = query.data.getUserByUrl.miniProfileBackground;
-        this.user.theme = query.data.getUserByUrl.theme;
-        this.user.country = query.data.getUserByUrl.country.id;
+        this.user = query.data.getUserByUrl;
+        console.log(this.user);
         this.isUser = true;
       }
     }, error => {

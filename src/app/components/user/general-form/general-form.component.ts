@@ -1,27 +1,31 @@
-import {Component, Input, OnInit, DoCheck} from '@angular/core';
+import {Component, Input, OnInit, DoCheck, OnChanges, SimpleChanges} from '@angular/core';
 import {User} from '../../../models/user';
 import {Country} from '../../../models/country';
 import {EditProfileService} from '../../../services/user/edit-profile.service';
 import {Query} from '../../../models/query';
+import {UpdateUser} from '../../../models/user/update-user';
 
 @Component({
   selector: 'app-general-form',
   templateUrl: './general-form.component.html',
   styleUrls: ['./general-form.component.scss']
 })
-export class GeneralFormComponent implements OnInit, DoCheck {
-
-  constructor(
-    private service: EditProfileService,
-  ) { }
+export class GeneralFormComponent implements OnInit, OnChanges {
 
   @Input() user: User;
-  currentUser: User;
+  currentUser: UpdateUser;
 
   countries: Country[];
 
   isSuccess: boolean;
   isError: boolean;
+
+  constructor(
+    private service: EditProfileService,
+  ) {
+    this.user = new User();
+    this.currentUser = new UpdateUser(this.user);
+  }
 
   ngOnInit(): void {
     // Get countries list
@@ -34,11 +38,12 @@ export class GeneralFormComponent implements OnInit, DoCheck {
     });
   }
 
-  ngDoCheck(): void {
-    if (this.user.profileName === undefined || this.currentUser === undefined) {
-      this.currentUser = this.user;
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.user.profileName !== undefined || this.currentUser !== undefined) {
+      this.currentUser = new UpdateUser(this.user);
     }
   }
+
 
   onSave(): void {
     // Validation here
@@ -53,9 +58,5 @@ export class GeneralFormComponent implements OnInit, DoCheck {
       this.isError = true;
       console.log('There has been an error: ', error);
     });
-  }
-
-  onCancel(): void {
-    this.currentUser = this.user;
   }
 }

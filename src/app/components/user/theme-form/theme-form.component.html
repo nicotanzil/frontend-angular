@@ -1,0 +1,27 @@
+<div class="theme">
+  <form action="" method="post">
+    <div class="about-section">
+      <div class="title">Theme</div>
+      <div class="about-content">
+        Choose a color theme for your profile page.
+      </div>
+    </div>
+    <div class="theme-container">
+      <div class="preview-container" [ngStyle]="{'background-color': selectedTheme.color}"></div>
+      <div class="choices-container">
+        <div class="theme-choices-container" *ngFor="let theme of themes" (click)="changePreview(theme.id)">
+          <div class="theme-circle" [ngStyle]="{'background-color': theme.color}"></div>
+          <span class="theme-name">{{theme.name}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="button-section">
+      <div class="button-container">
+        <span class="success-box" *ngIf="isSuccess">Data updated!</span>
+        <span class="error-box" *ngIf="isError">Oops, something went wrong!</span>
+        <button class="btn cancelBtn">Cancel</button>
+        <button class="btn saveBtn" (click)="onSave()">Save</button>
+      </div>
+    </div>
+  </form>
+</div>
