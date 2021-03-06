@@ -21,6 +21,7 @@ import {AdminGameUpdateComponent} from './pages/admin-pages/admin-game-update/ad
 import {SuspensionRequestComponent} from './pages/user/suspension-request/suspension-request.component';
 import {GameDetailComponent} from './pages/game/game-detail/game-detail.component';
 import {GameCartComponent} from './pages/game/game-cart/game-cart.component';
+import {GameWishlistComponent} from './pages/game/game-wishlist/game-wishlist.component';
 
 const routes: Routes = [
   {
@@ -110,6 +111,10 @@ const routes: Routes = [
   {
     path: 'cart',
     component: GameCartComponent,
+  },
+  {
+    path: 'wishlist',
+    component: GameWishlistComponent,
   },
   {
     path: '**',

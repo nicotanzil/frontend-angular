@@ -51,6 +51,8 @@ import { MiniProfileCardComponent } from './components/user/mini-profile-card/mi
 import { MiniProfileFormComponent } from './components/user/mini-profile-form/mini-profile-form.component';
 import { ThemeFormComponent } from './components/user/theme-form/theme-form.component';
 import { FeaturedBadgeFormComponent } from './components/user/featured-badge-form/featured-badge-form.component';
+import { GameWishlistComponent } from './pages/game/game-wishlist/game-wishlist.component';
+import { AvatarFrameFormComponent } from './components/user/avatar-frame-form/avatar-frame-form.component';
 
 
 @NgModule({
@@ -95,6 +97,8 @@ import { FeaturedBadgeFormComponent } from './components/user/featured-badge-for
     MiniProfileFormComponent,
     ThemeFormComponent,
     FeaturedBadgeFormComponent,
+    GameWishlistComponent,
+    AvatarFrameFormComponent,
   ],
   imports: [
     BrowserModule,

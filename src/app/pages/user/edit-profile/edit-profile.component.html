@@ -18,6 +18,10 @@
                 (click)="onClick('avatarBtn')"
         >Avatar</button>
         <button class="btn"
+                [ngClass]="buttons.badgeBtn ? 'select' : 'deselect'"
+                (click)="onClick('frameBtn')"
+        >Avatar Frame</button>
+        <button class="btn"
                 [ngClass]="buttons.backgroundBtn ? 'select' : 'deselect'"
                 (click)="onClick('backgroundBtn')"
         >Profile Background</button>
@@ -37,6 +41,7 @@
       <div class="content">
         <app-general-form *ngIf="buttons['generalBtn']" [user]="this.user"></app-general-form>
         <app-avatar-form *ngIf="buttons['avatarBtn']" [user]="this.user"></app-avatar-form>
+        <app-avatar-frame-form *ngIf="buttons['frameBtn']" [user]="user"></app-avatar-frame-form>
         <app-profile-background-form *ngIf="buttons['backgroundBtn']" [user]="this.user"></app-profile-background-form>
         <app-mini-profile-form *ngIf="buttons['miniBtn']" [user]="user"></app-mini-profile-form>
         <app-theme-form *ngIf="buttons['themeBtn']" [user]="user"></app-theme-form>

@@ -7,7 +7,8 @@ import {Game} from '../../../models/game';
 import {GameImage} from '../../../models/game-image';
 import {GameVideo} from '../../../models/game-video';
 import {CartService} from '../../../services/transaction/cart.service';
-import {async} from 'rxjs';
+import {async, Subject} from 'rxjs';
+import {WishlistService} from '../../../services/transaction/wishlist.service';
 
 @Component({
   selector: 'app-game-detail',
@@ -33,6 +34,7 @@ export class GameDetailComponent implements OnInit {
     private authService: AuthService,
     private gameService: GameService,
     private cartService: CartService,
+    private wishlistService: WishlistService,
     private router: Router,
   ) {
     this.user = new User();
@@ -173,6 +175,16 @@ export class GameDetailComponent implements OnInit {
       this.cartService.insertGameToCart(this.gameId, this.user.id).subscribe(async query => {
         console.log(query);
         alert('Game added to cart!');
+      });
+    }
+  }
+
+  addToWishlist(): void {
+    if (!this.user) {
+      this.router.navigateByUrl('/login');
+    } else {
+      this.wishlistService.insertGameToWishlist(this.gameId, this.user.id).subscribe(async query => {
+        alert('Game added to your wishlist!');
       });
     }
   }

@@ -155,11 +155,20 @@ section {
         background-color: $green-btn;
         padding: 10px;
         cursor: pointer;
-        width: 100px;
+        width: 200px;
         text-align: center;
       }
-      .add-to-cart-btn:hover {
+      .add-to-cart-btn:hover, .add-to-wishlist-btn:hover {
         -webkit-filter: brightness(120%);
+      }
+      .add-to-wishlist-btn {
+        background-color: $blue-btn;
+        color: $font-light-gray;
+        margin-top: 10px;
+        padding: 10px;
+        cursor: pointer;
+        width: 200px;
+        text-align: center;
       }
     }
   }

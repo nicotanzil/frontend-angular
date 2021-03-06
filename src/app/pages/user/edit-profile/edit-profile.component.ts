@@ -19,10 +19,11 @@ export class EditProfileComponent implements OnInit {
   buttons = {
     generalBtn: false,
     avatarBtn: false,
+    frameBtn: true,
     backgroundBtn: false,
     miniBtn: false,
     themeBtn: false,
-    badgeBtn: true};
+    badgeBtn: false};
 
   constructor(
     private actRoute: ActivatedRoute,

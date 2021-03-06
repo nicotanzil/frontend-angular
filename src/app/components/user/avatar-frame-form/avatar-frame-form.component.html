@@ -1,0 +1,29 @@
+<div class="avatar-frame">
+  <form action="" method="post">
+    <div class="about-section">
+      <div class="title">Avatar Frame</div>
+      <div class="about-content">
+        Choose an avatar frame to show on your mini profile card.
+      </div>
+    </div>
+    <div class="avatar-frame-container">
+      <div class="preview-container">
+        <img src="{{selectedFrame.link}}" alt="Avatar Frame">
+      </div>
+      <div class="choices-container">
+        <div class="frame-container" *ngFor="let frame of frames" (click)="changePreview(frame.id)">
+          <img src="{{frame.link}}" alt="Avatar Frame choice">
+          <span class="avatar-frame-name">{{frame.name}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="button-section">
+      <div class="button-container">
+        <span class="success-box" *ngIf="isSuccess">Data updated!</span>
+        <span class="error-box" *ngIf="isError">Oops, something went wrong!</span>
+        <button class="btn cancelBtn">Cancel</button>
+        <button class="btn saveBtn" (click)="onSave()">Save</button>
+      </div>
+    </div>
+  </form>
+</div>
