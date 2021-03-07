@@ -37,5 +37,4 @@ export class HomeComponent implements OnInit {
       this.isUser = false;
     });
   }
-
 }

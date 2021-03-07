@@ -2,179 +2,239 @@
 @import '../../styles/mixins.scss';
 
 .header-container {
-    width: 100%;
-    background-color: $header-bg;
-    height: 10%;
-    @include flex-center;
-    color: $header-font-fg;
-    .header {
+  width: 100%;
+  background-color: $header-bg;
+  height: 10%;
+  @include flex-center;
+  color: $header-font-fg;
+
+  .header {
+    display: flex;
+    flex-direction: row;
+
+    .header-left {
+      float: left;
+      @include flex-center;
+      flex-direction: row;
+      font-weight: lighter;
+
+      img {
+        height: 65px;
+      }
+
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
         display: flex;
         flex-direction: row;
-        .header-left {
-            float: left;
-            @include flex-center;
-            flex-direction: row;
-            font-weight: lighter;
-            img {
-                height: 65px;
-            }
-            ul {
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                li {
-                    margin: 0 15px;
-                    a {
-                        display: block;
-                        color: $header-font-fg;
-                        text-decoration: none;
-                        text-transform: uppercase;
-                        font-size: 14px;
-                    }
-                    a:hover {
-                        color: $header-font-fg-hover;
-                    }
-                    .dropdown-content-store, .dropdown-content-community {
-                        display: none;
-                        position: absolute;
-                        background-color: $header-bg;
-                        box-shadow: 3px 3px 5px -3px #000;;
-                        z-index: 10;
-                        a {
-                            color: $header-font-fg;
-                            padding: 10px 5px;
-                            text-decoration: none;
-                            font-size: 12px;
-                        }
-                        a:hover {
-                            color: $header-font-fg-hover;
-                        }
-                        ul {
-                            display: inline-block;
-                        }
-                    }
-                    .dropdown:hover {
-                        .dropdown-content-store, .dropdown-content-community {
-                            display: flex;
-                            flex-direction: column;
-                        }
-                    }
-                }
-            }
-        }
-        .header-right {
-          padding: 10px 0;
-          display: flex;
-          ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: row;
-            li {
-              margin: 0 5px;
+        align-items: center;
+
+        li {
+          margin: 0 15px;
+
+          a {
+            display: block;
+            color: $header-font-fg;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 14px;
+          }
+
+          a:hover {
+            color: $header-font-fg-hover;
+          }
+
+          .dropdown-content-store, .dropdown-content-community {
+            display: none;
+            position: absolute;
+            background-color: $header-bg;
+            box-shadow: 3px 3px 5px -3px #000;;
+            z-index: 10;
+
+            a {
+              color: $header-font-fg;
+              padding: 10px 5px;
+              text-decoration: none;
               font-size: 12px;
-              a {
-                display: block;
-                color: $header-font-fg;
-                text-align: center;
-                text-decoration: none;
-              }
-              a:hover {
-                color: $header-font-fg-hover;
-              }
+            }
+
+            a:hover {
+              color: $header-font-fg-hover;
+            }
+
+            ul {
+              display: inline-block;
             }
           }
-          .header-user-detail {
-            display: flex;
-            justify-content: space-between;
-            .mail-box {
-              padding: 4px 8px;
-              max-height: 15px;
 
-              font-size: 12px;
-              font-weight: bold;
-
-              background-color: $header-green;
-              cursor: pointer;
-              transition: 0.5s ease;
-              i {
-                padding-left: 4px;
-              }
-            }
-            .mail-box:hover {
-              -webkit-filter: brightness(140%);
-              transition: 0.5s ease;
-            }
-            .account-detail {
+          .dropdown:hover {
+            .dropdown-content-store, .dropdown-content-community {
               display: flex;
               flex-direction: column;
-
-              max-width: 100px;
-              overflow: hidden;
-              padding-left: 20px;
-
-              font-size: 12px;
-              text-align: right;
-
-              a {
-                text-decoration: none;
-                color: $header-font-fg;
-              }
-              a:hover {
-                color: white;
-              }
-              .name {
-                display: flex;
-                justify-content: flex-end;
-                color: $header-font-fg;
-                cursor: pointer;
-                i {
-                  padding-left: 10px;
-                }
-                #account-dropdown {
-                  display: none;
-                  z-index: 100;
-                  position: absolute;
-                  top: 24px;
-
-                  min-width: 150px;
-
-                  box-shadow: 0 0 12px black;
-                  background-color: $header-bg;
-                  .item {
-                    text-align: left;
-                    padding: 8px 15px;
-                  }
-                }
-                #account-dropdown:hover {
-                  display: block;
-                }
-              }
-              .name:hover {
-                color: white;
-                #account-dropdown {
-                  display: block;
-                }
-              }
-              .balance {
-                padding-top: 5px;
-              }
-
-            }
-          }
-
-          #header-user-avatar {
-            padding-left: 20px;
-            img {
-              width: 32px;
-              height: 32px;
-              border: 2px solid $header-user-avatar;
             }
           }
         }
+      }
     }
+
+    .header-right {
+      padding: 10px 0;
+      display: flex;
+
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+
+        li {
+          margin: 0 5px;
+          font-size: 12px;
+
+          a {
+            display: block;
+            color: $header-font-fg;
+            text-align: center;
+            text-decoration: none;
+          }
+
+          a:hover {
+            color: $header-font-fg-hover;
+          }
+        }
+      }
+
+      .header-user-detail {
+        display: flex;
+        justify-content: space-between;
+
+        .mail-box {
+          padding: 4px 8px;
+          max-height: 15px;
+
+          font-size: 12px;
+          font-weight: bold;
+
+          background-color: $header-green;
+          cursor: pointer;
+          transition: 0.5s ease;
+
+          i {
+            padding-left: 4px;
+          }
+        }
+
+        .mail-box:hover {
+          -webkit-filter: brightness(140%);
+          transition: 0.5s ease;
+        }
+
+        .notification-dropdown {
+          background-color: $header-bg;
+          z-index: 100;
+          position: absolute;
+          top: 36px;
+
+          min-width: 150px;
+
+          box-shadow: 0 0 12px black;
+
+          .item {
+            text-align: left;
+            padding: 8px 15px;
+
+            a {
+              text-decoration: none;
+              font-size: 14px;
+              color: $font-light-gray;
+            }
+          }
+
+          .item:hover {
+            a {
+              color: $font-light-blue;
+            }
+          }
+        }
+
+        .account-detail {
+          display: flex;
+          flex-direction: column;
+
+          max-width: 100px;
+          overflow: hidden;
+          padding-left: 20px;
+
+          font-size: 12px;
+          text-align: right;
+
+          a {
+            text-decoration: none;
+            color: $header-font-fg;
+          }
+
+          a:hover {
+            color: white;
+          }
+
+          .name {
+            display: flex;
+            justify-content: flex-end;
+            color: $header-font-fg;
+            cursor: pointer;
+
+            i {
+              padding-left: 10px;
+            }
+
+            #account-dropdown {
+              display: none;
+              z-index: 100;
+              position: absolute;
+              top: 24px;
+
+              min-width: 150px;
+
+              box-shadow: 0 0 12px black;
+              background-color: $header-bg;
+
+              .item {
+                text-align: left;
+                padding: 8px 15px;
+              }
+            }
+
+            #account-dropdown:hover {
+              display: block;
+            }
+          }
+
+          .name:hover {
+            color: white;
+
+            #account-dropdown {
+              display: block;
+            }
+          }
+
+          .balance {
+            padding-top: 5px;
+          }
+
+        }
+      }
+
+      #header-user-avatar {
+        padding-left: 20px;
+
+        img {
+          width: 32px;
+          height: 32px;
+          border: 2px solid $header-user-avatar;
+        }
+      }
+    }
+  }
 }

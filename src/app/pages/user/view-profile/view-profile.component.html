@@ -30,20 +30,26 @@
               <span class="badge-xp">{{profileUser.featuredBadge.xp}} XP</span>
             </div>
           </div>
-          <div class="button-container" *ngIf="isUser">
+          <div class="button-container" *ngIf="isUser && isFriend">
+            <div *ngIf="user.accountName != profileUser.accountName && isFriend">
+              <span class="btn">Message</span>
+              <span class="btn" (click)="reportModal = true">Report</span>
+            </div>
+          </div>
+          <div class="button-container" *ngIf="isUser && isSelf">
             <a *ngIf="user.accountName == profileUser.accountName"
-               [routerLink]="['/user/', this.profileUser.customURL, 'edit']" class="btn">
-              <span>Edit Profile</span>
+               [routerLink]="['/user/', this.profileUser.customURL, 'edit']">
+              <span class="btn">Edit Profile</span>
             </a>
-            <div *ngIf="user.accountName != profileUser.accountName && isFriend" class="btn">
-              <span>Message</span>
+          </div>
+          <div class="button-container" *ngIf="isUser && (isTotalStranger || isPendingStranger)">
+            <div *ngIf="isTotalStranger">
+              <span class="btn" (click)="sendFriendRequest()">Add Friend</span>
+              <span class="btn" (click)="reportModal = true">Report User</span>
             </div>
-            <div *ngIf="user.accountName != profileUser.accountName && !isFriend && !isFriendRequestExists" class="btn"
-                 (click)="sendFriendRequest()">
-              <span>Add Friend</span>
-            </div>
-            <div *ngIf="user.accountName != profileUser.accountName && !isFriend && isFriendRequestExists" class="btn">
-              <span>Cancel Request</span>
+            <div *ngIf="isPendingStranger">
+              <span class="btn">Cancel Request</span>
+              <span class="btn" (click)="reportModal = true">Report User</span>
             </div>
           </div>
         </div>
@@ -59,11 +65,11 @@
           </div>
           <div class="property-container">
             <a href="#" class="property-name">Badges</a>
-            <div class="property-count">{{user.badges.length}}</div>
+            <div class="property-count">{{profileUser.badges.length}}</div>
           </div>
           <div class="property-container">
             <a href="#" class="property-name">Games</a>
-            <div class="property-count">{{user.games.length}}</div>
+            <div class="property-count">{{profileUser.games.length}}</div>
           </div>
           <div class="property-container">
             <a href="#" class="property-name">Inventory</a>
@@ -74,20 +80,20 @@
           <div class="friends-property-container">
             <div class="friends-description-container">
               <a href="#" class="property-name">Friends</a>
-              <div class="property-count">{{user.friends.length}}</div>
+              <div class="property-count">{{profileUser.friends.length}}</div>
             </div>
             <div class="friends-container">
-              <div class="friends-content" *ngFor="let friend of user.friends; let i = index"
+              <div class="friends-content" *ngFor="let friend of profileUser.friends; let i = index"
                    (mouseenter)="onHover(i)"
-                    (mouseleave)="clearHover()">
+                   (mouseleave)="clearHover()">
                 <app-mini-profile-card [user]="friend"
                                        [selectedBackground]="friend.miniProfileBackground.link"
                                        [avatarFrame]="friend.avatarFrame.link"
-                                      *ngIf="friendContainers[i]"></app-mini-profile-card>
-                <div class="profile-detail-container">
+                                       *ngIf="friendContainers[i]"></app-mini-profile-card>
+                <a href="/user/{{friend.customURL}}" class="profile-detail-container">
                   <img src="{{friend.avatar}}" alt="User avatar">
                   <span class="profile-name">{{friend.profileName}}</span>
-                </div>
+                </a>
                 <span class="friend-level">{{floorNumber(friend.experience / 100)}}</span>
               </div>
             </div>
@@ -96,4 +102,28 @@
       </div>
     </div>
   </div>
+  <div class="modal" *ngIf="reportModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="header-title">Report User</span>
+        <span class="close" (click)="reportModal = false">&times;</span>
+      </div>
+      <div class="modal-description">
+        Send Suspend Request for {{profileUser.accountName}}'s Account
+      </div>
+      <div class="input-container">
+        <span class="input-title">Tell us your reason in the text area below</span>
+        <textarea name="description" id="description" cols="30" rows="5" [(ngModel)]="suspensionRequest.description" placeholder="Why should be suspend this user?"></textarea>
+      </div>
+      <div class="button-section">
+        <div class="button-container">
+          <span class="success-box" *ngIf="isSuccessModal">Data updated!</span>
+          <span class="error-box" *ngIf="isErrorModal">Oops, something went wrong!</span>
+          <button class="btn cancelBtn" (click)="reportModal = false">Cancel</button>
+          <button class="btn saveBtn" (click)="onSaveReport()">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
+<app-footer></app-footer>

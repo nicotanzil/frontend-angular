@@ -4,6 +4,8 @@ import {UserService} from '../../../services/user.service';
 import {User} from '../../../models/user';
 import {AuthService} from '../../../services/auth.service';
 import {FriendRequestService} from '../../../services/user/friend-request.service';
+import {SuspensionRequestService} from '../../../services/suspension-request.service';
+import {SuspensionRequest} from '../../../models/suspension-request';
 
 @Component({
   selector: 'app-view-profile',
@@ -15,17 +17,29 @@ export class ViewProfileComponent implements OnInit {
   profileUser: User;
   user: User;
   isUser: boolean;
-  isFriend: boolean;
   isFriendRequestExists: boolean;
   level: number;
 
+  isSelf: boolean;
+  isFriend: boolean;
+  isTotalStranger: boolean;
+  isPendingStranger: boolean;
+
   friendContainers: any[];
+
+  reportModal: boolean;
+
+  isSuccessModal: boolean;
+  isErrorModal: boolean;
+
+  suspensionRequest: SuspensionRequest;
 
   constructor(
     private actRoute: ActivatedRoute,
     private userService: UserService,
     private authService: AuthService,
     private friendRequestService: FriendRequestService,
+    private suspensionRequestService: SuspensionRequestService,
   ) {
     this.profileUser = new User();
     this.user = new User();
@@ -35,6 +49,18 @@ export class ViewProfileComponent implements OnInit {
     this.user.friends = [];
 
     this.friendContainers = [false];
+
+    this.isSelf = false;
+    this.isFriend = false;
+    this.isTotalStranger = false;
+    this.isPendingStranger = false;
+
+    this.reportModal = false;
+
+    this.isSuccessModal = false;
+    this.isErrorModal = false;
+
+    this.suspensionRequest = new SuspensionRequest();
   }
 
   ngOnInit(): void {
@@ -57,14 +83,18 @@ export class ViewProfileComponent implements OnInit {
       console.log(query.data);
       if (query.data) {
         this.profileUser = query.data.getUserByUrl;
-        console.log(this.profileUser);
+        this.suspensionRequest.user.id = this.profileUser.id;
         this.level = Math.floor(this.profileUser.experience / 100);
-        this.validateRelationship();
-        if (!this.isFriend) {
-          this.friendRequestService.validateFriendRequest(this.user.id, this.profileUser.id).subscribe(async res => {
-            this.isFriendRequestExists = res.data.validateFriendRequestExists;
-          }, error => {
-            console.log(error);
+        if (this.user.id === this.profileUser.id) {
+          this.isSelf = true; // Own account
+        } else {
+          this.user.friends.forEach(friend => {
+            if (this.profileUser.id === friend.id) {
+              this.isFriend = true; // Friend
+            } else {
+              // Stranger
+              this.validateFriendRequest();
+            }
           });
         }
       }
@@ -73,23 +103,22 @@ export class ViewProfileComponent implements OnInit {
     });
   }
 
-  validateRelationship(): void {
-    if (this.user.accountName !== this.profileUser.accountName) {
-      this.user.friends.forEach(friend => {
-        console.log(friend);
-        if (this.profileUser.accountName === friend.accountName) {
-          this.isFriend = true;
-        }
-      });
-    }
-  }
-
   sendFriendRequest(): void {
     this.friendRequestService.createFriendRequest(this.user.id, this.profileUser.id).subscribe(async query => {
       alert('Friend request sent!');
       this.isFriendRequestExists = true;
     }, error => {
       console.log(error);
+    });
+  }
+
+  validateFriendRequest(): void {
+    this.friendRequestService.validateFriendRequest(this.user.id, this.profileUser.id).subscribe(async query => {
+      if (query.data.validateFriendRequestExists) {
+        this.isPendingStranger = true;
+      } else {
+        this.isTotalStranger = true;
+      }
     });
   }
 
@@ -113,6 +142,19 @@ export class ViewProfileComponent implements OnInit {
     Object.keys(this.friendContainers).forEach(key => {
       // tslint:disable-next-line:triple-equals
       this.friendContainers[key] = false;
+    });
+  }
+
+  onSaveReport(): void {
+    this.isErrorModal = false;
+    this.isSuccessModal = false;
+    console.log(this.suspensionRequest);
+    this.suspensionRequestService.createSuspensionRequest(this.suspensionRequest).subscribe(async query => {
+      this.suspensionRequest.description = '';
+      this.isSuccessModal = true;
+    }, error => {
+      console.log(error);
+      this.isErrorModal = true;
     });
   }
 }

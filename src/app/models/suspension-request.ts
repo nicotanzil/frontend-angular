@@ -1,8 +1,8 @@
-import {User} from './user';
+import {InputUser} from './input/input-user';
 
 export class SuspensionRequest {
   id: number;
   description: string;
-  user: User;
+  user: InputUser = new InputUser();
   createdAt: Date;
 }

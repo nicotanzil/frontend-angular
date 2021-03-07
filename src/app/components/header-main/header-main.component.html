@@ -67,9 +67,26 @@
               <li>language</li>
           </ul>
           <div class="header-user-detail" *ngIf="this.isUser">
-            <div class="mail-box">
-                <span class="mail-number">15</span>
+            <div class="mail-box" (click)="changeNotificationDropdownState()">
+                <span class="mail-number">{{friendRequestCount}}</span>
                 <i class="fa fa-envelope" aria-hidden="true"></i>
+            </div>
+            <div class="notification-dropdown" *ngIf="isNotificationDropdown">
+              <div class="item">
+                <a href="#">0 new comments</a>
+              </div>
+              <div class="item">
+                <a href="#">0 new item in your inventory</a>
+              </div>
+              <div class="item">
+                <a href="#">{{friendRequestCount}} new invites</a>
+              </div>
+              <div class="item">
+                <a href="#">0 new gifts</a>
+              </div>
+              <div class="item">
+                <a href="#">0 unread chat messages</a>
+              </div>
             </div>
             <div class="account-detail">
               <div class="name">

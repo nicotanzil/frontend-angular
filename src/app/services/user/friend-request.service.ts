@@ -32,6 +32,15 @@ export class FriendRequestService {
       }
     });
   }
+
+  getPendingFriendRequestCount(id: number): Observable<Query> {
+    return this.apollo.query<Query>({
+      query: GET_PENDING_FRIEND_REQUEST_COUNT,
+      variables: {
+        id,
+      }
+    });
+  }
 }
 
 const CREATE_FRIEND_REQUEST = gql`
@@ -43,5 +52,11 @@ const CREATE_FRIEND_REQUEST = gql`
 const VALIDATE_FRIEND_REQUEST = gql`
   query validateFriendRequestExists($requesterId:Int!,$requestedId:Int!) {
     validateFriendRequestExists(requesterId:$requesterId,requestedId:$requestedId)
+  }
+`;
+
+const GET_PENDING_FRIEND_REQUEST_COUNT = gql`
+  query getPendingFriendRequestCount($id:Int!) {
+    getPendingFriendRequestCount(id:$id)
   }
 `;

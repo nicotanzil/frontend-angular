@@ -40,7 +40,7 @@ export class UserService {
         friendId,
       }
     });
-  }
+  };
 }
 
 const GET_USER_BY_ACCOUNT_NAME = gql`
@@ -72,37 +72,18 @@ const GET_USER_BY_URL = gql`
       avatarFrame {
         id
         link
-        name
-      }
-      avatarFrames {
-        id
-        link
-        name
       }
       profileBackground {
         id
         link
-        name
-      }
-      profileBackgrounds {
-        id
-        link
-        name
       }
       miniProfileBackground {
         id
         link
-        name
-      }
-      miniProfileBackgrounds {
-        id
-        link
-        name
       }
       theme {
         id
         color
-        name
       }
       experience
       country {
@@ -123,6 +104,10 @@ const GET_USER_BY_URL = gql`
         xp
         createdAt
       }
+      games {
+        id
+        name
+      }
       friends {
         id
         accountName
@@ -131,6 +116,21 @@ const GET_USER_BY_URL = gql`
         customURL
         summary
         avatar
+        experience
+        featuredBadge {
+          id
+          name
+          xp
+          link
+        }
+        miniProfileBackground {
+          id
+          link
+        }
+        avatarFrame {
+          id
+          link
+        }
       }
     }
   }
