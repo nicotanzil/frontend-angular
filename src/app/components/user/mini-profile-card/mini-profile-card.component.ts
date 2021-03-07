@@ -21,4 +21,8 @@ export class MiniProfileCardComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
   }
 
+  floorNumber(x: number): number {
+    return Math.floor(x);
+  }
+
 }

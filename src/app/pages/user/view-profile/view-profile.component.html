@@ -4,6 +4,7 @@
     <div class="content-theme">
       <div class="profile-header">
         <div class="profile-data">
+          <img src="{{ this.profileUser.avatar }}" alt="User avatar">
           <div class="profile-detail">
             <span class="profile-name">
               {{ this.profileUser.profileName }}
@@ -15,7 +16,6 @@
               {{ this.profileUser.summary }}
             </div>
           </div>
-          <img src="{{ this.profileUser.avatar }}" alt="User avatar">
         </div>
         <div class="profile-badge">
           <a href="#" class="profile-level">Level {{ level }}</a>
@@ -31,13 +31,15 @@
             </div>
           </div>
           <div class="button-container" *ngIf="isUser">
-            <a *ngIf="user.accountName == profileUser.accountName" [routerLink]="['/user/', this.profileUser.customURL, 'edit']" class="btn">
+            <a *ngIf="user.accountName == profileUser.accountName"
+               [routerLink]="['/user/', this.profileUser.customURL, 'edit']" class="btn">
               <span>Edit Profile</span>
             </a>
             <div *ngIf="user.accountName != profileUser.accountName && isFriend" class="btn">
               <span>Message</span>
             </div>
-            <div *ngIf="user.accountName != profileUser.accountName && !isFriend && !isFriendRequestExists" class="btn" (click)="sendFriendRequest()">
+            <div *ngIf="user.accountName != profileUser.accountName && !isFriend && !isFriendRequestExists" class="btn"
+                 (click)="sendFriendRequest()">
               <span>Add Friend</span>
             </div>
             <div *ngIf="user.accountName != profileUser.accountName && !isFriend && isFriendRequestExists" class="btn">
@@ -47,7 +49,50 @@
         </div>
       </div>
       <div class="main-content">
-
+        <div class="content-container left-content">
+          <div class="recent-activity-title">Recent Activity</div>
+        </div>
+        <div class="content-container right-content">
+          <div class="online-status-container">
+            <div class="online-status">Currently Offline</div>
+            <div class="online-time">Last Online 27 days ago</div>
+          </div>
+          <div class="property-container">
+            <a href="#" class="property-name">Badges</a>
+            <div class="property-count">{{user.badges.length}}</div>
+          </div>
+          <div class="property-container">
+            <a href="#" class="property-name">Games</a>
+            <div class="property-count">{{user.games.length}}</div>
+          </div>
+          <div class="property-container">
+            <a href="#" class="property-name">Inventory</a>
+          </div>
+          <div class="property-container">
+            <a href="#" class="property-name">Reviews</a>
+          </div>
+          <div class="friends-property-container">
+            <div class="friends-description-container">
+              <a href="#" class="property-name">Friends</a>
+              <div class="property-count">{{user.friends.length}}</div>
+            </div>
+            <div class="friends-container">
+              <div class="friends-content" *ngFor="let friend of user.friends; let i = index"
+                   (mouseenter)="onHover(i)"
+                    (mouseleave)="clearHover()">
+                <app-mini-profile-card [user]="friend"
+                                       [selectedBackground]="friend.miniProfileBackground.link"
+                                       [avatarFrame]="friend.avatarFrame.link"
+                                      *ngIf="friendContainers[i]"></app-mini-profile-card>
+                <div class="profile-detail-container">
+                  <img src="{{friend.avatar}}" alt="User avatar">
+                  <span class="profile-name">{{friend.profileName}}</span>
+                </div>
+                <span class="friend-level">{{floorNumber(friend.experience / 100)}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -74,6 +74,10 @@ query GetUserAuth {
       xp
       createdAt
     }
+    games {
+      id
+      name
+    }
     friends {
       id
       accountName
@@ -82,6 +86,21 @@ query GetUserAuth {
       customURL
       summary
       avatar
+      experience
+      featuredBadge {
+        id
+        name
+        xp
+        link
+      }
+      miniProfileBackground {
+        id
+        link
+      }
+      avatarFrame {
+        id
+        link
+      }
     }
   }
 }

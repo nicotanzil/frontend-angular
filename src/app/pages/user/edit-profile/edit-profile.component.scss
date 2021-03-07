@@ -7,7 +7,7 @@ section {
   background-color: $edit-profile-bg;
 }
 
-.container {
+.property-container {
   @include flex-center;
   flex-direction: column;
 

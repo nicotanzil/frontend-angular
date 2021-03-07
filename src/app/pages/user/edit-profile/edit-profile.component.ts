@@ -17,9 +17,9 @@ export class EditProfileComponent implements OnInit {
 
   updateId: string;
   buttons = {
-    generalBtn: false,
+    generalBtn: true,
     avatarBtn: false,
-    frameBtn: true,
+    frameBtn: false,
     backgroundBtn: false,
     miniBtn: false,
     themeBtn: false,

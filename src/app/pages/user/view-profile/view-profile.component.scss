@@ -14,30 +14,38 @@
 
   .content-theme {
     width: 924px;
-    padding: 25px 20px;
+    padding: 30px 25px 40px;
     background-color: $profile-theme;
-    //opacity: 0.9;
+    display: flex;
+    flex-direction: column;
 
     .profile-header {
-      //display: flex;
-      //flex-direction: row;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
       padding: 1px 10px;
+      margin-top: 20px;
+      width: 100%;
 
       .profile-data {
-        float: left;
+        width: 60%;
         display: flex;
-        flex-direction: row-reverse;
+        flex-direction: row;
+
         .profile-detail {
           padding: 10px 15px;
+
           .profile-name {
             font-size: 24px;
             color: white;
             font-weight: lighter;
           }
+
           .real-name-country {
             font-size: 13px;
             color: $font-gray;
           }
+
           .summary {
             padding-top: 20px;
             overflow: auto;
@@ -46,6 +54,7 @@
             color: $font-gray;
           }
         }
+
         img {
           border: 2px solid $profile-picture-border;
           width: 150px;
@@ -54,12 +63,12 @@
       }
 
       .profile-badge {
-        float: right;
-        width: 270px;
+        width: 30%;
         display: flex;
         flex-direction: column;
         font-size: 13px;
         text-align: left;
+
         .profile-level {
           font-size: 24px;
           text-decoration: none;
@@ -67,30 +76,37 @@
           font-weight: lighter;
           margin-bottom: 10px;
         }
+
         .badge-slot {
           padding: 15px 8px;
           background-color: $badge-slot-bg;
           color: $font-gray;
           display: flex;
           align-items: center;
+
           a {
             color: white;
             text-decoration: none;
           }
+
           img {
             height: 50px;
           }
+
           .badge-desc {
             display: flex;
             flex-direction: column;
+
             .badge-name {
               color: $font-light-gray;
               font-size: 14px;
             }
           }
         }
+
         .button-container {
           margin-top: 20px;
+
           .btn {
             padding: 10px 15px;
             max-width: 150px;
@@ -99,13 +115,125 @@
             text-align: center;
 
             cursor: pointer;
+
             span {
               color: $font-light-gray;
               font-size: 15px;
             }
           }
+
           .btn:hover {
             -webkit-filter: brightness(120%);
+          }
+        }
+      }
+    }
+
+    .main-content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 1px 10px;
+      margin-top: 20px;
+      width: 100%;
+
+      .content-container {
+        background-color: $admin-games-view-bg;
+        border-radius: 3px;
+        color: $font-light-gray;
+      }
+
+      .left-content {
+        width: 60%;
+        padding: 5px 10px;
+      }
+
+      .right-content {
+        width: 30%;
+        padding: 5px 10px;
+        display: flex;
+        flex-direction: column;
+
+        .online-status-container {
+          color: $font-light-blue;
+        }
+
+        .property-container {
+          display: flex;
+          align-items: center;
+          flex-direction: row;
+          margin: 15px 0;
+
+          .property-name {
+            color: $font-light-gray;
+            font-size: 16px;
+            text-decoration: none;
+            margin-right: 10px;
+          }
+
+          .property-count {
+            font-size: 14px;
+          }
+        }
+
+        .friends-property-container {
+          margin: 15px 0;
+
+          .friends-description-container {
+            display: flex;
+            flex-direction: row;
+
+            .property-name {
+              color: $font-light-gray;
+              font-size: 16px;
+              text-decoration: none;
+              margin-right: 10px;
+            }
+
+            .property-count {
+              font-size: 14px;
+            }
+          }
+
+          .friends-container {
+            display: flex;
+            flex-direction: column;
+            margin-top: 15px;
+
+            .friends-content {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: space-between;
+              position: relative;
+
+              app-mini-profile-card {
+                position: absolute;
+                right: 105%;
+              }
+
+              .profile-detail-container {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                cursor: pointer;
+
+                img {
+                  width: 50px;
+                  height: 50px;
+                }
+
+                .profile-name {
+                  color: $font-light-blue;
+                  font-size: 14px;
+                  margin-left: 10px;
+                }
+              }
+              .friend-level {
+                font-size: 18px;
+                margin-right: 30px;
+              }
+            }
           }
         }
       }

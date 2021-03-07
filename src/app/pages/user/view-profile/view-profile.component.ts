@@ -19,6 +19,8 @@ export class ViewProfileComponent implements OnInit {
   isFriendRequestExists: boolean;
   level: number;
 
+  friendContainers: any[];
+
   constructor(
     private actRoute: ActivatedRoute,
     private userService: UserService,
@@ -31,6 +33,8 @@ export class ViewProfileComponent implements OnInit {
     this.isFriend = false;
     this.isFriendRequestExists = false;
     this.user.friends = [];
+
+    this.friendContainers = [false];
   }
 
   ngOnInit(): void {
@@ -86,6 +90,29 @@ export class ViewProfileComponent implements OnInit {
       this.isFriendRequestExists = true;
     }, error => {
       console.log(error);
+    });
+  }
+
+  floorNumber(x: number): number {
+    return Math.floor(x);
+  }
+
+  onHover(friendContainerId): void {
+    Object.keys(this.friendContainers).forEach(key => {
+      // tslint:disable-next-line:triple-equals
+      if (key == friendContainerId) {
+        this.friendContainers[key] = true;
+      }
+      else {
+        this.friendContainers[key] = false;
+      }
+    });
+  }
+
+  clearHover(): void {
+    Object.keys(this.friendContainers).forEach(key => {
+      // tslint:disable-next-line:triple-equals
+      this.friendContainers[key] = false;
     });
   }
 }

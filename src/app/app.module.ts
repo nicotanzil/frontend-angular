@@ -53,6 +53,7 @@ import { ThemeFormComponent } from './components/user/theme-form/theme-form.comp
 import { FeaturedBadgeFormComponent } from './components/user/featured-badge-form/featured-badge-form.component';
 import { GameWishlistComponent } from './pages/game/game-wishlist/game-wishlist.component';
 import { AvatarFrameFormComponent } from './components/user/avatar-frame-form/avatar-frame-form.component';
+import { RecentActivityComponent } from './components/user/view-profile/recent-activity/recent-activity.component';
 
 
 @NgModule({
@@ -99,6 +100,7 @@ import { AvatarFrameFormComponent } from './components/user/avatar-frame-form/av
     FeaturedBadgeFormComponent,
     GameWishlistComponent,
     AvatarFrameFormComponent,
+    RecentActivityComponent,
   ],
   imports: [
     BrowserModule,
