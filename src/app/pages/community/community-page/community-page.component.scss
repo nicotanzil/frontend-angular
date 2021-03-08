@@ -1,0 +1,40 @@
+@import '../../../styles/colors';
+@import '../../../styles/mixins';
+
+section {
+  @include flex-center();
+  .container {
+    margin: 20px;
+    color: $font-light-gray;
+    width: 75%;
+    .content-header {
+      .header-title {
+        font-size: 20px;
+      }
+      .header-description {
+        font-size: 14px;
+      }
+    }
+    .header-container {
+      margin-top: 30px;
+      background-color: $dark-blue-home;
+      .btn {
+        padding: 5px 10px;
+        background-color: $dark-blue-home;
+        border: none;
+        border-radius: 5px;
+        color: $font-light-gray;
+        cursor: pointer;
+      }
+      .deselect {
+        background-color: $dark-blue-home;
+        color: $font-light-gray;
+      }
+      .select {
+        background-color: $light-blue-home;
+        color: white;
+        border: none;
+      }
+    }
+  }
+}

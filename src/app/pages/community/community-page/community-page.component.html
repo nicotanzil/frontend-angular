@@ -1,0 +1,23 @@
+<app-header-main [user]="user" [isUser]="isUser"></app-header-main>
+<section>
+  <div class="container">
+    <div class="content-header">
+      <div class="header-title">Community Activity</div>
+      <div class="header-description">Community and official content for all games and software on Staem.</div>
+    </div>
+    <div class="header-container">
+      <button class="btn"
+              [ngClass]="buttons.artworkBtn ? 'select' : 'deselect'"
+              (click)="onClick('artworkBtn')"
+      >Artwork</button>
+      <button class="btn"
+              [ngClass]="buttons.reviewsBtn ? 'select' : 'deselect'"
+              (click)="onClick('reviewsBtn')"
+      >Reviews</button>
+    </div>
+    <div class="result-container">
+      <app-artwork-page *ngIf="buttons['artworkBtn']" [user]="user"></app-artwork-page>
+      <app-reviews-page *ngIf="buttons['reviewsBtn']"></app-reviews-page>
+    </div>
+  </div>
+</section>

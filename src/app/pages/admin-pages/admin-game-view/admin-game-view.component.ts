@@ -33,14 +33,10 @@ export class AdminGameViewComponent implements OnInit {
   }
 
   loadContent = () => {
-    console.log(this.currentPage);
     this.service.getGamesPagination(this.currentPage).subscribe(async query => {
-      console.log(query.data);
       if (query.data) {
         this.games = query.data.getGamePaginationAdmin;
         this.getTotalGame();
-        console.log('Loading games');
-        console.log(this.games);
         this.updateControl();
       }
     }, error => {

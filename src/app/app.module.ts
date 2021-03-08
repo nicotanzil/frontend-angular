@@ -54,6 +54,9 @@ import { FeaturedBadgeFormComponent } from './components/user/featured-badge-for
 import { GameWishlistComponent } from './pages/game/game-wishlist/game-wishlist.component';
 import { AvatarFrameFormComponent } from './components/user/avatar-frame-form/avatar-frame-form.component';
 import { RecentActivityComponent } from './components/user/view-profile/recent-activity/recent-activity.component';
+import { CommunityPageComponent } from './pages/community/community-page/community-page.component';
+import { ArtworkPageComponent } from './components/community/artwork-page/artwork-page.component';
+import { ReviewsPageComponent } from './components/community/reviews-page/reviews-page.component';
 
 
 @NgModule({
@@ -101,6 +104,9 @@ import { RecentActivityComponent } from './components/user/view-profile/recent-a
     GameWishlistComponent,
     AvatarFrameFormComponent,
     RecentActivityComponent,
+    CommunityPageComponent,
+    ArtworkPageComponent,
+    ReviewsPageComponent,
   ],
   imports: [
     BrowserModule,

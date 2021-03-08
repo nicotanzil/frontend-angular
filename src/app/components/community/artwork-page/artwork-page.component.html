@@ -1,0 +1,67 @@
+<div class="outer-container">
+  <div class="artwork-row" *ngFor="let artworkPost of artworkPosts">
+    <div class="upper-container" (click)="openModal(artworkPost.id)">
+      <img src="{{artworkPost.link}}" alt="Artwork Image" *ngIf="artworkPost.isImage">
+      <video src="{{artworkPost.link}}" *ngIf="!artworkPost.isImage"></video>
+    </div>
+    <div class="lower-container">
+      <div class="response-container">
+        <div class="response-btn-container">
+          <i class="fa fa-thumbs-o-up" id="response-up" aria-hidden="true" (click)="like(artworkPost.id)"></i>
+          <i class="fa fa-thumbs-o-down" id="response-down" aria-hidden="true" (click)="dislike(artworkPost.id)"></i>
+        </div>
+        <div class="stats-container">
+          <i class="fa fa-thumbs-o-up" id="stats-up" aria-hidden="true"></i>
+          <span class="up-count">{{postLike[artworkPost.id]}}</span>
+        </div>
+      </div>
+      <div class="description-container">
+        <span class="description">{{artworkPost.description}}</span>
+      </div>
+    </div>
+    <div class="modal" *ngIf="isModal[artworkPost.id]">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="header-title">{{artworkPost.link}}</span>
+          <span class="close" (click)="isModal[artworkPost.id] = false">&times;</span>
+        </div>
+        <div class="modal-main-content">
+          <div class="modal-left">
+            <img src="{{artworkPost.link}}" *ngIf="artworkPost.isImage" alt="Post Image">
+            <video src="{{artworkPost.link}}" *ngIf="!artworkPost.isImage" controls></video>
+          </div>
+          <div class="modal-right">
+            <div class="user">
+              <img src="{{artworkPost.user.avatar}}" alt="User Avatar">
+              <span class="user-name">{{artworkPost.user.profileName}}</span>
+            </div>
+            <div class="post-title-container">
+              <span class="title">{{artworkPost.description}}</span>
+            </div>
+            <div class="comment-form-container">
+              <img src="{{artworkPost.user.avatar}}" alt="User Avatar">
+              <input type="text" class="comment-input" placeholder="Add a comment" [(ngModel)]="reviewInput">
+              <button class="submitBtn" (click)="onSubmit()">Submit</button>
+            </div>
+            <div class="comment-container">
+              <div class="comment-data" *ngFor="let review of reviews">
+                <div class="comment-data-header">
+                  <img src="{{review.user.avatar}}" alt="Review Avatar">
+                  <span class="commenter-name">{{review.user.profileName}}</span>
+                </div>
+                <div class="comment-content">
+                  <span class="comment">{{review.comment}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="navigation-container" *ngIf="reviews.length != 0">
+              <span class="arrow left-arrow" *ngIf="arrowLeft" (click)="moveLeft()"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+              <span class="current-page">{{ currentPage }} of {{ totalPage }}</span>
+              <span class="arrow right-arrow" *ngIf="arrowRight" (click)="moveRight()"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
