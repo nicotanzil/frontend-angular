@@ -58,6 +58,7 @@ import { CommunityPageComponent } from './pages/community/community-page/communi
 import { ArtworkPageComponent } from './components/community/artwork-page/artwork-page.component';
 import { ReviewsPageComponent } from './components/community/reviews-page/reviews-page.component';
 import { DiscussionPageComponent } from './pages/community/discussion-page/discussion-page.component';
+import { DiscussionDetailPageComponent } from './pages/community/discussion-detail-page/discussion-detail-page.component';
 
 
 @NgModule({
@@ -109,6 +110,7 @@ import { DiscussionPageComponent } from './pages/community/discussion-page/discu
     ArtworkPageComponent,
     ReviewsPageComponent,
     DiscussionPageComponent,
+    DiscussionDetailPageComponent,
   ],
   imports: [
     BrowserModule,

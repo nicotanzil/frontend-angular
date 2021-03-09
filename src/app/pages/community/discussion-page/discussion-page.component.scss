@@ -1,0 +1,134 @@
+@import '../../../styles/mixins';
+@import '../../../styles/colors';
+
+section {
+  @include flex-center();
+  .container {
+    margin: 25px 30px;
+    color: $font-light-gray;
+    .content-header {
+      .header-title {
+        color: $font-light-blue;
+        font-size: 20px;
+      }
+      .header-description {
+        font-size: 16px;
+      }
+    }
+    .insert-discussion-container {
+      display: flex;
+      flex-direction: column;
+      margin: 15px 0;
+      .insert-title {
+        font-size: 20px;
+        color: white;
+      }
+      .text-input, .dropdown-input {
+        display: flex;
+        flex-direction: column;
+        font-size: 13px;
+        color: $font-gray;
+        margin-top: 20px;
+        label {
+          text-transform: uppercase;
+          padding: 5px 0;
+        }
+        input, select, textarea {
+          background-color: $edit-input-box;
+          color: $edit-input-font;
+          box-shadow: inset 1px 1px 0px #000a;
+          border: none;
+          padding: 10px;
+        }
+      }
+      .button-container {
+        margin: 10px 0;
+        .submitBtn {
+          width: 150px;
+          padding: 6px 40px;
+          border-radius: 3px;
+          font-size: 14px;
+          color: white;
+          border: none;
+          cursor: pointer;
+          @include blue-gradient-button();
+        }
+        .submitBtn:hover {
+          -webkit-filter: brightness(120%);
+        }
+      }
+    }
+    .content-container {
+      display: flex;
+      flex-direction: column;
+      .filter-game {
+        margin: 20px 0;
+        input {
+          margin-left: 10px;
+          padding: 5px;
+          background-color: $edit-input-box;
+          color: $edit-input-font;
+          box-shadow: inset 1px 1px 0px #000a;
+          border: none;
+        }
+        i {
+          margin-left: 10px;
+          cursor: pointer;
+        }
+        i:hover {
+          color: $font-light-blue;
+        }
+      }
+      .game-container {
+        display: flex;
+        flex-direction: column;
+        .game-data {
+          background-color: $dark-blue-home;
+          margin: 30px 0;
+          .game-data-header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 5px 10px;
+            img {
+              height: 75px;
+            }
+            .game-title {
+              margin-left: 10px;
+              font-size: 18px;
+            }
+          }
+          .game-discussion-container {
+            display: flex;
+            flex-direction: column;
+            .game-discussion-data {
+              display: flex;
+              flex-direction: row;
+              padding: 5px 10px;
+              justify-content: space-between;
+              background-color: $profile-background;
+              margin: 2.5px 0;
+              cursor: pointer;
+              .discussion-detail {
+                display: flex;
+                flex-direction: column;
+                .title {
+                  color: white;
+                  font-size: 18px;
+                  font-weight: bold;
+                }
+                .user-name {
+                  font-size: 14px;
+                  color: $font-light-blue;
+                }
+              }
+            }
+            .game-discussion-data:hover {
+              background-color: $home-header-search-bar-bg;
+            }
+          }
+        }
+      }
+    }
+  }
+}

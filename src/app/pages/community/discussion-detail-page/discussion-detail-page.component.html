@@ -1,0 +1,31 @@
+<app-header-main [user]="user" [isUser]="isUser"></app-header-main>
+<section>
+  <div class="container">
+    <div class="content-container">
+      <div class="content-header">
+        <img src="{{discussion.user.avatar}}" alt="User avatar">
+        <span class="user-name">{{discussion.user.profileName}}</span>
+      </div>
+      <div class="content-title-container">
+        <span class="content-title">{{discussion.title}}</span>
+      </div>
+      <div class="content-container">
+        <span class="content">{{discussion.description}}</span>
+      </div>
+    </div>
+    <div class="input-comment-container">
+      <div class="input-title">Insert New Comment</div>
+      <input type="text" class="comment-input" placeholder="Input your comment" [(ngModel)]="comment">
+      <div class="submitBtn" (click)="submitComment()">Submit</div>
+    </div>
+    <div class="comment-container">
+      <div class="comment-data" *ngFor="let comment of discussion.replies">
+        <div class="profile-container">
+          <img src="{{comment.user.avatar}}" alt="User avatar">
+          <span class="user-name">{{comment.user.profileName}}</span>
+        </div>
+        <div class="comment-content">{{comment.description}}</div>
+      </div>
+    </div>
+  </div>
+</section>

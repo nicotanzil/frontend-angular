@@ -1,1 +1,69 @@
-<p>discussion-page works!</p>
+<app-header-main [user]="user" [isUser]="isUser"></app-header-main>
+<section>
+  <div class="container">
+    <div class="content-header">
+      <div class="header-title">Welcome to the Staem Discussions</div>
+      <div class="header-description">
+        Everyone is invited! The Steam discussions are for everyone, new and advanced user alike!
+        Searching is key! Before you post a question, use the forum search feature to determine whether your topic has
+        already been covered.
+        Do not start flame wars! If someone has engaged in behavior that is a detriment to the message board --
+        spamming, flaming people, etc -- contact one of the forum moderators or report the post. Flaming the offensive
+        user will only increase the problem. Harassment is not tolerated.
+      </div>
+    </div>
+    <div class="insert-discussion-container">
+      <div class="insert-title">Insert New Discussion Thread</div>
+      <div class="text-input">
+        <label for="title">Discussion Thread Title</label>
+        <input type="text" id="title" name="title" placeholder="Title" [(ngModel)]="title">
+      </div>
+      <div class="text-input">
+        <label for="description">Discussion Thread Description</label>
+        <textarea name="description" id="description" cols="30" rows="5" placeholder="Description" [(ngModel)]="description"></textarea>
+      </div>
+      <div class="dropdown-input">
+        <label for="games">Games</label>
+        <select name="games" id="games" [(ngModel)]="gameId">
+          <option *ngFor="let game of games; let i = index" value="{{i+1}}">
+            {{game.name}}
+          </option>
+        </select>
+      </div>
+      <div class="button-container">
+        <span class="submitBtn" (click)="createNewDiscussion()">Submit</span>
+      </div>
+    </div>
+    <div class="content-container">
+      <div class="filter-game">
+        <input type="text" placeholder="Search by game" [(ngModel)]="searchGame" >
+        <i class="fa fa-search" aria-hidden="true" (click)="search()"></i>
+      </div>
+      <div class="game-container">
+        <div class="game-data" *ngFor="let game of games">
+          <div class="game-data-header">
+            <img src="{{game.banner}}" alt="Game Banner">
+            <span class="game-title">{{game.name}}</span>
+          </div>
+          <div class="game-discussion-container" *ngIf="game.discussions.length > 0">
+            <div class="game-discussion-data" *ngFor="let discussion of game.discussions; let i = index" (click)="viewDetail(discussion.id)">
+              <div class="discussion-detail">
+                <span class="title">{{discussion.title}}</span>
+                <span class="user-name">{{discussion.user.profileName}}</span>
+              </div>
+              <div class="comment-count">
+                <i class="fa fa-comments" aria-hidden="true"></i>
+                <span>{{discussion.replies.length}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="game-discussion-container" *ngIf="game.discussions.length == 0">
+            <div class="game-discussion-data">
+              There is nothing to show here!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

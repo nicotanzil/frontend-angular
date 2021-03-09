@@ -57,10 +57,9 @@ section {
                 input, select, textarea {
                   background-color: $edit-input-box;
                   color: $edit-input-font;
-                  box-shadow: inset 1px 1px 0px #000a;
+                  box-shadow: inset 1px 1px 0 #000a;
                   border: none;
                   padding: 10px;
-
                 }
                 .genre-choice, .tag-choice, .button-container {
                   padding: 5px;

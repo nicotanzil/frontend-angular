@@ -8,6 +8,7 @@ import {System} from './system';
 import {GameImage} from './game-image';
 import {GameVideo} from './game-video';
 import {Promo} from './promo';
+import {GameDiscussion} from './community/game-discussion';
 
 export class Game {
   id: number;
@@ -26,6 +27,8 @@ export class Game {
   banner: string;
   video: GameVideo[] = [];
   images: GameImage[] = [];
+
+  discussions: GameDiscussion[] = [];
 
   createdAt: Date;
 }
