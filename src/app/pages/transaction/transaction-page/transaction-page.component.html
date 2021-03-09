@@ -1,0 +1,59 @@
+<app-header-main [user]="user" [isUser]="isUser"></app-header-main>
+<section>
+  <div *ngIf="!isConfirmationForm" class="outer-container">
+    <div class="payment-form-container">
+      <div class="upper-payment-form">
+        <div class="dropdown-input">
+          <label for="paymentTypes">Please select a payment method</label>
+          <select name="paymentTypes" id="paymentTypes" [(ngModel)]="paymentTypeId">
+            <option *ngFor="let paymentType of paymentTypes; let i = index" value="{{paymentType.id}}">
+              {{paymentType.name}}
+            </option>
+          </select>
+        </div>
+        <div class="text-input">
+          <label for="card-number">Card number</label>
+          <input type="text" id="card-number">
+        </div>
+      </div>
+      <div class="main-payment-form">
+        <div class="title">Billing Information</div>
+        <div class="payment-container">
+          <div class="text-input">
+            <label for="fullname">Full name</label>
+            <input type="text" id="fullname">
+          </div>
+          <div class="text-input">
+            <label for="billing">Billing address</label>
+            <input type="text" id="billing">
+          </div>
+          <div class="text-input">
+            <label for="billing2">Billing address, line 2</label>
+            <input type="text" id="billing2">
+          </div>
+          <div class="text-input">
+            <label for="city">City</label>
+            <input type="text" id="city">
+          </div>
+          <div class="text-input">
+            <label for="zip">Zip or postal code</label>
+            <input type="text" id="zip">
+          </div>
+          <div class="text-input">
+            <label for="phone">Phone number</label>
+            <input type="text" id="phone">
+          </div>
+        </div>
+      </div>
+      <div class="button-container">
+        <div class="notes">You'll have a chance to review your order before it's placed.</div>
+        <div class="submitBtn">Continue</div>
+      </div>
+    </div>
+  </div>
+  <app-confirmation-form
+    *ngIf="isConfirmationForm"
+    [user]="user"
+    [paymentType]="paymentType"
+    [transaction]="transaction"></app-confirmation-form>
+</section>

@@ -1,0 +1,51 @@
+@import '../../../styles/colors.scss';
+@import '../../../styles/mixins.scss';
+
+section {
+  display: flex;
+  flex-direction: column;
+  color: $font-light-gray;
+  padding: 20px 50px;
+  .header-container {
+    margin-top: 20px;
+    .header {
+      font-size: 26px;
+      text-transform: uppercase;
+    }
+  }
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    .dropdown-input, .text-input {
+      display: flex;
+      flex-direction: column;
+      font-size: 13px;
+      color: $font-gray;
+      margin-top: 20px;
+      label {
+        text-transform: uppercase;
+        padding: 5px 0;
+      }
+      input, select, textarea {
+        background-color: $edit-input-box;
+        color: $edit-input-font;
+        box-shadow: inset 1px 1px 0 #000a;
+        border: none;
+        padding: 10px;
+      }
+    }
+  }
+  .button-container {
+    margin-top: 20px;
+    max-width: 150px;
+    .submitBtn {
+      @include blue-gradient-button();
+      padding: 10px 15px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .submitBtn:hover {
+      -webkit-filter: brightness(120%);
+    }
+  }
+}
