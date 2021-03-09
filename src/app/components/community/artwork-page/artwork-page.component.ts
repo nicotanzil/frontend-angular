@@ -69,7 +69,7 @@ export class ArtworkPageComponent implements OnInit, OnChanges {
     }, error => {
       console.log(error);
     });
-  };
+  }
 
   getTotalReviews = () => {
     this.service.getTotalReviews(this.currentPost).subscribe(async query => {
@@ -77,7 +77,7 @@ export class ArtworkPageComponent implements OnInit, OnChanges {
       this.totalPage = Math.ceil(this.totalComments / 5);
       this.updateControl();
     });
-  };
+  }
 
   like(id: number): void {
     this.service.like(id).subscribe(async query => {

@@ -23,6 +23,7 @@ import {GameDetailComponent} from './pages/game/game-detail/game-detail.componen
 import {GameCartComponent} from './pages/game/game-cart/game-cart.component';
 import {GameWishlistComponent} from './pages/game/game-wishlist/game-wishlist.component';
 import {CommunityPageComponent} from './pages/community/community-page/community-page.component';
+import {DiscussionPageComponent} from './pages/community/discussion-page/discussion-page.component';
 
 const routes: Routes = [
   {
@@ -120,6 +121,10 @@ const routes: Routes = [
   {
     path: 'community',
     component: CommunityPageComponent,
+  },
+  {
+    path: 'community/discussion/:keyword',
+    component: DiscussionPageComponent
   },
   {
     path: '**',

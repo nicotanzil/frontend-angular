@@ -26,7 +26,7 @@ export class CommunityArtworkService {
         id,
       }
     });
-  };
+  }
 
   dislike = (id: number) => {
     return this.apollo.mutate({
@@ -35,7 +35,7 @@ export class CommunityArtworkService {
         id,
       }
     });
-  };
+  }
 
   getCommentsById(id: number, page: number): Observable<Query> {
     return this.apollo.query<Query>({

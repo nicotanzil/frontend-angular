@@ -1,1 +1,76 @@
-<p>reviews-page works!</p>
+<div class="outer-container">
+  <div class="review-card" *ngFor="let review of gameReviews">
+    <div class="content-container">
+      <div class="helpful-count">{{review.helpfulCount}} people found this review helpful</div>
+      <div class="mid-container" (click)="openModal(review.id)">
+        <div class="game-banner">
+          <img src="{{review.game.banner}}" alt="Game Banner">
+        </div>
+        <div class="recommended-container">
+          <i class="fa fa-thumbs-o-up btn recommended-logo" aria-hidden="true"
+             *ngIf="review.isRecommended">Recommended</i>
+          <i class="fa fa-thumbs-o-down btn not-recommended-logo" aria-hidden="true" *ngIf="!review.isRecommended">Not
+            recommended</i>
+        </div>
+      </div>
+      <div class="description">{{review.description}}</div>
+      <div class="helpful-input">
+        <div class="helpful-description">Did you find this review helpful?</div>
+        <div class="helpful-btn-container">
+          <i class="fa fa-thumbs-o-up btn recommended-logo" aria-hidden="true" (click)="helpful(review.id)">Yes</i>
+          <i class="fa fa-thumbs-o-down btn not-recommended-logo" aria-hidden="true" (click)="notHelpful(review.id)">No</i>
+        </div>
+      </div>
+    </div>
+    <div class="modal" *ngIf="isReviewModal[review.id]">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="user-container">
+            <img src="{{review.user.avatar}}" alt="User Avatar">
+            <span class="user-name">{{review.user.profileName}}</span>
+          </div>
+          <span class="close" (click)="isReviewModal[review.id] = false">&times;</span>
+        </div>
+        <div class="modal-main-content">
+          <div class="modal-left">
+            <div class="helpful-count">{{review.helpfulCount}} people found this review helpful</div>
+            <div class="mid-container">
+              <div class="game-banner">
+                <img src="{{review.game.banner}}" alt="Game Banner">
+              </div>
+              <div class="recommended-container">
+                <i class="fa fa-thumbs-o-up btn recommended-logo" aria-hidden="true" *ngIf="review.isRecommended">Recommended</i>
+                <i class="fa fa-thumbs-o-down btn not-recommended-logo" aria-hidden="true"
+                   *ngIf="!review.isRecommended">Not recommended</i>
+              </div>
+            </div>
+            <div class="description">{{review.description}}</div>
+          </div>
+          <div class="modal-right">
+            <div class="comment-form-container">
+              <img src="{{review.user.avatar}}" alt="User Avatar">
+              <input type="text" class="comment-input" placeholder="Add a comment" [(ngModel)]="reviewCommentInput">
+              <button class="submitBtn" (click)="onSubmit()">Submit</button>
+            </div>
+            <div class="comment-container">
+              <div class="comment-data" *ngFor="let comment of gameReviewComments">
+                <div class="comment-data-header">
+                  <img src="{{comment.user.avatar}}" alt="Review Avatar">
+                  <span class="commenter-name">{{comment.user.profileName}}</span>
+                </div>
+                <div class="comment-content">
+                  <span class="comment">{{comment.description}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="navigation-container" *ngIf="gameReviewComments.length != 0">
+              <span class="arrow left-arrow" *ngIf="arrowLeft" (click)="moveLeft()"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+              <span class="current-page">{{ currentPage }} of {{ totalPage }}</span>
+              <span class="arrow right-arrow" *ngIf="arrowRight" (click)="moveRight()"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

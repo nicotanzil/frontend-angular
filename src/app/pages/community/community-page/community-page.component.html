@@ -17,7 +17,7 @@
     </div>
     <div class="result-container">
       <app-artwork-page *ngIf="buttons['artworkBtn']" [user]="user"></app-artwork-page>
-      <app-reviews-page *ngIf="buttons['reviewsBtn']"></app-reviews-page>
+      <app-reviews-page *ngIf="buttons['reviewsBtn']" [user]="user"></app-reviews-page>
     </div>
   </div>
 </section>

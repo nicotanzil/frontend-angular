@@ -57,6 +57,7 @@ import { RecentActivityComponent } from './components/user/view-profile/recent-a
 import { CommunityPageComponent } from './pages/community/community-page/community-page.component';
 import { ArtworkPageComponent } from './components/community/artwork-page/artwork-page.component';
 import { ReviewsPageComponent } from './components/community/reviews-page/reviews-page.component';
+import { DiscussionPageComponent } from './pages/community/discussion-page/discussion-page.component';
 
 
 @NgModule({
@@ -107,6 +108,7 @@ import { ReviewsPageComponent } from './components/community/reviews-page/review
     CommunityPageComponent,
     ArtworkPageComponent,
     ReviewsPageComponent,
+    DiscussionPageComponent,
   ],
   imports: [
     BrowserModule,
