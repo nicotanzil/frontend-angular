@@ -17,6 +17,7 @@ section {
       justify-content: space-between;
       align-items: baseline;
       margin-bottom: 20px;
+      flex-wrap: wrap;
       .title {
         color: $font-light-gray;
         text-transform: uppercase;
@@ -55,11 +56,12 @@ section {
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
-            min-height: 75px;
-            max-height: 100px;
+            padding: 20px 0;
 
             border-bottom: 2px solid $login-font;
+            flex-wrap: wrap;
             .button-container {
+              padding: 15px 0;
               .btn {
                 padding: 8px 25px;
 

@@ -41,20 +41,22 @@ section {
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
-            max-height: 250px;
+            padding: 30px 0;
 
             border-bottom: 2px solid $login-font;
+            flex-wrap: wrap;
             .user-detail {
               display: flex;
               flex-direction: row;
               align-items: center;
 
               padding: 10px 15px;
+              flex-wrap: wrap;
               .avatar-container {
                 max-height: 200px;
                 img {
-                  height: 150px;
-                  width: 150px;
+                  height: 100px;
+                  width: 100px;
                 }
               }
               .description {

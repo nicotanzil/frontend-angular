@@ -57,7 +57,12 @@ export class TransactionPageComponent implements OnInit {
     this.authService.getUserAuth().subscribe(async query => {
       this.user = query.data.getUserAuth;
       this.isUser = true;
-      this.init();
+      this.checkoutService.paymentTypes().subscribe(async res => {
+        this.paymentTypes = res.data.paymentTypes;
+        this.init();
+      }, error => {
+        console.log(error);
+      });
     }, error => {
       this.isUser = false;
       console.log(error);
@@ -66,11 +71,7 @@ export class TransactionPageComponent implements OnInit {
   }
 
   init(): void {
-    this.checkoutService.paymentTypes().subscribe(async query => {
-      this.paymentTypes = query.data.paymentTypes;
-    }, error => {
-      console.log(error);
-    });
+
     this.cartService.getCartGamesByUserId(this.user.id).subscribe(async query => {
       // @ts-ignore
       this.cartGames = query.data.getCartGamesByUserId;
@@ -128,7 +129,8 @@ export class TransactionPageComponent implements OnInit {
 
   checkConfirmationDialog(): void {
     // Check if balance > total
-    if (this.user.balance > this.total) {
+    console.log(this.paymentType.id);
+    if (this.user.balance >= this.total) {
       // Open confirmation dialog
       this.isConfirmationForm = true;
     } else if (this.paymentType.id !== 1) {
@@ -140,7 +142,8 @@ export class TransactionPageComponent implements OnInit {
 
   getPaymentType(id: number): void {
     this.paymentTypes.forEach(x => {
-      if (x.id === id) {
+      // tslint:disable-next-line:triple-equals
+      if (x.id == id) {
         this.paymentType = x;
       }
     });

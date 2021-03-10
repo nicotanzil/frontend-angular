@@ -59,6 +59,10 @@ import { ArtworkPageComponent } from './components/community/artwork-page/artwor
 import { ReviewsPageComponent } from './components/community/reviews-page/reviews-page.component';
 import { DiscussionPageComponent } from './pages/community/discussion-page/discussion-page.component';
 import { DiscussionDetailPageComponent } from './pages/community/discussion-detail-page/discussion-detail-page.component';
+import { GiftPageComponent } from './pages/transaction/gift-page/gift-page.component';
+import { TransactionPageComponent } from './pages/transaction/transaction-page/transaction-page.component';
+import { ConfirmationFormComponent } from './components/transaction/confirmation-form/confirmation-form.component';
+import { PurchaseReceiptEmailComponent } from './pages/transaction/purchase-receipt-email/purchase-receipt-email.component';
 
 
 @NgModule({
@@ -111,6 +115,10 @@ import { DiscussionDetailPageComponent } from './pages/community/discussion-deta
     ReviewsPageComponent,
     DiscussionPageComponent,
     DiscussionDetailPageComponent,
+    GiftPageComponent,
+    TransactionPageComponent,
+    ConfirmationFormComponent,
+    PurchaseReceiptEmailComponent,
   ],
   imports: [
     BrowserModule,

@@ -56,6 +56,24 @@ export class AdminUsersService {
       }
     });
   }
+
+  approveUnsuspend = (userId: number) => {
+    return this.apollo.mutate({
+      mutation: APPROVE_UNSUSPEND,
+      variables: {
+        userId,
+      }
+    });
+  }
+
+  unApproveUnsuspend = (userId: number) => {
+    return this.apollo.mutate({
+      mutation: UNAPPROVE_UNSUSPEND,
+      variables: {
+        userId,
+      }
+    });
+  }
 }
 
 const GET_ALL_USERS_HEADER = gql`
@@ -119,5 +137,17 @@ const GET_USER_BY_ID = gql`
 const UPDATE_ACCOUNT_SUSPENSION = gql`
   mutation updateAccountSuspension($id:Int!) {
     updateAccountSuspension(id:$id)
+  }
+`;
+
+const APPROVE_UNSUSPEND = gql`
+  mutation approveUnsuspend($userId:Int!) {
+    approveUnsuspend(userId:$userId)
+  }
+`;
+
+const UNAPPROVE_UNSUSPEND = gql`
+  mutation unApproveUnsuspend($userId:Int!) {
+    unApproveUnsuspend(userId:$userId)
   }
 `;

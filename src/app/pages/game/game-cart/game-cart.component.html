@@ -37,8 +37,8 @@
         </div>
         <div class="total-price">Estimated Total: Rp {{estimatedTotal}}</div>
         <div class="button-container">
-          <div class="btn">Purchase for myself</div>
-          <div class="btn">Purchase as a gift</div>
+          <div class="btn" (click)="redirectToTransactionPage()">Purchase for myself</div>
+          <div class="btn" (click)="redirectToGiftPage()">Purchase as a gift</div>
         </div>
       </div>
     </div>

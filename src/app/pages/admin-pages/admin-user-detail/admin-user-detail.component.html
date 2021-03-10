@@ -51,8 +51,10 @@
             <span class="time">{{request.createdAt | date}}</span>
           </div>
           <div class="button-section">
-            <span class="btn suspend-btn" *ngIf="!user.isSuspend" (click)="updateSuspend()">Suspend</span>
-            <span class="btn unsuspend-btn" *ngIf="user.isSuspend" (click)="updateSuspend()">Unsuspend</span>
+<!--            <span class="btn suspend-btn" *ngIf="!user.isSuspend" (click)="updateSuspend()">Suspend</span>-->
+<!--            <span class="btn unsuspend-btn" *ngIf="user.isSuspend" (click)="updateSuspend()">Unsuspend</span>-->
+            <span class="btn suspend-btn" (click)="unApproveUnsuspend()">Unapprove</span>
+            <span class="btn unsuspend-btn" (click)="approveUnsuspend()">Approve</span>
           </div>
         </div>
       </div>

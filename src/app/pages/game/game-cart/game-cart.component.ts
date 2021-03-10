@@ -74,4 +74,12 @@ export class GameCartComponent implements OnInit {
       this.router.navigateByUrl('/login');
     }
   }
+
+  redirectToTransactionPage(): void {
+    this.router.navigateByUrl('/checkout');
+  }
+
+  redirectToGiftPage(): void {
+    this.router.navigateByUrl('/gift-checkout');
+  }
 }

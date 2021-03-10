@@ -25,6 +25,8 @@ import {GameWishlistComponent} from './pages/game/game-wishlist/game-wishlist.co
 import {CommunityPageComponent} from './pages/community/community-page/community-page.component';
 import {DiscussionPageComponent} from './pages/community/discussion-page/discussion-page.component';
 import {DiscussionDetailPageComponent} from './pages/community/discussion-detail-page/discussion-detail-page.component';
+import {GiftPageComponent} from './pages/transaction/gift-page/gift-page.component';
+import {TransactionPageComponent} from './pages/transaction/transaction-page/transaction-page.component';
 
 const routes: Routes = [
   {
@@ -134,6 +136,14 @@ const routes: Routes = [
   {
     path: 'community/discussion/thread/:id',
     component: DiscussionDetailPageComponent,
+  },
+  {
+    path: 'gift-checkout',
+    component: GiftPageComponent,
+  },
+  {
+    path: 'checkout',
+    component: TransactionPageComponent,
   },
   {
     path: '**',

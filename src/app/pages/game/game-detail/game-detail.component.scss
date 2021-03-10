@@ -171,5 +171,175 @@ section {
         text-align: center;
       }
     }
+    .review-form-container {
+      margin-top: 20px;
+      color: $font-light-gray;
+      .review-form-header {
+        font-size: 20px;
+        text-transform: uppercase;
+      }
+      .review-input-container {
+        background-color: $dark-blue-home;
+        padding: 10px 20px;
+        .user-avatar {
+          img {
+            width: 75px;
+            height: 75px;
+          }
+        }
+        .text-input {
+          border-top: 2px solid $font-gray;
+          padding: 10px 10px;
+          display: flex;
+          flex-direction: column;
+          font-size: 13px;
+          color: $font-gray;
+          margin-top: 20px;
+          label, .label {
+            text-transform: uppercase;
+            padding: 5px 0;
+          }
+          textarea{
+            background-color: $edit-input-box;
+            color: $edit-input-font;
+            box-shadow: inset 1px 1px 0px #000a;
+            border: none;
+            padding: 10px;
+          }
+        }
+        .button-container {
+          display: flex;
+          justify-content: flex-end;
+          .success-box {
+            border: 2px solid greenyellow;
+            background-color: transparent;
+            padding: 10px;
+            color: $font-light-gray;
+          }
+          .error-box {
+            border: 2px solid red;
+            background-color: transparent;
+            padding: 10px;
+            color: $font-light-gray;
+          }
+          .btn {
+            width: 150px;
+            padding: 6px 10px;
+            margin: 0 10px;
+            border-radius: 3px;
+            font-size: 14px;
+            color: white;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+          }
+          .btn:hover {
+            -webkit-filter: brightness(120%);
+          }
+          .cancelBtn {
+            background-color: $edit-input-button;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+          }
+          .saveBtn {
+            @include blue-gradient-button;
+          }
+        }
+      }
+    }
+    .review-view-container {
+      display: flex;
+      flex-direction: row;
+      color: $font-light-gray;
+      justify-content: space-between;
+      margin: 20px 0;
+      .review-left, .review-right {
+        background-color: $dark-blue-home;
+        width: 45%;
+        padding: 20px 10px;
+        font-size: 14px;
+        .review-title {
+          font-size: 20px;
+          color: white;
+          text-transform: uppercase;
+        }
+        .review-data-container {
+          .review-card {
+            margin-top: 10px;
+            background-color: $dark-blue-home;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+
+            .content-container {
+              .helpful-count {
+                font-size: 14px;
+                color: $font-gray;
+              }
+
+              .mid-container {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                margin-top: 15px;
+                cursor: pointer;
+                flex-wrap: wrap;
+                .game-banner {
+                  img {
+                    width: 150px;
+                  }
+                }
+
+                .recommended-container {
+                  margin-left: 15px;
+                  font-size: 16px;
+
+                  .btn {
+                    padding: 5px 10px;
+                    border-radius: 3px;
+                  }
+
+                  .recommended-logo {
+                    background-color: $blue-btn;
+                    color: $font-light-blue;
+                  }
+
+                  .not-recommended-logo {
+                    background-color: $red-btn;
+                    color: white;
+                  }
+                }
+              }
+
+              .description {
+                margin-top: 15px;
+                font-size: 14px;
+              }
+
+              .helpful-input {
+                margin-top: 15px;
+                font-size: 14px;
+                color: $font-gray;
+
+                .helpful-btn-container {
+                  display: flex;
+                  flex-direction: row;
+                  .btn {
+                    font-size: 16px;
+                    margin: 0 10px;
+                    cursor: pointer;
+                  }
+                  .recommended-logo:hover {
+                    color: $font-light-blue;
+                  }
+                  .not-recommended-logo:hover {
+                    color: $red-btn;
+                  }
+                }
+              }
+
+            }
+          }
+        }
+      }
+    }
   }
 }

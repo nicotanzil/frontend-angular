@@ -1,0 +1,76 @@
+@import '../../../styles/colors.scss';
+@import '../../../styles/mixins.scss';
+
+.confirmation-outer-container {
+  width: 75%;
+  margin: auto;
+  .confirmation-inner-container {
+    background-color: $light-blue-home;
+    .confirmation-header {
+      width: 100%;
+      font-size: 26px;
+      color: white;
+      text-transform: uppercase;
+    }
+
+    .confirmation-container {
+      background-color: $dark-blue-home;
+      padding: 10px;
+      flex-wrap: wrap;
+      .game-container {
+        //flex-wrap: wrap;
+        .game-data {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          margin: 5px 0;
+          flex-wrap: wrap;
+          .game-detail {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            img {
+              height: 75px;
+            }
+
+            .game-title {
+              font-size: 16px;
+              margin-left: 10px;
+            }
+          }
+          .game-price {
+            font-size: 14px;
+            color: $font-gray;
+          }
+        }
+        .total {
+          margin-top: 20px;
+          border-top: 2px solid $font-gray;
+          font-size: 18px;
+          color: $font-gray;
+        }
+      }
+      .payment-detail {
+        margin: 10px 0;
+        .detail {
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+      .button-container {
+        max-width: 150px;
+        .purchaseBtn {
+          background-color: $green-btn;
+          padding: 5px 10px;
+          text-align: center;
+          border-radius: 3px;
+          cursor: pointer;
+        }
+        .purchaseBtn:hover {
+          -webkit-filter: brightness(120%);
+        }
+      }
+    }
+  }
+}

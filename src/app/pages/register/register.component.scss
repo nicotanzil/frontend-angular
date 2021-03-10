@@ -9,7 +9,7 @@ section {
 .register-content {
     @include flex-center;
     flex-direction: column;
-    padding: 40px 0;
+    padding: 40px 10px;
     .title {
         padding: 10px 0;
         margin: 20px 0;
@@ -19,7 +19,6 @@ section {
         font-weight: lighter;
     }
     .error-message {
-        // display: none;
         background-color: black;
         color: red;
         border: red solid 1px;
@@ -28,18 +27,16 @@ section {
     }
 
     .success-message {
-      // display: none;
       background-color: black;
       color: green;
       border: green solid 1px;
-      padding: 20px 35px;
       font-size: 14px;
     }
     .register-input {
         display: flex;
         flex-direction: column;
         padding: 20px 0;
-        width: 400px;
+        max-width: 400px;
         .email-input, .confirm-input, .country-input {
             display: flex;
             flex-direction: column;

@@ -1,0 +1,37 @@
+<div class="confirmation-outer-container">
+  <div class="confirmation-inner-container">
+    <div class="confirmation-header">
+      Review + Purchase
+    </div>
+    <div class="confirmation-container">
+      <div class="game-container">
+        <div class="game-data" *ngFor="let detail of transaction.transactionDetails">
+          <div class="game-detail">
+            <img src="{{detail.game.banner}}" alt="Game banner">
+            <span class="game-title">{{detail.game.name}}</span>
+          </div>
+          <span class="game-price">Rp {{detail.game.originalPrice}}</span>
+        </div>
+        <div class="total">Subtotal: Rp {{transaction.total}}</div>
+      </div>
+      <div class="payment-detail">
+        <div class="detail">
+          <span class="name">Payment method:</span>
+          <span class="info">{{paymentType.name}}</span>
+        </div>
+        <div class="detail">
+          <span class="name">Gift options:</span>
+          <span class="info" *ngIf="transaction.receiver.id === transaction.sender.id">This purchase is for your own account</span>
+          <span class="info" *ngIf="transaction.receiver.id !== transaction.sender.id">This purchase is for your friend's account</span>
+        </div>
+        <div class="detail">
+          <span class="name">Steam account:</span>
+          <span class="info">{{transaction.sender.accountName}}</span>
+        </div>
+      </div>
+      <div class="button-container">
+        <div class="purchaseBtn" (click)="confirmTransaction()">Purchase</div>
+      </div>
+    </div>
+  </div>
+</div>

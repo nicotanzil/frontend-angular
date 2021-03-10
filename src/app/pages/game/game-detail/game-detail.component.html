@@ -55,9 +55,73 @@
             <span class="final-price" *ngIf="game.originalPrice == 0">Free to Play</span>
           </span>
         </div>
-        <div class="add-to-cart-btn" *ngIf="game.originalPrice > 0" (click)="addToCart()">Add to Cart</div>
+        <div class="add-to-cart-btn" *ngIf="game.originalPrice > 0 && !isInCart && !isHaveGame" (click)="addToCart()">Add to Cart</div>
         <div class="add-to-cart-btn" *ngIf="game.originalPrice == 0">Install Game</div>
-        <div class="add-to-wishlist-btn" (click)="addToWishlist()">Add to your Wishlist</div>
+        <div class="add-to-wishlist-btn" (click)="addToWishlist()" *ngIf="!isInWishlist && !isHaveGame">Add to your Wishlist</div>
+      </div>
+      <div class="review-form-container" *ngIf="isHaveGame">
+        <div class="review-form-header">
+          Write a review for {{game.name}}
+        </div>
+        <div class="review-input-container" *ngIf="isHaveGame">
+          <div class="user-avatar">
+            <img src="{{user.avatar}}" alt="User avatar">
+          </div>
+          <div class="text-input">
+            <label for="review">Review</label>
+            <textarea type="text" id="review" [(ngModel)]="gameReviewInput.description"></textarea>
+          </div>
+          <div class="radio-input">
+            <div class="label">Do you recommend this game?</div>
+            <input type="radio" name="recommend" id="yes" [value]="true" [(ngModel)]="gameReviewInput.isRecommended">
+            <label for="yes">Yes</label>
+            <input type="radio" name="recommend" id="false" [value]="false" [(ngModel)]="gameReviewInput.isRecommended">
+            <label for="false">No</label>
+          </div>
+          <div class="button-container">
+            <div class="btn saveBtn" (click)="addGameReview()">
+              Submit
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="review-view-container">
+        <div class="review-left">
+          <div class="review-title">Most Helpful Reviews in the past 30 Days</div>
+          <div class="review-data-container">
+            <div class="review-card" *ngFor="let review of mostHelpfulGameReviews">
+              <div class="content-container">
+                <div class="helpful-count">{{review.helpfulCount}} people found this review helpful</div>
+                <div class="description">{{review.description}}</div>
+                <div class="helpful-input">
+                  <div class="helpful-description">Did you find this review helpful?</div>
+                  <div class="helpful-btn-container">
+                    <i class="fa fa-thumbs-o-up btn recommended-logo" aria-hidden="true" (click)="helpful(review.id)">Yes</i>
+                    <i class="fa fa-thumbs-o-down btn not-recommended-logo" aria-hidden="true" (click)="notHelpful(review.id)">No</i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="review-right">
+          <div class="review-title">Recently Posted</div>
+          <div class="review-data-container">
+            <div class="review-card" *ngFor="let review of mostRecentGameReviews">
+              <div class="content-container">
+                <div class="helpful-count">{{review.helpfulCount}} people found this review helpful</div>
+                <div class="description">{{review.description}}</div>
+                <div class="helpful-input">
+                  <div class="helpful-description">Did you find this review helpful?</div>
+                  <div class="helpful-btn-container">
+                    <i class="fa fa-thumbs-o-up btn recommended-logo" aria-hidden="true" (click)="helpful(review.id)">Yes</i>
+                    <i class="fa fa-thumbs-o-down btn not-recommended-logo" aria-hidden="true" (click)="notHelpful(review.id)">No</i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

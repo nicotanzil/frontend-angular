@@ -39,15 +39,15 @@ section {
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
-            max-height: 100px;
 
             border-bottom: 2px solid $login-font;
+            flex-wrap: wrap;
             .game-detail {
               display: flex;
               flex-direction: row;
               align-items: center;
-
               padding: 10px 15px;
+              flex-wrap: wrap;
               .banner-container {
                 max-height: 100px;
                 img {

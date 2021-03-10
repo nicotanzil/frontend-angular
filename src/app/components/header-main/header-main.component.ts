@@ -6,6 +6,7 @@ import {query} from '@angular/animations';
 import {Router} from '@angular/router';
 import {UpdateUser} from '../../models/user/update-user';
 import {FriendRequestService} from '../../services/user/friend-request.service';
+import {CheckoutService} from '../../services/transaction/checkout.service';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class HeaderMainComponent implements OnInit, OnChanges {
   @Input() user: User;
 
   friendRequestCount: number;
+  giftCount: number;
 
   isNotificationDropdown: boolean;
 
@@ -25,6 +27,7 @@ export class HeaderMainComponent implements OnInit, OnChanges {
     private service: AuthService,
     private router: Router,
     private friendRequestService: FriendRequestService,
+    private checkoutService: CheckoutService,
   ) {
     this.user = new User();
     this.isNotificationDropdown = false;
@@ -43,6 +46,10 @@ export class HeaderMainComponent implements OnInit, OnChanges {
   initNotification(): void {
     this.friendRequestService.getPendingFriendRequestCount(this.user.id).subscribe(async query => {
       this.friendRequestCount = query.data.getPendingFriendRequestCount;
+    });
+
+    this.checkoutService.getGiftNotificationCount(this.user.id).subscribe(async query => {
+      this.giftCount = query.data.getGiftNotificationCount;
     });
   }
 

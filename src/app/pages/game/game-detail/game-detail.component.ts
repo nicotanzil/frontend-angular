@@ -9,6 +9,10 @@ import {GameVideo} from '../../../models/game-video';
 import {CartService} from '../../../services/transaction/cart.service';
 import {async, Subject} from 'rxjs';
 import {WishlistService} from '../../../services/transaction/wishlist.service';
+import {log} from 'util';
+import {InputGameReview} from '../../../models/community/input-game-review';
+import {CommunityGameReviewService} from '../../../services/community/community-game-review.service';
+import {CommunityGameReview} from '../../../models/community/community-game-review';
 
 @Component({
   selector: 'app-game-detail',
@@ -29,12 +33,23 @@ export class GameDetailComponent implements OnInit {
   videosList;
   isImageSelected: boolean;
 
+  isHaveGame: boolean;
+  isInCart: boolean;
+  isInWishlist: boolean;
+  cartGames: Game[];
+  wishlistGames: Game[];
+
+  gameReviewInput: InputGameReview;
+  mostHelpfulGameReviews: CommunityGameReview[];
+  mostRecentGameReviews: CommunityGameReview[];
+
   constructor(
     private actRoute: ActivatedRoute,
     private authService: AuthService,
     private gameService: GameService,
     private cartService: CartService,
     private wishlistService: WishlistService,
+    private reviewService: CommunityGameReviewService,
     private router: Router,
   ) {
     this.user = new User();
@@ -44,11 +59,24 @@ export class GameDetailComponent implements OnInit {
     this.isImageSelected = false;
     this.selectedImage = new GameImage();
     this.selectedVideo = new GameVideo();
+
+    this.cartGames = [];
+    this.wishlistGames = [];
+
+    this.isHaveGame = false;
+    this.isInCart = false;
+    this.isInWishlist = false;
+
+    this.gameReviewInput = new InputGameReview();
+
+    this.mostHelpfulGameReviews = [];
+    this.mostRecentGameReviews = [];
   }
 
   ngOnInit(): void {
     this.gameId = this.actRoute.snapshot.params.id;
     this.authService.getUserAuth().subscribe(async query => {
+      console.log(query);
       this.user = query.data.getUserAuth;
       this.isUser = true;
       this.init();
@@ -61,8 +89,11 @@ export class GameDetailComponent implements OnInit {
   init(): void {
     this.gameService.getGameById(this.gameId).subscribe(async query => {
       this.game = query.data.gameById;
+      this.getUserGames();
       this.listInit();
-      console.log(this.game);
+      this.getCartGames();
+      this.getWishlistGames();
+      this.getReview();
     }, error => {
       console.log(error);
     });
@@ -136,7 +167,6 @@ export class GameDetailComponent implements OnInit {
           this.imagesList[key] = false;
         }
       });
-      console.log(this.imagesList);
       this.resetVideosList();
     } else {
       this.isImageSelected = false;
@@ -168,13 +198,12 @@ export class GameDetailComponent implements OnInit {
   addToCart(): void {
     if (!this.isUser) {
       // Redirect to login page
-      console.log('login');
       this.router.navigateByUrl('/login');
     } else {
       // Add to cart
       this.cartService.insertGameToCart(this.gameId, this.user.id).subscribe(async query => {
-        console.log(query);
         alert('Game added to cart!');
+        this.getCartGames();
       });
     }
   }
@@ -185,7 +214,89 @@ export class GameDetailComponent implements OnInit {
     } else {
       this.wishlistService.insertGameToWishlist(this.gameId, this.user.id).subscribe(async query => {
         alert('Game added to your wishlist!');
+        this.getWishlistGames();
+      }, error => {
+        console.log(error);
       });
     }
+  }
+
+  getUserGames(): void {
+    this.isHaveGame = false;
+    this.user.games.forEach(g => {
+      // tslint:disable-next-line:triple-equals
+      if (g.id == this.gameId) {
+        this.isHaveGame = true;
+      }
+    });
+  }
+
+  getCartGames(): void {
+    this.isInCart = false;
+    this.cartService.getCartGamesByUserId(this.user.id).subscribe(async query => {
+      // @ts-ignore
+      this.cartGames = query.data.getCartGamesByUserId;
+      this.cartGames.forEach(g => {
+        // tslint:disable-next-line:triple-equals
+        if (this.gameId == g.id) {
+          this.isInCart = true;
+        }
+      });
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  getWishlistGames(): void {
+    this.isInWishlist = false;
+    this.wishlistService.getWishlistGamesByUserId(this.user.id).subscribe(async query => {
+      console.log(query);
+      // @ts-ignore
+      this.wishlistGames = query.data.getWishlistByUserId;
+      this.wishlistGames.forEach(w => {
+        // tslint:disable-next-line:triple-equals
+        if (this.gameId == w.id) {
+          this.isInWishlist = true;
+        }
+      });
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  getReview(): void {
+    this.reviewService.getMostHelpful(this.gameId).subscribe(async query => {
+      this.mostHelpfulGameReviews = query.data.getMostUpvotedGameReviews;
+    }, error => {
+      console.log(error);
+    });
+
+    this.reviewService.getMostRecent(this.gameId).subscribe(async query => {
+      this.mostRecentGameReviews = query.data.getMostRecentGameReviews;
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  helpful(id: number): void {
+    this.reviewService.helpful(id).subscribe(async query => {
+      // this.updatePostLike();
+    });
+  }
+
+  notHelpful(id: number): void {
+    this.reviewService.notHelpful(id).subscribe(async query => {
+      // this.updatePostLike();
+    });
+  }
+
+  addGameReview(): void {
+    this.gameReviewInput.userId = this.user.id;
+    this.gameReviewInput.gameId = this.gameId;
+    this.reviewService.createGameReview(this.gameReviewInput).subscribe(async query => {
+      alert('Review added!');
+    }, error => {
+      console.log(error);
+    });
   }
 }

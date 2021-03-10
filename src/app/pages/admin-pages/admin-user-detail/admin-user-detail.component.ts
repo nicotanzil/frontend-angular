@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AdminUsersService} from '../../../services/admin/admin-users.service';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
@@ -63,6 +63,22 @@ export class AdminUserDetailComponent implements OnInit {
       if (query.data.updateAccountSuspension) {
         alert('Success');
       }
+    });
+  }
+
+  approveUnsuspend(): void {
+    this.serviceUser.approveUnsuspend(this.userId).subscribe(async query => {
+      alert('User unsuspended!');
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  unApproveUnsuspend(): void {
+    this.serviceUser.unApproveUnsuspend(this.userId).subscribe(async query => {
+      alert('User unsuspend result rejected!');
+    }, error => {
+      console.log(error);
     });
   }
 }

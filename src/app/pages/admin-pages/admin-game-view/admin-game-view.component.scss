@@ -28,6 +28,9 @@ section {
       justify-content: space-between;
       align-items: baseline;
       margin-bottom: 20px;
+      margin-left: 10px;
+      margin-right: 10px;
+      flex-wrap: wrap;
       .title {
         color: $font-light-gray;
         text-transform: uppercase;
@@ -67,15 +70,16 @@ section {
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
-            max-height: 100px;
+            flex-wrap: wrap;
+            padding: 20px 0;
 
             border-bottom: 2px solid $login-font;
             .game-detail {
               display: flex;
               flex-direction: row;
               align-items: center;
-
               padding: 10px 15px;
+              flex-wrap: wrap;
               .banner-container {
                 max-height: 100px;
                 img {

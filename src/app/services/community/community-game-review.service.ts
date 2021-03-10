@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Apollo, gql} from 'apollo-angular';
 import {Observable} from 'rxjs';
 import {Query} from '../../models/query';
+import {InputGameReview} from '../../models/community/input-game-review';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class CommunityGameReviewService {
         id,
       }
     });
-  }
+  };
 
   notHelpful = (id: number) => {
     return this.apollo.mutate({
@@ -65,7 +66,35 @@ export class CommunityGameReviewService {
         comment
       }
     });
+  };
+
+  createGameReview = (input: InputGameReview) => {
+    return this.apollo.mutate({
+      mutation: CREATE_GAME_REVIEW,
+      variables: {
+        input,
+      }
+    });
   }
+
+  getMostHelpful(gameId: number): Observable<Query> {
+    return this.apollo.query<Query>({
+      query: GET_MOST_UPVOTED,
+      variables: {
+        gameId,
+      }
+    });
+  }
+
+  getMostRecent(gameId: number): Observable<Query> {
+    return this.apollo.query<Query>({
+      query: GET_MOST_RECENT,
+      variables: {
+        gameId,
+      }
+    });
+  }
+
 }
 
 const GET_ALL_GAME_REVIEWS = gql`
@@ -125,4 +154,40 @@ const ADD_COMMENT_BY_REVIEW_ID = gql`
   mutation addCommentByReviewId($reviewId:Int!, $userId:Int!, $comment:String!) {
     addCommentByReviewId(reviewId:$reviewId, userId:$userId, comment:$comment)
   }
-`
+`;
+
+const CREATE_GAME_REVIEW = gql`
+  mutation createGameReview($input:CommunityGameReviewInput!) {
+    createGameReview(input:$input)
+  }
+`;
+
+const GET_MOST_UPVOTED = gql`
+  query GetMostUpvotedGameReviews($gameId:Int!) {
+    getMostUpvotedGameReviews(gameId:$gameId) {
+      id
+      description
+      isRecommended
+      helpfulCount
+      user {
+        accountName
+        avatar
+      }
+    }
+  }
+`;
+
+const GET_MOST_RECENT = gql`
+  query getMostRecentGameReviews($gameId:Int!) {
+    getMostRecentGameReviews(gameId:$gameId) {
+      id
+      description
+      isRecommended
+      helpfulCount
+      user {
+        accountName
+        avatar
+      }
+    }
+  }
+`;
