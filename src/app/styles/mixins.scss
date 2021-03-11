@@ -20,3 +20,43 @@
 @mixin br {
   border: 1px solid red;
 }
+
+@mixin text-input {
+  background-color: $edit-input-box;
+  color: $edit-input-font;
+  box-shadow: inset 1px 1px 0 #000a;
+  border: none;
+  padding: 10px;
+}
+
+@mixin label-input {
+  text-transform: uppercase;
+  padding: 5px 0;
+}
+
+@mixin paginate-navigation {
+  @include flex-center;
+  font-size: 18px;
+  color: $font-gray;
+  .arrow {
+    margin: 0 5px;
+    padding: 5px;
+    font-size: 22px;
+    cursor: pointer;
+  }
+  .arrow:hover {
+    color: $login-btn-hover;
+  }
+}
+
+@mixin modal-base {
+  position: fixed;
+  z-index: 30;
+  padding-top: 50px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+}

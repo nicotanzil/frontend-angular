@@ -24,13 +24,15 @@
     "angular-captcha": "^3.7.4",
     "angular-font-awesome": "^3.1.2",
     "apollo-angular": "^2.2.0",
+    "chart.js": "^2.9.4",
+    "firebase": "^7.0 || ^8.0",
     "font-awesome": "^4.7.0",
     "graphql": "^15.0.0",
     "ng-recaptcha": "^7.0.1",
+    "ng2-charts": "^2.4.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
-    "zone.js": "~0.10.2",
-    "firebase": "^7.0 || ^8.0"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1100.6",

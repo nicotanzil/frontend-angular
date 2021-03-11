@@ -27,6 +27,7 @@ import {DiscussionPageComponent} from './pages/community/discussion-page/discuss
 import {DiscussionDetailPageComponent} from './pages/community/discussion-detail-page/discussion-detail-page.component';
 import {GiftPageComponent} from './pages/transaction/gift-page/gift-page.component';
 import {TransactionPageComponent} from './pages/transaction/transaction-page/transaction-page.component';
+import {InventoryPageComponent} from './pages/user/inventory-page/inventory-page.component';
 
 const routes: Routes = [
   {
@@ -96,6 +97,10 @@ const routes: Routes = [
   {
     path: 'user/:url/edit',
     component: EditProfileComponent,
+  },
+  {
+    path: 'user/:url/inventory',
+    component: InventoryPageComponent,
   },
   {
     path: 'search/:keyword',

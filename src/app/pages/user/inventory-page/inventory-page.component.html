@@ -1,0 +1,78 @@
+<app-header-main [user]="authUser" [isUser]="isAuth"></app-header-main>
+<section>
+  <div class="inventory-header">
+    {{user.accountName}}'s Item Inventory
+  </div>
+  <div class="inventory-content-container">
+    <div class="game-tab-container">
+      <div class="game-btn" *ngFor="let category of itemCategory; let i = index" (click)="changeCategory(i)">
+        <img src="{{category.banner}}" alt="Game banner">
+        <span class="game-name">{{category.name}}</span>
+      </div>
+    </div>
+    <div class="game-banner-container">
+      <img src="{{selectedCategory.banner}}" alt="Game banner">
+    </div>
+    <div class="search-item-container">
+      <label for="search-item">Looking for a specific item?</label>
+      <input type="text" id="search-item" [(ngModel)]="searchKeyword"
+             placeholder="Start typing an item name here to filter items"
+             #searchInput>
+    </div>
+    <div class="item-view-container" *ngIf="items.length != 0">
+      <div class="left-item-container">
+        <div class="item-container">
+          <app-item-image-card *ngFor="let item of items; let i = index" [item]="item"
+                               (click)="changeItem(i)"></app-item-image-card>
+        </div>
+        <div class="navigation-container" *ngIf="items.length != 0">
+          <span class="arrow left-arrow" *ngIf="arrowLeft" (click)="moveLeft()"><i class="fa fa-angle-double-left"
+                                                                                   aria-hidden="true"></i></span>
+          <span class="current-page">{{ currentPage }} of {{ totalPage }}</span>
+          <span class="arrow right-arrow" *ngIf="arrowRight" (click)="moveRight()"><i class="fa fa-angle-double-right"
+                                                                                      aria-hidden="true"></i></span>
+        </div>
+      </div>
+      <div class="item-overview-container">
+        <app-item-overview-card [item]="selectedItem"></app-item-overview-card>
+        <div class="sell-btn" (click)="isModal = true">Sell</div>
+      </div>
+    </div>
+    <div class="item-view-container" *ngIf="items.length == 0">
+      There's nothing to show here
+    </div>
+  </div>
+  <div class="modal" *ngIf="isModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span>Put an item up for sale</span>
+        <span class="close" (click)="isModal = false">&times;</span>
+      </div>
+      <div class="modal-main-content">
+        <div class="modal-item-description">
+          <img src="{{selectedItem.link}}" alt="Item Image">
+          <div class="item-description">
+            <span class="item-name">{{selectedItem.name}}</span>
+            <span class="game-name">{{selectedItem.game.name}}</span>
+          </div>
+        </div>
+        <div class="graph-container">
+          <app-item-transaction-graph [transactions]="transactions"></app-item-transaction-graph>
+        </div>
+        <div class="converter-container">
+          <div class="converter-input">
+            <span class="description">You receive (IDR)</span>
+            <input type="number" [(ngModel)]="receive" (keyup)="updatePay()" (change)="updatePay()">
+          </div>
+          <div class="converter-input">
+            <span class="description">Buyer pays (IDR)</span>
+            <input type="number" [(ngModel)]="pay" (keyup)="updateReceive()" (change)="updateReceive()">
+          </div>
+          <div class="button-container">
+            <div class="add-btn">OK, put it up for sale</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

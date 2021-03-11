@@ -63,6 +63,11 @@ import { GiftPageComponent } from './pages/transaction/gift-page/gift-page.compo
 import { TransactionPageComponent } from './pages/transaction/transaction-page/transaction-page.component';
 import { ConfirmationFormComponent } from './components/transaction/confirmation-form/confirmation-form.component';
 import { PurchaseReceiptEmailComponent } from './pages/transaction/purchase-receipt-email/purchase-receipt-email.component';
+import { InventoryPageComponent } from './pages/user/inventory-page/inventory-page.component';
+import { ItemImageCardComponent } from './components/item/item-image-card/item-image-card.component';
+import { ItemOverviewCardComponent } from './components/item/item-overview-card/item-overview-card.component';
+import { ItemTransactionGraphComponent } from './components/item/item-transaction-graph/item-transaction-graph.component';
+import {ChartsModule} from 'ng2-charts';
 
 
 @NgModule({
@@ -119,18 +124,23 @@ import { PurchaseReceiptEmailComponent } from './pages/transaction/purchase-rece
     TransactionPageComponent,
     ConfirmationFormComponent,
     PurchaseReceiptEmailComponent,
+    InventoryPageComponent,
+    ItemImageCardComponent,
+    ItemOverviewCardComponent,
+    ItemTransactionGraphComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    RecaptchaModule,
-    GraphQLModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireStorageModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        RecaptchaModule,
+        GraphQLModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireStorageModule,
+        ChartsModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

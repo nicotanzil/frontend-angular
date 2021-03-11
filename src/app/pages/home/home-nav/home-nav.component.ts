@@ -43,15 +43,16 @@ export class HomeNavComponent implements OnInit {
         console.log(event.target);
         return event.target.value;
       })
-      , debounceTime(1000)
+      , debounceTime(500)
       , distinctUntilChanged()
     ).subscribe((keyword: string) => {
-      console.log(keyword);
       if (keyword.length > 0) {
         this.key = keyword;
         this.service.gameSearch(keyword).subscribe(async query => {
           this.games = query.data.gameSearch;
         });
+      } else {
+        this.games = [];
       }
     });
   }

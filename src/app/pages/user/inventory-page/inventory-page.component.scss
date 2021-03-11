@@ -1,0 +1,190 @@
+@import '../../../styles/colors';
+@import '../../../styles/mixins';
+
+section {
+  padding-top: 20px;
+  padding-left: 10%;
+  padding-right: 10%;
+  background-color: $light-blue-home;
+  color: $font-light-gray;
+  .inventory-header {
+    font-size: 24px;
+    text-transform: uppercase;
+    margin: auto;
+  }
+  .inventory-content-container {
+    background-color: $inventory-black-bg;
+    margin: auto;
+    .game-tab-container {
+      display: grid;
+      grid-template-columns: auto auto auto auto;
+      //column-gap: 0;
+      //width: 80%;
+      .game-btn {
+        display: flex;
+        align-items: center;
+        //width: 225px;
+        height: 50px;
+        padding: 10px;
+        background-color: $gray-inventory;
+        border: 1px solid $font-light-gray;
+        cursor: pointer;
+        img {
+          width: 45px;
+        }
+        .game-name {
+          margin-left: 10px;
+          font-size: 12px;
+          text-wrap: normal;
+        }
+      }
+      .game-btn:hover {
+        background-color: $inventory-black-bg;
+      }
+    }
+    .game-banner-container {
+      width: 100%;
+      margin: 20px 10px;
+      img {
+        width: 250px;
+      }
+    }
+    .search-item-container {
+      display: flex;
+      flex-direction: column;
+      font-size: 13px;
+      color: $font-gray;
+      margin-top: 20px;
+      padding: 10px 20px;
+      width: 35%;
+      label {
+        @include label-input();
+      }
+      input {
+        @include text-input();
+        background-color: $dark-blue-home;
+      }
+    }
+    .item-view-container {
+      display: flex;
+      flex-direction: row;
+      .left-item-container {
+        display: flex;
+        flex-direction: column;
+        width: 65%;
+        .item-container {
+          display: grid;
+          grid-template-columns: auto auto auto auto auto;
+          column-gap: 5px;
+          padding: 5px;
+
+        }
+        .navigation-container {
+          @include paginate-navigation();
+        }
+      }
+      .item-overview-container {
+        width: 35%;
+        border: 2px solid $font-gray;
+        height: auto;
+        padding: 10px;
+        .sell-btn {
+          margin-top: 20px;
+          background-color: $green-btn;
+          padding: 5px 10px;
+          text-align: center;
+          border-radius: 2px;
+          width: 100px;
+          cursor: pointer;
+        }
+        .sell-btn:hover {
+          -webkit-filter: brightness(120%);
+        }
+      }
+    }
+  }
+  .modal {
+    @include modal-base();
+    .modal-content {
+      width: 70%;
+      padding: 30px;
+      margin: auto;
+      background-color: $profile-theme;
+      color: $font-light-gray;
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        font-size: 24px;
+        color: white;
+        text-transform: uppercase;
+        .close {
+          font-size: 24px;
+          cursor: pointer;
+        }
+      }
+      .modal-main-content {
+        border-bottom: 1px solid $font-gray;
+        padding-bottom: 10px;
+        .modal-item-description {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          img {
+            width: 125px;
+          }
+          .item-description {
+            display: flex;
+            flex-direction: column;
+            margin-left: 15px;
+            .item-name {
+              font-size: 20px;
+            }
+            .game-name {
+              font-size: 16px;
+              color: $font-gray;
+            }
+          }
+        }
+        .graph-container {
+          width: 700px;
+        }
+        .converter-container {
+          display: flex;
+          flex-direction: row;
+          padding: 15px 10px;
+          font-size: 14px;
+          .converter-input {
+            margin-left: 10px;
+            .description {
+              color: $font-gray;
+              margin-right: 10px;
+            }
+            input {
+              background-color: $edit-input-box;
+              color: $edit-input-font;
+              box-shadow: inset 1px 1px 0px #000a;
+              border: none;
+              padding: 5px;
+            }
+          }
+          .button-container {
+            margin-left: 10px;
+            .add-btn {
+              background-color: $green-btn;
+              padding: 5px;
+              border-radius: 3px;
+              cursor: pointer;
+            }
+            .add-btn:hover {
+              -webkit-filter: brightness(120%);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
