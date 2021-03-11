@@ -91,6 +91,12 @@
           <div class="review-data-container">
             <div class="review-card" *ngFor="let review of mostHelpfulGameReviews">
               <div class="content-container">
+                <div class="recommended-container">
+                  <img src="../../../../assets/thumbsup.png" alt="Thumbs Up" *ngIf="review.isRecommended">
+                  <span *ngIf="review.isRecommended">Recommended</span>
+                  <img src="../../../../assets/thumbsdown.png" alt="Thumbs Down" *ngIf="!review.isRecommended">
+                  <span *ngIf="!review.isRecommended">Not Recommended</span>
+                </div>
                 <div class="helpful-count">{{review.helpfulCount}} people found this review helpful</div>
                 <div class="description">{{review.description}}</div>
                 <div class="helpful-input">
@@ -109,6 +115,12 @@
           <div class="review-data-container">
             <div class="review-card" *ngFor="let review of mostRecentGameReviews">
               <div class="content-container">
+                <div class="recommended-container">
+                  <img src="../../../../assets/thumbsup.png" alt="Thumbs Up" *ngIf="review.isRecommended">
+                  <span *ngIf="review.isRecommended">Recommended</span>
+                  <img src="../../../../assets/thumbsdown.png" alt="Thumbs Down" *ngIf="!review.isRecommended">
+                  <span *ngIf="!review.isRecommended">Not Recommended</span>
+                </div>
                 <div class="helpful-count">{{review.helpfulCount}} people found this review helpful</div>
                 <div class="description">{{review.description}}</div>
                 <div class="helpful-input">

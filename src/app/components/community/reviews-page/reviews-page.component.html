@@ -7,10 +7,10 @@
           <img src="{{review.game.banner}}" alt="Game Banner">
         </div>
         <div class="recommended-container">
-          <i class="fa fa-thumbs-o-up btn recommended-logo" aria-hidden="true"
-             *ngIf="review.isRecommended">Recommended</i>
-          <i class="fa fa-thumbs-o-down btn not-recommended-logo" aria-hidden="true" *ngIf="!review.isRecommended">Not
-            recommended</i>
+          <img src="../../../../assets/thumbsup.png" alt="Thumbs Up" *ngIf="review.isRecommended">
+          <span *ngIf="review.isRecommended">Recommended</span>
+          <img src="../../../../assets/thumbsdown.png" alt="Thumbs Down" *ngIf="!review.isRecommended">
+          <span *ngIf="!review.isRecommended">Not Recommended</span>
         </div>
       </div>
       <div class="description">{{review.description}}</div>
@@ -39,9 +39,10 @@
                 <img src="{{review.game.banner}}" alt="Game Banner">
               </div>
               <div class="recommended-container">
-                <i class="fa fa-thumbs-o-up btn recommended-logo" aria-hidden="true" *ngIf="review.isRecommended">Recommended</i>
-                <i class="fa fa-thumbs-o-down btn not-recommended-logo" aria-hidden="true"
-                   *ngIf="!review.isRecommended">Not recommended</i>
+                <img src="../../../../assets/thumbsup.png" alt="Thumbs Up" *ngIf="review.isRecommended">
+                <span *ngIf="review.isRecommended">Recommended</span>
+                <img src="../../../../assets/thumbsdown.png" alt="Thumbs Down" *ngIf="!review.isRecommended">
+                <span *ngIf="!review.isRecommended">Not Recommended</span>
               </div>
             </div>
             <div class="description">{{review.description}}</div>

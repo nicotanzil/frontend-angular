@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Apollo, gql} from 'apollo-angular';
 import {Query} from '../../models/query';
 import {Observable} from 'rxjs';
+import {InputCommunityArtPost} from '../../models/community/input-community-art-post';
 
 @Injectable({
   providedIn: 'root'
@@ -66,6 +67,16 @@ export class CommunityArtworkService {
       }
     });
   }
+
+  createCommunityArtPost = (input: InputCommunityArtPost) => {
+    return this.apollo.mutate({
+      mutation: INSERT_ARTWORK,
+      variables: {
+        input,
+      }
+    });
+  }
+
 }
 
 
@@ -133,3 +144,9 @@ const ADD_COMMENT_BY_POST_ID = gql`
     addCommentByPostId(postId:$postId, userId:$userId, comment:$comment)
   }
 `;
+
+const INSERT_ARTWORK = gql`
+  mutation createCommunityArtPost($input:InputCommunityArtPost!) {
+    createCommunityArtPost(input:$input)
+  }
+`

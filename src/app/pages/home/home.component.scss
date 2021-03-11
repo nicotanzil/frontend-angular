@@ -2,11 +2,8 @@
 @import '../../styles/mixins.scss';
 
 section {
-  @include flex-center;
-  background: url("../../../assets/home/bg.png") center top;
-  background-size: cover;
-  min-height: 100%;
-  width: 100%;
+  @include flex-center();
+  @include steam-bg();
 }
 
 .home-container {

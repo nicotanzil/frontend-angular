@@ -69,9 +69,12 @@ export class SearchGameComponent implements OnInit {
 
 
   @HostListener('window:scroll', ['$event']) onScroll(event: any): void {
-    this.clientHeight = event.target.scrollingElement.clientHeight;
+    console.log(event);
+    this.clientHeight = document.body.offsetHeight;
     this.scrollPos = window.pageYOffset;
-    if (this.scrollPos >= 0.5 * this.clientHeight && !this.isLoading && !this.endOfData) {
+    console.log('client height: ' + this.clientHeight);
+    console.log('scroll pos: ' + this.scrollPos);
+    if (this.scrollPos >= 0.45 * this.clientHeight && !this.isLoading && !this.endOfData) {
       // Load more data
       this.isLoading = true;
       this.fetchGameData();
@@ -107,8 +110,10 @@ export class SearchGameComponent implements OnInit {
 
   fetchGameData = () => {
     this.isLoading = true;
+    console.log('Fetch data');
     this.gameService.getSearchGamePage(this.keyword, this.currentPage, this.price, this.inputTags).subscribe(async query => {
       this.fetchGames = query.data.gameSearchPage;
+      this.currentPage++;
       this.hoveredGame = this.fetchGames[0];
       if (this.fetchGames.length <= 0) {
         // No more data
@@ -122,7 +127,7 @@ export class SearchGameComponent implements OnInit {
             this.pushTag(tag);
           });
         });
-        if (this.fetchGames.length <= 10) {
+        if (this.fetchGames.length < 10) {
           this.endOfData = true;
         }
       }

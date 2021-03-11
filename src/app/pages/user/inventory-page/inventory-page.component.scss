@@ -5,7 +5,8 @@ section {
   padding-top: 20px;
   padding-left: 10%;
   padding-right: 10%;
-  background-color: $light-blue-home;
+  background: url("https://firebasestorage.googleapis.com/v0/b/staem-web.appspot.com/o/assets%2Fmiscellanaeous%2Fbg.png?alt=media&token=1e30a27b-564a-4353-be94-0cbb7dfab38c") center top;
+  background-size: cover;
   color: $font-light-gray;
   .inventory-header {
     font-size: 24px;

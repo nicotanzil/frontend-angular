@@ -68,6 +68,8 @@ import { ItemImageCardComponent } from './components/item/item-image-card/item-i
 import { ItemOverviewCardComponent } from './components/item/item-overview-card/item-overview-card.component';
 import { ItemTransactionGraphComponent } from './components/item/item-transaction-graph/item-transaction-graph.component';
 import {ChartsModule} from 'ng2-charts';
+import { TopSellerGameComponent } from './components/home/top-seller-game/top-seller-game.component';
+import { TopReviewGameComponent } from './components/home/top-review-game/top-review-game.component';
 
 
 @NgModule({
@@ -128,6 +130,8 @@ import {ChartsModule} from 'ng2-charts';
     ItemImageCardComponent,
     ItemOverviewCardComponent,
     ItemTransactionGraphComponent,
+    TopSellerGameComponent,
+    TopReviewGameComponent,
   ],
     imports: [
         BrowserModule,

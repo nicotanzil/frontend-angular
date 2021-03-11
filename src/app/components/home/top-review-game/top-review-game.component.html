@@ -1,0 +1,36 @@
+<section>
+  <div class="outer-container">
+    <div class="title">
+      Top Seller Games
+    </div>
+    <div class="content-container">
+      <a href="/game/{{game.game_id}}" class="row" *ngFor="let game of topGames">
+        <div class="left-container">
+          <div class="image-container">
+            <img src="{{game.game_banner}}" alt="Game Image">
+          </div>
+          <div class="detail-container">
+            <span>{{game.game_name}}</span>
+            <span class="description">{{game.review_count}} people recommend this game!</span>
+          </div>
+        </div>
+        <div class="right-container">
+          <span class="discount-percentage" *ngIf="game.game_discount != 0">
+            {{game.game_discount}}%
+          </span>
+          <div class="price-container">
+            <span class="price" *ngIf="game.game_discount != 0">
+              {{game.game_price}}
+            </span>
+            <span class="discount-price" *ngIf="game.game_discount != 0">
+              {{game.game_price - (game.game_price * game.game_discount / 100)}}
+            </span>
+            <span class="discount-price" *ngIf="game.game_discount == 0">
+              Free to Play
+            </span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>

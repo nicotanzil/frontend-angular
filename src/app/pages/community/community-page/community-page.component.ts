@@ -15,8 +15,8 @@ export class CommunityPageComponent implements OnInit {
   isUser: boolean;
 
   buttons = {
-    artworkBtn: false,
-    reviewsBtn: true,
+    artworkBtn: true,
+    reviewsBtn: false,
   };
 
   constructor(

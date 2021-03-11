@@ -56,7 +56,15 @@
   left: 0;
   top: 0;
   width: 100%;
+  height: 100%;
   overflow: auto;
   background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+}
+
+@mixin steam-bg {
+  background: url("https://firebasestorage.googleapis.com/v0/b/staem-web.appspot.com/o/assets%2Fmiscellanaeous%2Fbg.png?alt=media&token=1e30a27b-564a-4353-be94-0cbb7dfab38c") center top;
+  background-size: cover;
+  min-height: 100%;
+  width: 100%;
 }

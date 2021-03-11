@@ -3,6 +3,7 @@
 
 section {
   @include flex-center();
+  @include steam-bg();
   .container {
     margin: 20px;
     color: $font-light-gray;
