@@ -73,6 +73,8 @@ import { TopReviewGameComponent } from './components/home/top-review-game/top-re
 import { TopSellerGamesComponent } from './components/home/game-category/top-seller-games/top-seller-games.component';
 import { MarketPageComponent } from './pages/market/market-page/market-page.component';
 import { TopUpPageComponent } from './pages/user/top-up-page/top-up-page.component';
+import { MarketDetailPageComponent } from './pages/market/market-detail-page/market-detail-page.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 @NgModule({
@@ -138,6 +140,7 @@ import { TopUpPageComponent } from './pages/user/top-up-page/top-up-page.compone
     TopSellerGamesComponent,
     MarketPageComponent,
     TopUpPageComponent,
+    MarketDetailPageComponent,
   ],
     imports: [
         BrowserModule,
@@ -150,6 +153,7 @@ import { TopUpPageComponent } from './pages/user/top-up-page/top-up-page.compone
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireStorageModule,
         ChartsModule,
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     ],
   providers: [],
   bootstrap: [AppComponent]

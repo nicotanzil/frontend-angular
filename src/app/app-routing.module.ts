@@ -30,6 +30,7 @@ import {TransactionPageComponent} from './pages/transaction/transaction-page/tra
 import {InventoryPageComponent} from './pages/user/inventory-page/inventory-page.component';
 import {MarketPageComponent} from './pages/market/market-page/market-page.component';
 import {TopUpPageComponent} from './pages/user/top-up-page/top-up-page.component';
+import {MarketDetailPageComponent} from './pages/market/market-detail-page/market-detail-page.component';
 
 const routes: Routes = [
   {
@@ -151,6 +152,10 @@ const routes: Routes = [
   {
     path: 'market',
     component: MarketPageComponent,
+  },
+  {
+    path: 'market/:id',
+    component: MarketDetailPageComponent,
   },
   {
     path: 'checkout',
