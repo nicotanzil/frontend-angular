@@ -70,6 +70,8 @@ import { ItemTransactionGraphComponent } from './components/item/item-transactio
 import {ChartsModule} from 'ng2-charts';
 import { TopSellerGameComponent } from './components/home/top-seller-game/top-seller-game.component';
 import { TopReviewGameComponent } from './components/home/top-review-game/top-review-game.component';
+import { TopSellerGamesComponent } from './components/home/game-category/top-seller-games/top-seller-games.component';
+import { MarketPageComponent } from './pages/market/market-page/market-page.component';
 
 
 @NgModule({
@@ -132,6 +134,8 @@ import { TopReviewGameComponent } from './components/home/top-review-game/top-re
     ItemTransactionGraphComponent,
     TopSellerGameComponent,
     TopReviewGameComponent,
+    TopSellerGamesComponent,
+    MarketPageComponent,
   ],
     imports: [
         BrowserModule,

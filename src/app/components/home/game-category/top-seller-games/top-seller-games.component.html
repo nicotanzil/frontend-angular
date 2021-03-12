@@ -1,0 +1,40 @@
+<div class="top-sellers-outer-container">
+  <div class="row-container">
+    <a href="/game/{{game.id}}" class="row" *ngFor="let game of games"
+       [ngClass]="rows[game.id] ? 'select' : 'deselect'"
+       (mouseenter)="onHover(game.id)">
+      <div class="left-container">
+        <img src="{{game.banner}}" alt="Game Banner">
+        <div class="game-detail">
+          <span class="name">{{game.name}}</span>
+          <div class="tags-container">
+            <span class="tag" *ngFor="let tag of game.tags">{{tag.name}} </span>
+          </div>
+        </div>
+      </div>
+      <div class="right-container">
+        <span class="discount" *ngIf="game.promo.discountPercentage > 0">-{{game.promo.discountPercentage}}%</span>
+        <div class="price-container">
+          <span class="original-price" *ngIf="game.promo.discountPercentage > 0">Rp {{game.originalPrice}}</span>
+          <span class="total-price" *ngIf="game.promo.discountPercentage > 0">Rp {{game.originalPrice - (game.originalPrice * game.promo.discountPercentage/100)}}</span>
+          <span class="total-price" *ngIf="game.promo.discountPercentage == 0 && game.originalPrice > 0">Rp {{game.originalPrice}}</span>
+          <span class="total-price" *ngIf="game.originalPrice == 0">Free to Play</span>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="overview-container">
+    <div class="name">{{hoveredGame.name}}</div>
+    <div class="review-container">
+      <span>{{purchaseCount}} people has purchased this game in the last 7 days</span>
+    </div>
+    <div class="tag-container">
+      <span class="tag" *ngFor="let tag of hoveredGame.tags">{{tag.name}}</span>
+    </div>
+    <div class="image-container">
+      <div class="image" *ngFor="let image of hoveredGame.images; let i = index">
+        <img *ngIf="i < 4" src="{{image.link}}" alt="Game slideshow">
+      </div>
+    </div>
+  </div>
+</div>

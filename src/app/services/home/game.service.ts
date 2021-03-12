@@ -41,6 +41,15 @@ export class GameService {
       query: GET_NEW_TRENDING_GAMES,
     });
   }
+
+  getGamesByMultipleId(ids: number[]): Observable<Query> {
+    return this.apollo.query<Query>({
+      query: GET_GAMES_BY_MULTIPLE_ID,
+      variables: {
+        ids,
+      }
+    });
+  }
 }
 
 const GET_GAME_BY_ID = gql`
@@ -125,6 +134,28 @@ const GET_SPECIAL_OFFER_GAMES = gql`
 const GET_NEW_TRENDING_GAMES = gql`
   query getNewTrendingGame{
     getNewTrendingGame {
+      id
+      name
+      originalPrice
+      banner
+      images {
+        id
+        link
+      }
+      promo {
+        discountPercentage
+      }
+      tags {
+        id
+        name
+      }
+    }
+  }
+`;
+
+const GET_GAMES_BY_MULTIPLE_ID = gql`
+   query gameByMultipleId($ids:[Int!]!) {
+     gameByMultipleId(ids:$ids) {
       id
       name
       originalPrice
