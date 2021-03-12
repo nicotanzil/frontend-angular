@@ -25,7 +25,7 @@ export class AuthService {
     return this.apollo.mutate({
       mutation: LOGOUT,
     });
-  };
+  }
 }
 
 const GET_USER_AUTH = gql`

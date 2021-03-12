@@ -28,6 +28,7 @@ import {DiscussionDetailPageComponent} from './pages/community/discussion-detail
 import {GiftPageComponent} from './pages/transaction/gift-page/gift-page.component';
 import {TransactionPageComponent} from './pages/transaction/transaction-page/transaction-page.component';
 import {InventoryPageComponent} from './pages/user/inventory-page/inventory-page.component';
+import {MarketPageComponent} from './pages/market/market-page/market-page.component';
 
 const routes: Routes = [
   {
@@ -145,6 +146,10 @@ const routes: Routes = [
   {
     path: 'gift-checkout',
     component: GiftPageComponent,
+  },
+  {
+    path: 'market',
+    component: MarketPageComponent,
   },
   {
     path: 'checkout',

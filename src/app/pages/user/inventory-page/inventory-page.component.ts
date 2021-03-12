@@ -10,6 +10,7 @@ import {fromEvent} from 'rxjs';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 import {ItemTransactionService} from '../../../services/transaction/item-transaction.service';
 import {ItemTransaction} from '../../../models/transaction/item-transaction';
+import {MarketService} from '../../../services/market/market.service';
 
 @Component({
   selector: 'app-inventory-page',
@@ -54,6 +55,7 @@ export class InventoryPageComponent implements OnInit {
     private authService: AuthService,
     private itemService: ItemService,
     private transactionService: ItemTransactionService,
+    private marketService: MarketService,
   ) {
     this.user = new User();
     this.authUser = new User();
@@ -140,7 +142,7 @@ export class InventoryPageComponent implements OnInit {
     }, error => {
       console.log('Error: ' + error);
     });
-  }
+  };
 
   getTotalItems = () => {
     this.itemService.getTotalItems(this.user.id, this.selectedCategory.id, this.keyword).subscribe(async query => {
@@ -148,7 +150,7 @@ export class InventoryPageComponent implements OnInit {
       this.totalPage = Math.ceil(this.totalItem / 20);
       this.updateControl();
     });
-  }
+  };
 
   getItemCategory(): void {
     this.itemService.getItemCategoriesByUser(this.user.id).subscribe(async query => {
@@ -192,9 +194,6 @@ export class InventoryPageComponent implements OnInit {
   }
 
   moveLeft = () => {
-    if (this.currentPage < this.totalPage) {
-      return;
-    }
     this.currentPage--;
     this.loadContent();
   }
@@ -218,4 +217,17 @@ export class InventoryPageComponent implements OnInit {
     this.receive = this.pay - (this.pay * 0.1);
   }
 
+  addToSellListing(): void {
+    this.marketService.createSellListing(this.selectedItem.id, this.receive).subscribe(async query => {
+      // @ts-ignore
+      const res = query.data.createSellListing;
+      if (res) {
+        alert('Item added to Sell List');
+      } else {
+        alert('Item has already in the Sell List');
+      }
+    }, error => {
+      console.log(error);
+    });
+  }
 }

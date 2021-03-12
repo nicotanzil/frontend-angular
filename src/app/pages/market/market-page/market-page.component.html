@@ -1,1 +1,36 @@
-<p>market-page works!</p>
+<app-header-main [user]="user" [isUser]="isUser"></app-header-main>
+<section>
+  <div class="market-outer-container">
+    <div class="page-header">
+      <div class="header-container">
+        <div class="title">Community Market</div>
+        <div class="description">Buy and sell items with community members for Steam Wallet funds</div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="content-container">
+        <div class="header">Popular Items</div>
+        <div class="item-data-container">
+          <div class="item-data" *ngFor="let type of topTransactionItemTypes">
+            <div class="name-container">
+              <img src="{{type.item_link}}" alt="Item Image">
+              <div class="detail-container">
+                <div class="name">{{type.item_name}}</div>
+                <div class="game-name">{{type.game_name}}</div>
+              </div>
+            </div>
+            <div class="transaction-count">
+              <span>{{type.transaction_count}} item transactions so far</span>
+            </div>
+          </div>
+          <div class="navigation-container" *ngIf="topTransactionItemTypes.length != 0">
+            <span class="arrow left-arrow" *ngIf="arrowLeft" (click)="moveLeft()"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+            <span class="current-page">{{ currentPage }} of {{ totalPage }}</span>
+            <span class="arrow right-arrow" *ngIf="arrowRight" (click)="moveRight()"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>
