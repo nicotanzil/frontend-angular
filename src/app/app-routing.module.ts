@@ -29,6 +29,7 @@ import {GiftPageComponent} from './pages/transaction/gift-page/gift-page.compone
 import {TransactionPageComponent} from './pages/transaction/transaction-page/transaction-page.component';
 import {InventoryPageComponent} from './pages/user/inventory-page/inventory-page.component';
 import {MarketPageComponent} from './pages/market/market-page/market-page.component';
+import {TopUpPageComponent} from './pages/user/top-up-page/top-up-page.component';
 
 const routes: Routes = [
   {
@@ -154,6 +155,10 @@ const routes: Routes = [
   {
     path: 'checkout',
     component: TransactionPageComponent,
+  },
+  {
+    path: 'top-up',
+    component: TopUpPageComponent,
   },
   {
     path: '**',

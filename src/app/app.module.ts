@@ -72,6 +72,7 @@ import { TopSellerGameComponent } from './components/home/top-seller-game/top-se
 import { TopReviewGameComponent } from './components/home/top-review-game/top-review-game.component';
 import { TopSellerGamesComponent } from './components/home/game-category/top-seller-games/top-seller-games.component';
 import { MarketPageComponent } from './pages/market/market-page/market-page.component';
+import { TopUpPageComponent } from './pages/user/top-up-page/top-up-page.component';
 
 
 @NgModule({
@@ -136,6 +137,7 @@ import { MarketPageComponent } from './pages/market/market-page/market-page.comp
     TopReviewGameComponent,
     TopSellerGamesComponent,
     MarketPageComponent,
+    TopUpPageComponent,
   ],
     imports: [
         BrowserModule,

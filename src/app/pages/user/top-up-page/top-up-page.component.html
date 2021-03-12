@@ -1,0 +1,16 @@
+<app-header-main [user]="user" [isUser]="isUser"></app-header-main>
+<section>
+  <div class="outer-container">
+    <div class="header">Redeem your code here to top up your wallet</div>
+    <div class="content-container">
+      <div class="text-input">
+        <label for="code">Wallet code</label>
+        <input type="text" id="code" [(ngModel)]="code">
+      </div>
+      <div class="button-container">
+        <div class="submit-btn" (click)="redeemCode()">Submit Code</div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

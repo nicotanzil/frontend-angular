@@ -32,6 +32,16 @@ export class UserService {
     });
   }
 
+  redeemCode = (code: string, userId: number) => {
+    return this.apollo.mutate({
+      mutation: REDEEM_CODE,
+      variables: {
+        code,
+        userId,
+      }
+    });
+  }
+
   addFriend = (userId: number, friendId: number) => {
     return this.apollo.mutate({
       mutation: ADD_FRIEND,
@@ -40,7 +50,7 @@ export class UserService {
         friendId,
       }
     });
-  };
+  }
 }
 
 const GET_USER_BY_ACCOUNT_NAME = gql`
@@ -54,6 +64,12 @@ const GET_USER_BY_ACCOUNT_NAME = gql`
 const ADD_FRIEND = gql`
   mutation addFriend($userId:Int!, $friendId:Int!) {
     addFriend(userId:$userId, friendId:$friendId)
+  }
+`;
+
+const REDEEM_CODE = gql`
+  mutation redeemCode($code:String!, $userId:Int!) {
+    redeemCode(code:$code, userId:$userId)
   }
 `;
 
