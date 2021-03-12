@@ -1,11 +1,9 @@
 import {Game} from './game';
 import {User} from './user';
+import {ItemType} from './item-type';
 
 export class Item {
   id: number;
-  name: string;
-  summary: string;
-  link: string;
-  game: Game = new Game();
-  users: User[] = [];
+  itemType: ItemType = new ItemType();
+  user: User = new User();
 }

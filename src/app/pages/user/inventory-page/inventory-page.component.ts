@@ -189,7 +189,7 @@ export class InventoryPageComponent implements OnInit {
     }
     this.currentPage++;
     this.loadContent();
-  };
+  }
 
   moveLeft = () => {
     if (this.currentPage < this.totalPage) {
@@ -197,7 +197,7 @@ export class InventoryPageComponent implements OnInit {
     }
     this.currentPage--;
     this.loadContent();
-  };
+  }
 
   loadGraph(): void {
     this.transactionService.getPreviousTransactionData(this.selectedItem.id).subscribe(async query => {
