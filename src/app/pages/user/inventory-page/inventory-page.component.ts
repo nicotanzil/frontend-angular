@@ -11,6 +11,7 @@ import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 import {ItemTransactionService} from '../../../services/transaction/item-transaction.service';
 import {ItemTransaction} from '../../../models/transaction/item-transaction';
 import {MarketService} from '../../../services/market/market.service';
+import {GraphData} from '../../../models/market/graph-data';
 
 @Component({
   selector: 'app-inventory-page',
@@ -42,7 +43,7 @@ export class InventoryPageComponent implements OnInit {
   arrowLeft: boolean;
   arrowRight: boolean;
 
-  transactions: ItemTransaction[];
+  graphDatas: GraphData[];
 
   receive: number;
   pay: number;
@@ -71,7 +72,7 @@ export class InventoryPageComponent implements OnInit {
 
     this.keyword = '';
 
-    this.transactions = [];
+    this.graphDatas = [];
 
     this.receive = 0;
     this.pay = 0;
@@ -142,7 +143,7 @@ export class InventoryPageComponent implements OnInit {
     }, error => {
       console.log('Error: ' + error);
     });
-  };
+  }
 
   getTotalItems = () => {
     this.itemService.getTotalItems(this.user.id, this.selectedCategory.id, this.keyword).subscribe(async query => {
@@ -150,7 +151,7 @@ export class InventoryPageComponent implements OnInit {
       this.totalPage = Math.ceil(this.totalItem / 20);
       this.updateControl();
     });
-  };
+  }
 
   getItemCategory(): void {
     this.itemService.getItemCategoriesByUser(this.user.id).subscribe(async query => {
@@ -199,10 +200,8 @@ export class InventoryPageComponent implements OnInit {
   }
 
   loadGraph(): void {
-    this.transactionService.getPreviousTransactionData(this.selectedItem.id).subscribe(async query => {
-      console.log(query);
-      this.transactions = query.data.getPreviousTransactionData;
-      console.log(this.transactions);
+    this.transactionService.getPreviousTransactionData(this.selectedItem.itemType.id).subscribe(async query => {
+      this.graphDatas = query.data.getPreviousTransactionData;
     }, error => {
       console.log(error);
     });
@@ -210,7 +209,6 @@ export class InventoryPageComponent implements OnInit {
 
   updatePay(): void {
     this.pay = this.receive + this.receive * 0.1;
-    console.log(this.pay);
   }
 
   updateReceive(): void {

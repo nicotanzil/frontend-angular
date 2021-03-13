@@ -2,6 +2,7 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 import {ItemTransaction} from '../../../models/transaction/item-transaction';
 import {ChartData, ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Label} from 'ng2-charts';
+import {GraphData} from '../../../models/market/graph-data';
 
 @Component({
   selector: 'app-item-transaction-graph',
@@ -10,7 +11,7 @@ import {Label} from 'ng2-charts';
 })
 export class ItemTransactionGraphComponent implements OnInit, OnChanges {
 
-  @Input() transactions: ItemTransaction[];
+  @Input() graphDatas: GraphData[];
 
   prices: number[];
   dates: any[];
@@ -24,7 +25,7 @@ export class ItemTransactionGraphComponent implements OnInit, OnChanges {
   graphReady: boolean;
 
   constructor() {
-    this.transactions = [];
+    this.graphDatas = [];
     this.prices = [];
     this.dates = [];
 
@@ -32,9 +33,9 @@ export class ItemTransactionGraphComponent implements OnInit, OnChanges {
   }
 
   preprocessData(): void {
-    this.transactions.forEach(transaction => {
-      this.prices.push(transaction.price);
-      const d = new Date(transaction.createdAt);
+    this.graphDatas.forEach(data => {
+      this.prices.push(data.price);
+      const d = new Date(data.date);
       this.dates.push(d.getDate() + '.' + d.getMonth() + '.' + d.getFullYear());
     });
   }
@@ -98,7 +99,7 @@ export class ItemTransactionGraphComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.transactions);
+    console.log(this.graphDatas);
     this.graphReady = false;
     this.initGraph();
   }

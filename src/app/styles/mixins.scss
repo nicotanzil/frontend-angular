@@ -62,6 +62,14 @@
   background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
 }
 
+@mixin modal-content {
+  width: 70%;
+  padding: 30px;
+  margin: auto;
+  background-color: $profile-theme;
+  color: $font-light-gray;
+}
+
 @mixin steam-bg {
   background: url("https://firebasestorage.googleapis.com/v0/b/staem-web.appspot.com/o/assets%2Fmiscellanaeous%2Fbg.png?alt=media&token=1e30a27b-564a-4353-be94-0cbb7dfab38c") center top;
   background-size: cover;

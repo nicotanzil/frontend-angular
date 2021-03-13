@@ -11,7 +11,7 @@
       <div class="content-container">
         <div class="header">Popular Items</div>
         <div class="item-data-container">
-          <div class="item-data" *ngFor="let type of topTransactionItemTypes">
+          <div class="item-data" *ngFor="let type of topTransactionItemTypes" routerLink="/market/{{type.item_type_id}}">
             <div class="name-container">
               <img src="{{type.item_link}}" alt="Item Image">
               <div class="detail-container">

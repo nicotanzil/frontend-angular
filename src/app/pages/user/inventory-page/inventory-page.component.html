@@ -52,12 +52,12 @@
         <div class="modal-item-description">
           <img src="{{selectedItem.itemType.link}}" alt="Item Image">
           <div class="item-description">
-            <span class="item-name">{{selectedItem.itemType.name}}</span>
+            <span class="item-name">{{selectedItem.id}}.{{selectedItem.itemType.name}}</span>
             <span class="game-name">{{selectedItem.itemType.game.name}}</span>
           </div>
         </div>
         <div class="graph-container">
-          <app-item-transaction-graph [transactions]="transactions"></app-item-transaction-graph>
+          <app-item-transaction-graph [graphDatas]="graphDatas"></app-item-transaction-graph>
         </div>
         <div class="converter-container">
           <div class="converter-input">

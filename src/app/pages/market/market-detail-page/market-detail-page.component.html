@@ -1,1 +1,104 @@
-<p>market-detail-page works!</p>
+<app-header-main [user]="user" [isUser]="isAuth"></app-header-main>
+<section>
+  <div class="market-outer-container">
+    <div class="page-header">
+      <div class="header-container">
+        <div class="title">Community Market</div>
+        <div class="description">Buy and sell items with community members for Steam Wallet funds</div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="item-container">
+        <div class="detail-container">
+          <div class="image-container">
+            <img src="{{itemType.link}}" alt="Item Image">
+          </div>
+          <div class="item-detail-container">
+            <span class="name">{{itemType.name}}</span>
+            <span class="item-summary">{{itemType.summary}}</span>
+            <span class="game-name">{{itemType.game.name}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="transaction-container">
+        <div class="buy-section">
+          <div class="container">
+            <div class="button" (click)="isBuyModal = true">Buy</div>
+            <div class="data-container">
+              <span class="data-container-header">
+                <span class="price-header">Price</span>
+                <span class="quantity-header">Quantity</span>
+              </span>
+              <span class="data-row" *ngFor="let buyListing of highestBuyListings">
+                <span class="price-data">Rp. {{buyListing.price}}</span>
+                <span class="quantity-data">{{buyListing.listing_count}}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="sell-section">
+          <div class="container">
+            <div class="button">Sell</div>
+            <div class="data-container">
+              <span class="data-container-header">
+                <span class="price-header">Price</span>
+                <span class="quantity-header">Quantity</span>
+              </span>
+              <span class="data-row" *ngFor="let sellListing of lowestSellListings">
+                <span class="price-data">Rp. {{sellListing.price}}</span>
+                <span class="quantity-data">{{sellListing.listing_count}}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="users-data">
+        <div class="listings">
+          <div class="listing-title">My sell listings ({{mySellListings.length}})</div>
+          <div class="listing-data-container" *ngIf="mySellListings.length != 0">
+            <div class="listing-data" *ngFor="let listing of mySellListings">
+              <span class="listing-price">Rp. {{listing.sell}}</span>
+              <span class="listing-date">ID({{listing.item.id}}) - {{listing.createdAt | date}}</span>
+            </div>
+          </div>
+          <div class="listing-data-container" *ngIf="mySellListings.length == 0">
+            You are not selling any of this item on the Community Market. Sell items from your inventory, or click the "Sell" button above.
+          </div>
+        </div>
+        <div class="listings">
+          <div class="listing-title">My buy orders ({{myBuyListings.length}})</div>
+          <div class="listing-data-container" *ngIf="myBuyListings.length != 0">
+            <div class="listing-data" *ngFor="let listing of myBuyListings">
+              <span class="listing-price">Rp. {{listing.buy}}</span>
+              <span class="listing-date">{{listing.createdAt | date}}</span>
+            </div>
+          </div>
+          <div class="listing-data-container" *ngIf="myBuyListings.length == 0">
+            You do not have any buy orders.
+          </div>
+        </div>
+      </div>
+      <div class="graph-container">
+        <div class="graph-inner-container">
+          <app-item-transaction-graph [graphDatas]="graphDatas"></app-item-transaction-graph>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" *ngIf="isBuyModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="title">Place your bid here!</span>
+        <span class="close" (click)="isBuyModal = false">&times;</span>
+      </div>
+      <div class="modal-main-content">
+        <div class="text-input">
+          <label for="buy">You want to pay (exclude 10% tax): </label>
+          <input type="number" id="buy" [(ngModel)]="buy">
+        </div>
+      </div>
+      <div class="button" (click)="createBuyListing()">Submit</div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

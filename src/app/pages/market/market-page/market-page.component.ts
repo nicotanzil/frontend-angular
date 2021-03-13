@@ -102,5 +102,7 @@ export class MarketPageComponent implements OnInit {
     }
     this.currentPage--;
     this.loadContent();
-  };
+  }
+
+
 }

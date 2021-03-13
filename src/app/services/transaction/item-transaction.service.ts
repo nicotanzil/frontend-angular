@@ -13,11 +13,11 @@ export class ItemTransactionService {
   ) {
   }
 
-  getPreviousTransactionData(itemId: number): Observable<Query> {
+  getPreviousTransactionData(typeId: number): Observable<Query> {
     return this.apollo.query<Query>({
       query: GET_PREVIOUS_TRANSACTION_DATA,
       variables: {
-        itemId,
+        typeId,
       }
     });
   }
@@ -25,11 +25,10 @@ export class ItemTransactionService {
 }
 
 const GET_PREVIOUS_TRANSACTION_DATA = gql`
-  query getPreviousTransactionData($itemId:Int!) {
-    getPreviousTransactionData(itemId:$itemId) {
-      id
+  query getPreviousTransactionData($typeId:Int!) {
+    getPreviousTransactionData(typeId:$typeId) {
       price
-      createdAt
+      date
     }
   }
 `;

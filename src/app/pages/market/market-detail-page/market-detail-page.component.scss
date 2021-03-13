@@ -1,0 +1,179 @@
+@import '../../../styles/mixins';
+@import '../../../styles/colors';
+
+section {
+  @include steam-bg();
+  padding-top: 20px;
+  .market-outer-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    color: $font-light-gray;
+    .page-header {
+      padding: 0 20px;
+      width: 100%;
+      background-color: $header-green;
+      @include flex-center();
+      .header-container {
+        display: flex;
+        flex-direction: column;
+        padding: 10px 0;
+        .title {
+          font-size: 24px;
+          color: white;
+        }
+        .description {
+          font-size: 16px;
+        }
+      }
+    }
+    .content {
+      display: flex;
+      justify-content: center;
+      margin: 30px 5%;
+      padding: 30px 5%;
+      flex-direction: column;
+      background-color: $dark-blue-home;
+      .item-container {
+        .detail-container {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          .image-container {
+            img {
+              width: 300px;
+            }
+          }
+          .item-detail-container {
+            margin-left: 20px;
+            display: flex;
+            flex-direction: column;
+            .name {
+              font-size: 24px;
+            }
+            .item-summary {
+              font-size: 16px;
+              color: $font-gray;
+              font-style: italic;
+            }
+            .game-name {
+              font-size: 18px;
+              color: $font-gray;
+            }
+          }
+        }
+      }
+      .transaction-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding: 20px 30px;
+        .buy-section, .sell-section {
+          width: 25%;
+          margin: 20px 15px;
+          background-color: $middle-blue-home;
+          .container {
+            display: flex;
+            flex-direction: column;
+            .button {
+              padding: 10px 15px;
+              margin: 10px 0;
+              background-color: $green-btn;
+              font-size: 24px;
+              text-align: center;
+              border-radius: 3px;
+              cursor: pointer;
+            }
+            .button:hover {
+              -webkit-filter: brightness(120%);
+            }
+            .data-container {
+              display: flex;
+              flex-direction: column;
+              text-align: center;
+              .data-container-header, .data-row {
+                display: flex;
+                justify-content: space-between;
+                .price-header, .quantity-header, .price-data, .quantity-data {
+                  width: 50%;
+                  padding: 5px 0;
+                  border-bottom: 1px solid $font-gray;
+                }
+              }
+            }
+          }
+        }
+      }
+      .users-data {
+        display: flex;
+        justify-content: start;
+        flex-direction: column;
+        margin: 20px 0;
+        .listings {
+          display: flex;
+          flex-direction: column;
+          margin: 10px 0;
+          .listing-title {
+            color: white;
+            font-size: 18px;
+          }
+          .listing-data {
+            display: flex;
+            flex-direction: column;
+            background-color: $edit-input-box;
+            padding: 10px;
+            color: $font-gray;
+            border-bottom: 1px solid $font-gray;
+            .listing-price {
+
+            }
+            .listing-date {
+              font-size: 14px;
+              font-style: italic;
+            }
+          }
+        }
+      }
+    }
+  }
+  .modal {
+    @include modal-base();
+    .modal-content {
+      @include modal-content();
+      .modal-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .header-title {
+          font-size: 12px;
+        }
+
+        .close {
+          font-size: 24px;
+          cursor: pointer;
+        }
+      }
+      .modal-main-content {
+        input {
+          @include text-input();
+        }
+        .label {
+          @include label-input();
+        }
+      }
+      .button {
+        margin: 10px 0;
+        @include blue-gradient-button();
+        padding: 5px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+        width: 150px;
+        text-align: center;
+      }
+      .button:hover {
+        -webkit-filter: brightness(120%);
+      }
+    }
+  }
+}
