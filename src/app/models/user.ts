@@ -15,6 +15,7 @@ export class User {
   email: string;
   password: string;
   balance: number;
+  points: number;
   customURL: string;
 
   avatar: string;

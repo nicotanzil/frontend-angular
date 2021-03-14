@@ -37,6 +37,7 @@ query GetUserAuth {
     realName
     email
     balance
+    points
     customURL
     summary
     avatar

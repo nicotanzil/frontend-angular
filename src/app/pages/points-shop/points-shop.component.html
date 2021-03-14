@@ -1,0 +1,66 @@
+<app-header-main [user]="user" [isUser]="isAuth"></app-header-main>
+<section>
+  <div class="outer-container">
+    <div class="page-header">
+      <span class="title">The Points Shop</span>
+      <span class="balance">Your Points: {{user.points}}</span>
+    </div>
+
+    <div class="category-container">
+      <div class="category-title-container">
+        <span class="title">Animated Avatars ({{animatedAvatars.length}})</span>
+      </div>
+      <div class="item-data-container">
+        <app-points-shop-card *ngFor="let item of animatedAvatars"
+                              [name]="item.name" [link]="item.link" [price]="item.price"
+                              category="Animated Avatar" [user]="user"
+                              (click)="buyAnimatedAvatar(item.id)"></app-points-shop-card>
+      </div>
+    </div>
+    <div class="category-container">
+      <div class="category-title-container">
+        <span class="title">Profile Backgrounds ({{profileBackgrounds.length}})</span>
+      </div>
+      <div class="item-data-container">
+        <app-points-shop-card *ngFor="let item of profileBackgrounds"
+                              [name]="item.name" [link]="item.link" [price]="item.price"
+                              category="Profile Background" [user]="user"
+                              (click)="buyProfileBackground(item.id)"></app-points-shop-card>
+      </div>
+    </div>
+    <div class="category-container">
+      <div class="category-title-container">
+        <span class="title">Avatar Frames ({{avatarFrames.length}})</span>
+      </div>
+      <div class="item-data-container">
+        <app-points-shop-card *ngFor="let item of avatarFrames"
+                              [name]="item.name" [link]="item.link" [price]="item.price"
+                              category="Avatar Frames" [user]="user"
+                              (click)="buyAnimatedAvatar(item.id)"></app-points-shop-card>
+      </div>
+    </div>
+    <div class="category-container">
+      <div class="category-title-container">
+        <span class="title">Chat Stickers ({{chatStickers.length}})</span>
+      </div>
+      <div class="item-data-container">
+        <app-points-shop-card *ngFor="let item of chatStickers"
+                              [name]="item.name" [link]="item.link" [price]="item.price"
+                              category="Chat Sticker" [user]="user"
+                              (click)="buyChatSticker(item.id)"></app-points-shop-card>
+      </div>
+    </div>
+    <div class="category-container">
+      <div class="category-title-container">
+        <span class="title">Mini Profile Backgrounds ({{miniProfileBackgrounds.length}})</span>
+      </div>
+      <div class="item-data-container">
+        <app-points-shop-card *ngFor="let item of miniProfileBackgrounds"
+                              [name]="item.name" [link]="item.link" [price]="item.price"
+                              category="Mini Profile Background" [user]="user"
+                              (click)="buyMiniProfileBackground(item.id)"></app-points-shop-card>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

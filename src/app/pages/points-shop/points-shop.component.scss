@@ -1,0 +1,53 @@
+@import '../../styles/mixins';
+@import '../../styles/colors';
+
+
+section {
+  @include steam-bg();
+  @include flex-center();
+  .outer-container {
+    width: 100%;
+    color: $font-light-gray;
+    .page-header {
+      width: 100%;
+      background-color: $dark-blue-home;
+      padding: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      .title {
+        color: $font-light-blue;
+        text-transform: uppercase;
+        font-size: 24px;
+        margin: 0 10px;
+      }
+      .balance {
+        font-size: 18px;
+        color: $font-light-blue;
+        margin: 0 10px;
+      }
+    }
+    .category-container {
+      display: flex;
+      flex-direction: column;
+      width: 80%;
+      padding: 0 30px;
+      margin-top: 20px;
+      .category-title-container {
+        border-bottom: 1px solid $font-light-gray;
+        .title {
+          font-size: 18px;
+          text-transform: uppercase;
+        }
+      }
+      .item-data-container {
+        padding-top: 20px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        app-points-shop-card {
+          margin: 10px;
+        }
+      }
+    }
+  }
+}

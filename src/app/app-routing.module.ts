@@ -31,6 +31,7 @@ import {InventoryPageComponent} from './pages/user/inventory-page/inventory-page
 import {MarketPageComponent} from './pages/market/market-page/market-page.component';
 import {TopUpPageComponent} from './pages/user/top-up-page/top-up-page.component';
 import {MarketDetailPageComponent} from './pages/market/market-detail-page/market-detail-page.component';
+import {PointsShopComponent} from './pages/points-shop/points-shop.component';
 
 const routes: Routes = [
   {
@@ -164,6 +165,10 @@ const routes: Routes = [
   {
     path: 'top-up',
     component: TopUpPageComponent,
+  },
+  {
+    path: 'points-shop',
+    component: PointsShopComponent,
   },
   {
     path: '**',

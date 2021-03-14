@@ -75,6 +75,8 @@ import { MarketPageComponent } from './pages/market/market-page/market-page.comp
 import { TopUpPageComponent } from './pages/user/top-up-page/top-up-page.component';
 import { MarketDetailPageComponent } from './pages/market/market-detail-page/market-detail-page.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { PointsShopComponent } from './pages/points-shop/points-shop.component';
+import { PointsShopCardComponent } from './components/points-shop/points-shop-card/points-shop-card.component';
 
 
 @NgModule({
@@ -141,6 +143,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     MarketPageComponent,
     TopUpPageComponent,
     MarketDetailPageComponent,
+    PointsShopComponent,
+    PointsShopCardComponent,
   ],
     imports: [
         BrowserModule,
