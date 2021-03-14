@@ -1,121 +1,126 @@
 <div class="header-container">
-    <div class="header">
-        <!-- LEFT SIDE HEADER LOGO + 4/5 CHOICES -->
-        <div class="header-left">
-            <a routerLink="/"><img src="../../../assets/steam_logo.png" alt="header logo"></a>
-            <ul>
-                <li>
-                  <!-- STORE DROPDOWN -->
-                  <div class="dropdown">
-                    <a href="#">Store</a>
-                    <div class="dropdown-content-store">
-                      <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Discovery queue</a></li>
-                        <li><a href="#">Wishlist</a></li>
-                        <li><a href="/points-shop">Points shop</a></li>
-                        <li><a href="/top-up">Top Up</a></li>
-                        <li><a href="#">Stats</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <!-- COMMUNITY DROPDOWN -->
-                  <div class="dropdown">
-                    <a href="/community">Community</a>
-                    <div class="dropdown-content-community">
-                      <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="community/discussion">Discussions</a></li>
-                        <li><a href="#">Workshop</a></li>
-                        <li><a href="/market">Market</a></li>
-                        <li><a href="#">Broadcasts</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </li>
-                <li *ngIf="this.isUser">
-                  <div class="dropdown">
-                    <a href="#">{{this.user.profileName}}</a>
-                    <div class="dropdown-content-community">
-                      <ul>
-                        <li><a href="#">Activity</a></li>
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="#">Friends</a></li>
-                        <li><a href="#">Groups</a></li>
-                        <li><a href="#">Content</a></li>
-                        <li><a href="#">Badges</a></li>
-                        <li><a href="#">Inventory</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </li>
-                <li *ngIf="!this.isUser"><a href="#">About</a></li>
-                <li *ngIf="this.isUser"><a href="#">Chat</a></li>
-                <li><a href="#">Support</a></li>
-                <li></li>
-            </ul>
-        </div>
-        <!-- RIGHT SIDE HEADER 2 MENU -->
-        <div class="header-right">
-          <ul *ngIf="!this.isUser">
-              <!-- REDIRECT TO LOGIN PAGE -->
-              <li><a routerLink="/login">login</a></li>
-              <li>  |  </li>
-              <!-- CHANGE LANGUAGE -->
-              <li>language</li>
-          </ul>
-          <div class="header-user-detail" *ngIf="this.isUser">
-            <div class="mail-box" (click)="changeNotificationDropdownState()">
-                <span class="mail-number">{{friendRequestCount + giftCount}}</span>
-                <i class="fa fa-envelope" aria-hidden="true"></i>
-            </div>
-            <div class="notification-dropdown" *ngIf="isNotificationDropdown">
-              <div class="item">
-                <a href="#">0 new comments</a>
-              </div>
-              <div class="item">
-                <a href="#">{{giftCount}} new items in your inventory</a>
-              </div>
-              <div class="item">
-                <a href="#">{{friendRequestCount}} new invites</a>
-              </div>
-              <div class="item">
-                <a href="#">0 new gifts</a>
-              </div>
-              <div class="item">
-                <a href="#">0 unread chat messages</a>
-              </div>
-            </div>
-            <div class="account-detail">
-              <div class="name">
-                {{ this.user.profileName }}
-                <i class="fa fa-sort-desc" aria-hidden="true"></i>
-                <div id="account-dropdown">
-                  <div class="item">
-                    <a [routerLink]="['/user/', this.user.customURL]">View Profile</a>
-                  </div>
-                  <div class="item">
-                    <a href="#">Account Details</a>
-                  </div>
-                  <div class="item">
-                    <a href="#" (click)="logout()">Logout</a>
-                  </div>
-                  <div class="item">
-                    <a href="#">Preferences</a>
-                  </div>
-                  <div class="item">
-                    <a href="#">Change language</a>
-                  </div>
-                </div>
-              </div>
-              <a href="#" class="balance">Rp {{ this.user.balance }}</a>
+  <div class="header">
+    <!-- LEFT SIDE HEADER LOGO + 4/5 CHOICES -->
+    <div class="header-left">
+      <a routerLink="/"><img src="../../../assets/steam_logo.png" alt="header logo"></a>
+      <ul>
+        <li>
+          <!-- STORE DROPDOWN -->
+          <div class="dropdown">
+            <a href="#">{{ 'HOME.STORE' | translate }}</a>
+            <div class="dropdown-content-store">
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Discovery queue</a></li>
+                <li><a href="#">Wishlist</a></li>
+                <li><a href="/points-shop">Points shop</a></li>
+                <li><a href="/top-up">Top Up</a></li>
+                <li><a href="#">Stats</a></li>
+              </ul>
             </div>
           </div>
-          <a [routerLink]="['/user', this.user.customURL]" id="header-user-avatar" *ngIf="this.isUser">
-            <img src="{{ this.user.avatar }}" alt="{{ this.user.accountName }} Avatar">
-          </a>
-        </div>
+        </li>
+        <li>
+          <!-- COMMUNITY DROPDOWN -->
+          <div class="dropdown">
+            <a href="/community">{{ 'HOME.COMMUNITY' | translate}}</a>
+            <div class="dropdown-content-community">
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="community/discussion">Discussions</a></li>
+                <li><a href="#">Workshop</a></li>
+                <li><a href="/market">Market</a></li>
+                <li><a href="#">Broadcasts</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li *ngIf="this.isUser">
+          <div class="dropdown">
+            <a href="#">{{this.user.profileName}}</a>
+            <div class="dropdown-content-community">
+              <ul>
+                <li><a href="#">Activity</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Friends</a></li>
+                <li><a href="#">Groups</a></li>
+                <li><a href="#">Content</a></li>
+                <li><a href="#">Badges</a></li>
+                <li><a href="#">Inventory</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li *ngIf="!this.isUser"><a href="#">{{'HOME.ABOUT' | translate}}</a></li>
+        <li *ngIf="this.isUser"><a href="#">{{'HOME.CHAT' | translate}}</a></li>
+        <li><a href="#">{{'HOME.SUPPORT' | translate}}</a></li>
+        <li></li>
+      </ul>
     </div>
+    <!-- RIGHT SIDE HEADER 2 MENU -->
+    <div class="header-right">
+      <ul *ngIf="!this.isUser">
+        <!-- REDIRECT TO LOGIN PAGE -->
+        <li><a routerLink="/login">login</a></li>
+        <li> |</li>
+        <!-- CHANGE LANGUAGE -->
+        <li>language</li>
+      </ul>
+      <div class="header-user-detail" *ngIf="this.isUser">
+        <div class="mail-box" (click)="changeNotificationDropdownState()">
+          <span class="mail-number">{{friendRequestCount + giftCount}}</span>
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </div>
+        <div class="notification-dropdown" *ngIf="isNotificationDropdown">
+          <div class="item">
+            <a href="#">0 new comments</a>
+          </div>
+          <div class="item">
+            <a href="#">0 new items in your inventory</a>
+          </div>
+          <div class="item">
+            <a href="#">{{friendRequestCount}} new invites</a>
+          </div>
+          <div class="item">
+            <a href="#">{{giftCount}} new gifts</a>
+          </div>
+          <div class="item">
+            <a href="#">0 unread chat messages</a>
+          </div>
+        </div>
+        <div class="account-detail">
+          <div class="name">
+            {{ this.user.profileName }}
+            <i class="fa fa-sort-desc" aria-hidden="true" (click)=changeAccoutnDropdownState()></i>
+            <div id="account-dropdown" *ngIf="isAccountDropdown">
+              <div class="item">
+                <a [routerLink]="['/user/', this.user.customURL]">{{'HOME.VIEW_PROFILE' | translate}}</a>
+              </div>
+              <div class="item">
+                <a href="#">{{'HOME.ACCOUNT_DETAILS' | translate}}</a>
+              </div>
+              <div class="item">
+                <a href="#" (click)="logout()">{{'HOME.LOGOUT' | translate}}</a>
+              </div>
+              <div class="item">
+                <a href="#">{{'HOME.PREFERENCES' | translate}}</a>
+              </div>
+              <div class="item">
+                <div class="change-language">
+                  <label for="change-language">{{'HOME.SELECT' | translate}}</label>
+                  <select #langselect (change)="translate.use(langselect.value)" id="change-language">
+                    <option *ngFor="let lang of translate.getLangs()" [value]="lang">{{lang}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="#" class="balance">Rp {{ this.user.balance }}</a>
+        </div>
+      </div>
+      <a [routerLink]="['/user', this.user.customURL]" id="header-user-avatar" *ngIf="this.isUser">
+        <img src="{{ this.user.avatar }}" alt="{{ this.user.accountName }} Avatar">
+      </a>
+    </div>
+  </div>
 </div>

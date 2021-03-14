@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
 import {UpdateUser} from '../../models/user/update-user';
 import {FriendRequestService} from '../../services/user/friend-request.service';
 import {CheckoutService} from '../../services/transaction/checkout.service';
-
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header-main',
@@ -21,16 +21,27 @@ export class HeaderMainComponent implements OnInit, OnChanges {
   friendRequestCount: number;
   giftCount: number;
 
+  isAccountDropdown: boolean;
   isNotificationDropdown: boolean;
+  isLanguageDropdown: boolean;
 
   constructor(
     private service: AuthService,
     private router: Router,
     private friendRequestService: FriendRequestService,
     private checkoutService: CheckoutService,
+    public translate: TranslateService,
   ) {
     this.user = new User();
+
+    this.isAccountDropdown = false;
     this.isNotificationDropdown = false;
+    this.isLanguageDropdown = false;
+
+    translate.addLangs(['en', 'id']);
+    translate.setDefaultLang('en');
+    const browserLang = translate.getBrowserLang();
+    translate.use(browserLang.match(/en|id/) ? browserLang : 'en');
   }
 
   ngOnInit(): void {
@@ -44,12 +55,12 @@ export class HeaderMainComponent implements OnInit, OnChanges {
   }
 
   initNotification(): void {
-    this.friendRequestService.getPendingFriendRequestCount(this.user.id).subscribe(async query => {
-      this.friendRequestCount = query.data.getPendingFriendRequestCount;
+    this.friendRequestService.getPendingFriendRequestCount(this.user.id).subscribe(async res => {
+      this.friendRequestCount = res.data.getPendingFriendRequestCount;
     });
 
-    this.checkoutService.getGiftNotificationCount(this.user.id).subscribe(async query => {
-      this.giftCount = query.data.getGiftNotificationCount;
+    this.checkoutService.getGiftNotificationCount(this.user.id).subscribe(async res => {
+      this.giftCount = res.data.getGiftNotificationCount;
     });
   }
 
@@ -61,6 +72,14 @@ export class HeaderMainComponent implements OnInit, OnChanges {
     AuthService.isLoggedIn = false;
 
     this.router.navigateByUrl('/login');
+  }
+
+  changeAccoutnDropdownState(): void {
+    if (this.isAccountDropdown) {
+      this.isAccountDropdown = false;
+    } else {
+      this.isAccountDropdown = true;
+    }
   }
 
   changeNotificationDropdownState(): void {

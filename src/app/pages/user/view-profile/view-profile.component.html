@@ -79,17 +79,17 @@
           </div>
           <div class="friends-property-container">
             <div class="friends-description-container">
-              <a href="#" class="property-name">Friends</a>
+              <a href="user/{{url}}/friend" class="property-name">Friends</a>
               <div class="property-count">{{profileUser.friends.length}}</div>
             </div>
             <div class="friends-container">
-              <div class="friends-content" *ngFor="let friend of profileUser.friends; let i = index"
-                   (mouseenter)="onHover(i)"
+              <div class="friends-content" *ngFor="let friend of profileUser.friends"
+                   (mouseenter)="onHover(friend.id)"
                    (mouseleave)="clearHover()">
                 <app-mini-profile-card [user]="friend"
                                        [selectedBackground]="friend.miniProfileBackground.link"
                                        [avatarFrame]="friend.avatarFrame.link"
-                                       *ngIf="friendContainers[i]"></app-mini-profile-card>
+                                       *ngIf="friendContainers[friend.id]"></app-mini-profile-card>
                 <a href="/user/{{friend.customURL}}" class="profile-detail-container">
                   <img src="{{friend.avatar}}" alt="User avatar">
                   <span class="profile-name">{{friend.profileName}}</span>
@@ -113,7 +113,7 @@
       </div>
       <div class="input-container">
         <span class="input-title">Tell us your reason in the text area below</span>
-        <textarea name="description" id="description" cols="30" rows="5" [(ngModel)]="suspensionRequest.description" placeholder="Why should be suspend this user?"></textarea>
+        <textarea name="description" id="description" cols="30" rows="5" [(ngModel)]="description" placeholder="Why should be suspend this user?"></textarea>
       </div>
       <div class="button-section">
         <div class="button-container">

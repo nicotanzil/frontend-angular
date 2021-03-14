@@ -32,6 +32,7 @@ import {MarketPageComponent} from './pages/market/market-page/market-page.compon
 import {TopUpPageComponent} from './pages/user/top-up-page/top-up-page.component';
 import {MarketDetailPageComponent} from './pages/market/market-detail-page/market-detail-page.component';
 import {PointsShopComponent} from './pages/points-shop/points-shop.component';
+import {FriendPageComponent} from './pages/user/friend-page/friend-page.component';
 
 const routes: Routes = [
   {
@@ -101,74 +102,97 @@ const routes: Routes = [
   {
     path: 'user/:url/edit',
     component: EditProfileComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'user/:url/inventory',
     component: InventoryPageComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'user/:url/friend',
+    component: FriendPageComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'search/:keyword',
     component: SearchGameComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'search/genre/:genreKey',
     component: SearchGameComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'search/category/:categoryKey',
     component: SearchGameComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'game/:id',
     component: GameDetailComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'cart',
     component: GameCartComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'wishlist',
     component: GameWishlistComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'community',
     component: CommunityPageComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'community/discussion',
-    component: DiscussionPageComponent
+    component: DiscussionPageComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'community/discussion/:keyword',
-    component: DiscussionPageComponent
+    component: DiscussionPageComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'community/discussion/thread/:id',
     component: DiscussionDetailPageComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'gift-checkout',
     component: GiftPageComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'market',
     component: MarketPageComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'market/:id',
     component: MarketDetailPageComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'checkout',
     component: TransactionPageComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'top-up',
     component: TopUpPageComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'points-shop',
     component: PointsShopComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: '**',

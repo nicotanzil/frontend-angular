@@ -42,6 +42,17 @@ export class UserService {
     });
   }
 
+  reportUser = (reporterId: number, reportedId: number, description: string) => {
+    return this.apollo.mutate({
+      mutation: REPORT_USER,
+      variables: {
+        reporterId,
+        reportedId,
+        description,
+      }
+    });
+  }
+
   addFriend = (userId: number, friendId: number) => {
     return this.apollo.mutate({
       mutation: ADD_FRIEND,
@@ -70,6 +81,12 @@ const ADD_FRIEND = gql`
 const REDEEM_CODE = gql`
   mutation redeemCode($code:String!, $userId:Int!) {
     redeemCode(code:$code, userId:$userId)
+  }
+`;
+
+const REPORT_USER = gql`
+  mutation createUserReport($reporterId:Int!, $reportedId:Int!, $description:String!) {
+    createUserReport(reporterId:$reporterId, reportedId:$reportedId, description:$description)
   }
 `;
 

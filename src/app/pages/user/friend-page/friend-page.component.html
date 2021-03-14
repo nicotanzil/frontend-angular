@@ -1,0 +1,110 @@
+<app-header-main [user]="authUser" [isUser]="isAuth"></app-header-main>
+<section>
+  <div class="outer-container">
+    <div class="page-header">
+      <div class="user-name">{{user.accountName}}</div>
+    </div>
+    <div class="page-content">
+      <div class="content">
+        <div class="content-header">
+          <span class="friend-count">Your friends {{user.friends.length}}</span>
+          <span class="add-friend">Add a Friend</span>
+        </div>
+        <div class="content-friends">
+          <div class="friend-data" *ngFor="let friend of user.friends" routerLink="/user/{{friend.customURL}}">
+            <img src="{{friend.avatar}}" alt="Friend's avatar">
+            <span class="friend-name">{{friend.accountName}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="content-header">
+          <span class="friend-count">Received Invites</span>
+          <span class="add-friend">Add a Friend</span>
+        </div>
+        <div class="content-invites" *ngIf="receivedRequest.length != 0">
+          <div class="friend-data" *ngFor="let request of receivedRequest">
+            <div class="user-detail-container">
+              <span class="level">{{getLevel(request.requester.experience)}}</span>
+              <img src="{{request.requester.avatar}}" alt="Requester Avatar">
+              <span class="user-name" routerLink="/user/{{request.requester.customURL}}">{{request.requester.accountName}}</span>
+            </div>
+            <div class="button-container">
+              <div class="button" (click)="acceptRequest(request.id)">Accept</div>
+              <div class="button" (click)="declineRequest(request.id)">Decline</div>
+              <div class="button" (click)="ignoreRequest(request.id)">Ignore</div>
+              <div class="button" (click)="openModal(request.requester)">Report</div>
+            </div>
+          </div>
+        </div>
+        <div class="content-invites" *ngIf="receivedRequest.length == 0">
+          There's nothing to show here!
+        </div>
+      </div>
+      <div class="content">
+        <div class="content-header">
+          <span class="friend-count">Sent Invites</span>
+          <span class="add-friend">Add a Friend</span>
+        </div>
+        <div class="content-invites" *ngIf="sentRequest.length != 0">
+          <div class="friend-data" *ngFor="let request of sentRequest">
+            <div class="user-detail-container">
+              <span class="level">{{getLevel(request.requested.experience)}}</span>
+              <img src="{{request.requested.avatar}}" alt="Requester Avatar">
+              <span class="user-name" routerLink="/user/{{request.requested.customURL}}">{{request.requested.accountName}}</span>
+            </div>
+            <div class="button-container">
+              <div class="button" (click)="openModal(request.requested)">Report</div>
+            </div>
+          </div>
+        </div>
+        <div class="content-invites" *ngIf="sentRequest.length == 0">
+          There's nothing to show here!
+        </div>
+      </div>
+      <div class="content">
+        <div class="content-header">
+          <span class="friend-add-title">Add a friend</span>
+        </div>
+        <div class="content-code">
+          <div class="my-friend-code-container">
+            <div class="code-header">Your Friend Code</div>
+            <div class="code-content">{{userCode}}</div>
+          </div>
+          <div class="code-form">
+            <div class="text-input">
+              <label for="code-form">Enter your friend's Friend Code to invite them to connect</label>
+              <input type="number" id="code-form" [(ngModel)]="inputCode">
+            </div>
+            <div class="submit-btn" (click)="createRequest()">Submit</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" *ngIf="isReportModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="header-title">Report User</span>
+        <span class="close" (click)="isReportModal = false">&times;</span>
+      </div>
+      <div class="modal-description">
+        Send Suspend Request for {{reportedUser.accountName}}'s Account
+      </div>
+      <div class="input-container">
+        <span class="input-title">Tell us your reason in the text area below</span>
+        <textarea name="description" id="description" cols="30" rows="5" [(ngModel)]="reportDescription"
+                  placeholder="Why should be suspend this user?"></textarea>
+      </div>
+      <div class="button-section">
+        <div class="button-container">
+          <span class="success-box" *ngIf="isSuccessModal">Data updated!</span>
+          <span class="error-box" *ngIf="isErrorModal">Oops, something went wrong!</span>
+          <button class="btn cancelBtn" (click)="isReportModal = false">Cancel</button>
+          <button class="btn saveBtn" (click)="reportUser()">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

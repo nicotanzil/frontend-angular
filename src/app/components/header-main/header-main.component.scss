@@ -97,6 +97,7 @@
           margin: 0 5px;
           font-size: 12px;
           flex-wrap: wrap;
+
           a {
             display: block;
             color: $header-font-fg;
@@ -174,9 +175,19 @@
           font-size: 12px;
           text-align: right;
 
-          a {
+          a, .change-language {
             text-decoration: none;
             color: $header-font-fg;
+          }
+
+          .change-language {
+            cursor: pointer;
+            #change-language {
+              color: $font-light-gray;
+              background-color: $header-bg;
+              margin-left: 5px;
+              border: none;
+            }
           }
 
           a:hover {
@@ -194,7 +205,6 @@
             }
 
             #account-dropdown {
-              display: none;
               z-index: 100;
               position: absolute;
               top: 24px;

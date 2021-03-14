@@ -25,14 +25,15 @@ export class ViewProfileComponent implements OnInit {
   isTotalStranger: boolean;
   isPendingStranger: boolean;
 
-  friendContainers: any[];
+  friendContainers: boolean[];
 
   reportModal: boolean;
 
   isSuccessModal: boolean;
   isErrorModal: boolean;
 
-  suspensionRequest: SuspensionRequest;
+  description: string;
+
 
   constructor(
     private actRoute: ActivatedRoute,
@@ -48,7 +49,7 @@ export class ViewProfileComponent implements OnInit {
     this.isFriendRequestExists = false;
     this.user.friends = [];
 
-    this.friendContainers = [false];
+    this.friendContainers = [];
 
     this.isSelf = false;
     this.isFriend = false;
@@ -60,7 +61,6 @@ export class ViewProfileComponent implements OnInit {
     this.isSuccessModal = false;
     this.isErrorModal = false;
 
-    this.suspensionRequest = new SuspensionRequest();
   }
 
   ngOnInit(): void {
@@ -69,7 +69,6 @@ export class ViewProfileComponent implements OnInit {
     this.url = this.actRoute.snapshot.params.url;
     this.authService.getUserAuth().subscribe(async query => {
       this.user = query.data.getUserAuth;
-      console.log(this.user);
       this.isUser = true;
       this.init();
     }, error => {
@@ -80,20 +79,22 @@ export class ViewProfileComponent implements OnInit {
 
   init(): void {
     this.userService.getUserByUrl(this.url).subscribe(async query => {
-      console.log(query.data);
+      let isFound = false;
       if (query.data) {
         this.profileUser = query.data.getUserByUrl;
-        this.suspensionRequest.user.id = this.profileUser.id;
+        this.rowsInit();
         this.level = Math.floor(this.profileUser.experience / 100);
         if (this.user.id === this.profileUser.id) {
           this.isSelf = true; // Own account
         } else {
           this.user.friends.forEach(friend => {
-            if (this.profileUser.id === friend.id) {
+            if (this.profileUser.id === friend.id && !isFound) {
+              console.log('Friend');
               this.isFriend = true; // Friend
+              isFound = true;
             } else {
               // Stranger
-              this.validateFriendRequest();
+              if (!isFound) { this.validateFriendRequest(); }
             }
           });
         }
@@ -115,8 +116,10 @@ export class ViewProfileComponent implements OnInit {
   validateFriendRequest(): void {
     this.friendRequestService.validateFriendRequest(this.user.id, this.profileUser.id).subscribe(async query => {
       if (query.data.validateFriendRequestExists) {
+        console.log('Pending Stranger');
         this.isPendingStranger = true;
       } else {
+        console.log('Total Stranger');
         this.isTotalStranger = true;
       }
     });
@@ -124,6 +127,12 @@ export class ViewProfileComponent implements OnInit {
 
   floorNumber(x: number): number {
     return Math.floor(x);
+  }
+
+  rowsInit(): void {
+    this.profileUser.friends.forEach(friend => {
+      this.friendContainers[friend.id] = false;
+    });
   }
 
   onHover(friendContainerId): void {
@@ -148,9 +157,8 @@ export class ViewProfileComponent implements OnInit {
   onSaveReport(): void {
     this.isErrorModal = false;
     this.isSuccessModal = false;
-    console.log(this.suspensionRequest);
-    this.suspensionRequestService.createSuspensionRequest(this.suspensionRequest).subscribe(async query => {
-      this.suspensionRequest.description = '';
+    this.userService.reportUser(this.user.id, this.profileUser.id, this.description).subscribe(async query => {
+      this.description = '';
       this.isSuccessModal = true;
     }, error => {
       console.log(error);
