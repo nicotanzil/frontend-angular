@@ -149,6 +149,7 @@ const GET_NEW_TRENDING_GAMES = gql`
         id
         name
       }
+      createdAt
     }
   }
 `;

@@ -8,6 +8,7 @@ import {UpdateUser} from '../../models/user/update-user';
 import {FriendRequestService} from '../../services/user/friend-request.service';
 import {CheckoutService} from '../../services/transaction/checkout.service';
 import {TranslateService} from '@ngx-translate/core';
+import {ItemService} from '../../services/user/item.service';
 
 @Component({
   selector: 'app-header-main',
@@ -20,6 +21,7 @@ export class HeaderMainComponent implements OnInit, OnChanges {
 
   friendRequestCount: number;
   giftCount: number;
+  itemCount: number;
 
   isAccountDropdown: boolean;
   isNotificationDropdown: boolean;
@@ -30,6 +32,7 @@ export class HeaderMainComponent implements OnInit, OnChanges {
     private router: Router,
     private friendRequestService: FriendRequestService,
     private checkoutService: CheckoutService,
+    private itemService: ItemService,
     public translate: TranslateService,
   ) {
     this.user = new User();
@@ -61,6 +64,10 @@ export class HeaderMainComponent implements OnInit, OnChanges {
 
     this.checkoutService.getGiftNotificationCount(this.user.id).subscribe(async res => {
       this.giftCount = res.data.getGiftNotificationCount;
+    });
+
+    this.itemService.getNewItemNotification(this.user.id).subscribe(async res => {
+      this.itemCount = res.data.getNewItemNotificationCount;
     });
   }
 

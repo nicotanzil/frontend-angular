@@ -44,6 +44,15 @@ export class ItemService {
       }
     });
   }
+
+  getNewItemNotification(userId: number): Observable<Query> {
+    return this.apollo.query<Query>({
+      query: GET_NEW_ITEM_NOTIFICATION,
+      variables: {
+        userId,
+      }
+    });
+  }
 }
 
 const GET_ITEM_CATEGORIES = gql`
@@ -82,4 +91,10 @@ const GET_TOTAL_ITEM = gql`
 query getTotalItems($userId:Int!, $gameId:Int!, $keyword:String!) {
   getTotalItems(userId:$userId, gameId:$gameId, keyword:$keyword)
 }
+`;
+
+const GET_NEW_ITEM_NOTIFICATION = gql`
+  query getNewItemNotificationCount($userId:Int!) {
+    getNewItemNotificationCount(userId:$userId)
+  }
 `;

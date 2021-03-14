@@ -1,0 +1,42 @@
+<app-header-main [user]="user"   [isUser]="isUser"></app-header-main>
+<section>
+  <div class="discovery-outer-container">
+    <div class="page-header">
+      <div class="title">Your Discovery Queue</div>
+      <div class="page-header-description">Your Steam Discovery Queue is a mix of products that are new, top-selling, and similar to what you play and use on Steam. Click below to get started, and use the controls on each product page to easily follow, add to wishlist, or mark as not interested and to jump to the next title in your queue.</div>
+    </div>
+    <div class="page-content">
+      <div class="content-header">By Recommendation</div>
+      <div class="content">
+        There's nothing to show here
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="content-header">By New Releases</div>
+      <div class="content">
+        <div class="game-data" *ngFor="let game of recentGames">
+          <div class="left-container">
+            <img src="{{game.banner}}" alt="Game Banner">
+            <div class="game-detail">
+              <span class="name">{{game.name}}</span>
+              <div class="tags-container">
+                <span class="tag" *ngFor="let tag of game.tags">{{tag.name}} </span>
+              </div>
+              <span class="release-date">Released at {{game.createdAt | date}}</span>
+            </div>
+          </div>
+          <div class="right-container">
+            <span class="discount" *ngIf="game.promo.discountPercentage > 0">-{{game.promo.discountPercentage}}%</span>
+            <div class="price-container">
+              <span class="original-price" *ngIf="game.promo.discountPercentage > 0">Rp {{game.originalPrice}}</span>
+              <span class="total-price" *ngIf="game.promo.discountPercentage > 0">Rp {{game.originalPrice - (game.originalPrice * game.promo.discountPercentage/100)}}</span>
+              <span class="total-price" *ngIf="game.promo.discountPercentage == 0 && game.originalPrice > 0">Rp {{game.originalPrice}}</span>
+              <span class="total-price" *ngIf="game.originalPrice == 0">Free to Play</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

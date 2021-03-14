@@ -81,6 +81,7 @@ import {ServiceWorkerModule} from '@angular/service-worker';
 import {PointsShopComponent} from './pages/points-shop/points-shop.component';
 import {PointsShopCardComponent} from './components/points-shop/points-shop-card/points-shop-card.component';
 import { FriendPageComponent } from './pages/user/friend-page/friend-page.component';
+import { DiscoveryPageComponent } from './pages/discovery-page/discovery-page.component';
 
 export function HttpLoaderFactory(http: HttpClient): any {
   return new TranslateHttpLoader(http);
@@ -153,6 +154,7 @@ export function HttpLoaderFactory(http: HttpClient): any {
     PointsShopComponent,
     PointsShopCardComponent,
     FriendPageComponent,
+    DiscoveryPageComponent,
   ],
   imports: [
     BrowserModule,

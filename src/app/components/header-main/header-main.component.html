@@ -68,7 +68,7 @@
       </ul>
       <div class="header-user-detail" *ngIf="this.isUser">
         <div class="mail-box" (click)="changeNotificationDropdownState()">
-          <span class="mail-number">{{friendRequestCount + giftCount}}</span>
+          <span class="mail-number">{{friendRequestCount + giftCount + itemCount}}</span>
           <i class="fa fa-envelope" aria-hidden="true"></i>
         </div>
         <div class="notification-dropdown" *ngIf="isNotificationDropdown">
@@ -76,7 +76,7 @@
             <a href="#">0 new comments</a>
           </div>
           <div class="item">
-            <a href="#">0 new items in your inventory</a>
+            <a href="#">{{itemCount}} new items in your inventory</a>
           </div>
           <div class="item">
             <a href="#">{{friendRequestCount}} new invites</a>

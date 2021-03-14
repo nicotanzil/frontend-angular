@@ -33,6 +33,7 @@ import {TopUpPageComponent} from './pages/user/top-up-page/top-up-page.component
 import {MarketDetailPageComponent} from './pages/market/market-detail-page/market-detail-page.component';
 import {PointsShopComponent} from './pages/points-shop/points-shop.component';
 import {FriendPageComponent} from './pages/user/friend-page/friend-page.component';
+import {DiscoveryPageComponent} from './pages/discovery-page/discovery-page.component';
 
 const routes: Routes = [
   {
@@ -132,6 +133,11 @@ const routes: Routes = [
   {
     path: 'game/:id',
     component: GameDetailComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'discovery',
+    component: DiscoveryPageComponent,
     canActivate: [AuthGuard],
   },
   {
