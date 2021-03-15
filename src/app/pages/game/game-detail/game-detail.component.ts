@@ -9,10 +9,10 @@ import {GameVideo} from '../../../models/game-video';
 import {CartService} from '../../../services/transaction/cart.service';
 import {async, Subject} from 'rxjs';
 import {WishlistService} from '../../../services/transaction/wishlist.service';
-import {log} from 'util';
 import {InputGameReview} from '../../../models/community/input-game-review';
 import {CommunityGameReviewService} from '../../../services/community/community-game-review.service';
 import {CommunityGameReview} from '../../../models/community/community-game-review';
+import {TopCountriesGame} from '../../../models/home/top-countries-game';
 
 @Component({
   selector: 'app-game-detail',
@@ -43,6 +43,9 @@ export class GameDetailComponent implements OnInit {
   mostHelpfulGameReviews: CommunityGameReview[];
   mostRecentGameReviews: CommunityGameReview[];
 
+  topCountries: TopCountriesGame[];
+  mapReady: boolean;
+
   constructor(
     private actRoute: ActivatedRoute,
     private authService: AuthService,
@@ -71,6 +74,10 @@ export class GameDetailComponent implements OnInit {
 
     this.mostHelpfulGameReviews = [];
     this.mostRecentGameReviews = [];
+
+    this.topCountries = [];
+
+    this.mapReady = false;
   }
 
   ngOnInit(): void {
@@ -94,6 +101,17 @@ export class GameDetailComponent implements OnInit {
       this.getCartGames();
       this.getWishlistGames();
       this.getReview();
+      this.getHeatMapData();
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  getHeatMapData(): void {
+    this.gameService.getTopCountries(this.gameId).subscribe(async query => {
+      this.topCountries = query.data.getTopCountries;
+      console.log(this.topCountries);
+      this.mapReady = true;
     }, error => {
       console.log(error);
     });

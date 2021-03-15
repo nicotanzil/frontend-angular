@@ -3,6 +3,8 @@
 @import './app/styles/mixins.scss';
 @import './app/styles/motiva-sans';
 //@import '../node_modules/font-awesome/css/font-awesome.css';
+@import '~mapbox-gl/dist/mapbox-gl.css';
+@import '~@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css';
 
 *{
   margin: 0;

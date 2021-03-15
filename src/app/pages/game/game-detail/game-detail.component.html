@@ -59,6 +59,26 @@
         <div class="add-to-cart-btn" *ngIf="game.originalPrice == 0">Install Game</div>
         <div class="add-to-wishlist-btn" (click)="addToWishlist()" *ngIf="!isInWishlist && !isHaveGame">Add to your Wishlist</div>
       </div>
+      <div class="map-container">
+        <div class="title">Top 5 Countries</div>
+        <div class="content">
+          <mgl-map *ngIf="mapReady" [interactive]="false"
+                   [style]="'mapbox://styles/mapbox/streets-v9'">
+            <div *ngFor="let data of topCountries">
+              <mgl-marker
+                #marker
+                [lngLat]="[data.longitude, data.latitude]"
+              ></mgl-marker>
+              <mgl-popup [marker]="marker">
+                <div class="pop-up-country">
+                  <span class="name">{{data.name}}</span>
+                  <span class="count">{{data.number_of_players}} users</span>
+                </div>
+              </mgl-popup>
+            </div>
+          </mgl-map>
+        </div>
+      </div>
       <div class="review-form-container" *ngIf="isHaveGame">
         <div class="review-form-header">
           Write a review for {{game.name}}

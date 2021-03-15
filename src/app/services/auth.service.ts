@@ -61,6 +61,8 @@ query GetUserAuth {
     country {
       id
       name
+      latitude
+      longitude
     }
     badges {
       id

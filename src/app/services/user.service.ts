@@ -122,6 +122,8 @@ const GET_USER_BY_URL = gql`
       country {
         id
         name
+        latitude
+        longitude
       }
       badges {
         id

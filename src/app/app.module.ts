@@ -82,6 +82,9 @@ import {PointsShopComponent} from './pages/points-shop/points-shop.component';
 import {PointsShopCardComponent} from './components/points-shop/points-shop-card/points-shop-card.component';
 import { FriendPageComponent } from './pages/user/friend-page/friend-page.component';
 import { DiscoveryPageComponent } from './pages/discovery-page/discovery-page.component';
+import {NgxMapboxGLModule} from 'ngx-mapbox-gl';
+import {CommonModule} from '@angular/common';
+import {MapboxModule} from './mapbox.module';
 
 export function HttpLoaderFactory(http: HttpClient): any {
   return new TranslateHttpLoader(http);
@@ -157,6 +160,7 @@ export function HttpLoaderFactory(http: HttpClient): any {
     DiscoveryPageComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     RecaptchaModule,
@@ -175,7 +179,11 @@ export function HttpLoaderFactory(http: HttpClient): any {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
       }
-    })
+    }),
+    MapboxModule.forRoot({
+      mapboxToken: environment.mapboxToken,
+    }),
+    NgxMapboxGLModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

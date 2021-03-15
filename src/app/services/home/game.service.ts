@@ -50,6 +50,15 @@ export class GameService {
       }
     });
   }
+
+  getTopCountries(gameId: number): Observable<Query> {
+    return this.apollo.query<Query>({
+      query: GET_TOP_COUNTRIES,
+      variables: {
+        gameId,
+      }
+    });
+  }
 }
 
 const GET_GAME_BY_ID = gql`
@@ -172,6 +181,19 @@ const GET_GAMES_BY_MULTIPLE_ID = gql`
         id
         name
       }
+    }
+  }
+`;
+
+
+const GET_TOP_COUNTRIES = gql`
+  query getTopCountries($gameId:Int!) {
+    getTopCountries(gameId:$gameId){
+      id
+      name
+      latitude
+      longitude
+      number_of_players
     }
   }
 `;

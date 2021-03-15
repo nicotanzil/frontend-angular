@@ -175,6 +175,37 @@ section {
         text-align: center;
       }
     }
+    .map-container {
+      width: 100%;
+      height: auto;
+      padding: 20px;
+      .title {
+        font-size: 26px;
+        color: white;
+        text-transform: uppercase;
+        font-weight: lighter;
+      }
+      .content {
+        mgl-map {
+          height: 500px;
+          width: 100%;
+          .pop-up-country {
+            background-color: $dark-blue-home;
+            color: $font-light-gray;
+            border-radius: 3px;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            .name {
+              font-size: 14px;
+            }
+            .count {
+              font-size: 10px;
+            }
+          }
+        }
+      }
+    }
     .review-form-container {
       margin-top: 20px;
       color: $font-light-gray;
