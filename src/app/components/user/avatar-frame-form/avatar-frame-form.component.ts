@@ -32,11 +32,11 @@ export class AvatarFrameFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.user.profileName !== undefined || this.currentUser !== undefined) {
+    // if (this.user.profileName !== undefined || this.currentUser !== undefined) {
       this.currentUser = new UpdateUser(this.user);
       this.selectedFrame = this.user.avatarFrame;
       this.frames = this.user.avatarFrames;
-    }
+    // }
   }
 
   changePreview(avatarFrameId: number): void {

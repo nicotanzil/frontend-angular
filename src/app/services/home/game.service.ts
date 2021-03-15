@@ -92,6 +92,9 @@ const GET_GAME_BY_ID = gql`
        system {
         id
         os
+        graphics
+        memory
+        storage
       }
       banner
       video {

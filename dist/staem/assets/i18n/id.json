@@ -1,0 +1,15 @@
+{
+  "HOME": {
+    "STORE": "Toko",
+    "COMMUNITY": "Komunitas",
+    "ABOUT": "Tentang kami",
+    "SUPPORT": "Dukungan",
+    "CHAT": "Obrolan",
+    "SELECT": "Pilih Bahasa",
+
+    "VIEW_PROFILE": "Lihat Profil",
+    "ACCOUNT_DETAILS": "Detail Akun",
+    "LOGOUT": "Keluar",
+    "PREFERENCES": "Pilihan"
+  }
+}

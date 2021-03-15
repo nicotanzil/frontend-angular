@@ -2,8 +2,8 @@ import {User} from '../user';
 
 export class Gift {
   id: number;
-  sender: User;
-  receiver: User;
+  sender: User = new User();
+  receiver: User = new User();
   firstName: string;
   message: string;
   sentiment: string;

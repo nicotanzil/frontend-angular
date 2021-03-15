@@ -45,9 +45,18 @@ export class ConfirmationFormComponent implements OnInit, OnChanges {
     this.transaction.transactionDetails.forEach(value => {
       this.inputTransaction.transactionDetails.push(value.game.id);
     });
+    if (this.inputTransaction.senderId === undefined) {
+      this.inputTransaction.senderId = this.user.id;
+    }
     console.log(this.inputTransaction); // don't remove code
     this.service.createTransaction(this.inputTransaction).subscribe(async query => {
-      alert('Purchase Success!');
+      // @ts-ignore
+      if (query.data.createTransaction) {
+        alert('Purchase Success!');
+      }
+      else {
+        alert('Oops, something went wrong!');
+      }
     }, error => {
       console.log(error);
     });

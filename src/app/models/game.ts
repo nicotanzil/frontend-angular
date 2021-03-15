@@ -22,7 +22,7 @@ export class Game {
   gameReviews: Review[] = [];
   developers: Developer[] = [];
   publisher: Publisher = new Publisher();
-  system: System;
+  system: System = new System();
 
   banner: string;
   video: GameVideo[] = [];

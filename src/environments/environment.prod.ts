@@ -8,5 +8,6 @@ export const environment = {
     messagingSenderId: '281548290761',
     appId: '1:281548290761:web:ca2a5fef0f58afa4c9eb18',
     measurementId: 'G-PTCXTHBLYH'
-  }
+  },
+  mapboxToken: 'pk.eyJ1Ijoibmljb3RhbnppbCIsImEiOiJja21hNzF3M3Ixb3Y2Mm9wMTRuczB5b3M3In0.lfUMKkiYKVtGB2AJFEocOw',
 };

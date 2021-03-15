@@ -106,13 +106,28 @@ const GET_USER_BY_URL = gql`
         id
         link
       }
+      avatarFrames {
+        id
+        link
+        name
+      }
       profileBackground {
         id
         link
       }
+      profileBackgrounds {
+        id
+        link
+        name
+      }
       miniProfileBackground {
         id
         link
+      }
+      miniProfileBackgrounds {
+        id
+        link
+        name
       }
       theme {
         id
@@ -156,14 +171,6 @@ const GET_USER_BY_URL = gql`
           id
           name
           xp
-          link
-        }
-        miniProfileBackground {
-          id
-          link
-        }
-        avatarFrame {
-          id
           link
         }
       }

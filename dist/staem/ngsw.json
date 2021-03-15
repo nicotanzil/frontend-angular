@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1615611269748,
+  "timestamp": 1615822998190,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -13,11 +13,11 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main.7344d8ef520c790114c5.js",
+        "/main.56c367ea52d79a42eb91.js",
         "/manifest.webmanifest",
-        "/polyfills.8c151b8375e767ff858f.js",
+        "/polyfills.35df1ae11c3cf05ed8e4.js",
         "/runtime.0e49e2b53282f40c8925.js",
-        "/styles.ce255c7b8c66947550cb.css"
+        "/styles.f0778e42202bbbd5828a.css"
       ],
       "patterns": []
     },
@@ -29,6 +29,12 @@
         "ignoreVary": true
       },
       "urls": [
+        "/assets/animated avatar/ignis sanat.gif",
+        "/assets/animated avatar/shadow demon.gif",
+        "/assets/animated avatar/shadow fiend.gif",
+        "/assets/animated avatar/space sphere.gif",
+        "/assets/animated avatar/wheatley.gif",
+        "/assets/animated avatar/wizard skull.gif",
         "/assets/avatar frame/chase.png",
         "/assets/avatar frame/glitch.png",
         "/assets/avatar frame/neon glitch.png",
@@ -37,6 +43,11 @@
         "/assets/badges/game mechanic.png",
         "/assets/badges/ganker.png",
         "/assets/badges/years of service.png",
+        "/assets/chat sticker/chicken dance.png",
+        "/assets/chat sticker/goose chase.png",
+        "/assets/chat sticker/pyro.png",
+        "/assets/chat sticker/rock on.png",
+        "/assets/chat sticker/toast.png",
         "/assets/community art post/1.jpg",
         "/assets/community art post/2.jpg",
         "/assets/community art post/3.jpg",
@@ -100,6 +111,8 @@
         "/assets/home/bg.png",
         "/assets/home/mail logo.jpg",
         "/assets/home/steamcards.png",
+        "/assets/i18n/en.json",
+        "/assets/i18n/id.json",
         "/assets/icons/icon-128x128.png",
         "/assets/icons/icon-144x144.png",
         "/assets/icons/icon-152x152.png",
@@ -121,6 +134,7 @@
         "/assets/mini profile background/default.gif",
         "/assets/mini profile background/sunset.gif",
         "/assets/mini profile background/universe.gif",
+        "/assets/points shop.png",
         "/assets/profile background/cabin lake.jpg",
         "/assets/profile background/cliff's edge.jpg",
         "/assets/profile background/dying light.jpg",
@@ -144,6 +158,12 @@
   ],
   "dataGroups": [],
   "hashTable": {
+    "/assets/animated avatar/ignis sanat.gif": "658d7a42b02f59a94b0ea2a97ee46b4323b66c78",
+    "/assets/animated avatar/shadow demon.gif": "e0910978c2494bea551e70814457ea3606bf2fdc",
+    "/assets/animated avatar/shadow fiend.gif": "7a490f21e9af2f00bf0ba1684131427c2d59d3b5",
+    "/assets/animated avatar/space sphere.gif": "d70a96496a8afc0602d9903859017c60e5dfc319",
+    "/assets/animated avatar/wheatley.gif": "9b150c165611e0f04ac9edb860656d7e67d56fbe",
+    "/assets/animated avatar/wizard skull.gif": "e3698a58ccaf9fbe682a6b22d7ff72472c75a459",
     "/assets/avatar frame/chase.png": "06bb85cd5f39a963a39ae9327ea4eb7da5cd30d4",
     "/assets/avatar frame/glitch.png": "71f42ec23a7f80c365f0c3900a6e61bdc78733d7",
     "/assets/avatar frame/neon glitch.png": "4957cc68eec4c2d9ee1df6de65f073951d1e94ee",
@@ -152,6 +172,11 @@
     "/assets/badges/game mechanic.png": "36a2601ed88f8bd275212f8b8eaa315bc71f73d7",
     "/assets/badges/ganker.png": "05b1b9d504df01096b406777be0d7331d995cf9e",
     "/assets/badges/years of service.png": "e84dae11784628d0c23c53f5a4272b8dacd267fe",
+    "/assets/chat sticker/chicken dance.png": "48517747604eaad387c6d54729c5affa0c442d8a",
+    "/assets/chat sticker/goose chase.png": "7946586268723591036772b91b971de7a26b59b6",
+    "/assets/chat sticker/pyro.png": "3ffc77baebb36beb3e054d30a3bae2e20a9a2d51",
+    "/assets/chat sticker/rock on.png": "bc003c956445fe939986abf0ccfd903eec0de22b",
+    "/assets/chat sticker/toast.png": "5dd60cc4b51b2c9944204d7442d2d204acc3efee",
     "/assets/community art post/1.jpg": "ac62a2202dc7fbf9fc51289f0c6f8ac518bb8341",
     "/assets/community art post/2.jpg": "59a90522e3ad039f3c06dbb2a97b527e9868e816",
     "/assets/community art post/3.jpg": "1b8981dc0abf95cb81027093652b025639790c90",
@@ -215,6 +240,8 @@
     "/assets/home/bg.png": "4973033dc32ace470c109942ec61c54bc423033b",
     "/assets/home/mail logo.jpg": "e8c479ff03c256ec1b8f270790dc2bdb1fdc206f",
     "/assets/home/steamcards.png": "a0775ea0e57e80a6071e695370b7c5e06e5cbf6a",
+    "/assets/i18n/en.json": "15979c05c7c39404c307d1b6b99e071b3267ec25",
+    "/assets/i18n/id.json": "ab8a203aa2607170186a5068d7bfd5141c52ac77",
     "/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
     "/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
     "/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
@@ -236,6 +263,7 @@
     "/assets/mini profile background/default.gif": "e33e60e0e851156ee567699841a8bedfbedc0e87",
     "/assets/mini profile background/sunset.gif": "fc5f8c8f841fc22e60e2cf0cb0412b58458e62dc",
     "/assets/mini profile background/universe.gif": "1c1b2d15413925cbe4da05b4ae35461bfa1b69c7",
+    "/assets/points shop.png": "2902d6e42aaabd81cb99a78d79d6b7ef5e55eeb1",
     "/assets/profile background/cabin lake.jpg": "3651cfc445cc092b204ddac658cf1cf72e189e15",
     "/assets/profile background/cliff's edge.jpg": "786081ae5f681427ddaf66c2e2b9736bd9304df0",
     "/assets/profile background/dying light.jpg": "e95b0fb1250ac01e357d53d0a33ef9d45c629da3",
@@ -254,12 +282,12 @@
     "/fontawesome-webfont.8b43027f47b20503057d.eot": "d980c2ce873dc43af460d4d572d441304499f400",
     "/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg": "98a8aa5cf7d62c2eff5f07ede8d844b874ef06ed",
     "/fontawesome-webfont.f691f37e57f04c152e23.woff": "28b782240b3e76db824e12c02754a9731a167527",
-    "/index.html": "5dcbc6632b5ab797cc2e116cf2cdeb1a1a825fea",
-    "/main.7344d8ef520c790114c5.js": "5fe94b52909f501e08a722c7cc1f268c7e079607",
+    "/index.html": "04f02d36fb7e0a48fa2d284a51ed21d65a9c026a",
+    "/main.56c367ea52d79a42eb91.js": "62d72120b7f854dc4b5afe540c3669c92864a7d5",
     "/manifest.webmanifest": "125e301201aa0d8fb0e911ee35f10aa71440d5b8",
-    "/polyfills.8c151b8375e767ff858f.js": "763cd3b34dfa4600ebb9d9588ec7116988e98920",
+    "/polyfills.35df1ae11c3cf05ed8e4.js": "747604882a6ecb61e0da835bb0bf81546f01e06b",
     "/runtime.0e49e2b53282f40c8925.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
-    "/styles.ce255c7b8c66947550cb.css": "ddefd45047ffd758502594704dc4d823a2ca1515"
+    "/styles.f0778e42202bbbd5828a.css": "715240bec55ef4ba719bc7d81664b4f7958a5240"
   },
   "navigationUrls": [
     {

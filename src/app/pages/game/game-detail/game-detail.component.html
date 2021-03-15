@@ -39,6 +39,10 @@
             <span class="detail-name">Publisher</span>
             <span class="detail-value">{{game.publisher.name}}</span>
           </div>
+          <div class="more-detail-container">
+            <span class="detail-name">System Requirements</span>
+            <span class="detail-value">{{game.system.os}} {{game.system.memory}}GB/{{game.system.storage}}GB</span>
+          </div>
           <div class="user-tag-container">
             <div class="user-tag-title">Popular user-defined tags for this product:</div>
             <div class="tags-container"><span class="tag" *ngFor="let tag of game.tags">{{tag.name}}</span></div>

@@ -1,0 +1,15 @@
+{
+  "HOME": {
+    "STORE": "Store",
+    "COMMUNITY": "Community",
+    "ABOUT": "About",
+    "SUPPORT": "Support",
+    "CHAT": "Chat",
+    "SELECT": "Select Language",
+
+    "VIEW_PROFILE": "View Profile",
+    "ACCOUNT_DETAILS": "Account Details",
+    "LOGOUT": "Logout",
+    "PREFERENCES": "Preferences"
+  }
+}
